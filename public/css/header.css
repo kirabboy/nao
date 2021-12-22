@@ -1,0 +1,103 @@
+  #header{
+    margin-bottom: 30px;
+  }
+  #header ul{
+    list-style: none;
+    padding-left: unset;
+  }
+  header a{
+    color: #fff;
+  }
+  .background-primary{
+    background-color:#F6872E;
+  }
+  .nav-account-text{
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  .nav-account-text >ul {
+    margin: unset;
+  }
+  .nav-account-text >ul > li > span{
+    font-size: 16px;
+  }
+  .nav-account-text >ul > li > b{
+    font-size: 18px;
+  }
+  .nav-tool ul{
+    margin: unset;
+  }
+  .nav-tool ul > li{
+    display: inline-flex;
+  }
+  .nav-tool ul > li > a i{
+    font-size: 18px;
+    padding: 5px;
+    line-height:10px;
+  }
+  .nav-tool ul > li > a >i:after{
+    border-right: 1px solid rgba(238, 238, 238, 0.507);
+    content: "";
+    padding-right: 10px;
+  }
+  .nav-tool ul > li:last-child > a >i:after{
+    content: none;
+  }
+  .nav-tool ul .li:last-child > a{
+    padding-right: unset;
+  }
+  .nav-tool ul .li:first-child > a{
+    padding-left: unset;
+  }
+  
+  #header > nav{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .search-top{
+    width: 90%;
+    z-index: 99999999999;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 75px;
+    text-align: center;
+    position:absolute;
+  }
+  .search-top input:focus{
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    outline: 0;
+  }
+
+  .search-top .search-input{
+    box-shadow: 0px 4px 15px #E9E9E9;
+    border-radius: 25px;
+  }
+  .search-top .search-input .input-group-prepend .input-group-text i{
+    color: #929292;
+  }
+  .search-top .search-input .input-group-prepend .input-group-text{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background: #fff;
+    border-right: unset;
+  
+  }
+  .search-top .search-input input{
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: unset;
+  }
+  .search-top .search-input input::placeholder{
+    color: #929292;
+  }
+  .search-top .search-input i, .search-top .search-input  input{
+    font-size: 16px;
+  }

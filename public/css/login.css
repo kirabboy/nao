@@ -1,0 +1,88 @@
+section.login{
+	padding: 45px 0px; 
+	min-height: 820px;
+}
+.login-title{
+	margin-top: 45px;
+}
+.login-title span{
+	font-size: 14px;
+	text-transform: uppercase;
+	position: relative;
+	color: #4B5F75;
+}
+.login-title span:before{
+	content: "";
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #DBDBDB;
+    left: -54px;
+    top: 8px;
+}
+.login-title span:after{
+	content: "";
+    width: 50px;
+    height: 2px;
+    background-color: #DBDBDB;
+    position: absolute;
+    top: 8px;
+    right: -54px;
+}
+.form-login{
+	margin-top: 45px; 
+}
+.form-login label{
+	font-size: 16px;
+	line-height: 24px;
+	color: #494949;
+	font-weight: bold;
+}
+.form-check label{
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: normal;
+	color: #F6872E;
+	margin-left: 17px;
+}
+.forget-password a{
+	font-size: 16px;
+	line-height: 24px;
+	text-decoration: underline;
+}
+#ModalLoginAlert{
+	top: 23px;
+}
+#ModalLoginAlert .modal-dialog{
+	margin: 1.69em;
+}
+#ModalLoginAlert .modal-content{
+
+}
+section.login-enter-otp{
+	padding-top: 112px;
+}
+.form-login-otp{
+	margin-top: 90px;
+}
+.form-login-otp .form-group input{
+	width: 25%;
+    margin: 0 4px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 1px solid #6E6E6E;
+}
+.form-login-otp .form-group input:focus{
+    outline: 0;
+    border-bottom-color: #F6872E; 
+}
+.form-login-otp .form-group input:required:valid{
+	border-bottom-color: #F6872E; 
+	color: #252525;
+	font-weight: bold;
+	font-size: 24px;
+}
+input[type="checkbox"]:checked + label{
+    color: #252525;
+}
