@@ -18,36 +18,40 @@
 
 <body>
     <header id="header" class="background-primary">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="nav-account-text" href="#">
-                <ul>
-                    <li><span>Xin chào,</span></li>
-                    <li><b>Kira</b></li>
-                </ul>
-            </a>
-            <div class="nav-tool">
-                <ul>
-                    <li>
-                        <a href=""><i class="fas fa-shopping-cart"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="far fa-bell"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="far fa-user"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="search-top">
-            <div class="input-group mb-3 search-input">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i>
+        <div class="container">
 
-                    </span>
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <a class="nav-account-text" href="#">
+                    <ul>
+                        <li><span>Xin chào,</span></li>
+                        <li><b>Kira</b></li>
+                    </ul>
+                </a>
+                <div class="nav-tool">
+                    <ul>
+                        <li>
+                            <a href=""><i class="fas fa-shopping-cart"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="far fa-bell"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="far fa-user"></i></a>
+                        </li>
+                    </ul>
                 </div>
-                <input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="Username"
-                    aria-describedby="basic-addon1">
+            </nav>
+            <div class="search-top">
+                <div class="input-group mb-3 search-input">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i>
+
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
             </div>
         </div>
+
     </header>

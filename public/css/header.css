@@ -41,7 +41,7 @@
     line-height:10px;
   }
   .nav-tool ul > li > a >i:after{
-    border-right: 1px solid rgba(238, 238, 238, 0.507);
+    border-right: 1px solid rgba(238, 238, 238, 0.158);
     content: "";
     padding-right: 10px;
   }
@@ -55,7 +55,7 @@
     padding-left: unset;
   }
   
-  #header > nav{
+  #header nav{
     padding-top: 20px;
     padding-bottom: 20px;
   }
