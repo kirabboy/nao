@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('public.layout.header');
 });
+
+
+Route::get('/danh-sach-san-pham-dai-ly', function () {
+    return view('public.product.shop.shop_agent');
+});
+Route::get('/danh-sach-san-pham-ctv', function () {
+    return view('public.product.shop.shop_collab');
+});
+
+Route::get('/chi-tiet-san-pham-ctv', function () {
+    return view('public.product.detail.product_detail_collab');
+});
+
+Route::get('/chi-tiet-san-pham-dai-ly', function () {
+    return view('public.product.detail.product_detail_agent');
+});
+
+Route::get('/gio-hang', function () {
+    return view('public.cart.cart_index');
+});
