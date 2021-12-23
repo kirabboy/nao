@@ -95,6 +95,12 @@ button:disabled{
 .border-radius-100{
 	border-radius: 100px;
 }
+.mt-30{
+	margin-top: 30px;
+}
+.mb-30{
+	margin-bottom: 30px;
+}
 .mt-45{
 	margin-top: 45px !important;
 }
@@ -189,4 +195,11 @@ button:disabled{
 }
 section.m-h-820{
 	min-height: 820px;
+}
+.onboading{
+	position: absolute;
+}
+.onboading img{
+	position:absolute;
+	top: 40%;
 }

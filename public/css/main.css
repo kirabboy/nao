@@ -53,12 +53,17 @@
 .news .content{
     padding: 12px;
 }
+.news .content:not(:last-child){
+    margin-bottom: 12px;
+}
 .news .content p{
     margin-bottom: 0px;
 }
 .news .content .left{
     width: 43%;
     margin-right: 12px;
+    border-radius: 12px;
+    overflow: hidden;
 }
 .news .content .left img{
     width: 100%;
