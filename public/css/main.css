@@ -1,0 +1,77 @@
+.banner img{
+    width: 100%;
+}
+.service{
+    margin-top: 30px;
+}
+.service div.img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #F6872E;
+    border-radius: 12px;
+}
+.service .items .title{
+    font-size: 0.88em;
+    line-height: 22px;
+    font-weight: bold;
+    color: #252525;
+    text-align: center;
+    margin-top: 8px;
+}
+.news{
+    margin-top: 30px;
+}
+.news ul.nav{
+    margin-top:15px;
+}
+.news .nav-tabs .nav-item.show .nav-link, .news .nav-tabs .nav-link.active {
+    color: #F6872E;
+    background-color: #FDE7D5;
+    border-color: #FDE7D5;
+    border-radius: 100px;
+    font-weight: 600;
+}
+.news .nav-tabs .nav-link {
+    margin-bottom: -1px;
+    border: 1px solid #DBDBDB;
+    color: #252525;
+    font-weight: 600;
+    border-radius: 100px;
+}
+.news ul.nav .nav-item:not(:first-child){
+    margin-left: 12px;
+}
+.news .nav-tabs{
+    border-bottom: none;
+}
+.news .tab-content{
+    margin-top: 30px;
+}
+.news .content{
+    padding: 12px;
+}
+.news .content p{
+    margin-bottom: 0px;
+}
+.news .content .left{
+    width: 43%;
+    margin-right: 12px;
+}
+.news .content .left img{
+    width: 100%;
+}
+.news .content .right p:first-child{
+    margin-bottom: 6px;
+}
+.news .content .right .time i{
+    color: #199DA4;
+    margin-right: 6px;
+}
+.news .content .right .time span{
+    font-size: 12px;
+    color: #7C7C7C;
+    line-height: 18px;
+}
