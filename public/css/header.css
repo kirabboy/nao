@@ -144,3 +144,7 @@
   .search .search-input i, .search .search-input  input{
     font-size: 16px;
   }
+  #header-page nav{
+    padding-left: 0;
+    padding-right: 0;
+  }
