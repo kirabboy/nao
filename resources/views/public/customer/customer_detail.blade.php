@@ -123,7 +123,7 @@
                         </div>
                         <div class="tab-pane fade" id="nav-addess" role="tabpanel" aria-labelledby="nav-addess-tab">
                             <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="customer-address-box">
                                         <ul>
                                             <li>
@@ -137,7 +137,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="customer-address-box">
                                         <ul>
                                             <li>
@@ -151,7 +151,21 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="customer-address-box">
+                                        <ul>
+                                            <li>
+                                                <span>Cao học viên
+                                                </span><span class="address-action"><img
+                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
+                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
+                                            </li>
+                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
+                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="customer-address-box">
                                         <ul>
                                             <li>
