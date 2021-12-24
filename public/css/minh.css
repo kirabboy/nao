@@ -62,9 +62,9 @@ img {
     padding: 14px 0;
 }
 
-.product-button button {
+/* .product-button button {
     padding: 10.5px 16px;
-}
+} */
 
 /* CART */
 .section-cart, .section-checkout {
@@ -132,17 +132,6 @@ img {
     padding: 15px 0;
 }
 
-.add-info {
-    padding: 11px 21px;
-    border: 1px solid var(--primary-color);
-    box-sizing: border-box;
-    border-radius: 100px;
-}
-
-.add-info span {
-    color: var(--primary-color);
-}
-
 .add-info .add-info-plus-icon {
     width: 24px;
     height: 24px;
@@ -153,7 +142,7 @@ img {
     color: #fff;
 }
 
-.checkout-customer-info, .checkout-item, .checkout-coupon, .checkout-shipping, .checkout-shipping-fee, .checkout-payment, .checkout-info, .checkout-package{
+.checkout-customer-info, .checkout-item, .checkout-coupon, .checkout-shipping, .checkout-shipping-fee, .checkout-payment, .checkout-info, .checkout-package {
     padding: 16px;
     margin-bottom: 8px;
 }
@@ -179,7 +168,7 @@ img {
 
 /* NHẬP THÔNG TIN KHÁCH HÀNG */
 .customer-fill-info {
-    padding: 16px;
+    padding: 0 16px;
 }
 
 .form-customer-info {
@@ -240,3 +229,228 @@ button.confirm-payment {
 }
 
 /* ĐƠN HANG */
+.section-order {
+    padding: 0 14px;
+}
+
+.order-item {
+    padding: 24px 0;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 15%);
+    margin: 16px 0;
+}
+
+.order-item-inner {
+    border-left: 6px solid var(--primary-color);
+    padding: 0 16px;
+}
+
+.order-item-img {
+    width: 58px;
+}
+
+.order-item-img img {
+    border-radius: 8px;
+    width: 58px;
+    height: 58px;
+}
+
+.order-item-content {
+    width: calc(100% - 74px);
+    margin-left: 16px;
+}
+
+.order-item-content .order-item-value {
+    color: var(--primary-color);
+}
+
+.order-item-status.is-pending {
+    color: #7C7C7C;
+}
+
+.order-item-status.is-going {
+    color: #5BAB3E;
+}
+
+.order-button {
+    padding: 0 16px;
+}
+
+/* CHI TIẾT ĐƠN HÀNG */
+.section-order-detail>div {
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.section-order-detail>.order-info-items {
+    padding: 0;
+    margin: 0;
+}
+
+.order-customer-info .checkout-customer-info {
+    padding: 0;
+}
+
+.order-sub-info i {
+    color: #5BAB3E;
+    width: 24px;
+}
+
+.order-sub-info a {
+    color: var(--brand-color-green);
+}
+
+.order-sub-info p {
+    margin-bottom: 0;
+}
+
+.order-sub-info p>span {
+    margin-left: 15px;
+}
+
+
+.order-info-items .order-info-item {
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.order-total .order-total-value {
+    color: var(--brand-color-green);
+}
+
+/* ĐƠN HÀNG - CHI TIẾT VẬN CHUYỂN */
+.section-shipping-detail>div {
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.timeline-wrapper {
+    padding-left: 80px;
+    min-width: 400px;
+    font-family: 'Helvetica';
+    font-size: 14px;
+    /*border: 1px solid #CCC;*/
+}
+
+.shipping-timeline {
+    position: relative;
+    padding-left: 45px;
+    list-style: none;
+}
+
+.shipping-progress::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 10px;
+    height: 100%;
+    border-left: 2px solid #CCC;
+}
+
+.shipping-progress-item {
+    position: relative;
+    counter-increment: list;
+}
+
+.shipping-progress-item:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+.shipping-progress-item::before {
+    display: inline-block;
+    top: 5px;
+    content: '';
+    position: absolute;
+    left: -32px;
+    height: 100%;
+    width: 10px;
+}
+
+.shipping-progress-item::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: -37px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.shipping-progress-item.is-done::before {
+    border-left: 1px dashed var(--primary-color);
+}
+
+.shipping-progress-item.is-done::after {
+    /*content: "?";*/
+    font-size: 10px;
+    color: #FFF;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+/*.shipping-progress-item.current::before { 
+    border-left: 2px solid var(--primary-color);
+    }
+.shipping-progress-item.current::after {
+    content: counter(list);
+    padding-top: 1px;
+    width: 19px;
+    height: 18px;
+    top: -4px;
+    left: -40px;
+    font-size: 14px;
+    text-align: center;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    background-color: white;
+}*/
+
+/* DANH SÁCH KHÁCH HÀNG */
+.section-customer, .div-title {
+    padding: 0 16px;
+}
+
+.customer-item {
+    padding: 24px 0;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 15%);
+    margin: 16px 0;
+}
+
+.customer-item-inner {
+    border-left: 6px solid var(--brand-color-green);
+    padding: 0 16px;
+}
+
+.is-vip .customer-item-inner {
+    border-left: 6px solid var(--primary-color);
+}
+
+.btn-action-info {
+    background-color: var(--secondary-blue-5);
+    border-color: var(--secondary-blue-5);
+    color: var(--secondary-blue);
+    border-radius: 8px;
+}
+
+.btn-action-time {
+    background-color: var(--secondary-yellow-5);
+    border-color: var(--secondary-yellow-5);
+    color: var(--secondary-yellow);
+    border-radius: 8px;
+
+}
+
+.btn-action-call {
+    border-color: var(--acent-green-5);
+    background-color: var(--acent-green-5);
+    color: var(--acent-green);
+    border-radius: 8px;
+
+}

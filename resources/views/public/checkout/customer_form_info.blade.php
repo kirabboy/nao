@@ -37,7 +37,7 @@
                     <input type="text" name="" class="form-control btn-rounded" placeholder="Nhập tên tìm kiếm ...">
                 </div>
                 <div class="col-5 text-right">
-                    <button class="btn btn-primary btn-rounded">Lấy thông tin</button>
+                    <button class="btn btn-primary btn-rounded btn-block">Lấy thông tin</button>
                 </div>
             </div>
         </div>

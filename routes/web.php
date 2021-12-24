@@ -25,7 +25,7 @@ Route::get('/san-pham/ctv', function() {
     return view('public.product.index_ctv');
 });
 
-Route::get('/chi-tiet-san-pham', function() {
+Route::get('/san-pham/chi-tiet-san-pham', function() {
     return view('public.product.product_detail');
 });
 
@@ -37,10 +37,26 @@ Route::get('/checkout', function() {
     return view('public.checkout.checkout');
 });
 
-Route::get('/nhap-thong-tin', function() {
+Route::get('/checkout/nhap-thong-tin', function() {
     return view('public.checkout.customer_form_info');
 });
 
 Route::get('/thanh-toan', function() {
     return view('public.checkout.payment');
+});
+
+Route::get('/don-hang', function() {
+    return view('public.order.index');
+});
+
+Route::get('/don-hang/chi-tiet', function() {
+    return view('public.order.detail');
+});
+
+Route::get('/don-hang/thong-tin-van-chuyen', function() {
+    return view('public.order.shipping_detail');
+});
+
+Route::get('/quan-ly-khach-hang', function() {
+    return view('public.order.index_customer');
 });

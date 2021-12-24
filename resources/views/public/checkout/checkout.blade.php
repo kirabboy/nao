@@ -16,7 +16,7 @@
 
     <section class="section-checkout">
         <div class="checkout-add-info text-center">
-            <button class="btn add-info btn-rounded">
+            <button class="add-info btn btn-secondary btn-rounded">
                 <span class="add-info-plus-icon d-inline-block mb-0">+</span>
                 <span>Thêm thông tin khách hàng</span>
             </button>
@@ -88,7 +88,7 @@
                     <input type="text" class="form-control btn-rounded" placeholder="Nhập mã giảm giá">
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-primary btn-rounded">Áp dụng</button>
+                    <button class="btn btn-primary btn-rounded btn-block">Áp dụng</button>
                 </div>
             </div>
         </div>
