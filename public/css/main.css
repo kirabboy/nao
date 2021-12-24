@@ -1,0 +1,23 @@
+.banner img{
+    width: 100%;
+}
+.service{
+    margin-top: 30px;
+}
+.service div.img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #F6872E;
+    border-radius: 12px;
+}
+.service .items .title{
+    font-size: 0.88em;
+    line-height: 22px;
+    font-weight: bold;
+    color: #252525;
+    text-align: center;
+    margin-top: 8px;
+}

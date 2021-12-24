@@ -65,11 +65,10 @@ header {
 .order-box-detail-list ul li,
 .order-box-product-list ul li {
     margin-bottom: 10px;
-
 }
-ul li{
-    -ms-flex-align: center!important;
-    align-items: center!important;
+ul li {
+    -ms-flex-align: center !important;
+    align-items: center !important;
     display: flex;
 }
 ul li:last-child {
@@ -106,13 +105,13 @@ ul.road-map-status-shipping {
     margin-bottom: 0;
     padding-left: 0;
 }
-ul.road-map-status-shipping li{
+ul.road-map-status-shipping li {
     margin-bottom: 30px;
 }
-ul.road-map-status-shipping li:last-child{
+ul.road-map-status-shipping li:last-child {
     margin-bottom: 0;
 }
-ul.road-map-status-shipping li:before{
+ul.road-map-status-shipping li:before {
     position: absolute;
     content: "";
     height: 15%;
@@ -121,6 +120,9 @@ ul.road-map-status-shipping li:before{
     left: 32px;
     margin-top: 50px;
 }
-ul.road-map-status-shipping li:last-child::before{
+ul.road-map-status-shipping li:last-child::before {
     display: none;
+}
+.pt-86, .menu-fix {
+    display: none !important;
 }

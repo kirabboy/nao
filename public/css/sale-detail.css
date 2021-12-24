@@ -1,0 +1,40 @@
+.sale-product .status{
+    display: inline-flex;
+    padding:5px 10px;
+}
+.sale-product .status i{
+    font-size: 6px;
+    line-height:16px;
+    margin-right: 4px;
+}
+.sale-product .status span{
+    font-size: 14px;
+    line-height:16px;
+    font-weight: bold;
+}
+.sale-condition table tr td{
+    padding: 0.1rem;
+    font-size: 16px;
+    line-height:24px;
+    color: #252525;
+}
+.sale-condition table tr td:last-child{
+    font-weight: bold;
+    color: #199DA4;
+    text-align: right;
+}
+.sale-condition .tutorial{
+    padding: 12px;
+    border: 1px solid #199DA4;
+    border-radius:12px;
+}
+.news .product img{
+    width: 24px;
+    margin-right: 6px;
+}
+.news .product h3{
+    margin-bottom: 0;
+}
+.menu-fix{
+    display: none !important;
+}

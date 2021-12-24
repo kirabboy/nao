@@ -7,7 +7,7 @@
     <header id="header-page">
         <div class="container cart-content">
             <nav class="navbar navbar-expand-lg navbar-dark ">
-                <a class="nav-page-text" href="#">
+                <a class="nav-page-text" href="{{url('/')}}">
                     <i class="fas fa-arrow-left"></i>
                     Chi tiết khách hàng
                 </a>
