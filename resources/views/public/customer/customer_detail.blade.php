@@ -8,7 +8,7 @@
         <div class="container cart-content">
             <nav class="navbar navbar-expand-lg navbar-dark ">
                 <a class="nav-page-text" href="{{url('/')}}">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="fas fa-chevron-left"></i>
                     Chi tiết khách hàng
                 </a>
             </nav>
