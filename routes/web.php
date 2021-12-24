@@ -36,3 +36,17 @@ Route::get('/chi-tiet-san-pham-dai-ly', function () {
 Route::get('/gio-hang', function () {
     return view('public.cart.cart_index');
 });
+
+Route::get('/chi-tiet-khach-hang', function () {
+    return view('public.customer.customer_detail');
+});
+
+Route::get('/them-dia-chi-khach-hang', function () {
+    return view('public.customer.add_address');
+});
+Route::get('/chi-tiet-don-hang', function () {
+    return view('public.customer.tracking_order');
+});
+Route::get('/thong-tin-van-chuyen', function () {
+    return view('public.customer.tracking_order_shipping');
+});
