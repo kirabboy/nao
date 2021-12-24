@@ -1,17 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Admin\LoginController;
+use App\Http\Controllers\HomeController; 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('public.index');
@@ -48,24 +40,24 @@ Route::get('chi-tiet-khuyen-mai', function () {
 });
 
 
-Route::get('/danh-sach-san-pham-dai-ly', function () {
-    return view('public.product.shop.shop_agent');
-});
-Route::get('/danh-sach-san-pham-ctv', function () {
-    return view('public.product.shop.shop_collab');
-});
+// Route::get('/danh-sach-san-pham-dai-ly', function () {
+//     return view('public.product.shop.shop_agent');
+// });
+// Route::get('/danh-sach-san-pham-ctv', function () {
+//     return view('public.product.shop.shop_collab');
+// });
 
-Route::get('/chi-tiet-san-pham-ctv', function () {
-    return view('public.product.detail.product_detail_collab');
-});
+// Route::get('/chi-tiet-san-pham-ctv', function () {
+//     return view('public.product.detail.product_detail_collab');
+// });
 
-Route::get('/chi-tiet-san-pham-dai-ly', function () {
-    return view('public.product.detail.product_detail_agent');
-});
+// Route::get('/chi-tiet-san-pham-dai-ly', function () {
+//     return view('public.product.detail.product_detail_agent');
+// });
 
-Route::get('/gio-hang', function () {
-    return view('public.cart.cart_index');
-});
+// Route::get('/gio-hang', function () {
+//     return view('public.cart.cart_index');
+// });
 
 Route::get('/chi-tiet-khach-hang', function () {
     return view('public.customer.customer_detail');
@@ -79,4 +71,23 @@ Route::get('/chi-tiet-don-hang', function () {
 });
 Route::get('/thong-tin-van-chuyen', function () {
     return view('public.customer.tracking_order_shipping');
+});
+Route::get('admin/login', [LoginController::class, 'index']);
+
+Route::prefix('profile')->group(function () {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/info', [HomeController::class, 'infoDetail']);
+    Route::get('/resetPassword', [HomeController::class, 'resetPassword']);
+    Route::get('/thanhtoan', [HomeController::class, 'thanhtoan']);
+
+    Route::get('/doinhom', [HomeController::class, 'doinhom']);
+    Route::get('/chitietthanhvien', [HomeController::class, 'chitietthanhvien']);
+    
+    Route::get('/chiphi', [HomeController::class, 'chiphi']);
+    Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
+    Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
+    Route::get('/hoahong', [HomeController::class, 'hoahong']);
+    Route::get('/hoahongbanle', [HomeController::class, 'hoahongbanle']);
+    Route::get('/hoahongnhom', [HomeController::class, 'hoahongnhom']);
+
 });

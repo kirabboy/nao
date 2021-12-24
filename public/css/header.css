@@ -113,4 +113,34 @@
   color: #f6872e;
   margin-right: 10px;
   }
+  .search input:focus{
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    outline: 0;
+  }
+
+  .search .search-input{
+    box-shadow: 0px 4px 15px #E9E9E9;
+    border-radius: 25px;
+  }
+  .search .search-input .input-group-prepend .input-group-text i{
+    color: #929292;
+  }
+  .search .search-input .input-group-prepend .input-group-text{
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background: #fff;
+    border-right: unset;
   
+  }
+  .search .search-input input{
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: unset;
+  }
+  .search .search-input input::placeholder{
+    color: #929292;
+  }
+  .search .search-input i, .search .search-input  input{
+    font-size: 16px;
+  }
