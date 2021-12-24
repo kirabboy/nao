@@ -1,0 +1,242 @@
+img {
+    max-width: 100%;
+}
+
+.list-product-items {
+    margin: 0 16.5px;
+}
+
+.list-product-items .product-item {
+    margin: 16px 0;
+}
+
+.product-item {
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 15px #E9E9E9;
+}
+
+.item-product-img {
+    margin-right: 18px;
+    width: 64px;
+}
+
+.item-product-img img {
+    border: 1px solid #D3D3D3;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    height: 64px;
+}
+
+.item-product-content {
+    margin-bottom: 16px;
+    width: calc(100% - 82px);
+}
+
+.item-info-value {
+    color: var(--brand-color-green);
+}
+
+/* end index product CSS */
+
+/* PRODUCT DETAIL */
+.backheader h3 i {
+    margin-right: 22px;
+}
+
+.product-info {
+    padding: 0 18px;
+    margin-bottom: 27px;
+}
+
+.product-info-detail .item-info-title p, .product-info-detail .item-info-value h3 {
+    margin-bottom: 16px;
+}
+
+.product-info-detail .item-info-title p:last-child, .product-info-detail .item-info-value h3:last-child {
+    margin-bottom: 0;
+}
+
+.product-button {
+    padding: 14px 0;
+}
+
+.product-button button {
+    padding: 10.5px 16px;
+}
+
+/* CART */
+.section-cart, .section-checkout {
+    background-color: #F0F2F5;
+}
+
+.item-cart {
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.item-cart-img img {
+    width: 64px;
+    height: 64px;
+    border: 1px solid #D3D3D3;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.item-cart-img input {
+    margin-right: 16px;
+    border: 1.5px solid #F6872E;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.item-cart-info {
+    margin-left: 16px;
+    width: calc(100% - 104px);
+}
+
+.cart-quantity-control-group .down-btn, .cart-quantity-control-group .up-btn {
+    align-items: center;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    transition: .3s;
+    width: 32px;
+}
+
+.cart-quantity-control-group .quantity-input {
+    background: 0 0;
+    border: 0;
+    height: 32px;
+    width: 30px;
+}
+
+.cart-footer {
+    padding: 14px 16px;
+    box-shadow: 1px 0px 15px rgba(0, 0, 0, 0.15);
+}
+
+.cart-total {
+    font-size: 12px;
+}
+
+.cart-select-all {
+    font-size: 14px;
+}
+
+/* CHECKOUT */
+.checkout-add-info {
+    padding: 15px 0;
+}
+
+.add-info {
+    padding: 11px 21px;
+    border: 1px solid var(--primary-color);
+    box-sizing: border-box;
+    border-radius: 100px;
+}
+
+.add-info span {
+    color: var(--primary-color);
+}
+
+.add-info .add-info-plus-icon {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.checkout-customer-info, .checkout-item, .checkout-coupon, .checkout-shipping, .checkout-shipping-fee, .checkout-payment, .checkout-info, .checkout-package{
+    padding: 16px;
+    margin-bottom: 8px;
+}
+
+.checkout-customer-info .customer-info-content {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+}
+
+.checkout-shipping img {
+    width: 106.2px;
+    height: 62.12px;
+    border-radius: 10px;
+}
+
+.checkout-info .checkout-info-value {
+    color: var(--brand-color-green);
+}
+
+.checkout-footer {
+    padding: 16px;
+}
+
+/* NHẬP THÔNG TIN KHÁCH HÀNG */
+.customer-fill-info {
+    padding: 16px;
+}
+
+.form-customer-info {
+    margin-top: 36px;
+}
+
+.form-customer-info h3, .form-customer-info label {
+    margin-bottom: 0;
+}
+
+.form-customer-info button {
+    margin-top: 51px;
+    margin-bottom: 21px;
+    padding: 10.5px 100.5px;
+}
+
+/* PAYMENT */
+.section-payment {
+    padding: 0 16px;
+    margin-top: 22px;
+}
+
+.payment-content-value {
+    color: var(--brand-color-green);
+}
+
+.payment-content-value i {
+    color: var(--primary-color);
+    margin-left: 16px;
+}
+
+.payment-tutor {
+    border: 1px solid var(--primary-color);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 44px 0;
+}
+
+.payment-bill .img-bills {
+    margin: 41px 0;
+}
+
+button.confirm-payment {
+    margin-bottom: 44px;
+}
+
+.payment-bill label {
+    cursor: pointer;
+}
+
+.payment-bill label {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.payment-bill label i {
+    color: var(--text-color);
+}
+
+/* ĐƠN HANG */
