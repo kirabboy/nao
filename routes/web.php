@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('public.layout.header');
 });
 
+// MINH START
+
 Route::get('/san-pham/dai-ly', function() {
     return view('public.product.index_dai_ly');
 });
@@ -60,3 +62,5 @@ Route::get('/don-hang/thong-tin-van-chuyen', function() {
 Route::get('/quan-ly-khach-hang', function() {
     return view('public.order.index_customer');
 });
+
+// END MINH
