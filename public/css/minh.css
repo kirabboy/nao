@@ -432,25 +432,26 @@ button.confirm-payment {
     border-left: 6px solid var(--primary-color);
 }
 
+.btn-action {
+    border-radius: 8px;
+    width: 42px;
+    height: 42px;
+}
+
 .btn-action-info {
     background-color: var(--secondary-blue-5);
     border-color: var(--secondary-blue-5);
     color: var(--secondary-blue);
-    border-radius: 8px;
 }
 
 .btn-action-time {
     background-color: var(--secondary-yellow-5);
     border-color: var(--secondary-yellow-5);
     color: var(--secondary-yellow);
-    border-radius: 8px;
-
 }
 
 .btn-action-call {
     border-color: var(--acent-green-5);
     background-color: var(--acent-green-5);
     color: var(--acent-green);
-    border-radius: 8px;
-
 }

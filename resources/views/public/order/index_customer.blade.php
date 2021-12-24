@@ -21,9 +21,9 @@
                         <p>Số điện thoại: 0902456789</p>
                     </div>
                     <div class="customer-action d-flex flex-column justify-content-between">
-                        <button class="btn btn-action-info"><i class="fas fa-info-circle"></i></button>
-                        <button class="btn btn-action-time"><i class="fas fa-clock"></i></button>
-                        <button class="btn btn-action-call"><i class="fas fa-phone-alt"></i></button>
+                        <button class="btn btn-action btn-action-info"><i class="fas fa-info-circle"></i></button>
+                        <button class="btn btn-action btn-action-time"><i class="fas fa-clock"></i></button>
+                        <button class="btn btn-action btn-action-call"><i class="fas fa-phone-alt"></i></button>
                     </div>
                 </div>
             </div>
