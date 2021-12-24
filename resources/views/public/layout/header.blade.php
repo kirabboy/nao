@@ -41,7 +41,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="search-top">
+        <div class="search search-top">
             <div class="input-group mb-3 search-input">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i>

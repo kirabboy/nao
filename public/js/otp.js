@@ -12,7 +12,7 @@ $(document).ready(function() {
 	    if (that.val().length > 1 && Number.isInteger(parseInt(that.val()))) {
 	    	var value = that.val()[that.val().length -1];
 	    	that.val(that.val()[0]);
-			that.next().next().focus();
+			that.next().focus();
 	      	that.next().val(value);
 	    }
 	});

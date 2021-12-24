@@ -1,0 +1,9 @@
+::-webkit-calendar-picker-indicator {
+    filter: invert(59%) sepia(86%) saturate(1296%) hue-rotate(339deg) brightness(98%) contrast(96%);
+}
+input[type="date"], select{
+    color: #F6872E;
+}
+.custom-input{
+    border-color: #F6872E;
+}

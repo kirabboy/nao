@@ -1,3 +1,4 @@
+<div class="pt-86"></div>
 <div class="menu-fix d-flex justify-content-around">
     <a class="d-flex justify-content-center align-items-center flex-column item">
         <i class="fa fa-home" aria-hidden="true"></i>

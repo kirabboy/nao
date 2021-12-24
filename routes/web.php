@@ -37,3 +37,12 @@ Route::get('quen-mat-khau', function () {
 Route::get('dang-ky-thanh-cong', function () {
     return view('public.user.register-success');
 });
+Route::get('thong-bao', function () {
+    return view('public.notify');
+});
+Route::get('khuyen-mai', function () {
+    return view('public.sale');
+});
+Route::get('chi-tiet-khuyen-mai', function () {
+    return view('public.sale-detail');
+});

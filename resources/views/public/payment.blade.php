@@ -1,8 +1,15 @@
 @extends('public.layout.master')
 @push('css')
 <link rel="stylesheet" href="{{ asset('public/css/payment.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/css/navigation.css') }}" />
 @endpush
 @section('content')
+<div class="container">
+    <div class="navigation d-flex align-items-center">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        <h3>Thanh toán</h3>
+    </div>
+</div>
 <div class="container mt-30 payment">
     <h1 class="heading color-se">Thông tin chuyển khoản</h1>
     <table class="table table-borderless mt-30">

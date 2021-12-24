@@ -1,0 +1,80 @@
+.news{
+    margin-top: 30px;
+}
+.news ul.nav{
+    margin-top:15px;
+}
+.news .nav-tabs .nav-item.show .nav-link, .news .nav-tabs .nav-link.active {
+    color: #F6872E;
+    background-color: #FDE7D5;
+    border-color: #FDE7D5;
+    border-radius: 100px;
+    font-weight: 600;
+}
+.news .nav-tabs .nav-link {
+    margin-bottom: -1px;
+    border: 1px solid #DBDBDB;
+    color: #252525;
+    font-weight: 600;
+    border-radius: 100px;
+}
+.news ul.nav .nav-item:not(:first-child){
+    margin-left: 12px;
+}
+.news .nav-tabs{
+    border-bottom: none;
+}
+.news .tab-content{
+    margin-top: 30px;
+}
+.news .content{
+    padding: 12px;
+}
+.news .content:not(:last-child){
+    margin-bottom: 12px;
+}
+.news .content p{
+    margin-bottom: 0px;
+}
+.news .content .left{
+    width: 33%;
+    margin-right: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.news .content .left img{
+    width: 100%;
+}
+.news .content .right p:first-child{
+    margin-bottom: 6px;
+}
+.news .content .right .time i{
+    color: #199DA4;
+    margin-right: 6px;
+}
+.news .content .right .time span{
+    font-size: 12px;
+    color: #7C7C7C;
+    line-height: 18px;
+}
+.news .content .right .status i{
+    font-size: 6px;
+    line-height:16px;
+    margin-right:4px;
+}
+.news .content .right .status span{
+    font-size: 12px;
+    font-weight: 500;
+    line-height:16px;
+}
+.news .content .right .status, .sale-product .status{
+    display: flex;
+    align-items: center;
+    background-color: #D0E4FF;
+    border-radius: 100px;
+    color: #1477FF;
+    padding: 0px 6px;
+    margin-left: 8px;
+}
+
+
