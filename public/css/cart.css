@@ -1,0 +1,180 @@
+#main {
+    background-color: #f0f2f5;
+}
+
+#header {
+    display: none;
+}
+.nav-page-text {
+    color: #2a2a2a;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+.nav-page-text i {
+    margin-right: 10px;
+}
+h4.product-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #252525;
+}
+.list-cart-item div:first-child .cart-item{
+    margin-top: 20px;
+
+}
+.cart-item {
+    background: #ffffff;
+    box-shadow: 0px 4px 15px #e9e9e9;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.cart-item .cart-check {
+    width: 15px !important;
+    height: 15px !important;
+
+    outline: 2px solid #f6872e;
+    box-shadow: none;
+    color: #fff;
+}
+.checkbox-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    gap: 20px;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    justify-content: center;
+}
+.checkbox:hover .checkbox-checkmark {
+    border: 2px solid #f6872e;
+}
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkbox-input:focus ~ .checkbox-checkmark-box {
+    border-color: #f6872e;
+}
+.checkbox-input:checked ~ .checkbox-checkmark-box .checkbox-checkmark:after {
+    display: block;
+}
+.checkbox-input:checked ~ .checkbox-checkmark-box .checkbox-checkmark {
+    background-color: #f6872e;
+    border: 2px solid #f6872e;
+}
+.checkbox-input:disabled ~ .checkbox-checkmark-box .checkbox-checkmark {
+    border: 2px solid #f6872e;
+    cursor: not-allowed;
+}
+.checkbox-input:disabled:checked ~ .checkbox-checkmark-box .checkbox-checkmark {
+    background-color: #f6872e;
+}
+.checkbox-input:disabled:checked
+    ~ .checkbox-checkmark-box
+    .checkbox-checkmark:after {
+    background: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.8866 9.91722L0.0873348 5.36761C0.0596566 5.34137 0.037692 5.31018 0.0227039 5.27582C0.00771585 5.24146 0 5.20461 0 5.1674C0 5.13019 0.00771585 5.09335 0.0227039 5.05899C0.037692 5.02463 0.0596566 4.99343 0.0873348 4.96719L1.29893 3.81086C1.41471 3.70049 1.60183 3.70049 1.71761 3.81086L4.87718 6.80501C4.99296 6.91538 5.18143 6.91409 5.2972 6.80372L12.2787 0.0839022C12.3945 -0.0277526 12.5829 -0.0277526 12.7001 0.0826188L13.913 1.23895C14.0288 1.34932 14.0288 1.52771 13.9143 1.63809L6.30821 8.95468L6.30956 8.95597L5.30662 9.91722C5.19085 10.0276 5.00238 10.0276 4.8866 9.91722Z' fill='%2374767B'/%3E%3C/svg%3E%0A")
+        no-repeat center;
+    background-size: contain;
+}
+.checkbox-checkmark-box {
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+.checkbox-checkmark {
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #58a55a;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.checkbox-checkmark:after {
+    content: "";
+    display: none;
+    background: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.8866 9.91722L0.0873348 5.36761C0.0596566 5.34137 0.037692 5.31018 0.0227039 5.27582C0.00771585 5.24146 0 5.20461 0 5.1674C0 5.13019 0.00771585 5.09335 0.0227039 5.05899C0.037692 5.02463 0.0596566 4.99343 0.0873348 4.96719L1.29893 3.81086C1.41471 3.70049 1.60183 3.70049 1.71761 3.81086L4.87718 6.80501C4.99296 6.91538 5.18143 6.91409 5.2972 6.80372L12.2787 0.0839022C12.3945 -0.0277526 12.5829 -0.0277526 12.7001 0.0826188L13.913 1.23895C14.0288 1.34932 14.0288 1.52771 13.9143 1.63809L6.30821 8.95468L6.30956 8.95597L5.30662 9.91722C5.19085 10.0276 5.00238 10.0276 4.8866 9.91722Z' fill='white'/%3E%3C/svg%3E%0A")
+        no-repeat center;
+    width: 24px;
+    height: 20px;
+    background-size: contain;
+}
+
+.cart-item-price, .cart-item-quantity {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.quantity-item, .price-value {
+    padding-right: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #199da4;
+}
+
+/*quantity css*/
+.control {
+}
+.control .bttn-left {
+}
+.control .input {
+    width: calc(50px * 0.5);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border: unset;
+}
+.control a.bttn {
+    text-decoration: none;
+}
+.control a.bttn,
+.control .bttn {
+    background: #fde7d5;
+    /* Acent color/Orange_Primary */
+    height: 30px;
+    width: 30px;
+    border: 1px solid #f6872e;
+    border-radius: 100px;
+    text-align: center;
+    border-radius: 50px;
+}
+.control a.bttn span,
+.control .bttn span {
+    margin: auto !important;
+}
+.control .bttn-right {
+}

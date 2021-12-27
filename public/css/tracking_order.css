@@ -1,0 +1,128 @@
+#header {
+    display: none;
+}
+.nav-page-text {
+    color: #2a2a2a;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+.nav-page-text i {
+    margin-right: 10px;
+}
+body {
+    background-color: #f0f2f5;
+}
+header {
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.order-box-detail,
+.order-customer-info-box,
+.order-box-detail-list,
+.order-box-product-list,
+.shipping-box-detail {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.order-box-detail .order-box-title,
+.order-box-detail-list li,
+.order-box-product-list li {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.order-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+.order-money {
+    width: 35px;
+    height: 20px;
+    margin-right: 10px;
+}
+.order-box-detail p:last-child {
+    margin-bottom: 0;
+}
+.order-customer-info-box ul,
+.order-box-detail-list ul,
+.order-box-product-list ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.order-customer-info-box ul li,
+.order-box-detail-list ul li,
+.order-box-product-list ul li {
+    margin-bottom: 10px;
+}
+ul li {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+    display: flex;
+}
+ul li:last-child {
+    margin-bottom: 0;
+}
+.order-customer-info-box {
+    padding-left: 20px;
+}
+.order-customer-info-box:after {
+    content: "";
+    background: #f6872e;
+    width: 5px;
+    left: 15px;
+    height: 75%;
+    position: absolute;
+    top: 11px;
+    display: block;
+    border-radius: 100px;
+}
+.order-box-detail-list ul li span:last-child,
+.order-box-product-list ul li span:last-child {
+    color: #199da4;
+}
+.order-box-title a {
+    color: #199da4;
+}
+.road-map-status-shipping img {
+    height: 15px;
+    width: 15px;
+    margin-right: 15px;
+}
+ul.road-map-status-shipping {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+ul.road-map-status-shipping li {
+    margin-bottom: 30px;
+}
+ul.road-map-status-shipping li:last-child {
+    margin-bottom: 0;
+}
+ul.road-map-status-shipping li:before {
+    position: absolute;
+    content: "";
+    height: 15%;
+    width: 20px;
+    border-left: 2px dashed #f6872e;
+    left: 32px;
+    margin-top: 50px;
+}
+ul.road-map-status-shipping li:last-child::before {
+    display: none;
+}
+.pt-86, .menu-fix {
+    display: none !important;
+}
