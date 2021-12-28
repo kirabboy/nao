@@ -1,0 +1,119 @@
+/* CSS chung */
+
+:root {
+    --brand-color-orange: #F6872E;
+    --brand-color-green: #199DA4;
+    --primary-color: #F6872E;
+    --primary-color-2: #F8A058;
+    --primary-color-3: #FAB882;
+    --primary-color-4: #FBCFAC;
+    --primary-color-5: #FDE7D5;
+
+    --secondary-yellow: #FFA800;
+    --secondary-yellow-2: #FFB933;
+    --secondary-yellow-3: ##FFCB66;
+    --secondary-yellow-4: #FFDC99;
+    --secondary-yellow-5: #FFEECC;
+
+    --secondary-blue: #1477FF;
+    --secondary-blue-2: #4392FF;
+    --secondary-blue-3: #72ADFF;
+    --secondary-blue-4: #A1C9FF;
+    --secondary-blue-5: #D0E4FF;
+
+    --acent-green: #199DA4;
+    --acent-green-2: #22D2DC;
+    --acent-green-3: #58DEE5;
+    --acent-green-4: #90E9EE;
+    --acent-green-5: #C7F4F6;
+
+    --text-color: #251111;
+
+    --positive: #82D868;
+    --info: #0088FF;
+    --warning: #FFEE0A;
+    --negative: #FF5735;
+}
+
+body {
+    font-family: 'Mulish', sans-serif;
+    color: var(--text-color);
+}
+
+h1, .h1 {
+    font-size: 22px;
+    line-height: 34px;
+    font-weight: 700;
+}
+h2, .h2 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 700;
+}
+h3, .h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+h4, .h4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, p {
+    margin-bottom: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #FFFFFF;
+    padding: 4px 12px 4px 12px;
+}
+
+.btn-primary-4 {
+    background-color: var(--primary-color-4);
+    border-color: var(--primary-color);
+    color: #000;
+    padding: 4px 12px 4px 12px;
+}
+
+.btn-rounded {
+    border-radius: 100px;
+}
+
+.btn-secondary {
+    padding: 4px 12px 4px 12px;
+    border-color: var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+/* button i {
+    margin-right: 10px;
+} */
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.f-12 {
+    font-size: 12px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.color-brand-green {
+    color: var(--brand-color-green);
+}
