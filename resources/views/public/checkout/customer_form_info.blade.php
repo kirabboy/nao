@@ -1,4 +1,4 @@
-@extends('public.layout.header')
+@extends('public.layout.master')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
