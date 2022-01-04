@@ -48,6 +48,9 @@
 .news .content .right p:first-child{
     margin-bottom: 6px;
 }
+.news .content .title{
+    color: #252525;
+}
 .news .content .right .time i{
     color: #199DA4;
     margin-right: 6px;

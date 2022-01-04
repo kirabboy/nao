@@ -15,37 +15,37 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('public.index');
-});
+})->name('home');
 Route::get('chuyen-khoan', function () {
     return view('public.payment');
-});
+})->name('payment');
 Route::get('dang-nhap', function () {
     return view('public.user.login');
-});
+})->name('login');
 Route::get('dang-nhap-otp', function () {
     return view('public.user.login-otp');
-});
+})->name('login.otp');
 Route::get('dang-ky', function () {
     return view('public.user.register');
-});
+})->name('register');
 Route::get('otp', function () {
     return view('public.user.otp');
-});
+})->name('otp');
 Route::get('quen-mat-khau', function () {
     return view('public.user.forget-password');
-});
+})->name('forget.password');
 Route::get('dang-ky-thanh-cong', function () {
     return view('public.user.register-success');
-});
+})->name('register.success');
 Route::get('thong-bao', function () {
     return view('public.notify');
-});
+})->name('notify');
 Route::get('khuyen-mai', function () {
     return view('public.sale');
-});
+})->name('sale');
 Route::get('chi-tiet-khuyen-mai', function () {
     return view('public.sale-detail');
-});
+})->name('sale.detail');
 
 
 Route::get('/danh-sach-san-pham-dai-ly', function () {

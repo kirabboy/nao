@@ -30,15 +30,15 @@
 					</div>
 				</div>
 				<div class="forget-password">
-					<a href="#">Quên mật khẩu ?</a>
+					<a href="{{ route('forget.password') }}">Quên mật khẩu ?</a>
 				</div>
 			</div>
 
 			<button type="submit" class="btn btn-pr mt-45 mb-3">Đăng nhập</button>
 		</form>
 		<div class="d-flex flex-column justify-content-center">
-			<a class="text-center mb-3 color-pr text-underline" href="#">Đăng nhập bằng mã OTP</a>
-			<a class="text-center color-pr font-weight-semibold text-18" href="#">Đăng ký</a>
+			<a class="text-center mb-3 color-pr text-underline" href="{{ route('login.otp') }}">Đăng nhập bằng mã OTP</a>
+			<a class="text-center color-pr font-weight-semibold text-18" href="{{ route('register') }}">Đăng ký</a>
 		</div>
 	</div>
 	<div class="footer text-center mt-auto">
