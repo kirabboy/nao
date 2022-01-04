@@ -40,12 +40,12 @@
                         </div>
                         <span class="title">Giảm giá</span>
                     </a>
-                    <a class="d-flex flex-column align-items-center items">
+                    <!-- <a class="d-flex flex-column align-items-center items">
                         <div class="img">
                             <img src="{{ asset('public/uploads/help.png') }}" alt="">
                         </div>
                         <span class="title">Hỗ trợ</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
