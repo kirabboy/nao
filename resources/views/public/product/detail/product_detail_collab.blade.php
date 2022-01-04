@@ -1,59 +1,73 @@
 @extends('public.layout.master')
-@section('title', 'Chi tiết sản phẩm')
+
 @push('css')
-    <link rel="stylesheet" href="{{ asset('public/css/product_detail.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
 @endpush
-@push('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-@endpush
+
 @section('content')
-    <header id="header-page">
+
+    <header>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark ">
-                <a class="nav-page-text" href="#">
-                    <i class="fas fa-arrow-left"></i>
-                    Chi tiết sản phẩm
-                </a>
-            </nav>
+            <div class="abc d-flex align-items-center">
+                <h3>
+                    <a href="{{ url()->previous() }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Chi tiết sản phẩm
+                    </a>
+                </h3>
+            </div>
         </div>
     </header>
-    <div id="main">
-        <div class="product-gallery">
-            <div class="fotorama" data-nav="thumbs">
-                <img src="{{ asset('public/images/image-product-1.png') }}">
-                <img src="{{ asset('public/images/image-product-2.png') }}">
-                <img src="{{ asset('public/images/image-product-3.png') }}">
-                <img src="{{ asset('public/images/image-product-4.png') }}">
-                <img src="{{ asset('public/images/image-product-5.png') }}">
-                <img src="{{ asset('public/images/image-product-6.png') }}">
-                <img src="{{ asset('public/images/image-product-1.png') }}">
-                <img src="{{ asset('public/images/image-product-2.png') }}">
-                <img src="{{ asset('public/images/image-product-3.png') }}">
-                <img src="{{ asset('public/images/image-product-4.png') }}">
-                <img src="{{ asset('public/images/image-product-5.png') }}">
-                <img src="{{ asset('public/images/image-product-6.png') }}">
+
+    <section class="section-product-detail">
+        <div class="product-gallery mb-24">
+            <div class="fotorama" data-nav="thumbs" data-loop="true">
+                <img src="{{$product->feature_img}}">
+                @php
+                    $galleries = explode(', ', $product->gallery);
+                @endphp
+                @if (count($galleries) > 0)
+                    @foreach ($galleries as $gallery)
+                    <img src="{{$gallery}}">
+                    @endforeach
+                @endif
             </div>
         </div>
-        <div class="container">
-            <div class="product-detail">
-                <h3 class="product-title">ÁO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC UZZLANG TRẺ TRUNG ...</h3>
-                <h4 class="product-price">
-                    200.000 đ
-                </h4>
-                <ul class="product-list-info">
-                    <li><span class="info-name">Khối lượng</span><span class="info-value">0.2 G</span></li>
-                    <li><span class="info-name">Chiết khấu CTV</span><span class="info-value">168.0000</span></li>
-                    <li><span class="info-name">Trạng thái</span><span class="info-value">Còn
-                            hàng</span></li>
-                    <li><span class="info-name">Khuyến mại</span><span class="info-value">Không</span></li>
-                </ul>
+        <div class="product-info">
+            <div class="product-title mb-24">
+                <h4 class="mb-16 text-uppercase">{{$product->name}}</h4>
+                <p class="product-price text-danger font-weight-bold mb-0">{{$product->productPrice->regular_price}}đ</p>
+            </div>
+            <div class="product-info-detail">
+                <h4 class="mb-16">Thông tin sản phẩm</h4>
+                <div class="d-flex justify-content-between">
+                    <div class="item-info-title text-left">
+                        <p>Khối lượng</p>
+                        <p>Chiết khấu CTV</p>
+                        <p>Trạng thái</p>
+                        <p>Khuyến mại</p>
+                    </div>
+                    <div class="item-info-value text-right">
+                        <h3>{{$product->weight}} G</h3>
+                        <h3>{{$product->productPrice->price_ctv}}</h3>
+                        <h3>Còn hàng</h3>
+                        <h3>Không</h3>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="product-action">
-            <a class="btn btn-pri" href="">Thêm vào giỏ hàng</a>
-            <a class="btn btn-pri" href="">Mua ngay</a>
+        <div class="product-button text-center">
+            <button class="btn btn-primary btn-rounded">Thêm vào giỏ hàng</button>
+            <button class="btn btn-primary btn-rounded">Mua ngay</button>
         </div>
-    </div>
+    </section>
+
+    @push('js')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"
+                integrity="sha512-cWEytOR8S4v/Sd3G5P1Yb7NbYgF1YAUzlg1/XpDuouZVo3FEiMXbeWh4zewcYu/sXYQR5PgYLRbhf18X/0vpRg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
+            integrity="sha512-bjwk1c6AQQOi6kaFhKNrqoCNLHpq8PT+I42jY/il3r5Ho/Wd+QUT6Pf3WGZa/BwSdRSIjVGBsPtPPo95gt/SLg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @endpush
+
 @endsection
