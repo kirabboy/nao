@@ -8,14 +8,15 @@
 
     <section class="section-product">
         <div class="list-product-items">
+            @foreach ($products as $item)
             <div class="product-item bg-white">
                 <div class="item-product-info d-flex">
                     <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
+                        <a href="{{route('product_detail_ctv', $item->slug)}}"><img src="{{$item->feature_img}}"
+                            alt="{{$item->name}}"></a>
                     </div>
                     <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
+                        <h4 class="item-product-title text-uppercase">{{$item->name}}</h4>
                         <div class="item-product-info-detail d-flex justify-content-between">
                             <div class="item-info-title text-left">
                                 <p>Giá</p>
@@ -23,8 +24,8 @@
                                 <p>Tình trạng</p>
                             </div>
                             <div class="item-info-value text-right">
-                                <h3>123.999</h3>
-                                <h3>10.000</h3>
+                                <h3>{{$item->productPrice->regular_price}}</h3>
+                                <h3>{{$item->productPrice->price_ctv}}</h3>
                                 <h3>Còn hàng</h3>
                             </div>
                         </div>
@@ -35,62 +36,7 @@
                     <button class="btn btn-primary btn-rounded">Mua ngay</button>
                 </div>
             </div>
-
-            <div class="product-item bg-white">
-                <div class="item-product-info d-flex">
-                    <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
-                    </div>
-                    <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
-                        <div class="item-product-info-detail d-flex justify-content-between">
-                            <div class="item-info-title text-left">
-                                <p>Giá</p>
-                                <p>Chiết khấu đại lý</p>
-                                <p>Tình trạng</p>
-                            </div>
-                            <div class="item-info-value text-right">
-                                <h3>123.999</h3>
-                                <h3>10.000</h3>
-                                <h3>Còn hàng</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-button text-right">
-                    <button class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</button>
-                    <button class="btn btn-primary btn-rounded">Mua ngay</button>
-                </div>
-            </div>
-
-            <div class="product-item bg-white">
-                <div class="item-product-info d-flex">
-                    <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
-                    </div>
-                    <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
-                        <div class="item-product-info-detail d-flex justify-content-between">
-                            <div class="item-info-title text-left">
-                                <p>Giá</p>
-                                <p>Chiết khấu CTV</p>
-                                <p>Tình trạng</p>
-                            </div>
-                            <div class="item-info-value text-right">
-                                <h3>123.999</h3>
-                                <h3>10.000</h3>
-                                <h3>Còn hàng</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-button text-right">
-                    <button class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</button>
-                    <button class="btn btn-primary btn-rounded">Mua ngay</button>
-                </div>
-            </div>
+            @endforeach
         </div>
 
     </section>

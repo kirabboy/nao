@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,17 +85,10 @@ Route::get('/thong-tin-van-chuyen', function () {
 
 // MINH START
 
-Route::get('/san-pham/dai-ly', function() {
-    return view('public.product.index_dai_ly');
-});
-
-Route::get('/san-pham/ctv', function() {
-    return view('public.product.index_ctv');
-});
-
-Route::get('/san-pham/chi-tiet-san-pham', function() {
-    return view('public.product.product_detail');
-});
+Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
+Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
+Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
+Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
 
 Route::get('/gio-hang', function() {
     return view('public.checkout.cart');
