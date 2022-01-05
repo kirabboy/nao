@@ -16,7 +16,9 @@
                             alt="{{$item->name}}"></a>
                     </div>
                     <div class="item-product-content">
-                        <h4 class="item-product-title text-uppercase">{{$item->name}}</h4>
+                        <h4 class="item-product-title text-uppercase">
+                            <a href="{{route('product_detail_ctv', $item->slug)}}">{{$item->name}}</a>
+                        </h4>
                         <div class="item-product-info-detail d-flex justify-content-between">
                             <div class="item-info-title text-left">
                                 <p>Giá</p>
@@ -24,8 +26,8 @@
                                 <p>Tình trạng</p>
                             </div>
                             <div class="item-info-value text-right">
-                                <h3>{{$item->productPrice->regular_price}}</h3>
-                                <h3>{{$item->productPrice->price_ctv}}</h3>
+                                <h3>{{number_format($item->productPrice->regular_price, 0, '', '.')}}</h3>
+                                <h3>{{number_format($item->productPrice->price_ctv, 0, '', '.')}}</h3>
                                 <h3>Còn hàng</h3>
                             </div>
                         </div>

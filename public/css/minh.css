@@ -29,6 +29,11 @@ img {
     height: 64px;
 }
 
+.item-product-title a {
+    color: inherit;
+    font-weight: inherit;
+}
+
 .item-product-content {
     margin-bottom: 16px;
     width: calc(100% - 82px);
