@@ -8,7 +8,11 @@
     <header>
         <div class="container">
             <div class="backheader d-flex align-items-center">
-                <h3><i class="fas fa-angle-left"></i> Thông tin vận chuyển</h3>
+                <h3>
+                    <a href="{{ url()->previous() }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Thông tin vận chuyển
+                    </a>
+                </h3>
             </div>
         </div>
     </header>

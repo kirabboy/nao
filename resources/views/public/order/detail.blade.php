@@ -8,7 +8,11 @@
     <header>
         <div class="container">
             <div class="backheader d-flex align-items-center">
-                <h3><i class="fas fa-angle-left"></i> Chi tiết đơn hàng</h3>
+                <h3>
+                    <a href="{{ url('/don-hang') }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Chi tiết đơn hàng
+                    </a>
+                </h3>
             </div>
         </div>
     </header>
@@ -21,7 +25,7 @@
         <div class="order-shipping order-sub-info bg-white">
             <div class="d-flex align-items-center justify-content-between">
                 <h3>Thông tin vận chuyển</h3>
-                <a href="">Xem chi tiết</a>
+                <a href="{{url('/don-hang/thong-tin-van-chuyen')}}">Xem chi tiết</a>
             </div>
             <p><i class="fas fa-shipping-fast"></i><span>Đang giao hàng</span></p>
         </div>

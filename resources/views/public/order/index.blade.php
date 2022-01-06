@@ -25,8 +25,10 @@
             <div class="order-item">
                 <div class="order-item-inner d-flex">
                     <div class="order-item-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
+                        <a href="{{url('/don-hang/chi-tiet')}}">
+                            <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
                         alt="">
+                        </a>
                     </div>
                     <div class="order-item-content d-flex justify-content-between align-items-center">
                         <div class="order-item-info">
@@ -57,8 +59,10 @@
             <div class="order-item">
                 <div class="order-item-inner d-flex">
                     <div class="order-item-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
+                        <a href="{{url('/don-hang/chi-tiet')}}">
+                            <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
                         alt="">
+                        </a>
                     </div>
                     <div class="order-item-content d-flex justify-content-between align-items-center">
                         <div class="order-item-info">
@@ -86,8 +90,10 @@
             <div class="order-item">
                 <div class="order-item-inner d-flex">
                     <div class="order-item-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
+                        <a href="{{url('/don-hang/chi-tiet')}}">
+                            <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
                         alt="">
+                        </a>
                     </div>
                     <div class="order-item-content d-flex justify-content-between align-items-center">
                         <div class="order-item-info">
@@ -115,8 +121,10 @@
             <div class="order-item">
                 <div class="order-item-inner d-flex">
                     <div class="order-item-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
+                        <a href="{{url('/don-hang/chi-tiet')}}">
+                            <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
                         alt="">
+                        </a>
                     </div>
                     <div class="order-item-content d-flex justify-content-between align-items-center">
                         <div class="order-item-info">

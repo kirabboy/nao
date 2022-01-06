@@ -9,17 +9,25 @@
     <header>
         <div class="container">
             <div class="backheader d-flex align-items-center">
-                <h3><i class="fas fa-angle-left"></i> Đặt đơn</h3>
+                <h3>
+                    <a href="{{ url('/gio-hang') }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Đặt đơn
+                    </a>
+                </h3>
             </div>
         </div>
     </header>
 
     <section class="section-checkout">
         <div class="checkout-add-info text-center">
-            <button class="add-info btn btn-secondary btn-rounded">
+            <a href="{{url('/checkout/nhap-thong-tin')}}" class="add-info btn btn-secondary btn-rounded">
                 <span class="add-info-plus-icon d-inline-block mb-0">+</span>
                 <span>Thêm thông tin khách hàng</span>
-            </button>
+            </a>
+            {{-- <button class="add-info btn btn-secondary btn-rounded">
+                <span class="add-info-plus-icon d-inline-block mb-0">+</span>
+                <span>Thêm thông tin khách hàng</span>
+            </button> --}}
         </div>
 
         <div class="checkout-customer-info bg-white">
@@ -137,7 +145,8 @@
 
         <div class="checkout-footer bg-white d-flex justify-content-between align-items-center">
             <p class="mb-0">Tổng cộng: <span class="subtotal">1.230.000đ</span></p>
-            <button class="btn btn-primary btn-rounded">Đặt hàng</button>
+            {{-- <button class="btn btn-primary btn-rounded">Đặt hàng</button> --}}
+            <a href="{{url('/thanh-toan')}}" class="btn btn-primary btn-rounded">Đặt hàng</a>
         </div>
 
     </section>

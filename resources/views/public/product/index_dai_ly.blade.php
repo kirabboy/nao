@@ -37,7 +37,8 @@
                 </div>
                 <div class="product-button text-right">
                     <button class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</button>
-                    <button class="btn btn-primary btn-rounded">Mua ngay</button>
+                    {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
+                    <a href="{{url('/gio-hang')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
                 </div>
             </div>
             @endforeach

@@ -9,7 +9,11 @@
     <header>
         <div class="container">
             <div class="backheader d-flex align-items-center">
-                <h3><i class="fas fa-angle-left"></i> Đặt đơn</h3>
+                <h3>
+                    <a href="{{ url('/checkout') }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Đặt đơn
+                    </a>
+                </h3>
             </div>
         </div>
     </header>
