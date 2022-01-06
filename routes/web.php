@@ -92,6 +92,9 @@ Route::prefix('profile')->group(function () {
     Route::get('/hoahongbanle', [HomeController::class, 'hoahongbanle']);
     Route::get('/hoahongnhom', [HomeController::class, 'hoahongnhom']);
 
+    Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
+    Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
+    Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
 });
 
 // MINH START

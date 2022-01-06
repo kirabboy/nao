@@ -1,4 +1,4 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 <body>
 <style>
     input#myDate {
@@ -9,7 +9,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="account.html"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="./"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Đội nhóm</span>
             </h5>
         </div>
@@ -35,11 +35,13 @@
         <div class="col-12 pb-4">
             <ol id='list' style="list-style: none; padding: 0;">
                 <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn A <span id="btn_ctv">CTV</span></p>
+                    <a class="text-dark" href="chitietthanhvien">
+                        <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
+                            <div class="card-body pt-0 pb-0">
+                                <p class="m-0">Nguyễn Văn A <span id="btn_ctv">CTV</span></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </li>
                 <li class="list_name_group">
                     <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6954b">
@@ -83,4 +85,4 @@
     </div>  
 </section>
 </body>
-@include('users.layout.footer')
+@include('public.users.layout.footer')

@@ -1,4 +1,4 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 
 <body>
 <section>  
@@ -45,4 +45,4 @@
 
 </section>
 </body>
-@include('users.layout.footer')
+@include('public.users.layout.footer')

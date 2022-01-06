@@ -1,4 +1,4 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 <body>
 <section>  
     <div class="row p-3">
@@ -16,7 +16,9 @@
         <div class="col-12 pb-3 text-center">
             <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
             <p class="pt-2">Nguyễn Viết Quân</p>
-            <button class="btn btn-radius btn-xanhngoc">Cộng tác viên</button>
+            <button class="btn btn-radius btn-xanhngoc">
+                <a class="text-light" href="doinhom">Cộng tác viên</a>
+            </button>
             <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
         </div>
         <div class="col-12">
@@ -43,7 +45,11 @@
         </div>
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-arrow-up" aria-hidden="true"></i> 
-                <span><a href="#">Nâng cấp đại lý</a></span></p>
+                <span><a href="nangcapdaily">Nâng cấp đại lý</a></span></p>
+        </div>
+        <div class="col-12">
+            <p class="icon_info"><i class="fa fa-money" aria-hidden="true"></i> 
+                <span><a href="hoahong">Hoa hồng</a></span></p>
         </div>
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-key" aria-hidden="true"></i> 
@@ -51,11 +57,11 @@
         </div>
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-sign-out" aria-hidden="true"></i> 
-                <span><a href="#">Đăng xuất</a></span></p>
+                <span><a href="dang-nhap">Đăng xuất</a></span></p>
         </div>
     </div>
 
 </section>
 </body>
-@include('users.layout.footer')
+@include('public.users.layout.footer')
 

@@ -1,4 +1,4 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 <body>
 <section>  
     <div class="row p-3">
@@ -103,4 +103,4 @@
 
 </section>
 </body>
-@include('users.layout.footer')
+@include('public.users.layout.footer')

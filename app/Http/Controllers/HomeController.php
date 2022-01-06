@@ -15,64 +15,78 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('users.profile.profile');
+        return view('public.users.profile.profile');
     }
 
     public function infoDetail()
     {
-        return view('users.profile.info');
+        return view('public.users.profile.info');
     }
 
     public function resetPassword()
     {
-        return view('users.profile.resetPassword');
+        return view('public.users.profile.resetPassword');
     }
 
     public function thanhtoan()
     {
-        return view('users.profile.thanhtoan');
+        return view('public.users.profile.thanhtoan');
     }
 
     public function chitietthanhvien()
     {
-        return view('users.doinhom.chitietthanhvien');
+        return view('public.users.doinhom.chitietthanhvien');
     }
 
     public function doinhom()
     {
-        return view('users.doinhom.doinhom');
+        return view('public.users.doinhom.doinhom');
     }
 
     public function chiphi()
     {
-        return view('users.hoahong.chiphi');
+        return view('public.users.hoahong.chiphi');
     }
 
     public function diemNAOnhanhtach()
     {
-        return view('users.hoahong.diemNAOnhanhtach');
+        return view('public.users.hoahong.diemNAOnhanhtach');
     }
 
     public function hoahong()
     {
-        return view('users.hoahong.hoahong');
+        return view('public.users.hoahong.hoahong');
     }
 
     public function hoahongbanle()
     {
-        return view('users.hoahong.hoahongbanle');
+        return view('public.users.hoahong.hoahongbanle');
     }
 
     public function hoahongnhom()
     {
-        return view('users.hoahong.hoahongnhom');
+        return view('public.users.hoahong.hoahongnhom');
     }
 
     public function tongNAOtrongthang()
     {
-        return view('users.hoahong.tongNAOtrongthang');
+        return view('public.users.hoahong.tongNAOtrongthang');
     }
 
+    public function nangcapdaily()
+    {
+        return view('public.users.nangcaptaikhoan.nangcapdaily');
+    }
+
+    public function chuyenkhoan()
+    {
+        return view('public.users.nangcaptaikhoan.chuyenkhoan');
+    }
+
+    public function dangkynangcapdaily()
+    {
+        return view('public.users.nangcaptaikhoan.dangkynangcapdaily');
+    }
     /**
      * Show the form for creating a new resource.
      *

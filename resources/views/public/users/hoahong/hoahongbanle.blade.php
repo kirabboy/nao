@@ -1,9 +1,9 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 <section>  
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="hoahong"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Hoa hồng bán lẻ</span>
             </h5>
         </div>
@@ -182,4 +182,4 @@
       
     </div>  
 </section>
-@include('users.layout.footer')
+@include('public.users.layout.footer')
