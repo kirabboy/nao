@@ -16,18 +16,22 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-around">
-                    <div class="d-flex flex-column align-items-center items">
-                        <div class="img">
-                            <img src="{{ asset('public/uploads/group.png') }}" alt="">
+                    <a href="{{asset('profile/doinhom')}}">
+                        <div class="d-flex flex-column align-items-center items">
+                            <div class="img">
+                                <img src="{{ asset('public/uploads/group.png') }}" alt="">
+                            </div>
+                            <span class="title">Đội nhóm</span>
                         </div>
-                        <span class="title">Đội nhóm</span>
-                    </div>
-                    <div class="d-flex flex-column align-items-center items">
-                        <div class="img">
-                            <img src="{{ asset('public/uploads/coin.png') }}" alt="">
+                    </a>
+                    <a href="{{asset('profile/hoahong')}}">
+                        <div class="d-flex flex-column align-items-center items">
+                            <div class="img">
+                                <img src="{{ asset('public/uploads/coin.png') }}" alt="">
+                            </div>
+                            <span class="title">Hoa hồng</span>
                         </div>
-                        <span class="title">Hoa hồng</span>
-                    </div>
+                    </a>
                     <div class="d-flex flex-column align-items-center items">
                         <div class="img">
                             <img src="{{ asset('public/uploads/news.png') }}" alt="">
