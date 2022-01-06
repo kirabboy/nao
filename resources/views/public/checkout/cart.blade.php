@@ -9,7 +9,11 @@
     <header>
         <div class="container">
             <div class="backheader d-flex align-items-center">
-                <h3><i class="fas fa-angle-left"></i> Giỏ hàng</h3>
+                <h3>
+                    <a href="{{ url()->previous() }}" style="color: var(--text-color);">
+                        <i class="fas fa-angle-left"></i> Giỏ hàng
+                    </a>
+                </h3>
             </div>
         </div>
     </header>
@@ -100,7 +104,9 @@
                             <div class="cart-total f-12">
                                 <p class="mb-0">Tổng cộng: <span class="subtotal">1.230.000đ</span></p>
                             </div>
-                            <button class="btn btn-primary btn-rounded">Mua hàng</button>
+                            {{-- <button class="btn btn-primary btn-rounded">Mua hàng</button> --}}
+                            <a href="{{url('/checkout')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
+
                         </div>
                     </div>
                 </div>

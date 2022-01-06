@@ -24,7 +24,7 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Link giới thiệu</p>
             <p>
-                <input class="btn_linkgioithieu inputform" value="https://www.youtube.com/watch?v" readonly></input>
+                <input class="btn_linkgioithieu inputform" value="https://www.youtube.com/watch?v" readonly>
                 <span class="linkgioithieu copyIcon"><i class="fa fa-clone" aria-hidden="true"></i></span>
             </p>
         </div>

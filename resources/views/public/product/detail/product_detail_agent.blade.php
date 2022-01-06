@@ -57,7 +57,9 @@
         </div>
         <div class="product-button text-center">
             <button class="btn btn-primary btn-rounded">Thêm vào giỏ hàng</button>
-            <button class="btn btn-primary btn-rounded">Mua ngay</button>
+            {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
+            <a href="{{url('/gio-hang')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
+
         </div>
     </section>
 
