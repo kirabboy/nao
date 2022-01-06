@@ -16,13 +16,13 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-around">
-                    <a class="d-flex flex-column align-items-center items">
+                    <a href="{{ URL::to('/doinhom') }}" class="d-flex flex-column align-items-center items">
                         <div class="img">
                             <img src="{{ asset('public/uploads/group.png') }}" alt="">
                         </div>
                         <span class="title">Đội nhóm</span>
                     </a>
-                    <a class="d-flex flex-column align-items-center items">
+                    <a href="{{ URL::to('profile/hoahong') }}" class="d-flex flex-column align-items-center items">
                         <div class="img">
                             <img src="{{ asset('public/uploads/coin.png') }}" alt="">
                         </div>

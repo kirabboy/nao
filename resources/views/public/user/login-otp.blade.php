@@ -14,7 +14,7 @@
                 <span>Đăng nhập bằng OTP</span>
             </div>
         </div>
-        <form class="form-login" action="#" method="post">
+        <form class="form-login" action="{{ route('otp') }}" method="get">
             <div class="form-group">
                 <label>Số điện thoại</label>
                 <input type="text" class="form-control custom-input" placeholder="Số điện thoại">

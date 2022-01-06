@@ -13,7 +13,7 @@
 				<span>Đăng nhập bằng mật khẩu</span>
 			</div>
 		</div>
-		<form class="form-login" action="#" method="post">
+		<form class="form-login" action="#" method="get">
 			<div class="form-group">
 				<label>Số điện thoại</label>
 				<input type="text" class="form-control custom-input" placeholder="Số điện thoại">
