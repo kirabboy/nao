@@ -1,9 +1,9 @@
-@include('users.layout.header')
+@include('public.users.layout.header')
 <section>  
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="account.html"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Hoa hồng nhóm</span>
             </h5>
         </div>
@@ -18,13 +18,15 @@
         </div>  
 
         <div class="col-12 pb-3">
-            <div class="card-hoahong" style="padding: 10px 0px !important;background: #199da3;">
-                <div class="card-body text-center p-0">
-                    <p class="m-0 pb-1 text-white">Điểm NAO nhánh tách</p>
-                    <div class="pb-3 pt-2" style="text-align: -webkit-center;"><p class="m-0" style="width: 30%; border-top: 2px solid white;"> </p></div>
-                    <p class="m-0 pb-1 text-white" style="font-size: 20px;">500.000.000 NAO</p>
+            <a href="{{asset('profile/diemNAOnhanhtach')}}">
+                <div class="card-hoahong" style="padding: 10px 0px !important;background: #199da3;">
+                    <div class="card-body text-center p-0">
+                        <p class="m-0 pb-1 text-white">Điểm NAO nhánh tách</p>
+                        <div class="pb-3 pt-2" style="text-align: -webkit-center;"><p class="m-0" style="width: 30%; border-top: 2px solid white;"> </p></div>
+                        <p class="m-0 pb-1 text-white" style="font-size: 20px;">500.000.000 NAO</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         
         <div class="col-12">
@@ -38,4 +40,4 @@
         </div>
     </div>  
 </section>
-@include('users.layout.footer')
+@include('public.users.layout.footer')

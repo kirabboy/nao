@@ -44,7 +44,7 @@
                             <a href=""><i class="far fa-bell"></i></a>
                         </li>
                         <li>
-                            <a href=""><i class="far fa-user"></i></a>
+                            <a href="{{url('profile')}}"><i class="far fa-user"></i></a>
                         </li>
                     </ul>
                 </div>

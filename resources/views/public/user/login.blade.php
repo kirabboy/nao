@@ -34,7 +34,7 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-pr mt-45 mb-3">Đăng nhập</button>
+			<button type="submit" class="btn btn-pr mt-45 mb-3"><a href="profile" class="text-light">Đăng nhập</a></button>
 		</form>
 		<div class="d-flex flex-column justify-content-center">
 			<a class="text-center mb-3 color-pr text-underline" href="#">Đăng nhập bằng mã OTP</a>
