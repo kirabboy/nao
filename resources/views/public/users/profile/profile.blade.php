@@ -17,7 +17,7 @@
             <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
             <p class="pt-2">Nguyễn Viết Quân</p>
             <button class="btn btn-radius btn-xanhngoc">
-                <a class="text-light" href="{{asset('profile/doinhom')}}">Cộng tác viên</a>
+                Cộng tác viên
             </button>
             <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
         </div>
@@ -46,10 +46,6 @@
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-arrow-up" aria-hidden="true"></i> 
                 <span><a href="{{asset('profile/nangcapdaily')}}">Nâng cấp đại lý</a></span></p>
-        </div>
-        <div class="col-12">
-            <p class="icon_info"><i class="fa fa-money" aria-hidden="true"></i> 
-                <span><a href="{{asset('profile/hoahong')}}">Hoa hồng</a></span></p>
         </div>
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-key" aria-hidden="true"></i> 

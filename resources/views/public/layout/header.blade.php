@@ -29,7 +29,7 @@
         <div class="container">
 
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="nav-account-text" href="#">
+                <a class="nav-account-text" href="{{asset('profile')}}">
                     <ul>
                         <li><span>Xin chào,</span></li>
                         <li><b>Kira</b></li>
