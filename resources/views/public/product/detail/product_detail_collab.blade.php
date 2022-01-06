@@ -20,7 +20,7 @@
 
     <section class="section-product-detail">
         <div class="product-gallery mb-24">
-            <div class="fotorama" data-nav="thumbs" data-loop="true">
+            <div class="fotorama" data-allowfullscreen="true" data-arrows="false" data-click="false" data-nav="thumbs" data-loop="true">
                 <img src="{{$product->feature_img}}">
                 @php
                     $galleries = explode(', ', $product->gallery);
@@ -35,7 +35,7 @@
         <div class="product-info">
             <div class="product-title mb-24">
                 <h4 class="mb-16 text-uppercase">{{$product->name}}</h4>
-                <p class="product-price text-danger font-weight-bold mb-0">{{$product->productPrice->regular_price}}đ</p>
+                <p class="product-price text-danger font-weight-bold mb-0">{{number_format($product->productPrice->regular_price, 0, '', '.')}}đ</p>
             </div>
             <div class="product-info-detail">
                 <h4 class="mb-16">Thông tin sản phẩm</h4>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="item-info-value text-right">
                         <h3>{{$product->weight}} G</h3>
-                        <h3>{{$product->productPrice->price_ctv}}</h3>
+                        <h3>{{number_format($product->productPrice->price_ctv, 0, '', '.')}}</h3>
                         <h3>Còn hàng</h3>
                         <h3>Không</h3>
                     </div>
