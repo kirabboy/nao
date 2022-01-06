@@ -11,10 +11,10 @@
 @endpush
 @section('content')
 <div class="container">
-    <div class="navigation d-flex align-items-center">
+    <a href="javascript:history.back()" class="navigation d-flex align-items-center">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
         <h3>Mừng sinh nhật NAO...</h3>
-    </div>
+    </a>
     <section class="banner">
         <div class="row">
             <div class="col">

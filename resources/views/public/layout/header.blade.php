@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('public/css/menu-fix.css') }}">
     <script src="{{ asset('public/assets/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('public/assets/bootstrap-4.6.1/js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('/css/minhstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/minhstyle.css') }}">
     <link rel="stylesheet" href="{{ asset('public/css/header.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="url-home" content="{{ URL::to('/') }}" />

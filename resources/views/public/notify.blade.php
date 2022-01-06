@@ -5,10 +5,10 @@
 @endpush
 @section('content')
 <div class="container">
-    <div class="navigation d-flex align-items-center">
+    <a href="javascript:history.back()" class="navigation d-flex align-items-center">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
         <h3>Thông báo</h3>
-    </div>
+    </a>
 </div>
 <section class="news notify mt-0">
     <div class="container">

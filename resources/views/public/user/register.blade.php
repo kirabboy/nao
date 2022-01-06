@@ -31,7 +31,7 @@
 			<button type="submit" name="register-submit" disabled class="btn btn-pr mt-45 mb-3">Tiếp tục</button>
 		</form>
 		<div class="d-flex flex-column justify-content-center">
-			<a class="text-center color-pr font-weight-semibold text-18 mt-2" href="#">Đăng nhập</a>
+			<a class="text-center color-pr font-weight-semibold text-18 mt-2" href="{{ route('login') }}">Đăng nhập</a>
 		</div>
 	</div>
 	<div class="footer text-center mt-auto">

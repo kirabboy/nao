@@ -11,10 +11,10 @@
 @endpush
 @section('content')
 <div class="container">
-    <div class="navigation d-flex align-items-center">
+    <a href="javascript:history.back()" class="navigation d-flex align-items-center">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
         <h3>Khuyến mãi</h3>
-    </div>
+    </a>
     <div class="search mb-2 mt-2">
         <div class="input-group search-input">
             <div class="input-group-prepend">

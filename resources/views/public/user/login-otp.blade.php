@@ -14,7 +14,7 @@
                 <span>Đăng nhập bằng OTP</span>
             </div>
         </div>
-        <form class="form-login" action="#" method="post">
+        <form class="form-login" action="{{ route('otp') }}" method="get">
             <div class="form-group">
                 <label>Số điện thoại</label>
                 <input type="text" class="form-control custom-input" placeholder="Số điện thoại">
@@ -22,8 +22,8 @@
             <button type="submit" class="btn btn-pr mt-45 mb-3">Đăng nhập</button>
         </form>
         <div class="d-flex flex-column justify-content-center">
-            <a class="text-center mb-3 color-pr text-underline" href="#">Đăng nhập bằng mật khẩu</a>
-            <a class="text-center color-pr font-weight-semibold text-18" href="#">Đăng ký</a>
+            <a href="{{ route('login.otp') }}" class="text-center mb-3 color-pr text-underline" href="#">Đăng nhập bằng mật khẩu</a>
+            <a href="{{ route('register') }}" class="text-center color-pr font-weight-semibold text-18" href="#">Đăng ký</a>
         </div>
     </div>
     <div class="footer text-center mt-auto">

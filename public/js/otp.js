@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	$("input[name='codeOTP[]']").keyup(function () {
 		var that = $(this);
-		console.log(that.val());
 		if(that.val() == '' && !Number.isInteger(parseInt(that.val()))){
 			that.prev().focus();
 		}

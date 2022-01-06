@@ -28,7 +28,7 @@
 			</form>
 		</div>
 		<div class="footer text-center mt-auto">
-			<p>Bạn chưa có tài khoản <a class="color-pr" href="#">Đăng ký</a></p>
+			<p>Bạn chưa có tài khoản <a class="color-pr" href="{{ route('register') }}">Đăng ký</a></p>
 			<a class="color-pr font-weight-bold" href="#">Hotline: 19007634</a>
 		</div>
 	</section>
