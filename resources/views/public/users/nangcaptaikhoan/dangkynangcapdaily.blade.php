@@ -9,7 +9,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="./"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Thông tin đăng ký</span>
             </h5>
         </div>
@@ -32,7 +32,7 @@
                     <p class="m-0 pb-3 color-xanhngoc">2.000.000</p>
                     <p class="m-0 pb-2 color-xanhngoc" style="margin-top: -7px !important;">
                         <button class="btn btn-radius btn-xanhngoc">
-                            <a class="text-light" href="chuyenkhoan">Chuyển khoản</a>
+                            <a class="text-light" href="{{asset('profile/chuyenkhoan')}}">Chuyển khoản</a>
                         </button>
                     </p>
                 </div>

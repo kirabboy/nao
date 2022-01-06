@@ -3,7 +3,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="./"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Nâng cấp đại lý</span>
             </h5>
         </div>
@@ -105,7 +105,7 @@
 
                     <div class="text-center">
                         <button class="btn btn-radius btn-cam">
-                            <a class="text-light" href="dangkynangcapdaily">Nâng cấp ngay</a>
+                            <a class="text-light" href="{{asset('profile/dangkynangcapdaily')}}">Nâng cấp ngay</a>
                         </button>
                     </div>
                 </div>

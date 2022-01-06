@@ -3,7 +3,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="hoahong"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Chi phí</span>
             </h5>
         </div>

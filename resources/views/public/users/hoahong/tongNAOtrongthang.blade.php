@@ -3,7 +3,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="hoahong"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Hoa hồng nhóm</span>
             </h5>
         </div>
@@ -18,7 +18,7 @@
         </div>  
 
         <div class="col-12 pb-3">
-            <a href="diemNAOnhanhtach">
+            <a href="{{asset('profile/diemNAOnhanhtach')}}">
                 <div class="card-hoahong" style="padding: 10px 0px !important;background: #199da3;">
                     <div class="card-body text-center p-0">
                         <p class="m-0 pb-1 text-white">Điểm NAO nhánh tách</p>

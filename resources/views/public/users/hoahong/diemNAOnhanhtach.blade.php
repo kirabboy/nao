@@ -3,7 +3,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="tongNAOtrongthang"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('profile/tongNAOtrongthang')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Điểm NAO nhánh tách</span>
             </h5>
         </div>
