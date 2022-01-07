@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Admin\LoginController;
+use App\Http\Admin\MainController;
 use App\Http\Controllers\HomeController; 
 
 
@@ -74,7 +75,13 @@ Route::get('/chi-tiet-don-hang', function () {
 Route::get('/thong-tin-van-chuyen', function () {
     return view('public.customer.tracking_order_shipping');
 });
+
+// ----------------------------------------------------------------Thinh----------------------------------------------------------------
 Route::get('admin/login', [LoginController::class, 'index']);
+Route::post('admin/login/store', [LoginController::class, 'store']);
+Route::get('admin/main', [MainController::class, 'index'])->name('admin');
+
+
 
 Route::prefix('profile')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
