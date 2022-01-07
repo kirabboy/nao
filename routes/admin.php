@@ -112,5 +112,6 @@ Route::get('thong-tin-ban-hang', function () {
 Route::get('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'index']);
 Route::put('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'update'])->name('put.config.shipping');
 
-Route::get('/login', [AdminHomeController::class, 'login']);
-Route::post('/login', [AdminHomeController::class, 'postLogin'])->name('admin.login');
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login/store', [LoginController::class, 'store']);
+Route::get('/main', [AdminHomeController::class, 'index'])->name('admin');
