@@ -1,0 +1,221 @@
+/* short description */
+h1.product_title {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ccolor);
+    line-height: 1.4;
+    display: block;
+    border-bottom: solid 1px;
+}
+
+.product-summary .product-price span.amount {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--scolor);
+}
+
+.product-short-description {
+    background: #f6f6f6;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.post-share {
+    display: inline-block;
+    width: 100%;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    text-align: center;
+}
+
+.social-list {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.social-list li {
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.social-list li a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background-color: #f3f3f3;
+    border-radius: 100%;
+    border: solid 1px #ccc;
+}
+
+.social-list li a i, .social_list a i {
+    line-height: 28px;
+}
+
+/* long desc */
+.product-long-description ul.nav {
+    border-bottom: 2px solid #090909;
+    padding: 0 0 0 1em;
+}
+
+.product-long-description .nav-pills .nav-link.active, .product-long-description .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #090909;
+    border-bottom-color: #090909;
+}
+
+.product-long-description .nav-pills .nav-item {
+    border: 1px solid #eee;
+    border-bottom: 0;
+    background-color: #ebe9eb;
+}
+
+.product-long-description .nav-pills .nav-link {
+    border-radius: 0;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.product-long-description .tab-content {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.product-long-description .tab-content .height-limit {
+    height: 950px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-long-description .tab-content .height-limit:after {
+    content: "";
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(6%, hsla(0, 0%, 100%, 0)), color-stop(83%, #fff));
+    background: linear-gradient(
+-180deg
+, hsla(0, 0%, 100%, 0) 6%, #fff 83%);
+}
+
+.product-long-description .tab-content .desc_btn-expand {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    font-size: 13px;
+    line-height: 14px;
+    padding: 12px 0 18px;
+    text-align: center;
+    width: 100%;
+    margin: 0 !important;
+}
+
+.product-long-description .tab-content .desc-readmore {
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
+    padding: 0 24px;
+    border-radius: 2px;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    outline: none;
+    cursor: pointer;
+    height: 35px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.product-long-description .tab-content .desc-readmore:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* right sidebar */
+.product-sidebar, #right-sidebar .blog-post-sidebar {
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .10);
+    -o-box-shadow: 0 1px 1px rgba(0, 0, 0, .10);
+    -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, .10);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    background: #f5f5f5;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.product_list_widget .product-list-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #cfcfcf;
+}
+
+.product_list_widget .product-list-item:last-child {
+    border:0;
+}
+
+.product_list_widget .product-list-img {
+    width: 50%;
+}
+
+.product_list_widget .product-title {
+    color: #66564a;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.product_list_widget a:hover .product-title{
+    color: #f58b3c;
+}
+
+.product_list_widget .wrap-price .amount {
+    color: var(--scolor);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* blog sidebar */
+#right-sidebar ul {
+    padding-left: 0px;
+    margin-bottom: 0;
+}
+
+#right-sidebar ul li {
+    border-bottom: 1px dotted #cfcfcf;
+    list-style-type: none;
+}
+
+#right-sidebar ul li:last-child {
+    border: 0;
+}
+
+ul.mevivu-list-style li {
+    background: url(https://rbvietnam.com/wp-content/themes/dns-themes/assets/images/list-style.png) left center no-repeat;
+    padding-left: 15px;
+    border-bottom: 1px dotted #cfcfcf;
+    list-style-type: none;
+}
+
+#right-sidebar ul li a, ul.mevivu-list-style li a {
+    line-height: 1.4;
+    color: #4d4d4d;
+    display: block;
+    padding: 5px 0;
+}
+
+#right-sidebar ul li:hover a, ul.mevivu-list-style li:hover a  {
+    color: #f58b3c;
+}
+
+ul.mevivu-list-style li:hover a {
+    padding-left: 5px;
+}

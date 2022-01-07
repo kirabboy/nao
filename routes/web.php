@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Admin\LoginController;
 use App\Http\Admin\MainController;
 use App\Http\Controllers\HomeController; 
+use App\Http\Controllers\ShippingController; 
 
 
 Route::get('/', function () {
@@ -77,11 +77,6 @@ Route::get('/thong-tin-van-chuyen', function () {
 });
 
 // ----------------------------------------------------------------Thinh----------------------------------------------------------------
-Route::get('admin/login', [LoginController::class, 'index']);
-Route::post('admin/login/store', [LoginController::class, 'store']);
-Route::get('admin/main', [MainController::class, 'index'])->name('admin');
-
-
 
 Route::prefix('profile')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -144,3 +139,13 @@ Route::get('/quan-ly-khach-hang', function() {
 });
 
 // END MINH
+
+
+//----------------vận chuyển---------------
+Route::get('test-van-chuyen', [ShippingController::class, 'postShippingFee']);
+
+Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
+
+Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+
+Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');

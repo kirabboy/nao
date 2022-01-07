@@ -1,0 +1,13 @@
+.blog_lamdep .blog {
+    margin-bottom: 30px;
+}
+
+.post_more {
+    text-align: right;
+}
+
+.post_meta.date-time {
+    font-style: italic;
+    font-size: 12px;
+}
+

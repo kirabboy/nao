@@ -1,0 +1,120 @@
+/* .profile-photo a.profile-photo-img {
+    width: 190px;
+    height: 190px;
+} */
+
+.profile-photo a.profile-photo-img, .profile-photo img, .profile-photo span.profile-photo-overlay {
+    -moz-border-radius: 999px !important;
+    -webkit-border-radius: 999px !important;
+    border-radius: 999px !important;
+}
+
+.profile-photo a.profile-photo-img {
+    background: #fff;
+    border-radius: 100%;
+    border: 5px solid #fff;
+    border-bottom: 5px solid #fff !important;
+    width: fit-content;
+    display: block;
+}
+
+.profile-photo-overlay {
+    display: none;
+}
+
+.profile-photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 1px #666;
+    cursor: pointer !important;
+    line-height: 21px;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+.rank-custom img {
+    width: 40px;
+    padding-right: 10px;
+}
+
+.mevivu-my-rank {
+    color: #f36e0b;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+/*  */
+
+.profile-nav ul.nav {
+    padding: 10px;
+    background: #444;
+    text-align: center;
+}
+
+.profile-nav .tab-content {
+    border: 1px solid #e4e4e4;
+    padding: 10px;
+}
+
+.profile-nav .tab-content label {
+    font-weight: 600;
+}
+
+.ajax-items .item {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.ajax-items .item-link {
+    padding-right: 40px;
+}
+
+.ajax-items .item-link i {
+    color: #666;
+    margin-right: 10px;
+}
+
+.ajax-items .item-link a {
+    color: #333;
+}
+
+.ajax-items .item-link a:hover {
+    color: var(--scolor);
+}
+
+.ajax-items .item-meta {
+    color: #888;
+}
+
+.ajax-items .item-meta span {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* RESPONSIVE */
+@media (max-width:550px) {
+    .profile-main-meta {
+        text-align: center;
+    }
+    .profile-main-meta .rank-custom {
+        justify-content: center;
+    }
+
+    .profile-photo a.profile-photo-img {
+        margin: 0 auto;
+    }
+    
+    .profile-photo a.profile-photo-img img {
+        width: 150px;
+    }
+}

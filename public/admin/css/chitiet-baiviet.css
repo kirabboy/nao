@@ -1,0 +1,27 @@
+h1.post-title {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: var(--scolor);
+}
+
+.post_meta.date-time {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.single-post .post-content h2 { font-size: 20px; }
+.single-post .post-content h3 { font-size: 17px; }
+
+.news_byid-iterm .group-title .block-title {
+    text-align: left;
+    padding: 5px 15px;
+    color: var(--scolor);
+    font-size: 18px;
+}
+
+.news_byid-iterm .group-title .block-title:after {
+    margin: 5px 0;
+}

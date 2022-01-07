@@ -1,0 +1,92 @@
+.caption-subject {
+  font-size: 16px;
+  color: #666;
+  font-weight: 600 !important;
+}
+
+.btn_success {
+  color: white;
+  font-size: 13px;
+  background-color: #11101d;
+  border-radius: 55px;
+  padding: 5px 5px 5px 5px;
+}
+.btn_success:hover {
+  color: white;
+}
+table {
+  border: 1px solid #eee;
+}
+.title {
+  font-size: 14px;
+  font-weight: 600;
+}
+table .status_new {
+  color: #fff;
+  background-color: #f1c40f;
+}
+table .status_active {
+  color: #fff;
+  background-color: #36c6d3;
+  border-color: #2bb8c4;
+}
+table .status_inactive {
+  color: #fff;
+  background-color: #bac3d0;
+}
+table .btn_trangthai {
+  display: flex;
+  color: white;
+  justify-content: center;
+  font-size: 11px;
+  border: none;
+  align-items: center;
+  min-width: 70px;
+
+}
+table tbody tr td .btn{
+  padding: 2px 5px;
+  background-color: #659be0;
+  color: #fff;
+
+}
+table tbody tr td .btn:hover{
+  color: #fff;
+}
+table {
+  font-size: 15px;
+}
+table tbody tr td a {
+  text-decoration: none;
+}
+
+.sidebar .accordion-button {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  padding: 0;
+}
+.form-select {
+  text-align: left;
+}
+
+@media (max-width: 420px) {
+  /* table{
+        overflow-x: scroll;
+    } */
+}
+
+.control-label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.control-label .required {
+  color: #e02222;
+  font-size: 12px;
+  padding-left: 2px;
+}
+
+.error {
+  color: red !important;
+  border-color: red;
+}

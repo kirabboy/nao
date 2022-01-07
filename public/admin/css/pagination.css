@@ -1,0 +1,29 @@
+
+.pager{
+    margin: 10px 0px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.pager li:first-child, .pager li:last-child{
+    height: auto;
+    width: 130px;
+    border-radius: 5px;
+}
+.pager li.active,  .pager li.disable{
+    background-color: #ddd;
+}
+.pager li{
+    margin: 0px 5px;
+    background-color: #fff;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+
+}
+.pager li span,  .pager li a{
+    display: block;
+    margin: auto;
+}
