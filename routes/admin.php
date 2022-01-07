@@ -114,4 +114,4 @@ Route::put('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'update'])-
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login/store', [LoginController::class, 'store']);
-Route::get('/main', [AdminHomeController::class, 'index'])->name('admin');
+Route::get('/', [AdminHomeController::class, 'index'])->name('admin');

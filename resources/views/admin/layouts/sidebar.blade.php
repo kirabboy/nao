@@ -9,7 +9,7 @@
 
         <ul class="nav-list p-0">
             <li class="dropdown">
-                <a href="./admin" class="dropbtn">
+                <a href="./" class="dropbtn">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
                     <span class="links_name">Dashboard</span>
                 </a>
