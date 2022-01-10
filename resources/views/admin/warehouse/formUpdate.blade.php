@@ -16,26 +16,18 @@
                             <label class="col-md-3 control-label">Mã chi nhánh:<span class="required"
                                     aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                {{-- <input type="text" name="warehouseCode" class="form-control" required
-                                    value="{{ old('warehouseCode', $unit->code) }}"> --}}
-                                <select class="form-control js-warehouse" name="warehouseCode" data-type="update">
-                                    <option value="-1">Chọn kho hàng</option>
-                                    @foreach ($warehouseCodes as $warehouse)
-                                        <option value="{{$warehouse->code}}"
-                                            @if ($unit->code == $warehouse->code)
-                                                selected
-                                            @endif
-                                            >{{$warehouse->code}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="warehouseCode" class="form-control" required
+                                    value="{{ $unit->code }}" readonly>
+                                {{-- <select class="form-control js-warehouse" name="warehouseCode" data-type="update" data-placeholder="Chọn kho hàng">
+                                    <option value="{{$unit->code}}" selected>{{$unit->code}}</option>
+                                </select> --}}
                             </div>
                         </div>
                         <div class="form-group d-flex mb-2">
                             <label class="col-md-3 control-label">Tên chi nhánh NPP:<span class="required"
                                     aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select class="form-control" id="warehouseName" name="warehouseName">
-                                    <option value="-1">Chọn chi nhánh</option>
+                                <select class="form-control" id="warehouseName" name="warehouseName" data-placeholder="Chọn chi nhánh">
                                     @foreach ($warehouseNames as $warehouse)
                                         <option value="{{$warehouse->name}}"
                                             @if ($unit->name == $warehouse->name)
@@ -58,8 +50,7 @@
                             <label class="col-md-3 control-label">Thành phố:<span class="required"
                                 aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select class="js-edit-location" id="select-editCity" name="id_province" data-type="city">
-                                    <option value="-1">Chọn thành phố</option>
+                                <select class="js-edit-location" id="select-editCity" name="id_province" data-type="city" data-placeholder="Chọn thành phố">
                                     @foreach ($cities as $city)
                                         <option value="{{$city->matinhthanh}}"
                                             @if ($city->matinhthanh == $unit->id_province)
@@ -75,8 +66,7 @@
                             <label class="col-md-3 control-label">Quận/ huyện:<span class="required"
                             aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select class="js-edit-location" id="select-editDistrict" name="id_district" data-type="district">
-                                    <option value="-1">Chọn quận/huyện</option>
+                                <select class="js-edit-location" id="select-editDistrict" name="id_district" data-type="district" data-placeholder="Chọn quận/huyện">
                                     @foreach ($districts as $district)
                                         <option value="{{$district->maquanhuyen}}"
                                             @if ($district->maquanhuyen == $unit->id_district)
@@ -93,8 +83,7 @@
                             <label class="col-md-3 control-label">Phường/ Xã:<span class="required"
                                 aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select id="select-editWard" name="id_ward" data-type="ward">
-                                    <option value="-1">Chọn phường/xã</option>
+                                <select id="select-editWard" name="id_ward" data-type="ward" data-placeholder="Chọn phường/xã">
                                     @foreach ($wards as $ward)
                                         <option value="{{$ward->maphuongxa}}"
                                             @if ($ward->maphuongxa == $unit->id_ward)
@@ -107,22 +96,17 @@
                                 </select>
                             </div>
                         </div>
-                        
                         <div class="form-group d-flex mb-2">
                             <label class="col-md-3 control-label">Sản phẩm<span class="required"
                                     aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select name="product" class="form-control productId">
-                                    <option value="-1">Chọn sản phẩm</option>
-                                    @foreach ($products as $item)
-                                        <option value="{{$item->id}}"
-                                            @if ($item->id == $productEdit->product_id)
+                                <select name="product" class="form-control productId" disabled>
+                                        <option value="{{$productEdit->product_id}}"
+                                            @if (in_array($productEdit->product_id, $unit->products->pluck('id')->toArray()))
                                                 selected
                                             @endif
-                                        >
-                                            {{$item->name}}
+                                        >{{$unit->products->where('id', $productEdit->product_id)->first()->name}}
                                         </option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>

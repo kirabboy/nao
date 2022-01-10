@@ -89,10 +89,6 @@ class WarehouseController extends Controller
     {
         return DB::transaction(function () use ($request) {
             try {
-                $product = Product::find($request->product);
-                if($request->product == "" || $request->product == '-1' || $product == null) {
-                    return redirect()->back()->withErrors(['error' => 'Vui lòng chọn đúng sản phẩm']);
-                }
                 $warehouse = Warehouse::where('id', $request->id)->update([
                     'code' => $request->warehouseCode,
                     'name' => $request->warehouseName,
@@ -101,19 +97,18 @@ class WarehouseController extends Controller
                     'id_ward' => $request->id_ward,
                     'address' => $request->warehouseAddress,
                 ]);
-
                 
                 if($warehouse == null) {
                     return redirect()->back()->withErrors(['error' => 'Vui lòng chọn đúng kho hàng']);
                 }
                 
-                DB::table('warehouse_product')->where('warehouse_id', $request->id)
-                                                ->where('product_id', $request->product_id_old)
-                                                ->update([
-                                                    'warehouse_id' => $request->id,
-                                                    'product_id' => $product->id,
-                                                    'quantity' => $request->productQuantity,
-                                                ]);
+                DB::table('warehouse_product')
+                    ->where('warehouse_id', $request->id)
+                    ->where('product_id', $request->product_id_old)
+                    ->update([
+                        'warehouse_id' => $request->id,
+                        'quantity' => $request->productQuantity,
+                    ]);
 
                 return redirect()->route('warehouse.index')->with('success', 'Cập nhật kho hàng thành công');
             } catch (\Throwable $th) {
@@ -142,7 +137,6 @@ class WarehouseController extends Controller
 
     public function modalEdit(Request $request)
     {
-        $products = Product::all();
         $unit = Warehouse::where('id', $request->warehouse_id)->first();
         $warehouseCodes = Warehouse::select('code')->distinct()->get();
         $productEdit = DB::table('warehouse_product')->where('warehouse_id', $unit->id)
@@ -151,8 +145,7 @@ class WarehouseController extends Controller
         $cities = DB::table('province')->get();
         $districts = DB::table('district')->where('matinhthanh', $unit->id_province)->get();
         $wards = DB::table('ward')->where('maquanhuyen', $unit->id_district)->get();
-        $returnHTML = view('admin.warehouse.formUpdate', compact('unit', 'warehouseCodes', 'warehouseNames', 'productEdit', 'cities', 'products', 'districts', 'wards'))->render();
-
+        $returnHTML = view('admin.warehouse.formUpdate', compact('unit', 'warehouseCodes', 'warehouseNames', 'productEdit', 'cities', 'districts', 'wards'))->render();
         return response()->json([
             'html' => $returnHTML
         ], 200);

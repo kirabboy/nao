@@ -248,7 +248,7 @@
                                         <span data-bs-toggle="collapse" href="#collapseExample" role="button"
                                             aria-expanded="false" aria-controls="collapseExample">
                                             <i class="fas fa-chevron-down"></i>
-                                        </span>&nbsp;
+                                        </span>
                                         <span style="cursor: pointer;" onclick="window.location.reload();"><i class="fas fa-sync-alt"></i></span>
                                     </span>
                                 </div>
@@ -262,14 +262,11 @@
                                                 <th class="title">ID</th>
                                                 <th class="title">Mã chi nhánh NPP</th>
                                                 <th class="title">Tên chi nhánh NPP</th>
-                                                <th class="title">Loại kho</th>
-                                                <th class="title">Model</th>
                                                 <th class="title">Tên sản phẩm</th>
                                                 <th class="title">Đơn vị tính</th>
                                                 <th class="title">Nhóm sản phẩm</th>
                                                 <th class="title">Ngành hàng</th>
                                                 <th class="title">Số lượng tồn kho</th>
-                                                <th class="title">Thời gian</th>
                                                 <th class="title">Thao tác</th>
                                             </tr>
                                         </thead>
@@ -280,8 +277,6 @@
                                                     <td>{{$item->id}}</td>
                                                     <td>{{$item->code}}</td>
                                                     <td>{{$item->name}}</td>
-                                                    <td>Promotion</td>
-                                                    <td>PerfectCream01</td>
                                                     <td>{{$product->name}}</td>
                                                     <td>{{$product->productCalculationUnit->name}}</td>
                                                     @if ($product->productCategory->typeof_category == 2)
@@ -292,7 +287,6 @@
                                                         <td>{{$product->productCategory->parentCategories->name}}</td>
                                                     @endif
                                                     <td>{{$product->getOriginal('pivot_quantity')}}</td>
-                                                    <td>{{$product->getOriginal('pivot_created_at')}}</td>
                                                     <td>
                                                         <button class="btn modal-edit-unit" data-route="{{route('warehouse.modalEdit')}}"
                                                         data-productid="{{$product->id}}"
@@ -319,9 +313,9 @@
     $('#warehouse_table').DataTable({
         ordering: false,
         columnDefs: [
-            { "type": "string", "targets": [10] },
-            { "type": "html", "targets": [1, 2, 5, 7, 8] },
-            { "orderable": true, "targets": 10 },
+            { "searchable": false, "targets": 8 }
+            // { "type": "html", "targets": [1, 2, 5, 7, 8] },
+            // { "orderable": true, "targets": 10 },
         ],
 		searchBuilder: {
 			conditions: {

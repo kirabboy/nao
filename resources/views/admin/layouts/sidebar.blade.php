@@ -74,7 +74,7 @@
                     <a href="{{ URL::to('admin/ket-qua-dao-tao') }}">Kết quả đào tạo</a>
                 </span>
             </li>
-            <li>
+            <li class="dropdown">
                 <a href="{{ route('warehouse.index') }}" class="dropbtn">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
                     <span class="links_name w-100 align-items-center d-flex">Tồn kho </span>
