@@ -4,48 +4,7 @@
 
   	<section class="home-section">
 		<div class="header bg-white shadow-sm header_mobile">
-			<div class="text">Dashboard</div>
-			<div class="icon_menu-mobile">
-				<i class="fa fa-bars" data-bs-toggle="collapse" href="#menu-main" role="button" aria-expanded="false" aria-controls="menu-main"></i>
-			</div>
-		</div>
-		  <ul class="sub-menu collapse sidebar-mobile list-group list-group-flush" id="menu-main">
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Dashboard</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <span class="list-group-item-link p-3" data-bs-toggle="collapse" href="#menu-mobile-doitac" role="button" aria-expanded="false" aria-controls="menu-mobile-doitac"><i class="fa fa-bar-chart-o"></i> Quản lý đối tác <i class="fa fa-angle-down fs-4 float-end"></i></span>
-				  <ul class="p-0 menu-child collapse" id="menu-mobile-doitac">
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="doinhom.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Đội nhóm</a>
-					  </li>
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="canhan.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cá nhân</a>
-					  </li>
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="thontinbanhang.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Thông tin bán hàng</a>
-					  </li>
-				  </ul>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý nhân viên</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý sản phẩm</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Bán hàng</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Tồn kho</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Dữ liệu Master</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Setting</a>
-			  </li>
-		  </ul>
+
 		</div>
 		<div class="m-3">
 			<div class="row">

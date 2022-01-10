@@ -11,51 +11,24 @@ use App\Admin\Controllers\OrderController;
 use App\Admin\Controllers\AdminHomeController;
 use App\Admin\Controllers\ConfigShippingController;
 use App\Admin\Controllers\LoginController;
+use App\Admin\Controllers\BaoCaoController;
+use App\Admin\Controllers\QuanLyDaiLyController;
+use App\Admin\Controllers\KhuyenMaiController;
+
 
 Route::get('/', [AdminHomeController::class, 'index']);
 
-Route::get('ca-nhan', function () {
-    return view('admin.ca-nhan');
-});
-
-Route::get('cau-hinh-khuyen-mai', function () {
-    return view('admin.cau-hinh-khuyen-mai');
-});
 
 Route::get('dang-nhap', function () {
     return view('admin.dang-nhap');
-});
-
-Route::get('doi-nhom', function () {
-    return view('admin.doi-nhom');
-});
-
-Route::get('ket-qua-dao-tao', function () {
-    return view('admin.ket-qua-dao-tao');
 });
 
 Route::get('loai-khuyen-mai', function () {
     return view('admin.loai-khuyen-mai');
 });
 Route::prefix('don-hang')->group(function () {
-
-    Route::get('don-hang-cnpp', function () {
-        return view('admin.order.don-hang-cnpp');
-    })->name('orderadmin.CNNPP');
-    
     Route::get('don-hang-dai-ly', [OrderController::class, 'getOrderAgency'])->name('orderadmin.agency');
     
-    Route::get('don-hang-doi-thu-dai-ly', function () {
-        return view('admin.order.don-hang-doi-thu-dai-ly');
-    })->name('orderadmin.doithuAgency');
-    
-    Route::get('don-hang-tra-chi-nhanh-npp', function () {
-        return view('admin.order.don-hang-tra-chi-nhanh-npp');
-    })->name('orderadmin.backCNNPP');
-    
-    Route::get('don-hang-tra-dai-ly', function () {
-        return view('admin.order.don-hang-tra-dai-ly');
-    })->name('orderadmin.backAgency');
     Route::put('/cap-nhat-don-hang', [OrderController::class, 'puthOrderUpdate'])->name('order.update');
     Route::get('/chi-tiet/{order:id}', [OrderController::class, 'getOrderDetail'])->name('order.detail');
     Route::patch('/huy-don-hang', [OrderController::class, 'patchOrderDestroy']);
@@ -107,6 +80,23 @@ Route::delete('/ton-kho-dai-ly', [WarehouseController::class, 'delete'])->name('
 Route::get('thong-tin-ban-hang', function () {
     return view('admin.thong-tin-ban-hang');
 });
+
+//Bao cao
+Route::prefix('baocao')->group(function () {
+    Route::get('/', [BaoCaoController::class, 'index']);
+    Route::get('/chitiet', [BaoCaoController::class, 'chitiet']);
+});
+
+//Quanlydaily
+Route::get('/doinhom', [QuanLyDaiLyController::class, 'doinhom']);
+Route::prefix('canhan')->group(function () {
+    Route::get('/', [QuanLyDaiLyController::class, 'canhan']);
+    Route::get('/chitiet', [QuanLyDaiLyController::class, 'chitietcanhan']);
+});
+
+//KhuyenMai 
+Route::get('/khuyenmai', [KhuyenMaiController::class, 'loaikhuyenmai']);
+Route::get('/loaikhuyenmai', [KhuyenMaiController::class, 'cauhinhkhuyenmai']);
 
 //setting
 Route::get('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'index']);

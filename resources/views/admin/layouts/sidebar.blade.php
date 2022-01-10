@@ -21,8 +21,8 @@
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
                 <span class="dropdown-content">
-                    <a href="{{ URL::to('/admin/doi-nhom') }}">Đội nhóm</a>
-                    <a href="{{ URL::to('/admin/ca-nhan') }}">Cá nhân</a>
+                    <a href="{{ URL::to('/admin/doinhom') }}">Đội nhóm</a>
+                    <a href="{{ URL::to('/admin/canhan') }}">Cá nhân</a>
                     <a href="{{ URL::to('/admin/thong-tin-ban-hang') }}">Thông tin bán hàng</a>
                 </span>
             </li>
@@ -46,8 +46,8 @@
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
                 <span class="dropdown-content">
-                    <a href="{{ URL::to('/admin/cau-hinh-khuyen-mai') }}">Cấu hình khuyến mại</a>
-                    <a href="{{ URL::to('/admin/loai-khuyen-mai') }}">Loại khuyến mãi</a>
+                    <a href="{{ URL::to('/admin/khuyenmai') }}">Loại khuyến mãi</a>
+                    <a href="{{ URL::to('/admin/loaikhuyenmai') }}">Cấu hình khuyến mại</a>
                 </span>
             </li>
             <li class="dropdown">
@@ -57,33 +57,22 @@
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
                 <span class="dropdown-content">
-                    <a href="{{route('orderadmin.CNNPP')}}">Đơn hàng CN NPP</a>
-                    <a href="{{route('orderadmin.backCNNPP')}}">Đơn hàng trả CN NPP</a>
                     <a href="{{route('orderadmin.agency')}}">Đơn hàng đại lý</a>
-                    <a href="{{route('orderadmin.backAgency')}}">Đơn hàng trả đại lý</a>
-                    <a href="{{route('orderadmin.doithuAgency')}}">Đơn hàng đối thủ đại lý</a>
                 </span>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropbtn">
+                <a href="{{ URL::to('admin/baocao') }}" class="dropbtn">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
                     <span class="links_name w-100 align-items-center d-flex">Báo cáo <i
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
-                <span class="dropdown-content">
-                    <a href="{{ URL::to('admin/ket-qua-dao-tao') }}">Kết quả đào tạo</a>
-                </span>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropbtn">
+                <a href="{{ URL::to('/admin/ton-kho-dai-ly') }}" class="dropbtn">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
                     <span class="links_name w-100 align-items-center d-flex">Tồn kho <i
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
-                <span class="dropdown-content">
-                    <a href="{{ URL::to('/admin/ton-kho-CNNPP') }}">Tồn kho CN NPP</a>
-                    <a href="{{ URL::to('/admin/ton-kho-dai-ly') }}">Tồn kho đại lý</a>
-                </span>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">
