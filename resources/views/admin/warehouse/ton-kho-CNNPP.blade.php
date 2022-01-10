@@ -1,6 +1,5 @@
-@extends('admin.layouts.master')
-@section('content')
-	<link rel="stylesheet" href="{{asset('/public/admin/css/khuyenmai.css')}}">
+<x-header_admin />
+	<link rel="stylesheet" href="{{asset('/resources/css/khuyenmai.css')}}">
 	
 
 
@@ -219,4 +218,4 @@
 			</div>
 		</div>
 	</section>
-@endsection
+<x-footer_admin />

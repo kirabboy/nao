@@ -9,6 +9,8 @@ use App\Admin\Controllers\ProductController;
 use App\Admin\Controllers\WarehouseController;
 use App\Admin\Controllers\OrderController;
 use App\Admin\Controllers\AdminHomeController;
+use App\Admin\Controllers\BlogCategoryController;
+use App\Admin\Controllers\BlogController;
 use App\Admin\Controllers\ConfigShippingController;
 use App\Admin\Controllers\LoginController;
 
@@ -69,6 +71,7 @@ Route::post('/don-vi-tinh', [CalculationUnitController::class, 'store'])->name('
 Route::put('/don-vi-tinh/update', [CalculationUnitController::class, 'update'])->name('don-vi-tinh.update');
 Route::put('/don-vi-tinh', [CalculationUnitController::class, 'updateStatus'])->name('don-vi-tinh.updateStatus');
 Route::delete('/don-vi-tinh', [CalculationUnitController::class, 'destroy'])->name('don-vi-tinh.delete');
+
 // PRODUCT CATEGORIES
 Route::get('/nganh-nhom-hang', [ProductCategoryController::class, 'index'])->name('nganh-nhom-hang.index');
 Route::post('/nganh-nhom-hang', [ProductCategoryController::class, 'store'])->name('nganh-nhom-hang.store');
@@ -87,6 +90,15 @@ Route::put('/san-pham/update/{id}', [ProductController::class, 'update'])->name(
 Route::delete('/san-pham/delete/{id}', [ProductController::class, 'destroy'])->name('san-pham.delete');
 Route::get('/san-pham/get-category', [ProductController::class, 'getCategory'])->name('san-pham.getCategory');
 
+// COURSES
+Route::get('/khoa-hoc', [CourseController::class, 'index'])->name('course.index');
+Route::get('/tao-khoa-hoc', [CourseController::class, 'create'])->name('course.create');
+Route::get('/cap-nhat-khoa-hoc/{id}', [CourseController::class, 'edit'])->name('course.edit');
+Route::post('/khoa-hoc', [CourseController::class, 'store'])->name('course.store');
+Route::put('/khoa-hoc/{id}', [CourseController::class, 'update'])->name('course.update');
+Route::put('/khoa-hoc/update-status/{id}', [CourseController::class, 'updateStatus'])->name('course.updateStatus');
+Route::delete('/khoa-hoc/{id}', [CourseController::class, 'destroy'])->name('course.delete');
+
 // BRAND
 Route::get('/thuong-hieu', [BrandController::class, 'index'])->name('thuong-hieu.index');
 Route::get('/thuong-hieu/getDatatable', [BrandController::class, 'indexDatatable'])->name('thuong-hieu.indexDatatable');
@@ -102,11 +114,29 @@ Route::get('/ton-kho-CNNPP', function () {
 
 Route::get('/ton-kho-dai-ly', [WarehouseController::class, 'index'])->name('warehouse.index');
 Route::post('/ton-kho-dai-ly', [WarehouseController::class, 'store'])->name('warehouse.store');
+Route::post('/ton-kho-dai-ly/add-product', [WarehouseController::class, 'addProductToWarehouse'])->name('warehouse.addProductToWarehouse');
 Route::put('/ton-kho-dai-ly', [WarehouseController::class, 'update'])->name('warehouse.update');
 Route::delete('/ton-kho-dai-ly', [WarehouseController::class, 'delete'])->name('warehouse.destroy');
-Route::get('thong-tin-ban-hang', function () {
-    return view('admin.thong-tin-ban-hang');
-});
+Route::get('/get-location', [WarehouseController::class, 'getLocation'])->name('warehouse.getLocation');
+Route::get('/get-warehouse', [WarehouseController::class, 'getWarehouse'])->name('warehouse.getWarehouse');
+Route::get('/ton-kho-dai-ly/modal-edit', [WarehouseController::class, 'modalEdit'])->name('warehouse.modalEdit');
+
+// BLOG CATEGORY
+Route::get('/chuyen-muc-bai-viet', [BlogCategoryController::class, 'index'])->name('chuyenmuc-baiviet.index');
+Route::get('/chuyen-muc-bai-viet/getDatatable', [BlogCategoryController::class, 'indexDatatable'])->name('chuyenmuc-baiviet.indexDatatable');
+Route::get('/chuyen-muc-bai-viet/modal-edit', [BlogCategoryController::class, 'modalEdit'])->name('chuyenmuc-baiviet.modalEdit');
+Route::post('/chuyen-muc-bai-viet', [BlogCategoryController::class, 'store'])->name('chuyenmuc-baiviet.store');
+Route::put('/chuyen-muc-bai-viet/update', [BlogCategoryController::class, 'update'])->name('chuyenmuc-baiviet.update');
+Route::delete('/chuyen-muc-bai-viet', [BlogCategoryController::class, 'destroy'])->name('chuyenmuc-baiviet.delete');
+
+// BLOG
+Route::get('/tat-ca-bai-viet', [BlogController::class, 'index'])->name('baiviet.index');
+Route::get('/tat-ca-bai-viet/create', [BlogController::class, 'create'])->name('baiviet.create');
+Route::get('/tat-ca-bai-viet/edit/{id}', [BlogController::class, 'edit'])->name('baiviet.edit');
+Route::post('/tat-ca-bai-viet', [BlogController::class, 'store'])->name('baiviet.store');
+Route::put('/tat-ca-bai-viet/update/{id}', [BlogController::class, 'update'])->name('baiviet.update');
+Route::put('/tat-ca-bai-viet/{id}', [BlogController::class, 'updateStatus'])->name('baiviet.updateStatus');
+Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name('baiviet.delete');
 
 //setting
 Route::get('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'index']);

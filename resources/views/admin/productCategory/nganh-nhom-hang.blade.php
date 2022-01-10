@@ -1,7 +1,10 @@
 @extends('admin.layouts.master')
 @section('content')
-<link rel="stylesheet" href="{{ asset('/public/admin/css/quanlysanpham.css') }}">
-<link rel="stylesheet" href="{{ asset('/public/admin/css/doitac.css') }}">
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('/public/admin/css/quanlysanpham.css') }}">
+    <link rel="stylesheet" href="{{ asset('/public/admin/css/doitac.css') }}">
+@endpush
 
 
 <section class="home-section">
@@ -65,7 +68,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title"><i class="fas fa-map-signs"></i> Thông tin ngành hàng </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="formCreateProductCategory"
@@ -127,7 +130,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
                             <button type="submit" class="btn btn-info btn-submit-unit">Lưu</button>
                         </div>
                     </form>
@@ -136,11 +139,19 @@
             </div>
         </div>
     </div>
-
     <!-- END MODAL -->
 
     <div class="m-3">
         <div class="wrapper bg-white p-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="portlet-title d-flex justify-content-between align-items-center">
                 <div class="title-name d-flex align-items-center">
                     <div class="caption">
@@ -352,54 +363,56 @@
     <div class="footer text-center">
         <spans style="font-size: 12px; color: #333;">Copyright©2005-2021 . All rights reserved</spans>
     </div>
-</section> 
-@endsection
-@push('js')
-<script>
-    var ajaxSelectCategory = {!! json_encode(route('nganh-nhom-hang.getCategory')) !!}
+</section>
 
-    $(document).ready(function () {
-        var table = $('#table-product-category').DataTable({
-            ordering: false,
-            language: {
-                    search: "Tìm kiếm:",
-                    lengthMenu: "Hiển thị _MENU_ kết quả",
-                    info: "Hiển thị _START_ đến _END_ trong _TOTAL_ kết quả",
-                    infoEmpty: "Hiển thị 0 trên 0 trong 0 kết quả",
-                    zeroRecords: "Không tìm thấy",
-                    emptyTable: "Hiện tại chưa có dữ liệu",
-                    paginate: {
-                        first: ">>",
-                        last: "<<",
-                        next: ">",
-                        previous: "<"
-                    },
-            },
-            dom: '<"wrapper d-flex justify-content-between mb-3"lf>tip',
+@push('js')
+    <script>
+        var ajaxSelectCategory = {!! json_encode(route('nganh-nhom-hang.getCategory')) !!}
+
+        $(document).ready(function () {
+            var table = $('#table-product-category').DataTable({
+                ordering: false,
+                language: {
+                        search: "Tìm kiếm:",
+                        lengthMenu: "Hiển thị _MENU_ kết quả",
+                        info: "Hiển thị _START_ đến _END_ trong _TOTAL_ kết quả",
+                        infoEmpty: "Hiển thị 0 trên 0 trong 0 kết quả",
+                        zeroRecords: "Không tìm thấy",
+                        emptyTable: "Hiện tại chưa có dữ liệu",
+                        paginate: {
+                            first: ">>",
+                            last: "<<",
+                            next: ">",
+                            previous: "<"
+                        },
+                },
+                dom: '<"wrapper d-flex justify-content-between mb-3"lf>tip',
+            });
+
+
+            var val = $('#table-product-category_filter input').val();
+            var rowChild = $('tr.child-category')
+            var hasChild = $('tr.has-child')
+
+            table.on( 'search.dt', function () {
+                var value = $('#table-product-category_filter input').val();
+                if(value != ''){
+                    console.log('khi có dữ liệu',val);
+                    $('#table-product-category tr.child-category').css('display', 'table-row')
+                } else {
+                    $(rowChild).css('display', '')
+                    $(hasChild).removeClass('selected')
+                }
+            } );
+
+            if(val == ''){
+                $('tr.child-category').css('display', '')
+            }        
         });
 
+    </script>
 
-        var val = $('#table-product-category_filter input').val();
-        var rowChild = $('tr.child-category')
-        var hasChild = $('tr.has-child')
-
-        table.on( 'search.dt', function () {
-            var value = $('#table-product-category_filter input').val();
-            if(value != ''){
-                console.log('khi có dữ liệu',val);
-                $('#table-product-category tr.child-category').css('display', 'table-row')
-            } else {
-                $(rowChild).css('display', '')
-                $(hasChild).removeClass('selected')
-            }
-        } );
-
-        if(val == ''){
-            $('tr.child-category').css('display', '')
-        }        
-    });
-
-</script>
-
-<script type="text/javascript" src="{{ asset('/public/admin/js/adminProductCategory.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/public/admin/js/adminProductCategory.js') }}"></script>
 @endpush
+
+@endsection

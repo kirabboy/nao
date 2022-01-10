@@ -33,10 +33,10 @@
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
                 <span class="dropdown-content">
-                    <a href="{{ URL::to('/admin/nganh-nhom-hang') }}">Ngành/Nhóm hàng</a>
-                    <a href="{{ URL::to('/admin/thuong-hieu') }}">Thương hiệu</a>
-                    <a href="{{ URL::to('/admin/don-vi-tinh') }}">Đơn vị tính</a>
-                    <a href="{{ URL::to('/admin/san-pham') }}">Thông tin sản phẩm</a>
+                    <a href="{{ route('nganh-nhom-hang.index') }}">Ngành/Nhóm hàng</a>
+                    <a href="{{ route('thuong-hieu.index') }}">Thương hiệu</a>
+                    <a href="{{ route('don-vi-tinh.index') }}">Đơn vị tính</a>
+                    <a href="{{ route('san-pham.index') }}">Thông tin sản phẩm</a>
                 </span>
             </li>
             <li class="dropdown">
@@ -74,15 +74,21 @@
                     <a href="{{ URL::to('admin/ket-qua-dao-tao') }}">Kết quả đào tạo</a>
                 </span>
             </li>
+            <li>
+                <a href="{{ route('warehouse.index') }}" class="dropbtn">
+                    <i class="fa fa-frown-o" aria-hidden="true"></i>
+                    <span class="links_name w-100 align-items-center d-flex">Tồn kho </span>
+                </a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
-                    <span class="links_name w-100 align-items-center d-flex">Tồn kho <i
+                    <span class="links_name w-100 align-items-center d-flex">Bài viết <i
                             class="fa fa-angle-double-right float-end" aria-hidden="true"></i></span>
                 </a>
                 <span class="dropdown-content">
-                    <a href="{{ URL::to('/admin/ton-kho-CNNPP') }}">Tồn kho CN NPP</a>
-                    <a href="{{ URL::to('/admin/ton-kho-dai-ly') }}">Tồn kho đại lý</a>
+                    <a href="{{route('chuyenmuc-baiviet.index')}}">Chuyên mục bài viết</a>
+                    <a href="{{route('baiviet.index')}}">Tất cả bài viết</a>
                 </span>
             </li>
             <li class="dropdown">

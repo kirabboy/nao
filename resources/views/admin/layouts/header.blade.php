@@ -54,5 +54,6 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('/public/admin/css/responsive.css') }}" type="text/css">
     <meta name="url-home" content="{{ URL::to('/') }}" />
+    @stack('css')
 </head>
 <body>

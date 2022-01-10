@@ -25,6 +25,16 @@ class ProductCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'proCatName' => 'required|unique:product_category,name',
+            'proCatCode' => 'required|unique:product_category,code',
+        ], [
+            'proCatName.required' => 'Tên danh mục không được để trống',
+            'proCatName.unique' => 'Tên danh mục đã được sử dụng, vui lòng chọn tên khác',
+            'proCatCode.required' => 'Mã danh mục không được để trống',
+            'proCatCode.unique' => 'Mã danh mục đã được sử dụng, vui lòng chọn tên khác',
+        ]);
+
         $slug = Str::slug($request->proCatName, '-');
 
         ProductCategory::create([
@@ -41,6 +51,16 @@ class ProductCategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'proCatName' => 'required|unique:product_category,name,'.$id,
+            'proCatCode' => 'required|unique:product_category,code,'.$id,
+        ], [
+            'proCatName.required' => 'Tên danh mục không được để trống',
+            'proCatName.unique' => 'Tên danh mục đã được sử dụng, vui lòng chọn tên khác',
+            'proCatCode.required' => 'Mã danh mục không được để trống',
+            'proCatCode.unique' => 'Mã danh mục đã được sử dụng, vui lòng chọn tên khác',
+        ]);
+
         $slug = Str::slug($request->proCatName, '-');
 
         ProductCategory::where('id', $id)->update([
