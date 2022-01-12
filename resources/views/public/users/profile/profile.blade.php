@@ -31,7 +31,7 @@
         <div class="col-12 pb-3">
             <p class="text-small pb-1 m-0">Mã giới thiệu</p>
             <p>
-                <input class="btn_magioithieu inputform" value="{{$user->magioithieu}}" readonly></input>
+                <input class="btn_magioithieu inputform" value="{{$user->code_user}}" readonly></input>
                 <span class="magioithieu copyIcon"><i class="fa fa-clone" aria-hidden="true"></i></span>
             </p>
         </div>
