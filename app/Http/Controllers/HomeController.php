@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,22 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('public.users.profile.profile');
-    }
-
-    public function infoDetail()
-    {
-        return view('public.users.profile.info');
-    }
-
-    public function resetPassword()
-    {
-        return view('public.users.profile.resetPassword');
-    }
-
-    public function thanhtoan()
-    {
-        return view('public.users.profile.thanhtoan');
+        $user = Auth::user();
+        return view('public.index',['user'=>$user]);
     }
 
     public function chitietthanhvien()

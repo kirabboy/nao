@@ -7,9 +7,9 @@
     <header id="header-page">
         <div class="container cart-content">
             <nav class="navbar navbar-expand-lg navbar-dark ">
-                <a class="nav-page-text" href="{{url('/')}}">
+                <a class="nav-page-text" href="{{url('/customer')}}">
                     <i class="fas fa-chevron-left"></i>
-                    Chi tiết khách hàng
+                    Khách hàng {{$customer->name}}
                 </a>
             </nav>
         </div>
@@ -47,11 +47,13 @@
                                     <div class="customer-detail-box">
                                         <ul>
                                             <li><img class="icon-customer"
-                                                    src="{{ asset('/public/images/crown-two.png') }}" alt="">Nguyễn Chính
-                                                Kira</li>
-                                            <li class="line-detail"><span>Mã khách hàng</span><span>MXOH244</span></li>
-                                            <li class="line-detail"><span>Nhân viên tư vấn</span><span>12:34
-                                                    23/11/2121</span></li>
+                                                    src="{{ asset('/public/images/crown-two.png') }}" alt="">
+                                                    {{$customer->name}}
+                                            </li>
+                                            <li class="line-detail"><span>Mã khách hàng</span><span>{{$customer->code_customer}}</span></li>
+                                            <li class="line-detail"><span>Nhân viên tư vấn</span><span>
+                                                {{$user->name}}</span>
+                                            </li>
                                             <li class="line-detail"><span>Tình trạng khách hàng</span><span
                                                     class="btn-drop-down">Đặt hàng<i class="fas fa-caret-down"></i>
                                                 </span></li>
@@ -77,48 +79,57 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                            <form action="" class="form-info-customer">
+                            <form action="{{asset('/customer')}}/{{$customer->id}}" method="POST" class="form-info-customer">
                                 <div class="form-group">
                                     <label for="fullname">Họ và tên</label>
                                     <input type="text" class="form-control" id="fullname" placeholder="Họ và tên"
-                                        value="Nguyễn Chính Kira">
+                                        name="name" value="{{$customer->name}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="birthday">Ngày sinh</label>
                                     <input type="date" class="form-control" id="birthday" placeholder="Ngày sinh"
-                                        value="08-06-1998">
+                                        name="birthday" value="{{$customer->birthday}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="sex">Giới tính</label>
-                                    <select type="text" class="form-control" id="sex">
-                                        <option value="1">Nam</option>
-                                        <option value="2">Nữ</option>
-                                        <option value="3">Khác</option>
+                                    <select type="text" name="sex" class="form-control" id="sex">
+                                        @if ($customer->sex == 1)
+                                            <option value="1">Nam</option>
+                                            <option value="2">Nữ</option>
+                                        @else
+                                            <option value="2">Nữ</option>     
+                                            <option value="1">Nam</option>                      
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email"
-                                        value="Caohocvien@gmail.com">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email"
+                                        value="{{$customer->email}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="phonenumber">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="phonenumber" placeholder="Số điện thoại"
-                                        value="0392763984">
+                                    <input type="text" name="phone" class="form-control" id="phonenumber" placeholder="Số điện thoại"
+                                    @if ($customer->phone != null)   
+                                        value="0{{$customer->phone}}"
+                                    @else 
+                                    
+                                    @endif >
                                 </div>
                                 <div class="form-group">
                                     <label for="facebook">Facebook</label>
-                                    <input type="text" class="form-control" id="facebook" placeholder="Facebook"
-                                        value="Http://facebook/caohocvan">
+                                    <input type="text" name="facebook" class="form-control" id="facebook" placeholder="Facebook"
+                                        value="{{$customer->facebook}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="nvkd">NVKD</label>
                                     <input type="text" class="form-control" id="nvkd" placeholder="NVKD"
-                                        value="038764574">
+                                        value="+84{{$user->phone}}" readonly>
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn-submit background-primary">Lưu</button>
                                 </div>
+                            @csrf
                             </form>
                         </div>
                         <div class="tab-pane fade" id="nav-addess" role="tabpanel" aria-labelledby="nav-addess-tab">

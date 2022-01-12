@@ -14,8 +14,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        if(Auth::guard('admin')->check()){
+            return redirect('/admin');
+        }
+
         return view('admin.login');
     }
 
@@ -26,7 +31,8 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        Auth::guard('admin')->logout();
+        return redirect()->route('get.admin.login');
     }
 
     /**
@@ -43,7 +49,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt([
+        if (Auth::guard('admin')->attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ], $request->input('remember'))) {

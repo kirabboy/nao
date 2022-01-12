@@ -14,10 +14,14 @@
 				<span>Đăng ký tài khoản</span>
 			</div>
 		</div>
-		<form class="form-register mt-45" action="#" method="post">
+		<form class="form-register mt-45" action="{{route('post.register')}}" method="POST">
 			<div class="form-group">
 				<label>Số điện thoại</label>
-				<input type="text" class="form-control custom-input" placeholder="Số điện thoại">
+				<input type="text" name="phone" class="form-control custom-input" placeholder="Số điện thoại">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Mật khẩu</label>
+				<input type="password" name="password" class="form-control custom-input" placeholder="Mật khẩu">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mã giới thiệu</label>
@@ -29,6 +33,7 @@
 			</div>
 
 			<button type="submit" name="register-submit" disabled class="btn btn-pr mt-45 mb-3">Tiếp tục</button>
+		@csrf
 		</form>
 		<div class="d-flex flex-column justify-content-center">
 			<a class="text-center color-pr font-weight-semibold text-18 mt-2" href="{{ route('login') }}">Đăng nhập</a>

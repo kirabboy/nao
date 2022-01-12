@@ -13,19 +13,22 @@
 				<span>Đăng nhập bằng mật khẩu</span>
 			</div>
 		</div>
-		<form class="form-login" action="#" method="get">
+		
+<!-- ----------------------------------------------------------------		 -->
+		<form class="form-login" action="{{route('post.login')}}" method="POST">
+		@csrf
 			<div class="form-group">
 				<label>Số điện thoại</label>
-				<input type="text" class="form-control custom-input" placeholder="Số điện thoại">
+				<input type="text" name="phone" class="form-control custom-input" placeholder="Số điện thoại">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mật khẩu</label>
-				<input type="password" class="form-control custom-input" placeholder="Mật khẩu">
+				<input type="password" name="password" class="form-control custom-input" placeholder="Mật khẩu">
 			</div>
 			<div class="d-flex justify-content-between align-items-center">
 				<div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="rememberMe">
+						<input type="checkbox" class="form-check-input" name="remember" id="rememberMe">
 						<label class="form-check-label" for="rememberMe">Nhớ mật khẩu</label>
 					</div>
 				</div>
@@ -34,8 +37,9 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-pr mt-45 mb-3"><a href="profile" class="text-light">Đăng nhập</a></button>
+			<button type="submit" class="btn btn-pr mt-45 mb-3">Đăng nhập</button>
 		</form>
+<!-- ----------------------------------------------------------------		 -->
 		<div class="d-flex flex-column justify-content-center">
 			<a class="text-center mb-3 color-pr text-underline" href="{{ route('login.otp') }}">Đăng nhập bằng mã OTP</a>
 			<a class="text-center color-pr font-weight-semibold text-18" href="{{ route('register') }}">Đăng ký</a>
@@ -46,7 +50,7 @@
 	</div>
 </section>
 	<!-- Modal -->
-	<div class="modal fade modal-alert" id="ModalLoginAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	{{-- <div class="modal fade modal-alert" id="ModalLoginAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body d-flex success">
@@ -60,9 +64,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 @endsection
 @push('js')
-<script src="{{ asset('public/js/login.js') }}"></script>
+{{-- <script src="{{ asset('public/js/login.js') }}"></script> --}}
 @endpush

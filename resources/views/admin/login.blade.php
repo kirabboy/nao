@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{asset('/admin/login')}}"><b>Admin</b></a>
+        <a href="{{route('admin.login')}}"><b>Admin</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -32,7 +32,7 @@
                 </ul>
             </div>
             @endif
-            <form action="{{ url('admin/login/store') }}" method="post">
+            <form action="{{route('admin.login')}}" method="post">
                 <div class="input-group mb-3">
                 <input type="email" name="email" class="form-control" placeholder="Email">
                 <div class="input-group-append">

@@ -12,7 +12,7 @@
         <i class="fa fa-cube" aria-hidden="true"></i>
         <span>Đơn hàng</span>
     </a>
-    <a href="{{url('/chi-tiet-khach-hang')}}" class="d-flex justify-content-center align-items-center flex-column item">
+    <a href="{{url('/customer')}}" class="d-flex justify-content-center align-items-center flex-column item">
     <i class="fa fa-user" aria-hidden="true"></i>
         <span>Khách hàng</span>
     </a>
