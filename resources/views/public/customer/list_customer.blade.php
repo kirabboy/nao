@@ -32,11 +32,6 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 {{-- Danh sach khách hàng --}}
-@if ($count_customers == 0)
-abc
-@else 
-123
-@endif
                     <div class="tab-content pt-2" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-detail" role="tabpanel"
                             aria-labelledby="nav-detail-tab">
