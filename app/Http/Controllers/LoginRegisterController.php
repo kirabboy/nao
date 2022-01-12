@@ -49,8 +49,8 @@ class LoginRegisterController extends Controller
             'password' => 'required',
         ]);
         $user->phone = $request->input('phone');
-        $number_code = sprintf("%03d",User::count() + 1);
-        $user->code_user = 'MXOH'.$number_code;
+        $number_code = sprintf("%06d",User::max('id') + 1);
+        $user->code_user = 'NAO'.$number_code;
         $user->password = bcrypt($request->password);
         $user->save();
 
