@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Admin\MainController;
 use App\Http\Controllers\HomeController; 
-use App\Http\Controllers\ShippingController; 
-
+use App\Http\Controllers\ShippingController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('public.index');
@@ -101,10 +101,9 @@ Route::prefix('profile')->group(function () {
 
 // MINH START
 
-Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
-Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
-Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
-Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
+Route::post('/dang-nhap', [ProductController::class, 'postLogin'])->name('postlogin');
+Route::get('/san-pham', [ProductController::class, 'index'])->name('product.index');
+Route::get('/san-pham/{slug}', [ProductController::class, 'detail'])->name('product.detail');
 
 Route::get('/gio-hang', function() {
     return view('public.checkout.cart');

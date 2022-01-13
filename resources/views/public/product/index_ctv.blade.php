@@ -12,17 +12,17 @@
             <div class="product-item bg-white">
                 <div class="item-product-info d-flex">
                     <div class="item-product-img">
-                        <a href="{{route('product_detail_ctv', $item->slug)}}"><img src="{{$item->feature_img}}"
+                        <a href="{{route('product.detail', $item->slug)}}"><img src="{{$item->feature_img}}"
                             alt="{{$item->name}}"></a>
                     </div>
                     <div class="item-product-content">
                         <h4 class="item-product-title text-uppercase">
-                            <a href="{{route('product_detail_ctv', $item->slug)}}">{{$item->name}}</a>
+                            <a href="{{route('product.detail', $item->slug)}}">{{$item->name}}</a>
                         </h4>
                         <div class="item-product-info-detail d-flex justify-content-between">
                             <div class="item-info-title text-left">
                                 <p>Giá</p>
-                                <p>Chiết khấu đại lý</p>
+                                <p>Chiết khấu CTV</p>
                                 <p>Tình trạng</p>
                             </div>
                             <div class="item-info-value text-right">

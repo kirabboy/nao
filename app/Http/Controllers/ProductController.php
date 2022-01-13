@@ -4,29 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index_daily() {
+    public function index()
+    {
         $products = Product::latest()->get();
+        if (Auth::user()->level == 1) {
+            return view('public.product.index_ctv', compact('products'));
+        }
         return view('public.product.index_dai_ly', compact('products'));
     }
 
-    public function index_ctv() {
-        $products = Product::latest()->get();
-        return view('public.product.index_ctv', compact('products'));
-    }
-
-    public function detail_daily($slug) 
+    public function detail($slug)
     {
         $product = Product::where('slug', $slug)->firstorfail();
+        if (Auth::user()->level == 1) {
+            return view('public.product.detail.product_detail_collab', compact('product'));
+        }
         return view('public.product.detail.product_detail_agent', compact('product'));
-    }
-
-    public function detail_ctv($slug) 
-    {
-        $product = Product::where('slug', $slug)->firstorfail();
-        return view('public.product.detail.product_detail_collab', compact('product'));
     }
 }
