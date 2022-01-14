@@ -14,7 +14,7 @@ use App\Admin\Controllers\LoginController;
 use App\Admin\Controllers\BaoCaoController;
 use App\Admin\Controllers\QuanLyDaiLyController;
 use App\Admin\Controllers\KhuyenMaiController;
-
+use App\Admin\Controllers\SettingController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('get.admin.login');
 Route::post('/login', [LoginController::class, 'store'])->name('admin.login');
@@ -101,6 +101,10 @@ Route::group(['middleware' => ['admin']], function () {
     //setting
     Route::get('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'index']);
     Route::put('/cau-hinh-van-chuyen', [ConfigShippingController::class, 'update'])->name('put.config.shipping');
+
+    Route::get('/cau-hinh-bank', [SettingController::class, 'cauhinhbank'])->name('cauhinhbank');
+    Route::post('/cau-hinh-bank',[SettingController::class, 'postCauhinhbank'])->name('post.cauhinhbank');
+
 
     Route::get('/role', [AdminHomeController::class, 'roles']);
 

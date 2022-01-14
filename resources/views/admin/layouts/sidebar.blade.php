@@ -82,6 +82,7 @@
                 </a>
                 <span class="dropdown-content">
                     <a href="{{URL::to('admin/cau-hinh-van-chuyen')}}">Cấu hình vận chuyển</a>
+                    <a href="{{route('cauhinhbank')}}">Cấu hình chuyển khoản</a>
                 </span>
             </li>
             <li class="profile">

@@ -28,10 +28,15 @@
         <div class="col-12 pb-3 text-center">
             <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
             <p class="pt-2">{{$user->name}}</p>
-            <button class="btn btn-radius btn-xanhngoc">
-                Cộng tác viên
-            </button>
-            <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
+            @if ($user->level == 1)
+                <button class="btn btn-radius btn-xanhngoc">Cộng tác viên</button>
+            @elseif ($user->level == 2)
+                <button class="btn btn-radius btn-cam">Đại lý mới</button>
+            @elseif ($user->level == 3)
+                <button class="btn btn-radius btn-cam">Đại lý chuẩn</button>
+            @else 
+                <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
+            @endif
         </div>
         <div class="col-12">
             <p class="text-small pb-1 m-0">Link giới thiệu</p>

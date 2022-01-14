@@ -42,7 +42,7 @@
                         <div class="col-6 text-end">
                             <p class="m-0 pb-1">{{$thanhvien->name}}</p>
                             <p class="m-0 pb-1">0{{$thanhvien->phone}}</p>
-                            <p class="m-0 pb-1">{{$thanhvien->created_at}}</p>
+                            <p class="m-0 pb-1">{{$thanhvien->created_at->toDateString()}}</p>
                             <p class="m-0 pb-1">10000</p>
                             <p class="m-0 pb-1">00%</p>
                             <p class="m-0 pb-1">00</p>

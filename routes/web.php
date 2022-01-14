@@ -16,10 +16,9 @@ Route::get('dang-nhap', [LoginRegisterController::class, 'login'])->name('login'
 Route::post('dang-nhap', [LoginRegisterController::class, 'postLogin'])->name('post.login');
 Route::get('dang-xuat', [LoginRegisterController::class, 'logout'])->name('dang-xuat');
 
-Route::get('dang-ky/{mgt}', [LoginRegisterController::class, 'mgt']);
-
 Route::get('dang-ky', [LoginRegisterController::class, 'register'])->name('register');
 Route::post('dang-ky', [LoginRegisterController::class, 'postRegister'])->name('post.register');
+Route::get('dang-ky/{mgt}', [LoginRegisterController::class, 'mgt']);
 
 Route::get('dang-nhap-otp', function () {
     return view('public.user.login-otp');
@@ -102,15 +101,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dangkynangcapdaily', [ProfileController::class, 'dangkynangcapdaily']);
         Route::get('/nangcapdaily', [ProfileController::class, 'nangcapdaily']);
 
-        Route::get('/chiphi', [HomeController::class, 'chiphi']);
-        Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
-        Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
-        Route::get('/hoahong', [HomeController::class, 'hoahong']);
-        Route::get('/hoahongbanle', [HomeController::class, 'hoahongbanle']);
-        Route::get('/hoahongnhom', [HomeController::class, 'hoahongnhom']);
-
-        
     });
+
     Route::prefix('doinhom')->group(function () {
         Route::get('/', [DoinhomController::class, 'index'])->name('doinhom.index');
         Route::get('/{id}', [DoinhomController::class, 'chitietthanhvien'])->name('doinhom.show');
@@ -134,6 +126,15 @@ Route::group(['middleware' => ['auth']], function () {
             
         });
     });
+
+    // Hoa hong 
+    Route::get('/hoahong', [HomeController::class, 'hoahong']);
+    Route::get('/hoahongbanle', [HomeController::class, 'hoahongbanle']);
+    Route::get('/hoahongnhom', [HomeController::class, 'hoahongnhom']);
+    Route::get('/chiphi', [HomeController::class, 'chiphi']);
+    Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
+    Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
+
 
     // MINH START
 

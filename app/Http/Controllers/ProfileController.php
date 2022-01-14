@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
-
+use App\Models\SettingBank;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -124,16 +124,20 @@ class ProfileController extends Controller
     //chuyen khoan
     public function nangcapdaily()
     {
-        return view('public.users.nangcaptaikhoan.nangcapdaily');
-    }
+        $user = Auth()->user();
+        return view('public.users.nangcaptaikhoan.nangcapdaily',['user'=>$user]);
+    } 
 
     public function chuyenkhoan()
     {
-        return view('public.users.nangcaptaikhoan.chuyenkhoan');
+        $user = Auth()->user();
+        $bank = SettingBank::first();
+        return view('public.users.nangcaptaikhoan.chuyenkhoan',['bank' => $bank,'user'=>$user]);
     }
 
     public function dangkynangcapdaily()
     {
-        return view('public.users.nangcaptaikhoan.dangkynangcapdaily');
+        $bank = SettingBank::first();
+        return view('public.users.nangcaptaikhoan.dangkynangcapdaily',['bank' => $bank]);
     }
 }

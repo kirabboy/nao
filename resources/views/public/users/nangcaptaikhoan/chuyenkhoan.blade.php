@@ -40,19 +40,19 @@
                     <p class="m-0 fw-bold pb-3" style="font-size: 20px;">Tổng tiền</p>
                 </div>
                 <div class="col-6 text-end">
-                    <p class="m-0 pb-3 color-xanhngoc">MB Banks</p>
+                    <p class="m-0 pb-3 color-xanhngoc">{{$bank->bank_name}} {{$bank->bank_chinhanh}}</p>
                     <p class="m-0 pb-3 color-xanhngoc">
-                        <span class="btn_linkgioithieu">98347329847</span>
+                        <span class="btn_linkgioithieu">{{$bank->bank_number}}</span>
                         <span class="linkgioithieu"><i class="fa fa-clone" aria-hidden="true"></i></span>
                     </p>
-                    <p class="m-0 pb-3 color-xanhngoc">Công TY TNHH</p>
+                    <p class="m-0 pb-3 color-xanhngoc">{{$bank->bank_boss}}</p>
                     <p class="m-0 pb-3 color-xanhngoc">
-                        <span class="btn_linkgioithieu">NangcapDLG093489</span>
+                        <span class="btn_linkgioithieu">Nangcap{{$user->code_user}}</span>
                         <span class="linkgioithieu"><i class="fa fa-clone" aria-hidden="true"></i></span>
                     </p>
                     <p class="m-0 pb-3 color-xanhngoc">58:09</p>
                     <p class="m-0 pb-3 fw-bold color-xanhngoc" style="font-size: 20px;">
-                        500,000 VNĐ
+                        {{$bank->price_upgrade}} VNĐ
                     </p>
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6974f">
                 <div class="card-body pt-1 pb-1">
                     <p class="m-0 pb-3 fw-bold">Hướng dẫn chuyển khoản</p>
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo luctus enim dignissim phasellus ut urna orci. Purus metus pretium viverra leo, mauris mi. Fermentum diam amet, et tempor, duis ut. Mi volutpat vel risus in sem ac.</p>
+                    <p class="m-0">{{$bank->note}}</p>
                 </div>
             </div>
             <div class="pt-3">
