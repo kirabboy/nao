@@ -70,7 +70,7 @@
                                             <li><a href="#"><img class="icon-customer"
                                                         src="{{ asset('/public/images/Frame 2411.png') }}" alt="">Tạo lịch
                                                     hẹn</a></li>
-                                            <li><a href="tel:"><img class="icon-customer"
+                                            <li><a href="tel:{{$customer->phone}}"><img class="icon-customer"
                                                         src="{{ asset('/public/images/Frame 2412.png') }}" alt="">Gọi
                                                     điện</a></li>
                                         </ul>
@@ -129,72 +129,35 @@
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn-submit background-primary">Lưu</button>
                                 </div>
-                            @csrf
-                            </form>
                         </div>
                         <div class="tab-pane fade" id="nav-addess" role="tabpanel" aria-labelledby="nav-addess-tab">
                             <div class="row">
+                                @foreach ($address as $diachi)
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="customer-address-box">
                                         <ul>
                                             <li>
-                                                <span>Cao học viên <span class="default-address">(Mặc định)</span>
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
+                                                <span>Cao học viên </span>
+                                                <span class="address-action">
+                                                    <a href="{{url('/customer')}}/{{$customer->id}}/diachi/{{$diachi->id}}">
+                                                        <img src="{{ asset('/public/images/edit.png') }}" alt="">
+                                                    </a>    
+                                                    <a href="{{url('/customer')}}/{{$customer->id}}/diachi/{{$diachi->id}}/xoa">
+                                                        <img src="{{ asset('/public/images/delete.png') }}" alt="">
+                                                    </a>
+                                                </span>
                                             </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
+                                            <li><span>{{$diachi->address}}</span></li>
                                             <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="address-add-box">
-                                        <a href="{{ url('/them-dia-chi-khach-hang') }}" class="button-ounline"><i
+                                        <a href="{{asset('/customer')}}/{{$customer->id}}/themdiachi" class="button-ounline"><i
                                                 class="fas fa-plus-circle"></i>Thêm địa chỉ</a>
                                     </div>
                                 </div>
@@ -392,11 +355,16 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-note" role="tabpanel" aria-labelledby="nav-note-tab">
-                            <form action="" class="form-customer-note">
+                            
                                 <div class="form-group">
                                     <label for="note">Ghi chú</label>
-                                    <textarea class="form-control rounded-1" id="note" rows="10">Khách hàng</textarea>
+                                    <textarea type="text" name="note" class="form-control mb-2 rounded-1" id="note" rows="10">{{$customer->note}}</textarea>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn-submit background-primary">Lưu</button>
+                                    </div>
                                 </div>
+                                @csrf
                             </form>
                         </div>
                     </div>

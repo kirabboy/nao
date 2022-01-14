@@ -15,6 +15,7 @@
 <section>
     <form method="POST" action="{{ route('updateThanhtoan') }}"
     <div class="row p-3">
+        
         <div class="col-12">
             <p class="text-small pb-1 m-0">Ngân hàng</p>
             <p>

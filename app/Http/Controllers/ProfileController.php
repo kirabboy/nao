@@ -121,4 +121,19 @@ class ProfileController extends Controller
         }
         return redirect()->back();
     }
+    //chuyen khoan
+    public function nangcapdaily()
+    {
+        return view('public.users.nangcaptaikhoan.nangcapdaily');
+    }
+
+    public function chuyenkhoan()
+    {
+        return view('public.users.nangcaptaikhoan.chuyenkhoan');
+    }
+
+    public function dangkynangcapdaily()
+    {
+        return view('public.users.nangcaptaikhoan.dangkynangcapdaily');
+    }
 }

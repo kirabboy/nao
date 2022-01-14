@@ -17,6 +17,21 @@
 <!-- ----------------------------------------------------------------		 -->
 		<form class="form-login" action="{{route('post.login')}}" method="POST">
 		@csrf
+		{{-- Thong bao dang nhap --}}
+			@if (count($errors) > 0)
+				<div class="alert alert-danger">
+					@foreach ($errors->all() as $err)
+						{{ $err }}<br>
+					@endforeach
+				</div>
+			@endif
+
+			@if(session('thongbao'))
+			<div class="alert alert-success">
+				{{session('thongbao')}}</strong>
+			</div>
+			@endif
+		{{-- End thong bao dang nhap --}}
 			<div class="form-group">
 				<label>Số điện thoại</label>
 				<input type="text" name="phone" class="form-control custom-input" placeholder="Số điện thoại">

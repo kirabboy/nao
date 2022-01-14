@@ -10,7 +10,19 @@
         </div>
     </div>
 </section>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    @foreach ($errors->all() as $err)
+        {{ $err }}<br>
+    @endforeach
+</div>
+@endif
 
+@if(session('thongbao'))
+<div class="alert alert-success">
+{{session('thongbao')}} <br> Quý Khách Hàng vui lòng <strong><a class="alert-success" href="tai-khoan">Tạo mới Hồ Sơ Khách Hàng</a></strong>
+</div>
+@endif
 <section>
     <div class="row p-3">
         <div class="col-12 pb-3 text-center">
@@ -24,7 +36,7 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Link giới thiệu</p>
             <p>
-                <input class="btn_linkgioithieu inputform" value="{{$user->linkgioithieu}}" readonly>
+                <input class="btn_linkgioithieu inputform" value="{{route('home')}}/dang-ky/{{$user->code_user}}" readonly>
                 <span class="linkgioithieu copyIcon"><i class="fa fa-clone" aria-hidden="true"></i></span>
             </p>
         </div>

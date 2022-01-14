@@ -60,20 +60,6 @@ class HomeController extends Controller
         return view('public.users.hoahong.tongNAOtrongthang');
     }
 
-    public function nangcapdaily()
-    {
-        return view('public.users.nangcaptaikhoan.nangcapdaily');
-    }
-
-    public function chuyenkhoan()
-    {
-        return view('public.users.nangcaptaikhoan.chuyenkhoan');
-    }
-
-    public function dangkynangcapdaily()
-    {
-        return view('public.users.nangcaptaikhoan.dangkynangcapdaily');
-    }
     /**
      * Show the form for creating a new resource.
      *

@@ -15,6 +15,8 @@ Route::get('dang-nhap', [LoginRegisterController::class, 'login'])->name('login'
 Route::post('dang-nhap', [LoginRegisterController::class, 'postLogin'])->name('post.login');
 Route::get('dang-xuat', [LoginRegisterController::class, 'logout'])->name('dang-xuat');
 
+Route::get('dang-ky/{mgt}', [LoginRegisterController::class, 'mgt']);
+
 Route::get('dang-ky', [LoginRegisterController::class, 'register'])->name('register');
 Route::post('dang-ky', [LoginRegisterController::class, 'postRegister'])->name('post.register');
 
@@ -94,7 +96,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/resetPassword', [ProfileController::class, 'resetPassword']);
         Route::post('/resetPassword', [ProfileController::class, 'postResetPassword'])->name('updateResetPassword');
-        
+
+        Route::get('/chuyenkhoan', [ProfileController::class, 'chuyenkhoan']);
+        Route::get('/dangkynangcapdaily', [ProfileController::class, 'dangkynangcapdaily']);
+        Route::get('/nangcapdaily', [ProfileController::class, 'nangcapdaily']);
 
         Route::get('/doinhom', [HomeController::class, 'doinhom']);
         Route::get('/chitietthanhvien', [HomeController::class, 'chitietthanhvien']);
@@ -106,25 +111,27 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/hoahongbanle', [HomeController::class, 'hoahongbanle']);
         Route::get('/hoahongnhom', [HomeController::class, 'hoahongnhom']);
 
-        Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
-        Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
-        Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
+        
     });
+
     // Profile khach hang cua user
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'listCustomer'])->name('listCustomer');
         Route::post('/', [CustomerController::class, 'postListCustomer'])->name('get.listCustomer');
 
-        Route::get('/{id}',[CustomerController::class, 'index'])->name('detailCustomer');
-        Route::post('/{id}',[CustomerController::class, 'update'])->name('postDetailCustomer');
+        Route::prefix('/{id}')->group(function () {
+            Route::get('/',[CustomerController::class, 'index'])->name('detailCustomer');
+            Route::post('/',[CustomerController::class, 'postDetailCustomer'])->name('postDetailCustomer');
 
+            Route::get('/themdiachi',[CustomerController::class, 'customer_address']);
+            Route::post('/themdiachi', [CustomerController::class, 'postCustomer_address']);
+
+            Route::get('/diachi/{info_address}',[CustomerController::class, 'chitietdiachi']);
+            Route::post('/diachi/{info_address}',[CustomerController::class, 'postChitietdiachi']);
+            Route::match(['delete', 'get'],'/diachi/{info_address}/xoa',[CustomerController::class, 'xoadiachi']);
+            
+        });
     });
-
-
-
-
-
-
 
     // MINH START
 
