@@ -7,7 +7,7 @@
 <header id="header-page">
     <div class="container cart-content">
         <nav class="navbar navbar-expand-lg navbar-dark ">
-            <a class="nav-page-text" href="{{asset('/customer')}}/{{$customer->id}}">
+            <a class="nav-page-text" href="{{route('detailCustomer',$customer->id)}}">
                 <i class="fas fa-chevron-left"></i>
                 Thêm địa chỉ cho 
                 @if ($customer->name == null)
@@ -22,7 +22,7 @@
 
 <div id="main">
     <div class="container">
-        <form action="{{asset('/customer')}}/{{$customer->id}}/themdiachi" method="POST" class="form-add-address-customer">
+        <form action="{{route('detailCustomer',$customer->id,'/themdiachi')}}" method="POST" class="form-add-address-customer">
             <div class="form-group">
                 <label for="province">Tỉnh thành</label>
                 <select type="text" name="sel_province" class="form-control" id="province">

@@ -100,7 +100,6 @@ class CustomerController extends Controller
         ->where('ward.maphuongxa','=',$address_ofCustomer->id_ward)
         ->select('ward.tenphuongxa')->first()->tenphuongxa;
 
-        
         return view('public.customer.detail_address',[
             'customer'=>$customer,
             'province'=>$province,
@@ -119,7 +118,8 @@ class CustomerController extends Controller
         $address->id_ward = $request->sel_ward;
         $address->address = $request->address;
         $address->save();
-        return redirect()->back();
+        $link_back =route('detailCustomer',$customer->id);
+        return redirect($link_back);
     }
     
     public function xoadiachi ($id,$info_address) {

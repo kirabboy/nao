@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UsersParent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +56,7 @@ class LoginRegisterController extends Controller
     public function postRegister (Request $request) {
         $user = new User;
         $this->validate($request,[
-            'phone' => 'required|numeric|min:5|min:15|unique:phone',
+            'phone' => 'required|numeric|min:5|min:15|unique:users',
             'password' => 'required|min:5|max:30',
         ],[
             'phone.min' => 'Số điện thoại không đúng',
@@ -70,9 +71,20 @@ class LoginRegisterController extends Controller
         $number_code = sprintf("%06d",User::max('id') + 1);
         $user->code_user = 'NAO'.$number_code;
         $user->password = bcrypt($request->password);
-        $user->save();
 
-        return redirect('/')->with('thongbao','Đăng ký thành công');
+        $magioithieu = $request->magioithieu;
+        $value = User::where('code_user' ,'=', $magioithieu);
+
+        if($value->value('code_user') == null) {
+            return 'Khong co ma gioi thieu nay';
+        } else {
+            $parent = new UsersParent;
+            $parent->id_dad = $value->value('id');
+            $parent->id_child = User::max('id')+1;
+            $parent->save();
+            $user->save();
+            return redirect('/')->with('thongbao','Đăng ký thành công');
+        }
     }
 
     public function mgt($mgt) {

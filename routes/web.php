@@ -8,6 +8,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DoinhomController;
 
 
 
@@ -101,9 +102,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dangkynangcapdaily', [ProfileController::class, 'dangkynangcapdaily']);
         Route::get('/nangcapdaily', [ProfileController::class, 'nangcapdaily']);
 
-        Route::get('/doinhom', [HomeController::class, 'doinhom']);
-        Route::get('/chitietthanhvien', [HomeController::class, 'chitietthanhvien']);
-        
         Route::get('/chiphi', [HomeController::class, 'chiphi']);
         Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
         Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
@@ -113,7 +111,11 @@ Route::group(['middleware' => ['auth']], function () {
 
         
     });
-
+    Route::prefix('doinhom')->group(function () {
+        Route::get('/', [DoinhomController::class, 'index'])->name('doinhom.index');
+        Route::get('/{id}', [DoinhomController::class, 'chitietthanhvien'])->name('doinhom.show');
+    });
+    
     // Profile khach hang cua user
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'listCustomer'])->name('listCustomer');
@@ -126,8 +128,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/themdiachi',[CustomerController::class, 'customer_address']);
             Route::post('/themdiachi', [CustomerController::class, 'postCustomer_address']);
 
-            Route::get('/diachi/{info_address}',[CustomerController::class, 'chitietdiachi']);
-            Route::post('/diachi/{info_address}',[CustomerController::class, 'postChitietdiachi']);
+            Route::get('/diachi/{info_address}',[CustomerController::class, 'chitietdiachi'])->name('chitietdiachi');
+            Route::post('/diachi/{info_address}',[CustomerController::class, 'postChitietdiachi'])->name('post.chitietdiachi');
             Route::match(['delete', 'get'],'/diachi/{info_address}/xoa',[CustomerController::class, 'xoadiachi']);
             
         });

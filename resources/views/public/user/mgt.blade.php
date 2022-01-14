@@ -40,7 +40,7 @@
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mã giới thiệu</label>
-				<input type="text" class="form-control custom-input" placeholder="Mã giới thiệu"
+				<input type="text" name="magioithieu" class="form-control custom-input" placeholder="Mã giới thiệu"
 				@if ($mgt != null)
 					value="{{$mgt}}" readonly
 				@else

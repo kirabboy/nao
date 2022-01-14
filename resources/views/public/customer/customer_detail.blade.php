@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                            <form action="{{asset('/customer')}}/{{$customer->id}}" method="POST" class="form-info-customer">
+                            <form action="{{route('detailCustomer',$customer->id)}}" method="POST" class="form-info-customer">
                                 <div class="form-group">
                                     <label for="fullname">Họ và tên</label>
                                     <input type="text" class="form-control" id="fullname" placeholder="Họ và tên"

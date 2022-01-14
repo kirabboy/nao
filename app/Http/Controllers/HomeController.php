@@ -20,16 +20,6 @@ class HomeController extends Controller
         return view('public.index',['user'=>$user]);
     }
 
-    public function chitietthanhvien()
-    {
-        return view('public.users.doinhom.chitietthanhvien');
-    }
-
-    public function doinhom()
-    {
-        return view('public.users.doinhom.doinhom');
-    }
-
     public function chiphi()
     {
         return view('public.users.hoahong.chiphi');

@@ -22,7 +22,7 @@
 
 <div id="main">
     <div class="container">
-        <form action="{{asset('/customer')}}/{{$customer->id}}/diachi/{{$address->id}}" method="POST" class="form-add-address-customer">
+        <form action="{{route('detailCustomer',$customer->id)}}/diachi/{{$address->id}}" method="POST" class="form-add-address-customer">
             <div class="form-group">
                 <label for="province">Tỉnh thành</label>
                 <select type="text" name="sel_province" class="form-control" id="province">
