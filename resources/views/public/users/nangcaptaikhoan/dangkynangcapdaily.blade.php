@@ -29,10 +29,10 @@
                 <div class="col-6 text-end">
                     <p class="m-0 pb-2 color-xanhngoc">Nâng cấp lên đại lý</p>
                     <p class="m-0 pb-2 color-xanhngoc">24/12/2021</p>
-                    <p class="m-0 pb-3 color-xanhngoc">2.000.000</p>
+                    <p class="m-0 pb-3 color-xanhngoc">{{$bank->price_upgrade}}</p>
                     <p class="m-0 pb-2 color-xanhngoc" style="margin-top: -7px !important;">
                         <button class="btn btn-radius btn-xanhngoc">
-                            <a class="text-light" href="{{asset('profile/chuyenkhoan')}}">Chuyển khoản</a>
+                           Chuyển khoản
                         </button>
                     </p>
                 </div>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-12 text-center pt-3">
-            <button class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;">Lưu thông tin</button>
+            <button class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"> <a class="text-light" href="{{asset('profile/chuyenkhoan')}}">Lưu thông tin</a></button>
         </div>
     </div>  
 </section>

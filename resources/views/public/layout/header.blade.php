@@ -32,7 +32,13 @@
                 <a class="nav-account-text" href="{{asset('profile')}}">
                     <ul>
                         <li><span>Xin chào,</span></li>
-                        <li><b>Kira</b></li>
+                        <li><b>
+                            @if(Auth::user()->name != null)
+                                {{Auth::user()->name}}
+                            @else
+                                {{Auth::user()->code_user}}
+                            @endif
+                            </b></li>
                     </ul>
                 </a>
                 <div class="nav-tool">

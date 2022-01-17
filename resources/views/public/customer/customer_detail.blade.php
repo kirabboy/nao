@@ -7,9 +7,9 @@
     <header id="header-page">
         <div class="container cart-content">
             <nav class="navbar navbar-expand-lg navbar-dark ">
-                <a class="nav-page-text" href="{{url('/')}}">
+                <a class="nav-page-text" href="{{url('/customer')}}">
                     <i class="fas fa-chevron-left"></i>
-                    Chi tiết khách hàng
+                    Khách hàng {{$customer->name}}
                 </a>
             </nav>
         </div>
@@ -47,11 +47,13 @@
                                     <div class="customer-detail-box">
                                         <ul>
                                             <li><img class="icon-customer"
-                                                    src="{{ asset('/public/images/crown-two.png') }}" alt="">Nguyễn Chính
-                                                Kira</li>
-                                            <li class="line-detail"><span>Mã khách hàng</span><span>MXOH244</span></li>
-                                            <li class="line-detail"><span>Nhân viên tư vấn</span><span>12:34
-                                                    23/11/2121</span></li>
+                                                    src="{{ asset('/public/images/crown-two.png') }}" alt="">
+                                                    {{$customer->name}}
+                                            </li>
+                                            <li class="line-detail"><span>Mã khách hàng</span><span>{{$customer->code_customer}}</span></li>
+                                            <li class="line-detail"><span>Nhân viên tư vấn</span><span>
+                                                {{$user->name}}</span>
+                                            </li>
                                             <li class="line-detail"><span>Tình trạng khách hàng</span><span
                                                     class="btn-drop-down">Đặt hàng<i class="fas fa-caret-down"></i>
                                                 </span></li>
@@ -68,7 +70,7 @@
                                             <li><a href="#"><img class="icon-customer"
                                                         src="{{ asset('/public/images/Frame 2411.png') }}" alt="">Tạo lịch
                                                     hẹn</a></li>
-                                            <li><a href="tel:"><img class="icon-customer"
+                                            <li><a href="tel:{{$customer->phone}}"><img class="icon-customer"
                                                         src="{{ asset('/public/images/Frame 2412.png') }}" alt="">Gọi
                                                     điện</a></li>
                                         </ul>
@@ -77,113 +79,85 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                            <form action="" class="form-info-customer">
+                            <form action="{{route('detailCustomer',$customer->id)}}" method="POST" class="form-info-customer">
                                 <div class="form-group">
                                     <label for="fullname">Họ và tên</label>
                                     <input type="text" class="form-control" id="fullname" placeholder="Họ và tên"
-                                        value="Nguyễn Chính Kira">
+                                        name="name" value="{{$customer->name}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="birthday">Ngày sinh</label>
                                     <input type="date" class="form-control" id="birthday" placeholder="Ngày sinh"
-                                        value="08-06-1998">
+                                        name="birthday" value="{{$customer->birthday}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="sex">Giới tính</label>
-                                    <select type="text" class="form-control" id="sex">
-                                        <option value="1">Nam</option>
-                                        <option value="2">Nữ</option>
-                                        <option value="3">Khác</option>
+                                    <select type="text" name="sex" class="form-control" id="sex">
+                                        @if ($customer->sex == 1)
+                                            <option value="1">Nam</option>
+                                            <option value="2">Nữ</option>
+                                        @else
+                                            <option value="2">Nữ</option>     
+                                            <option value="1">Nam</option>                      
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email"
-                                        value="Caohocvien@gmail.com">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email"
+                                        value="{{$customer->email}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="phonenumber">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="phonenumber" placeholder="Số điện thoại"
-                                        value="0392763984">
+                                    <input type="text" name="phone" class="form-control" id="phonenumber" placeholder="Số điện thoại"
+                                    @if ($customer->phone != null)   
+                                        value="0{{$customer->phone}}"
+                                    @else 
+                                    
+                                    @endif >
                                 </div>
                                 <div class="form-group">
                                     <label for="facebook">Facebook</label>
-                                    <input type="text" class="form-control" id="facebook" placeholder="Facebook"
-                                        value="Http://facebook/caohocvan">
+                                    <input type="text" name="facebook" class="form-control" id="facebook" placeholder="Facebook"
+                                        value="{{$customer->facebook}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="nvkd">NVKD</label>
                                     <input type="text" class="form-control" id="nvkd" placeholder="NVKD"
-                                        value="038764574">
+                                        value="+84{{$user->phone}}" readonly>
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn-submit background-primary">Lưu</button>
                                 </div>
-                            </form>
                         </div>
                         <div class="tab-pane fade" id="nav-addess" role="tabpanel" aria-labelledby="nav-addess-tab">
                             <div class="row">
+                                @foreach ($address as $diachi)
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                     <div class="customer-address-box">
                                         <ul>
                                             <li>
-                                                <span>Cao học viên <span class="default-address">(Mặc định)</span>
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
+                                                <span>Cao học viên </span>
+                                                <span class="address-action">
+                                                    <a href="{{url('/customer')}}/{{$customer->id}}/diachi/{{$diachi->id}}">
+                                                        <img src="{{ asset('/public/images/edit.png') }}" alt="">
+                                                    </a>    
+                                                    <a href="{{url('/customer')}}/{{$customer->id}}/diachi/{{$diachi->id}}/xoa">
+                                                        <img src="{{ asset('/public/images/delete.png') }}" alt="">
+                                                    </a>
+                                                </span>
                                             </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
+                                            <li><span>{{$diachi->address}}</span></li>
                                             <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="customer-address-box">
-                                        <ul>
-                                            <li>
-                                                <span>Cao học viên
-                                                </span><span class="address-action"><img
-                                                        src="{{ asset('/public/images/edit.png') }}" alt=""><img
-                                                        src="{{ asset('/public/images/delete.png') }}" alt=""></span>
-                                            </li>
-                                            <li><span>28 đường số 2, thường 7, Vò Gấp</span></li>
-                                            <li><span>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="address-add-box">
-                                        <a href="{{ url('/them-dia-chi-khach-hang') }}" class="button-ounline"><i
+                                        <a href="{{asset('/customer')}}/{{$customer->id}}/themdiachi" class="button-ounline"><i
                                                 class="fas fa-plus-circle"></i>Thêm địa chỉ</a>
                                     </div>
                                 </div>
@@ -381,11 +355,16 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-note" role="tabpanel" aria-labelledby="nav-note-tab">
-                            <form action="" class="form-customer-note">
+                            
                                 <div class="form-group">
                                     <label for="note">Ghi chú</label>
-                                    <textarea class="form-control rounded-1" id="note" rows="10">Khách hàng</textarea>
+                                    <textarea type="text" name="note" class="form-control mb-2 rounded-1" id="note" rows="10">{{$customer->note}}</textarea>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn-submit background-primary">Lưu</button>
+                                    </div>
                                 </div>
+                                @csrf
                             </form>
                         </div>
                     </div>

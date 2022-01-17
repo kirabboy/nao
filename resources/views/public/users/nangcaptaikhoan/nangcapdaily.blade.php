@@ -105,7 +105,15 @@
 
                     <div class="text-center">
                         <button class="btn btn-radius btn-cam">
-                            <a class="text-light" href="{{asset('profile/dangkynangcapdaily')}}">Nâng cấp ngay</a>
+                            @if($user->level == 1)
+                                <a class="text-light" href="{{asset('profile/dangkynangcapdaily')}}">Nâng cấp ngay</a>
+                            @elseif ($user->level == 2)
+                                <a class="text-light">Bạn đã là đại lý mới</a>
+                            @elseif ($user->level == 3)
+                                <a class="text-light">Bạn đã là đại lý chuẩn</a>
+                            @else
+                                <a class="text-light">Đang chờ duyệt</a>
+                            @endif
                         </button>
                     </div>
                 </div>

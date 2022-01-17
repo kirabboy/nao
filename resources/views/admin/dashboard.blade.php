@@ -55,7 +55,7 @@
 		<!-- end menu mobile -->
 
 
-  		<div class="m-3">
+  		<!-- <div class="m-3">
   			<div class="row">
   				<div class="col-sm-6" id="title_tinhhinh">
       				<div class="text">Tình hình đang như thế nào ?</div>
@@ -94,9 +94,9 @@
                     </ul>
   				</div>
   			</div>
-  		</div>
+  		</div> -->
 
-  		<div class="container-fluid" id="info_month">
+  		<!-- <div class="container-fluid" id="info_month">
   			<div class="row">
   				<div class="col-sm-3 p-3">
   					<div class="row bg-white m-0">
@@ -144,6 +144,6 @@
   				</div>
   			</div>
   		</div>
-  	</section>
+  	</section> -->
 
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,32 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('public.users.profile.profile');
-    }
-
-    public function infoDetail()
-    {
-        return view('public.users.profile.info');
-    }
-
-    public function resetPassword()
-    {
-        return view('public.users.profile.resetPassword');
-    }
-
-    public function thanhtoan()
-    {
-        return view('public.users.profile.thanhtoan');
-    }
-
-    public function chitietthanhvien()
-    {
-        return view('public.users.doinhom.chitietthanhvien');
-    }
-
-    public function doinhom()
-    {
-        return view('public.users.doinhom.doinhom');
+        $user = Auth::user();
+        return view('public.index',['user'=>$user]);
     }
 
     public function chiphi()
@@ -73,20 +50,6 @@ class HomeController extends Controller
         return view('public.users.hoahong.tongNAOtrongthang');
     }
 
-    public function nangcapdaily()
-    {
-        return view('public.users.nangcaptaikhoan.nangcapdaily');
-    }
-
-    public function chuyenkhoan()
-    {
-        return view('public.users.nangcaptaikhoan.chuyenkhoan');
-    }
-
-    public function dangkynangcapdaily()
-    {
-        return view('public.users.nangcaptaikhoan.dangkynangcapdaily');
-    }
     /**
      * Show the form for creating a new resource.
      *

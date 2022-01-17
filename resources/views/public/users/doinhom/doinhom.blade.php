@@ -33,51 +33,31 @@
         </div>
 
         <div class="col-12 pb-4">
+            @if ($info_child != null)
             <ol id='list' style="list-style: none; padding: 0;">
+                @foreach($info_child as $value)
                 <li class="list_name_group">
-                    <a class="text-dark" href="{{asset('profile/chitietthanhvien')}}">
+                    <a class="text-dark" href="{{route('doinhom.show',$value->id)}}">
                         <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
                             <div class="card-body pt-0 pb-0">
-                                <p class="m-0">Nguyễn Văn A <span id="btn_ctv">CTV</span></p>
+                                <p class="m-0">{{$value->name}}
+                                @if($value->level == 1)
+                                    <span id="btn_ctv">CTV</span></p>
+                                @else
+                                    <span id="btn_daily">Đại lý</span></p>
+                                @endif
                             </div>
                         </div>
                     </a>
                 </li>
-                <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6954b">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn B <span id="btn_daily">Đại lý</span></p>
-                        </div>
+                @endforeach
+            @else
+                <div class="card-hoahong" style="box-shadow: none; border: 1px solid #a41919">
+                    <div class="card-body pt-0 pb-0 text-center">
+                    <p class="m-0">Bạn hiện tại chưa giới thiệu được ai cả!</p>
                     </div>
-                </li>
-                <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn C <span id="btn_ctv">CTV</span></p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn D <span id="btn_ctv">CTV</span></p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn E <span id="btn_ctv">CTV</span></p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list_name_group">
-                    <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6954b">
-                        <div class="card-body pt-0 pb-0">
-                            <p class="m-0">Nguyễn Văn F <span id="btn_daily">Đại lý</span></p>
-                        </div>
-                    </div>
-                </li>
+                </div>
+            @endif
             </ol>
         </div>
       

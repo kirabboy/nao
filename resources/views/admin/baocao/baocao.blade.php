@@ -7,48 +7,6 @@
 
 		<!-- menu mobile -->
 		<div class="header bg-white shadow-sm header_mobile">
-			<div class="text">Dashboard</div>
-			<div class="icon_menu-mobile">
-				<i class="fa fa-bars" data-bs-toggle="collapse" href="#menu-main" role="button" aria-expanded="false" aria-controls="menu-main"></i>
-			</div>
-		</div>
-		  <ul class="sub-menu collapse sidebar-mobile list-group list-group-flush" id="menu-main">
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Dashboard</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <span class="list-group-item-link p-3" data-bs-toggle="collapse" href="#menu-mobile-doitac" role="button" aria-expanded="false" aria-controls="menu-mobile-doitac"><i class="fa fa-bar-chart-o"></i> Quản lý đối tác <i class="fa fa-angle-down fs-4 float-end"></i></span>
-				  <ul class="p-0 menu-child collapse" id="menu-mobile-doitac">
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="doinhom.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Đội nhóm</a>
-					  </li>
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="canhan.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cá nhân</a>
-					  </li>
-					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="thontinbanhang.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Thông tin bán hàng</a>
-					  </li>
-				  </ul>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý nhân viên</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý sản phẩm</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Bán hàng</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Tồn kho</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Dữ liệu Master</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Setting</a>
-			  </li>
-		  </ul>
 		</div>
 		<!-- end menu mobile -->
 			<div class="m-3">
@@ -75,7 +33,7 @@
 					<nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
 						  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tổng hợp kiểm tra</button>
-						  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Chi tiết kiểm tra</button>
+						  <!-- <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Chi tiết kiểm tra</button> -->
 						</div>
 					  </nav>
 					  <div class="tab-content" id="nav-tabContent" style="border: 1px solid #eee;">
@@ -105,7 +63,7 @@
 											</div>
 											<div class="dropdown" style="border: 1px solid #c2cad8; border-radius: 5px;">
 												<button class="btn dropdown-toggle fs-14 fs-14 text-start d-flex justify-content-between align-items-center" style="width: 150px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-													Tên đại lý
+													Họ tên đại lý
 												</button>
 												<ul class="dropdown-menu dropdown-menu1 fs-14" aria-labelledby="dropdownMenuButton1">
 												  <li class="ps-2 pe-2"><input class="p-1" style="width: 100%; border-radius: 5px;border: 1px solid #c2cad8;" type="text"></li>
@@ -153,7 +111,7 @@
 													Mã đại lý
 												</th>
 												<th class="title-text" style="width: 12%">
-													Tên đại lý
+													Họ tên đại lý
 												</th>
 												<th class="title-text">
 													Mã đơn hàng
@@ -171,10 +129,10 @@
 													Đến ngày
 												</th>
 												<th class="title-text">
-													Tháng
+													Kho xuất
 												</th>
 												<th class="title-text">
-													Năm
+													Chi tết
 												</th>
 											</tr>
 										</thead>
@@ -186,10 +144,10 @@
 												<td>DH001</td>
 												<td>XNK</td>
 												<td><a style="text-decoration: none;" href="">Xuân Nữ Khang</a></td>
-												<td>26</td>
-												<td>30</td>
-												<td>8</td>
-												<td>2021</td>
+												<td>26/01/2021</td>
+												<td>30/01/2021</td>
+												<td>việt nam</td>
+												<td><a href="{{url('admin/baocao/chitiet')}}">Xem</a></td>
 											</tr>
 											<tr>
 												<td>2</td>
@@ -198,10 +156,10 @@
 												<td>DH001</td>
 												<td>XNK</td>
 												<td><a style="text-decoration: none;" href="">Xuân Nữ Khang</a></td>
-												<td>26</td>
-												<td>30</td>
-												<td>8</td>
-												<td>2021</td>
+												<td>26/01/2021</td>
+												<td>30/01/2021</td>
+												<td>việt nam</td>
+												<td><a href="{{url('admin/baocao/chitiet')}}">Xem</a></td>
 											</tr>
 											<tr>
 												<td>3</td>
@@ -210,10 +168,10 @@
 												<td>DH001</td>
 												<td>XNK</td>
 												<td><a style="text-decoration: none;" href="">Xuân Nữ Khang</a></td>
-												<td>26</td>
-												<td>30</td>
-												<td>8</td>
-												<td>2021</td>
+												<td>26/01/2021</td>
+												<td>30/01/2021</td>
+												<td>việt nam</td>
+												<td><a href="{{url('admin/baocao/chitiet')}}">Xem</a></td>
 											</tr>
 											<tr>
 												<td>4</td>
@@ -222,10 +180,10 @@
 												<td>DH001</td>
 												<td>XNK</td>
 												<td><a style="text-decoration: none;" href="">Xuân Nữ Khang</a></td>
-												<td>26</td>
-												<td>30</td>
-												<td>8</td>
-												<td>2021</td>
+												<td>26/01/2021</td>
+												<td>30/01/2021</td>
+												<td>việt nam</td>
+												<td><a href="{{url('admin/baocao/chitiet')}}">Xem</a></td>
 											</tr>
 											<tr>
 												<td>5</td>
@@ -234,17 +192,17 @@
 												<td>DH001</td>
 												<td>XNK</td>
 												<td><a style="text-decoration: none;" href="">Xuân Nữ Khang</a></td>
-												<td>26</td>
-												<td>30</td>
-												<td>8</td>
-												<td>2021</td>
+												<td>26/01/2021</td>
+												<td>30/01/2021</td>
+												<td>việt nam</td>
+												<td><a href="{{url('admin/baocao/chitiet')}}">Xem</a></td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade m-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+						<!-- <div class="tab-pane fade m-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 							<div class="portlet-body">
 								<div class="row">
 									<div class="col-lg-10">
@@ -377,7 +335,7 @@
 								</div>
 							</div>
 						</div>
-					  </div>
+					  </div> -->
 				</div>
 			</div>
 			<div class="footer text-center">

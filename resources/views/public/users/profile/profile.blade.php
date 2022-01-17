@@ -10,28 +10,45 @@
         </div>
     </div>
 </section>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    @foreach ($errors->all() as $err)
+        {{ $err }}<br>
+    @endforeach
+</div>
+@endif
 
+@if(session('thongbao'))
+<div class="alert alert-success">
+{{session('thongbao')}} <br> Quý Khách Hàng vui lòng <strong><a class="alert-success" href="tai-khoan">Tạo mới Hồ Sơ Khách Hàng</a></strong>
+</div>
+@endif
 <section>
     <div class="row p-3">
         <div class="col-12 pb-3 text-center">
             <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
-            <p class="pt-2">Nguyễn Viết Quân</p>
-            <button class="btn btn-radius btn-xanhngoc">
-                Cộng tác viên
-            </button>
-            <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
+            <p class="pt-2">{{$user->name}}</p>
+            @if ($user->level == 1)
+                <button class="btn btn-radius btn-xanhngoc">Cộng tác viên</button>
+            @elseif ($user->level == 2)
+                <button class="btn btn-radius btn-cam">Đại lý mới</button>
+            @elseif ($user->level == 3)
+                <button class="btn btn-radius btn-cam">Đại lý chuẩn</button>
+            @else 
+                <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
+            @endif
         </div>
         <div class="col-12">
             <p class="text-small pb-1 m-0">Link giới thiệu</p>
             <p>
-                <input class="btn_linkgioithieu inputform" value="https://www.youtube.com/watch?v" readonly>
+                <input class="btn_linkgioithieu inputform" value="{{route('home')}}/dang-ky/{{$user->code_user}}" readonly>
                 <span class="linkgioithieu copyIcon"><i class="fa fa-clone" aria-hidden="true"></i></span>
             </p>
         </div>
         <div class="col-12 pb-3">
             <p class="text-small pb-1 m-0">Mã giới thiệu</p>
             <p>
-                <input class="btn_magioithieu inputform" value="0493846287GT" readonly></input>
+                <input class="btn_magioithieu inputform" value="{{$user->code_user}}" readonly></input>
                 <span class="magioithieu copyIcon"><i class="fa fa-clone" aria-hidden="true"></i></span>
             </p>
         </div>
@@ -53,7 +70,7 @@
         </div>
         <div class="col-12">
             <p class="icon_info"><i class="fa fa-sign-out" aria-hidden="true"></i> 
-                <span><a href="{{asset('dang-nhap')}}">Đăng xuất</a></span></p>
+                <span><a href="{{route('dang-xuat')}}">Đăng xuất</a></span></p>
         </div>
     </div>
 

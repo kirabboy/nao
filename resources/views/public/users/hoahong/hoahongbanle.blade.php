@@ -3,7 +3,7 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="{{asset('profile/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="{{asset('/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                 <span class="ps-3"> Hoa hồng bán lẻ</span>
             </h5>
         </div>
@@ -19,7 +19,7 @@
                       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Hoa hồng bán lẻ cá nhân</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Hoa hồng bán lẻ từ CTV</button>
+                      <button class="nav-link" id="pills--tab" data-bs-toggle="pill" data-bs-target="#pills-" type="button" role="tab" aria-controls="pills-" aria-selected="false">Hoa hồng bán lẻ từ CTV</button>
                     </li>
                 </ul>
             </div>
@@ -120,7 +120,7 @@
                 </div>
                 <!-- End Tab 1 -->
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="tab-pane fade" id="pills-" role="tabpanel" aria-labelledby="pills--tab">
                 <!-- Tab 1 -->
                 <div class="col-12 pb-4">
                     <div class="card-hoahong">

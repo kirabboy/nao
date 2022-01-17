@@ -30,7 +30,7 @@
                 <div class="card-body text-center">
                     <img src="{{asset('user/image/ic_user.png')}}" class="pb-2" width="50">
                     <p class="mb-2">Hoa hồng bán lẻ</p>
-                    <a href="{{asset('profile/hoahongbanle')}}" class="btn btn-xanhngoc-no-radius">8.000.000 đ</a>
+                    <a href="{{asset('/hoahongbanle')}}" class="btn btn-xanhngoc-no-radius">8.000.000 đ</a>
                 </div>
               </div>
         </div>
@@ -39,7 +39,7 @@
                 <div class="card-body text-center">
                     <img src="{{asset('user/image/ic_user.png')}}" class="pb-2" width="50">
                     <p class="mb-2">Hoa hồng nhóm</p>
-                    <a href="{{asset('profile/hoahongnhom')}}" class="btn btn-xanhngoc-no-radius">5.000.000 đ</a>
+                    <a href="{{asset('/hoahongnhom')}}" class="btn btn-xanhngoc-no-radius">5.000.000 đ</a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 <div class="card-body text-center">
                     <img src="{{asset('user/image/ic_user.png')}}" class="pb-2" width="50">
                     <p class="mb-2">Chi phí</p>
-                    <a href="{{asset('profile/chiphi')}}" class="btn btn-xanhngoc-no-radius">1.000.000 đ</a>
+                    <a href="{{asset('/chiphi')}}" class="btn btn-xanhngoc-no-radius">1.000.000 đ</a>
                 </div>
             </div>
         </div>
