@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DoinhomController;
 
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('dang-nhap', [LoginRegisterController::class, 'login'])->name('login');
@@ -135,6 +136,51 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
     Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
 
+    Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
+    Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
+    Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
+});
+
+// MINH START
+
+// Route::post('/dang-nhap', [ProductController::class, 'postLogin'])->name('postlogin');
+Route::get('/san-pham', [ProductController::class, 'index'])->name('product.index');
+Route::get('/san-pham/{slug}', [ProductController::class, 'detail'])->name('product.detail');
+
+Route::get('/gio-hang', function() {
+    return view('public.checkout.cart');
+});
+
+Route::get('/checkout', function() {
+    return view('public.checkout.checkout');
+});
+
+Route::get('/checkout/nhap-thong-tin', function() {
+    return view('public.checkout.customer_form_info');
+});
+
+Route::get('/thanh-toan', function() {
+    return view('public.checkout.payment');
+});
+
+Route::get('/don-hang', function() {
+    return view('public.order.index');
+});
+
+Route::get('/don-hang/chi-tiet', function() {
+    return view('public.order.detail');
+});
+
+Route::get('/don-hang/thong-tin-van-chuyen', function() {
+    return view('public.order.shipping_detail');
+});
+
+Route::get('/quan-ly-khach-hang', function() {
+    return view('public.order.index_customer');
+});
+
+// END MINH
+
 
     // MINH START
 
@@ -187,4 +233,3 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 
-});

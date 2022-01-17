@@ -10,7 +10,7 @@
         <div class="container">
             <div class="abc d-flex align-items-center">
                 <h3>
-                    <a href="{{ url()->previous() }}" style="color: var(--text-color);">
+                    <a href="{{ route('product.index') }}" style="color: var(--text-color);">
                         <i class="fas fa-angle-left"></i> Chi tiết sản phẩm
                     </a>
                 </h3>

@@ -1,6 +1,9 @@
 @extends('admin.layouts.master')
 @section('content')
-<link rel="stylesheet" href="{{ asset('/public/admin/css/quanlysanpham.css') }}">
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('/public/admin/css/quanlysanpham.css') }}">
+@endpush
 
 <section class="home-section">
 
@@ -58,6 +61,15 @@
     <!-- end menu mobile -->
     <div class="m-3">
         <div class="wrapper bg-white p-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="portlet-title">
                 <div class="title-name">
                     <div class="caption">
@@ -75,21 +87,42 @@
                         <div class="col-sm-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail size-img-profile">
-                                    <img src="http://api.salefie.vn/images/new_product_default.jpg">
+                                    <img 
+                                    @if (old('feature_img'))
+                                    src="{{old('feature_img')}}"
+                                    @else
+                                    src="http://api.salefie.vn/images/new_product_default.jpg"
+                                    @endif
+                                    >
                                 </div>
                                 <div class="form-group my-2">
-                                    <input id="ckfinder-input-1" type="hidden" name="feature_img" class="form-control">
+                                    <input id="ckfinder-input-1" type="hidden" name="feature_img" class="form-control" value="{{old('feature_img')}}">
                                     <a style="cursor: pointer;" id="ckfinder-popup-1" class="btn btn-success">Chọn ảnh đại diện</a>
                                 </div>
                             </div>
 
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="form-group my-2">
-                                    <input id="ckfinder-input-2" type="hidden" name="gallery_img" data-type="multiple" class="form-control">
+                                    <input id="ckfinder-input-2" type="hidden" name="gallery_img" data-type="multiple" class="form-control" value="{{old('gallery_img').' '}}">
                                     <a style="cursor: pointer;" id="ckfinder-popup-2" class="btn btn-success">Chọn thư viện ảnh</a>
                                 </div>
                                 <div class="fileinput-gallery thumbnail">
                                     <div class="row">
+                                        @if (old('gallery_img'))
+                                            @php
+                                            $galleries = explode(',', old('gallery_img'));
+                                            @endphp
+                                            @foreach($galleries as $img)
+                                                @if ($img != null || $img != '')
+                                                <div class="col-md-3">
+                                                    <span style="cursor: pointer;" data-id='' data-url="{{$img}}" class="delete_gallery">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                    <img src="{{$img}}">
+                                                </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -104,12 +137,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group d-flex">
                                                 <input type="text" name="product_sku" class="form-control w-50"
-                                                    required>
+                                                    required value="{{ old('product_sku') }}">
                                                 <div class="input-group-btn w-50" id="product-status">
                                                     <select name="product_status" class="selectpicker form-control">
                                                         <option value="0">Ngưng hoạt động</option>
-                                                        <option value="1">Hoạt động</option>
-                                                        <option value="2">Mới</option>
+                                                        <option value="1" selected>Hoạt động</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -127,9 +159,9 @@
                                         <label class="col-md-12 control-label text-left">Nhóm ngành hàng<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <select class="selectpicker form-control selectCategory nhomhang" name="category_parent"
+                                            <select class="form-control selectCategory nhomhang" name="category_parent"
                                                 required data-placeholder="Nhóm ngành hàng" data-type="megaParent">
-                                                <option value="-1">Nhóm ngành hàng</option>
+                                                <option></option>
                                                 @foreach ($nganhHang as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
@@ -163,10 +195,14 @@
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
                                             <select name="product_brand" class="selectpicker form-control" required
-                                                title="Thương hiệu" data-placeholder="Thương hiệu">
-                                                <option value="-1">Chọn thương hiệu</option>
+                                                title="Thương hiệu" data-placeholder="Chọn thương hiệu">
+                                                <option></option>
                                                 @foreach ($brands as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        @if (old('product_brand') == $item->id)
+                                                            selected
+                                                        @endif
+                                                        >{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -176,10 +212,14 @@
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
                                             <select class="selectpicker form-control" name="product_calculation_unit"
-                                                required data-placeholder="Đơn vị tính">
-                                                <option value="-1">Chọn đơn vị tính</option>
+                                                required data-placeholder="Chọn đơn vị tính">
+                                                <option></option>
                                                 @foreach ($calculationUnits as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        @if (old('product_calculation_unit') == $item->id)
+                                                            selected
+                                                        @endif
+                                                        >{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -244,74 +284,48 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Điểm Vpoint bán lẻ<span
+                                        <label class="col-md-12 control-label text-left">Chiết khấu CTV<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_vpoint"
-                                                class="form-control" required value="{{ old('product_vpoint') }}">
+                                            <input type="number" step="0.1" min="0.1" name="price_ctv"
+                                                class="form-control" required
+                                                value="{{ old('price_ctv') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu cổ đông 2<span
+                                        <label class="col-md-12 control-label text-left">Chiết khấu Đại lý mới<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_2"
+                                            <input type="number" step="0.1" min="0.1" name="price_new_daily"
                                                 class="form-control" required
-                                                value="{{ old('product_discount_2') }}">
+                                                value="{{ old('price_new_daily') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu cổ đông 1<span
+                                        <label class="col-md-12 control-label text-left">Chiết khấu Đại lý chuẩn<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_1"
+                                            <input type="number" step="0.1" min="0.1" name="price_daily_chuan"
                                                 class="form-control" required
-                                                value="{{ old('product_discount_1') }}">
+                                                value="{{ old('price_daily_chuan') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Platinum<span
+                                        <label class="col-md-12 control-label text-left">Chiết khấu Khách hàng VIP<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_platinum"
+                                            <input type="number" step="0.1" min="0.1" name="price_vip"
                                                 class="form-control" required
-                                                value="{{ old('product_discount_platinum') }}">
+                                                value="{{ old('price_vip') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Diamond<span
+                                        <label class="col-md-12 control-label text-left">NAO Point<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_diamond"
+                                            <input type="number" step="0.1" min="0.1" name="nao_point"
                                                 class="form-control" required
-                                                value="{{ old('product_discount_diamond') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Gold<span
-                                                class="required" aria-required="true">(*)</span>:</label>
-                                        <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_gold"
-                                                class="form-control" required
-                                                value="{{ old('product_discount_gold') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Silver<span
-                                                class="required" aria-required="true">(*)</span>:</label>
-                                        <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_silver"
-                                                class="form-control" required
-                                                value="{{ old('product_discount_silver') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Member<span
-                                                class="required" aria-required="true">(*)</span>:</label>
-                                        <div class="col-md-12">
-                                            <input type="number" step="0.1" min="0.1" name="product_discount_member"
-                                                class="form-control" required
-                                                value="{{ old('product_discount_member') }}">
+                                                value="{{ old('nao_point') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -349,151 +363,158 @@
     </div>
 </section>
 
-<script src={{ url('/public/packages/ckeditor/ckeditor.js') }}></script>
-<script src={{ url('/public/packages/ckfinder/ckfinder.js') }}></script>
+@push('js')
+    <script src={{ asset('/public/packages/ckeditor/ckeditor.js') }}></script>
+    <script src={{ asset('/public/packages/ckfinder/ckfinder.js') }}></script>
 
-<script>
-    $(document).ready(function() {
-        $('select.selectpicker').select2();
+    <script>
+        $(document).ready(function() {
+            $('select.selectpicker').select2();
 
-        CKEDITOR.replace('description', {
-            toolbar :
-            [
-                { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-                { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
-                { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
-                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
-                '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-                { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-                '/',
-                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-                { name: 'colors', items : [ 'TextColor','BGColor' ] },
-                { name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
-            ]
-        });
-
-        CKEDITOR.replace('short_description', {
-            toolbar :
-            [
-                { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-                { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
-                { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
-                { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
-                '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-                { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-                { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-                '/',
-                { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
-                { name: 'colors', items : [ 'TextColor','BGColor' ] },
-                { name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
-            ]
-        });
-
-        $('#ckfinder-popup-1').click(function() {
-            selectFileWithCKFinder('ckfinder-input-1');
-        })
-
-        $('#ckfinder-popup-2').click(function() {
-            selectFileWithCKFinder('ckfinder-input-2');
-        })
-
-        function selectFileWithCKFinder(elementId) {
-            var type = $(`#${elementId}`).data('type')
-            CKFinder.popup({
-                chooseFiles: true,
-                width: 800,
-                height: 600,
-                onInit: function(finder) {
-                    finder.on('files:choose', function(evt) {
-                        if(type == "multiple") {
-                            var files = evt.data.files;
-                            var chosenFiles = $(`#${elementId}`).val();
-                            files.forEach( function(file, idx, array) {
-                                chosenFiles += file.getUrl() + ', ';
-                                $('.fileinput-gallery .row').append(`<div class="col-md-3">
-                                    <span style="cursor: pointer;" data-id='' data-url="${file.getUrl()}" class="delete_gallery">
-                                        <i class="fas fa-times"></i>
-                                        </span>
-                                                <img src="${file.getUrl()}">
-                                            </div>`)
-                            });
-                            var output = document.getElementById(elementId);
-                            output.value = chosenFiles;
-                        } else {
-                            var file = evt.data.files.first();
-                            var output = document.getElementById(elementId);
-                            output.value = file.getUrl();
-                            $('.fileinput-new.thumbnail img').attr('src', file.getUrl())
-                        }
-                    });
-                    // finder.on('file:choose:resizedImage', function(evt) {
-                    //     var output = document.getElementById(elementId);
-                    //     output.value = evt.data.resizedUrl;
-                    //     $('.fileinput-new img').attr('src', evt.data.resizedUrl)
-                    // });
-                }
+            $('select.nhomhang').select2({
+                placeholder: 'Chọn nhóm ngành hàng',
             });
-        }
 
-        $(document).on('click', '.delete_gallery', function(event) {
-            var t = $(this);
-            var in_value = $("#ckfinder-input-2");
-            var url = $(this).data('url');
-            if(t.parent().is(':last-child') && t.parent().is(':first-child')){
-                var newValue = '';
-            }
-            else if(t.parent().is(':last-child') && !t.parent().is(':first-child')){
-                var newValue = in_value.val().replace(', '+url, '');
-            } 
-            else {
-                var newValue = in_value.val().replace(url+', ', '');
-            }
-            in_value.val(newValue);
-            t.parent().remove();
-        });
+            CKEDITOR.replace('description', {
+                toolbar :
+                [
+                    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+                    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+                    { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                    { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                    { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+                    '/',
+                    { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                    { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                    { name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
+                ]
+            });
 
-        $('select.selectCategory').change(function(e) {
-            e.preventDefault();
-            let html = '';
-            var type = $(this).data('type');
-            $.ajax({
-                type: "GET",
-                url: "{{ route('san-pham.getCategory') }}",
-                data: {
-                    id: $(this).val()
-                },
-                success: function(response) {
-                    if (response.data.length > 0) {
-                        if ( type == 'megaParent') {
-                            console.log(response.data);
-                            html = "<option value='-1' selected>Chọn nhóm sản phẩm</option>";
-                            $.each(response.data, function(idx, val) {
-                                html += "<option value=" + val.id + ">" + val.name +
-                                    "</option>"
-                            });
-                            $('select.nhomsp').html('').append(html);
-                            $('select.nhomspcon').html('');
+            CKEDITOR.replace('short_description', {
+                toolbar :
+                [
+                    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+                    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+                    { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+                    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+                    { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                    { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+                    '/',
+                    { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+                    { name: 'colors', items : [ 'TextColor','BGColor' ] },
+                    { name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }
+                ]
+            });
+
+            $('#ckfinder-popup-1').click(function() {
+                selectFileWithCKFinder('ckfinder-input-1');
+            })
+
+            $('#ckfinder-popup-2').click(function() {
+                selectFileWithCKFinder('ckfinder-input-2');
+            })
+
+            function selectFileWithCKFinder(elementId) {
+                var type = $(`#${elementId}`).data('type')
+                CKFinder.popup({
+                    chooseFiles: true,
+                    width: 800,
+                    height: 600,
+                    onInit: function(finder) {
+                        finder.on('files:choose', function(evt) {
+                            if(type == "multiple") {
+                                var files = evt.data.files;
+                                var chosenFiles = $(`#${elementId}`).val();
+                                files.forEach( function(file, idx, array) {
+                                    chosenFiles += file.getUrl() + ', ';
+                                    $('.fileinput-gallery .row').append(`<div class="col-md-3">
+                                        <span style="cursor: pointer;" data-id='' data-url="${file.getUrl()}" class="delete_gallery">
+                                            <i class="fas fa-times"></i>
+                                            </span>
+                                                    <img src="${file.getUrl()}">
+                                                </div>`)
+                                });
+                                var output = document.getElementById(elementId);
+                                output.value = chosenFiles;
+                            } else {
+                                var file = evt.data.files.first();
+                                var output = document.getElementById(elementId);
+                                output.value = file.getUrl();
+                                $('.fileinput-new.thumbnail img').attr('src', file.getUrl())
+                            }
+                        });
+                        // finder.on('file:choose:resizedImage', function(evt) {
+                        //     var output = document.getElementById(elementId);
+                        //     output.value = evt.data.resizedUrl;
+                        //     $('.fileinput-new img').attr('src', evt.data.resizedUrl)
+                        // });
+                    }
+                });
+            }
+
+            $(document).on('click', '.delete_gallery', function(event) {
+                var t = $(this);
+                var in_value = $("#ckfinder-input-2");
+                var url = $(this).data('url');
+                if(t.parent().is(':last-child') && t.parent().is(':first-child')){
+                    var newValue = '';
+                }
+                else if(t.parent().is(':last-child') && !t.parent().is(':first-child')){
+                    var newValue = in_value.val().replace(', '+url, '');
+                } 
+                else {
+                    var newValue = in_value.val().replace(url+', ', '');
+                }
+                in_value.val(newValue);
+                t.parent().remove();
+            });
+
+            $('select.selectCategory').change(function(e) {
+                e.preventDefault();
+                let html = '';
+                var type = $(this).data('type');
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('san-pham.getCategory') }}",
+                    data: {
+                        id: $(this).val()
+                    },
+                    success: function(response) {
+                        if (response.data.length > 0) {
+                            if ( type == 'megaParent') {
+                                console.log(response.data);
+                                html = "<option value='-1' selected>Chọn nhóm sản phẩm</option>";
+                                $.each(response.data, function(idx, val) {
+                                    html += "<option value=" + val.id + ">" + val.name +
+                                        "</option>"
+                                });
+                                $('select.nhomsp').html('').append(html);
+                                $('select.nhomspcon').html('');
+                            } else {
+                                html = "<option value='-1' selected>Chọn nhóm sản phẩm con</option>";
+                                $.each(response.data, function(idx, val) {
+                                    html += "<option value=" + val.id + ">" + val.name +
+                                        "</option>"
+                                });
+                                $('select.nhomspcon').html('').append(html);
+                            }
                         } else {
-                            html = "<option value='-1' selected>Chọn nhóm sản phẩm con</option>";
-                            $.each(response.data, function(idx, val) {
-                                html += "<option value=" + val.id + ">" + val.name +
-                                    "</option>"
-                            });
-                            $('select.nhomspcon').html('').append(html);
-                        }
-                    } else {
-                        if ( type == 'megaParent') {
-                            $('select.nhomsp').html('')
-                            $('select.nhomspcon').html('');
+                            if ( type == 'megaParent') {
+                                $('select.nhomsp').html('')
+                                $('select.nhomspcon').html('');
+                            }
                         }
                     }
-                }
+                });
             });
+
         });
+    </script>
 
-    });
-</script>
+    <script type="text/javascript" src="{{ asset('/resources/js/adminProductCreateUpdate.js') }}"></script>
+@endpush
 
-<script type="text/javascript" src="{{ asset('/resources/js/adminProductCreateUpdate.js') }}"></script>
 @endsection
