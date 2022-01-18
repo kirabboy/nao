@@ -93,8 +93,8 @@
                                 <label class="col-md-3 control-label">Thành phố:<span class="required"
                                     aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="js-location" id="selectCity" name="id_province" data-type="city">
-                                        <option value="-1">Chọn thành phố</option>
+                                    <select class="js-location" id="selectCity" name="id_province" data-type="city" data-placeholder="Chọn thành phố">
+                                        <option></option>
                                         @foreach ($cities as $city)
                                             <option value="{{$city->matinhthanh}}">{{$city->matinhthanh}} - {{$city->tentinhthanh}}</option>
                                         @endforeach
@@ -105,8 +105,8 @@
                                 <label class="col-md-3 control-label">Quận/ huyện:<span class="required"
                                 aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="js-location" id="selectDistrict" name="id_district" data-type="district">
-                                        <option value="-1">Chọn quận/huyện</option>
+                                    <select class="js-location" id="selectDistrict" name="id_district" data-type="district"  data-placeholder="Chọn quận/huyện">
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -114,32 +114,11 @@
                                 <label class="col-md-3 control-label">Phường/ Xã:<span class="required"
                                     aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select id="selectWard" name="id_ward" data-type="ward">
-                                        <option value="-1">Chọn phường/xã</option>
+                                    <select id="selectWard" name="id_ward" data-type="ward" data-placeholder="Chọn phường/xã">
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
-                            
-                            {{-- <div class="form-group d-flex mb-2">
-                                <label class="col-md-3 control-label">Sản phẩm<span class="required"
-                                        aria-required="true">(*)</span></label>
-                                <div class="col-md-9">
-                                    <select name="product" class="form-control productId">
-                                        <option value="-1" selected>Chọn sản phẩm</option>
-                                        @foreach ($products as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group d-flex mb-2">
-                                <label class="col-md-3 control-label">Số lượng:<span class="required"
-                                        aria-required="true">(*)</span></label>
-                                <div class="col-md-9">
-                                    <input type="number" name="productQuantity" class="form-control" required
-                                        value="{{ old('productQuantity', 1) }}" min="1">
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
@@ -170,8 +149,8 @@
                                 <label class="col-md-3 control-label">Mã chi nhánh:<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="form-control js-warehouse select-search" name="warehouseCode">
-                                        <option value="-1">Chọn kho hàng</option>
+                                    <select class="form-control js-warehouse select-search" name="warehouseCode" data-placeholder="Chọn kho hàng">
+                                        <option></option>
                                         @foreach ($warehouseCodes as $warehouse)
                                             <option value="{{$warehouse->code}}">{{$warehouse->code}}</option>
                                         @endforeach
@@ -182,8 +161,8 @@
                                 <label class="col-md-3 control-label">Tên chi nhánh NPP:<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="form-control select-search" id="warehouseName" name="warehouseName">
-                                        <option value="-1">Chọn chi nhánh</option>
+                                    <select class="form-control select-search" id="warehouseName" name="warehouseName" data-placeholder="Chọn chi nhánh">
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -191,11 +170,8 @@
                                 <label class="col-md-3 control-label">Sản phẩm<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select name="product" class="form-control productId select-search">
-                                        <option value="-1" selected>Chọn sản phẩm</option>
-                                        @foreach ($products as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
+                                    <select name="product" class="form-control select-search" id="productId">
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -204,7 +180,7 @@
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
                                     <input type="number" name="productQuantity" class="form-control" required
-                                        value="{{ old('productQuantity', 1) }}" min="0">
+                                        value="{{ old('productQuantity') }}" min="0">
                                 </div>
                             </div>
                         </div>
@@ -432,6 +408,40 @@
             dropdownParent: $('#warehouse_add_product')
         })
 
+        $('#warehouse_add_product select#productId').select2({
+            width: '100%',
+            minimumInputLength: 3,
+            dropdownParent: $('#warehouse_add_product'),
+            dataType: 'json',
+            ajax: {
+                delay: 350,
+                url: `{{ route('warehouse.getProduct') }}`,
+                dataType: 'json',
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                    }
+                    return query;
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.data
+                    };
+                },
+                cache: true
+            },
+            placeholder: 'Chọn sản phẩm ...',
+            templateResult: formatRepoSelection,
+            templateSelection: formatRepoSelection
+        })
+
+        function formatRepoSelection(repo) {
+            if (repo.text) {
+                return `${repo.text}`
+            }
+            return `${repo.name} (#${repo.id})`
+        }
+
         $('.js-location').change(function(e) {
             e.preventDefault();
             let route = '{{route('warehouse.getLocation')}}';
@@ -460,6 +470,7 @@
                                 html += "<option value='"+val.maquanhuyen+"'>"+val.maquanhuyen+" - "+val.tenquanhuyen+"</option>"; 
                             });
                             $(element).html('').append(html);
+                            $('#selectWard').html('')
                         }
                         else {
                             html = "<option>Mời bạn chọn Phường/Xã</option>";

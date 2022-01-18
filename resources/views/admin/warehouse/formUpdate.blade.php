@@ -18,9 +18,6 @@
                             <div class="col-md-9">
                                 <input type="text" name="warehouseCode" class="form-control" required
                                     value="{{ $unit->code }}" readonly>
-                                {{-- <select class="form-control js-warehouse" name="warehouseCode" data-type="update" data-placeholder="Chọn kho hàng">
-                                    <option value="{{$unit->code}}" selected>{{$unit->code}}</option>
-                                </select> --}}
                             </div>
                         </div>
                         <div class="form-group d-flex mb-2">
