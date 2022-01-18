@@ -1,6 +1,6 @@
 <div class="item-cart d-flex bg-white justify-content-between" id="cart-item-{{$row->id}}">
     <div class="item-cart-img d-flex">
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="rowid" value="{{$row->rowId}}">
         <img src="{{ asset($row->model->feature_img) }}" alt="">
     </div>
     <div class="item-cart-info">

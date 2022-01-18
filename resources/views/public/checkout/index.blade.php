@@ -20,7 +20,7 @@
 
     <section class="section-checkout">
         <div class="checkout-add-info text-center">
-            <a href="{{url('/checkout/nhap-thong-tin')}}" class="add-info btn btn-secondary btn-rounded">
+            <a href="{{ url('/checkout/nhap-thong-tin') }}" class="add-info btn btn-secondary btn-rounded">
                 <span class="add-info-plus-icon d-inline-block mb-0">+</span>
                 <span>Thêm thông tin khách hàng</span>
             </a>
@@ -45,48 +45,29 @@
         </div>
 
         <div class="list-checkout">
-            <div class="checkout-item bg-white">
-                <div class="item-product-info d-flex">
-                    <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
-                    </div>
-                    <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
-                        <div class="item-product-info-detail d-flex justify-content-between">
-                            <div class="item-info-title text-left">
-                                <p>Số lượng:</p>
-                                <p>Giá tiền:</p>
-                            </div>
-                            <div class="item-info-value text-right">
-                                <h3>3</h3>
-                                <h3>123.999</h3>
+            @foreach (explode(',', $rowids) as $rowid)
+                <div class="checkout-item bg-white">
+                    <div class="item-product-info d-flex">
+                        <div class="item-product-img">
+                            <img src="{{$cart->get($rowid)->model->feature_img}}"
+                                alt="">
+                        </div>
+                        <div class="item-product-content">
+                            <h4 class="item-product-title">{{$cart->get($rowid)->name}}</h4>
+                            <div class="item-product-info-detail d-flex justify-content-between">
+                                <div class="item-info-title text-left">
+                                    <p>Số lượng:</p>
+                                    <p>Giá tiền:</p>
+                                </div>
+                                <div class="item-info-value text-right">
+                                    <h3>{{$cart->get($rowid)->qty}}</h3>
+                                    <h3>{{ formatPrice($cart->get($rowid)->qty * $cart->get($rowid)->price)}}</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="checkout-item bg-white">
-                <div class="item-product-info d-flex">
-                    <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
-                    </div>
-                    <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
-                        <div class="item-product-info-detail d-flex justify-content-between">
-                            <div class="item-info-title text-left">
-                                <p>Số lượng:</p>
-                                <p>Giá tiền:</p>
-                            </div>
-                            <div class="item-info-value text-right">
-                                <h3>3</h3>
-                                <h3>123.999</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="checkout-coupon bg-white">
@@ -103,9 +84,10 @@
 
         <div class="checkout-shipping bg-white">
             <h4>Chọn đơn vị vận chuyển</h4>
-            <input type="checkbox"/>
+            <input type="checkbox" />
             <label for="myCheckbox1">
-                <img src="https://saigongiftbox.com/wp-content/uploads/2021/03/dia-chi-buu-dien-danh-sach-buu-cuc.jpg" alt="">
+                <img src="https://saigongiftbox.com/wp-content/uploads/2021/03/dia-chi-buu-dien-danh-sach-buu-cuc.jpg"
+                    alt="">
             </label>
         </div>
 
@@ -135,7 +117,7 @@
                 <p>Điểm NAO</p>
             </div>
             <div class="checkout-info-value text-right">
-                <h4>1.200.000đ</h4>
+                <h4>{{formatPrice($subtotal)}}</h4>
                 <h4>30.000đ</h4>
                 <h4>7.500đ</h4>
                 <h4>-30.000đ</h4>
@@ -146,7 +128,7 @@
         <div class="checkout-footer bg-white d-flex justify-content-between align-items-center">
             <p class="mb-0">Tổng cộng: <span class="subtotal">1.230.000đ</span></p>
             {{-- <button class="btn btn-primary btn-rounded">Đặt hàng</button> --}}
-            <a href="{{url('/thanh-toan')}}" class="btn btn-primary btn-rounded">Đặt hàng</a>
+            <a href="{{ url('/thanh-toan') }}" class="btn btn-primary btn-rounded">Đặt hàng</a>
         </div>
 
     </section>

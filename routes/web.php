@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DoinhomController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -98,6 +99,12 @@ Route::prefix('gio-hang')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
     Route::post('add', [CartController::class, 'addCart'])->name('cart.add');
     Route::post('update', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::get('update-checkout', [CartController::class, 'updateCheckout'])->name('cart.update.checkout');
+    Route::post('checkout', [CartController::class, 'toCheckout'])->name('cart.checkout');
+});
+
+Route::prefix('thanh-toan')->group(function() {
+    Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
 
@@ -174,9 +181,9 @@ Route::get('/checkout/nhap-thong-tin', function() {
     return view('public.checkout.customer_form_info');
 });
 
-Route::get('/thanh-toan', function() {
-    return view('public.checkout.payment');
-});
+// Route::get('/thanh-toan', function() {
+//     return view('public.checkout.payment');
+// });
 
 Route::get('/don-hang', function() {
     return view('public.order.index');
@@ -213,9 +220,9 @@ Route::get('/quan-ly-khach-hang', function() {
         return view('public.checkout.customer_form_info');
     });
 
-    Route::get('/thanh-toan', function() {
-        return view('public.checkout.payment');
-    });
+    // Route::get('/thanh-toan', function() {
+    //     return view('public.checkout.payment');
+    // });
 
     Route::get('/don-hang', function() {
         return view('public.order.index');

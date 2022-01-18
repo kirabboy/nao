@@ -44,7 +44,7 @@
                 <div class="nav-tool">
                     <ul>
                         <li>
-                            <a href=""><i class="fas fa-shopping-cart"></i></a>
+                            <a href="{{route('cart.index')}}"><i class="fas fa-shopping-cart"></i></a>
                         </li>
                         <li>
                             <a href=""><i class="far fa-bell"></i></a>
@@ -64,6 +64,10 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="Username"
                         aria-describedby="basic-addon1">
+
+                    </div>
+                    <div class="show-search-suggest">
+
                 </div>
             </div>
         </div>
