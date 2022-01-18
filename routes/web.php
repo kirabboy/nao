@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DoinhomController;
+use App\Http\Controllers\CartController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -84,6 +85,22 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // ----------------------------------------------------------------Thinh----------------------------------------------------------------
+//kira
+
+Route::resources([
+]);
+Route::prefix('san-pham')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    Route::get('{slug}', [ProductController::class, 'show'])->name('product.show');
+});
+
+Route::prefix('gio-hang')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('add', [CartController::class, 'addCart'])->name('cart.add');
+    Route::post('update', [CartController::class, 'updateCart'])->name('cart.update');
+});
+
+
 
     // Profile User
     Route::prefix('profile')->group(function () {
@@ -144,12 +161,10 @@ Route::group(['middleware' => ['auth']], function () {
 // MINH START
 
 // Route::post('/dang-nhap', [ProductController::class, 'postLogin'])->name('postlogin');
-Route::get('/san-pham', [ProductController::class, 'index'])->name('product.index');
-Route::get('/san-pham/{slug}', [ProductController::class, 'detail'])->name('product.detail');
+// Route::get('/san-pham', [ProductController::class, 'index'])->name('product.index');
+// Route::get('/san-pham/{slug}', [ProductController::class, 'detail'])->name('product.detail');
 
-Route::get('/gio-hang', function() {
-    return view('public.checkout.cart');
-});
+
 
 Route::get('/checkout', function() {
     return view('public.checkout.checkout');
@@ -184,15 +199,12 @@ Route::get('/quan-ly-khach-hang', function() {
 
     // MINH START
 
-    Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
-    Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
-    Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
-    Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
+    // Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
+    // Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
+    // Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
+    // Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
 
-    Route::get('/gio-hang', function() {
-        return view('public.checkout.cart');
-    });
-
+  
     Route::get('/checkout', function() {
         return view('public.checkout.checkout');
     });

@@ -1,12 +1,21 @@
 <?php
 
-function moneyFormat($price)
+function formetNumber($price)
 {
     return number_format($price, 0, '', ',');
 }
 function formatPrice($price)
 {
-    return number_format($price, 0, '', ',');
+    return number_format($price, 0, '', ',').' đ';
+}
+function getPriceOfLevel($user, $price) {
+    switch ($user->level){
+        case 1:
+            return $price->price_ctv;
+            break;
+        case 2: 
+            return $price->price_new_daily;
+    }
 }
 function orderStatus($status)
 {

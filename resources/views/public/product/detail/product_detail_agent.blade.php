@@ -56,7 +56,10 @@
             </div>
         </div>
         <div class="product-button text-center">
-            <button class="btn btn-primary btn-rounded">Thêm vào giỏ hàng</button>
+            <form id="add-to-cart" action="{{route('cart.add')}}" method="post" enctype="multipart/form">
+                <input type="hidden" name="product_id" value="{{$product->id}}">
+                <button class="btn btn-primary btn-rounded" type="submit">Thêm vào giỏ hàng</button>
+            </form>
             {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
             <a href="{{url('/gio-hang')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
 
@@ -70,6 +73,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
             integrity="sha512-bjwk1c6AQQOi6kaFhKNrqoCNLHpq8PT+I42jY/il3r5Ho/Wd+QUT6Pf3WGZa/BwSdRSIjVGBsPtPPo95gt/SLg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="{{asset('public/js/cart.js')}}"></script>
     @endpush
 
 @endsection

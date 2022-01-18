@@ -2,6 +2,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
+
 @endpush
 
 @section('content')
@@ -35,7 +36,7 @@
         <div class="product-info">
             <div class="product-title mb-24">
                 <h4 class="mb-16 text-uppercase">{{$product->name}}</h4>
-                <p class="product-price text-danger font-weight-bold mb-0">{{number_format($product->productPrice->regular_price, 0, '', '.')}}đ</p>
+                <p class="product-price text-danger font-weight-bold mb-0">{{formatPrice($product->productPrice->regular_price)}}</p>
             </div>
             <div class="product-info-detail">
                 <h4 class="mb-16">Thông tin sản phẩm</h4>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="item-info-value text-right">
                         <h3>{{$product->weight}} G</h3>
-                        <h3>{{number_format($product->productPrice->price_ctv, 0, '', '.')}}</h3>
+                        <h3>{{formatPrice($product->productPrice->price_ctv)}}</h3>
                         <h3>Còn hàng</h3>
                         <h3>Không</h3>
                     </div>
@@ -56,8 +57,12 @@
             </div>
         </div>
         <div class="product-button text-center">
-            <button class="btn btn-primary btn-rounded">Thêm vào giỏ hàng</button>
-            <button class="btn btn-primary btn-rounded">Mua ngay</button>
+            <form id="add-to-cart" class="d-inline-block" action="{{route('cart.add')}}" method="post" enctype="multipart/form">
+                <input type="hidden" name="product_id" value="{{$product->id}}">
+                <button class="btn btn-primary btn-rounded" type="submit">Thêm vào giỏ hàng</button>
+            </form>
+            {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
+            <a href="{{url('/gio-hang')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
         </div>
     </section>
 
@@ -68,6 +73,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css"
             integrity="sha512-bjwk1c6AQQOi6kaFhKNrqoCNLHpq8PT+I42jY/il3r5Ho/Wd+QUT6Pf3WGZa/BwSdRSIjVGBsPtPPo95gt/SLg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="{{asset('public/js/cart.js')}}"></script>
+
     @endpush
 
 @endsection
