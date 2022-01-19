@@ -107,7 +107,13 @@ Route::prefix('thanh-toan')->group(function() {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
+Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');
 
+Route::put('/sua-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'editAddressShipping'])->name('update.address.shipping');
+
+Route::delete('/xoa-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'deleteAddressShipping'])->name('delete.address.shipping');
+
+Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 
     // Profile User
     Route::prefix('profile')->group(function () {
@@ -163,6 +169,8 @@ Route::prefix('thanh-toan')->group(function() {
     Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
     Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
     Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
+
+    //
 });
 
 // MINH START
@@ -244,11 +252,11 @@ Route::get('/quan-ly-khach-hang', function() {
 
 
     //----------------vận chuyển---------------
-    Route::get('test-van-chuyen', [ShippingController::class, 'postShippingFee']);
+Route::get('test-van-chuyen', [ShippingController::class, 'postShippingFee']);
 
-    Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
+Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
 
-    Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 
-    Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
+Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 

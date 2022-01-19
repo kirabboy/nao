@@ -2,6 +2,7 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
 @endpush
 
 @section('content')
@@ -19,31 +20,18 @@
     </header>
 
     <section class="section-checkout">
-        <div class="checkout-add-info text-center">
-            <a href="{{ url('/checkout/nhap-thong-tin') }}" class="add-info btn btn-secondary btn-rounded">
-                <span class="add-info-plus-icon d-inline-block mb-0">+</span>
-                <span>Thêm thông tin khách hàng</span>
-            </a>
-            {{-- <button class="add-info btn btn-secondary btn-rounded">
-                <span class="add-info-plus-icon d-inline-block mb-0">+</span>
-                <span>Thêm thông tin khách hàng</span>
-            </button> --}}
-        </div>
-
-        <div class="checkout-customer-info bg-white">
-            <div class="customer-info-content">
-                <div class="d-flex justify-content-between">
-                    <p>Cao học viên</p>
-                    <div class="customer-edit-icon text-center">
-                        <button class="btn p-0 bg-white mr-2"><i class="far fa-edit color-brand-green"></i></button>
-                        <button class="btn p-0 bg-white"><i class="fas fa-trash-alt color-brand-green"></i></i></button>
-                    </div>
-                </div>
-                <p>Số điện thoại : 0398476543</p>
-                <p>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</p>
+        <div class="info-shipping">
+            @if($address_shipping == null)
+            <div class="checkout-add-info text-center">
+                <a href="#" class="show-modal add-info btn btn-secondary btn-rounded">
+                    <span class="add-info-plus-icon d-inline-block mb-0">+</span>
+                    <span>Thêm thông tin khách hàng</span>
+                </a>
             </div>
+            @else
+            @include('public.render.user_address_shipping')
+            @endif
         </div>
-
         <div class="list-checkout">
             @foreach (explode(',', $rowids) as $rowid)
                 <div class="checkout-item bg-white">
@@ -84,8 +72,8 @@
 
         <div class="checkout-shipping bg-white">
             <h4>Chọn đơn vị vận chuyển</h4>
-            <input type="checkbox" />
-            <label for="myCheckbox1">
+            <input type="radio" id="chooseShipping" name="shipping" value="VNPOST" />
+            <label for="chooseShipping">
                 <img src="https://saigongiftbox.com/wp-content/uploads/2021/03/dia-chi-buu-dien-danh-sach-buu-cuc.jpg"
                     alt="">
             </label>
@@ -93,7 +81,7 @@
 
         <div class="checkout-shipping-fee bg-white d-flex align-items-center justify-content-between">
             <h3>Phí vận chuyển</h3>
-            <h3 class="color-brand-green">30.000đ</h3>
+            <h3 class="color-brand-green fee-shipping">Vui lòng chọn ĐVVC</h3>
         </div>
 
         <div class="checkout-package bg-white">
@@ -118,7 +106,7 @@
             </div>
             <div class="checkout-info-value text-right">
                 <h4>{{formatPrice($subtotal)}}</h4>
-                <h4>30.000đ</h4>
+                <h4 class="fee-shipping">Vui lòng chọn ĐVVC</h4>
                 <h4>7.500đ</h4>
                 <h4>-30.000đ</h4>
                 <h4>600</h4>
@@ -127,10 +115,45 @@
 
         <div class="checkout-footer bg-white d-flex justify-content-between align-items-center">
             <p class="mb-0">Tổng cộng: <span class="subtotal">1.230.000đ</span></p>
-            {{-- <button class="btn btn-primary btn-rounded">Đặt hàng</button> --}}
             <a href="{{ url('/thanh-toan') }}" class="btn btn-primary btn-rounded">Đặt hàng</a>
         </div>
 
     </section>
+<form id="deleteAddressShipping" action="#" method="POST">
+    @csrf
+    @method('DELETE')
+</form>
+
+<form id="shippingFee" action="{{ route('post.shippingFee') }}" method="POST">
+    @csrf
+    <input type="hidden" name="order_id" value="0">
+</form>
+<div class="modal fade" id="modalAddress" tabindex="-1" aria-labelledby="modalAddress" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAddress">Thông tin khách hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @if($address_shipping == null)
+            @include('public.checkout.add_customer_form_info')
+        @else
+            @include('public.checkout.edit_customer_form_info')
+        @endif
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
+
+@push('js')
+<script src="{{ asset('public/js/shipping.js') }}"></script>
+@endpush

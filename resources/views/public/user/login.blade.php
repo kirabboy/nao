@@ -42,7 +42,7 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center">
 				<div>
-					<div class="form-check">
+					<div class="form-check d-flex">
 						<input type="checkbox" class="form-check-input" name="remember" id="rememberMe">
 						<label class="form-check-label" for="rememberMe">Nhớ mật khẩu</label>
 					</div>
