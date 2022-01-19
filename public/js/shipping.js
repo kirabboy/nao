@@ -150,7 +150,6 @@ $(document).on('change', 'input[name="shipping"]', function(event) {
     if(this.checked && that.val() == 'VNPOST') {
         //Do stuff
         
-
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
@@ -161,6 +160,7 @@ $(document).on('change', 'input[name="shipping"]', function(event) {
         })
         .fail(function(data) {
             alert(data.responseJSON.msg);
+            that.prop('checked', false);
         });
     }
 });
