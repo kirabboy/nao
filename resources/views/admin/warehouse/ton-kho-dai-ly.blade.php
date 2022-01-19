@@ -149,7 +149,7 @@
                                 <label class="col-md-3 control-label">Mã chi nhánh:<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="form-control js-warehouse select-search" name="warehouseCode" data-placeholder="Chọn kho hàng">
+                                    <select class="form-control select-search" id="warehouseCode" name="warehouseCode" data-placeholder="Chọn kho hàng">
                                         <option></option>
                                         @foreach ($warehouseCodes as $warehouse)
                                             <option value="{{$warehouse->code}}">{{$warehouse->code}}</option>
@@ -161,7 +161,7 @@
                                 <label class="col-md-3 control-label">Tên chi nhánh NPP:<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select class="form-control select-search" id="warehouseName" name="warehouseName" data-placeholder="Chọn chi nhánh">
+                                    <select class="form-control select-search" id="warehouseName" name="warehouseName" data-placeholder="Chọn chi nhánh" disabled>
                                         <option></option>
                                     </select>
                                 </div>
@@ -170,7 +170,7 @@
                                 <label class="col-md-3 control-label">Sản phẩm<span class="required"
                                         aria-required="true">(*)</span></label>
                                 <div class="col-md-9">
-                                    <select name="product" class="form-control select-search" id="productId">
+                                    <select name="product" class="form-control select-search" id="productId" disabled>
                                         <option></option>
                                     </select>
                                 </div>
@@ -252,8 +252,22 @@
                                                 <tr>
                                                     <td>{{$item->id}}</td>
                                                     <td>{{$item->code}}</td>
-                                                    <td>{{$item->name}}</td>
-                                                    <td>{{$product->name}}</td>
+                                                    <td>
+                                                        <p>{{$item->name}}</p>
+                                                        <form action="{{route('warehouse.destroy')}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <input type="hidden" name="warehouseName" value="{{$item->name}}">
+                                                            <input type="hidden" name="warehouseCode" value="{{$item->code}}">
+                                                            <button class="btn btn-danger" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm ở kho hàng này');">
+                                                                <span>Xóa chi nhánh</span>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <img src="{{$product->feature_img}}" alt="{{$product->name}}" width="50" height="50">
+                                                        <p>{{$product->name}}</p>
+                                                    </td>
                                                     <td>{{$product->productCalculationUnit->name}}</td>
                                                     @if ($product->productCategory->typeof_category == 2)
                                                         <td>{{$product->productCategory->parentCategories->name}}</td>
@@ -264,11 +278,20 @@
                                                     @endif
                                                     <td>{{$product->getOriginal('pivot_quantity')}}</td>
                                                     <td>
-                                                        <button class="btn modal-edit-unit" data-route="{{route('warehouse.modalEdit')}}"
+                                                        <button class="btn btn-info modal-edit-unit" data-route="{{route('warehouse.modalEdit')}}"
                                                         data-productid="{{$product->id}}"
                                                         data-warehouseid="{{$item->id}}">
                                                             <i class="fas fa-pen"></i>
                                                         </button>
+                                                        <form action="{{route('warehouse.destroyProduct')}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <input type="hidden" name="productId" value="{{$product->id}}">
+                                                            <input type="hidden" name="warehouseId" value="{{$item->id}}">
+                                                            <button class="btn btn-danger" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm ở kho hàng này');">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -408,40 +431,6 @@
             dropdownParent: $('#warehouse_add_product')
         })
 
-        $('#warehouse_add_product select#productId').select2({
-            width: '100%',
-            minimumInputLength: 3,
-            dropdownParent: $('#warehouse_add_product'),
-            dataType: 'json',
-            ajax: {
-                delay: 350,
-                url: `{{ route('warehouse.getProduct') }}`,
-                dataType: 'json',
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                    }
-                    return query;
-                },
-                processResults: function (data) {
-                    return {
-                        results: data.data
-                    };
-                },
-                cache: true
-            },
-            placeholder: 'Chọn sản phẩm ...',
-            templateResult: formatRepoSelection,
-            templateSelection: formatRepoSelection
-        })
-
-        function formatRepoSelection(repo) {
-            if (repo.text) {
-                return `${repo.text}`
-            }
-            return `${repo.name} (#${repo.id})`
-        }
-
         $('.js-location').change(function(e) {
             e.preventDefault();
             let route = '{{route('warehouse.getLocation')}}';
@@ -487,11 +476,11 @@
         });
 
         // SHOW WAREHOUSE NAME WHEN CHOSING WAREHOUSE CODE
-        $(document).on('change', '.js-warehouse', function(e) {
+        $(document).on('change', '#warehouseCode', function(e) {
             e.preventDefault();
             let route = '{{route('warehouse.getWarehouse')}}';
             let code = $(this).val();
-            let type = $(this).data('type');
+            $('#warehouse_add_product select#productId').prop('disabled', true);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -506,23 +495,58 @@
                 success: function(response) {
                     if(response.data){
                         let html = '';
-                        if(type != 'update'){
-                            html = "<option>Mời bạn chọn chi nhánh</option>";
-                            $.each(response.data, function(idx, val){
-                                html += `<option value="${val.name}">${val.name}</option>`; 
-                            });
-                            $('#formAddProduct select#warehouseName').html('').append(html);
-                        } else {
-                            html = "<option>Mời bạn chọn chi nhánh</option>";
-                            $.each(response.data, function(idx, val){
-                                html += `<option value="${val.name}">${val.name}</option>`; 
-                            });
-                            $('#formUpdateUnit select#warehouseName').html('').append(html);
-                        }
+                        html = "<option>Mời bạn chọn chi nhánh</option>";
+                        $.each(response.data, function(idx, val){
+                            html += `<option value="${val.name}">${val.name}</option>`; 
+                        });
+                        $('#warehouse_add_product select#warehouseName').html('').append(html);
+                        $('#warehouse_add_product select#warehouseName').prop('disabled', false);
                     }
                 }
             });
         })
+
+        $('#warehouseName').change(function () {
+            $('#warehouse_add_product select#productId').prop('disabled', false);
+        })
+
+        // SELCT2 SEARCH PRODUCT ADDING TO WAREHOUSE
+        $('#warehouse_add_product select#productId').select2({
+            width: '100%',
+            minimumInputLength: 3,
+            dropdownParent: $('#warehouse_add_product'),
+            dataType: 'json',
+            ajax: {
+                delay: 350,
+                url: `{{ route('warehouse.getProduct') }}`,
+                dataType: 'json',
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        warehouse_code: $('#warehouse_add_product select#warehouseCode').val(),
+                        warehouse_name: $('#warehouse_add_product select#warehouseName').val(),
+                    }
+                    return query;
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.data
+                    };
+                },
+                cache: true
+            },
+            placeholder: 'Chọn sản phẩm ...',
+            templateResult: formatRepoSelection,
+            templateSelection: formatRepoSelection
+        })
+
+        function formatRepoSelection(repo) {
+            if (repo.text) {
+                return `${repo.text}`
+            }
+            return `${repo.name} (#${repo.id})`
+        }
+
 
         // SHOW LOCATION ON UPDATE FORM
         $(document).on('change', '.js-edit-location', function(e){

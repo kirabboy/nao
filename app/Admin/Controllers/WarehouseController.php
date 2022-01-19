@@ -83,8 +83,6 @@ class WarehouseController extends Controller
         return DB::transaction(function () use ($request) {
             try {
                 $warehouse = Warehouse::where('id', $request->id)->update([
-                    'code' => $request->warehouseCode,
-                    'name' => $request->warehouseName,
                     'id_province' => $request->id_province,
                     'id_district' => $request->id_district,
                     'id_ward' => $request->id_ward,
@@ -99,13 +97,11 @@ class WarehouseController extends Controller
                     ->where('warehouse_id', $request->id)
                     ->where('product_id', $request->product_id_old)
                     ->update([
-                        'warehouse_id' => $request->id,
                         'quantity' => $request->productQuantity,
                     ]);
 
                 return redirect()->route('warehouse.index')->with('success', 'Cập nhật kho hàng thành công');
             } catch (\Throwable $th) {
-                dd($th);
                 return redirect()->back()->withErrors(['error' => 'Đã có lỗi xảy ra vui lòng thử lại']);
             }
         });
@@ -113,7 +109,18 @@ class WarehouseController extends Controller
 
     public function delete(Request $request)
     {
+        Warehouse::where('name', $request->warehouseName)
+                ->where('code', $request->warehouseCode)
+                ->delete();
+        return redirect()->route('warehouse.index')->with('success', 'Xóa chi nhánh thành công');
+    }
 
+    public function deleteProduct(Request $request)
+    {
+        DB::table('warehouse_product')->where('warehouse_id', $request->warehouseId)
+                                    ->where('product_id', $request->productId)
+                                    ->delete();
+        return redirect()->route('warehouse.index')->with('success', 'Xóa sản phẩm thành công');
     }
 
     public function getLocation(Request $request) {
@@ -122,9 +129,16 @@ class WarehouseController extends Controller
 
     public function getProduct(Request $request)
     {
+        $warehouseId = Warehouse::where('code', $request->warehouse_code)
+                            ->where('name', $request->warehouse_name)
+                            ->first()
+                            ->value('id');
+        $arrProductIdsOfThisWareHouse = DB::table('warehouse_product')
+                                        ->where('warehouse_id', $warehouseId)
+                                        ->pluck('product_id');
         return response()->json([
             'code' => 200,
-            'data' => $this->ajaxGetProduct($request->search)
+            'data' => $this->ajaxGetProduct($request->search, 0, $arrProductIdsOfThisWareHouse)
         ]);
     }
 

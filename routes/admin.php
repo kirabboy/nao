@@ -117,6 +117,7 @@ Route::post('/ton-kho-dai-ly', [WarehouseController::class, 'store'])->name('war
 Route::post('/ton-kho-dai-ly/add-product', [WarehouseController::class, 'addProductToWarehouse'])->name('warehouse.addProductToWarehouse');
 Route::put('/ton-kho-dai-ly', [WarehouseController::class, 'update'])->name('warehouse.update');
 Route::delete('/ton-kho-dai-ly', [WarehouseController::class, 'delete'])->name('warehouse.destroy');
+Route::delete('/ton-kho-dai-ly/delete-product', [WarehouseController::class, 'deleteProduct'])->name('warehouse.destroyProduct');
 Route::get('/get-location', [WarehouseController::class, 'getLocation'])->name('warehouse.getLocation');
 Route::get('/get-product', [WarehouseController::class, 'getProduct'])->name('warehouse.getProduct');
 Route::get('/get-warehouse', [WarehouseController::class, 'getWarehouse'])->name('warehouse.getWarehouse');

@@ -24,15 +24,8 @@
                             <label class="col-md-3 control-label">Tên chi nhánh NPP:<span class="required"
                                     aria-required="true">(*)</span></label>
                             <div class="col-md-9">
-                                <select class="form-control" id="warehouseName" name="warehouseName" data-placeholder="Chọn chi nhánh">
-                                    @foreach ($warehouseNames as $warehouse)
-                                        <option value="{{$warehouse->name}}"
-                                            @if ($unit->name == $warehouse->name)
-                                                selected
-                                            @endif
-                                            >{{$warehouse->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="warehouseName" class="form-control" required
+                                    value="{{ $unit->name }}" readonly>
                             </div>
                         </div>
                         <div class="form-group d-flex mb-2">
