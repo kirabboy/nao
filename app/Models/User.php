@@ -46,5 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function user_address_shipping(){
+		return $this->hasOne(UserAddressShipping::class, 'user_id');
+	}
 }

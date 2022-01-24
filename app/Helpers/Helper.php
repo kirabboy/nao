@@ -61,3 +61,8 @@ function checked($value1, $value2)
     }
     return;
 }
+function selected($value1, $value2){
+    if($value1 == $value2) {
+        return 'selected = "selected"';
+    }
+}

@@ -1,8 +1,27 @@
 
-
 var urlHome = jQuery('meta[name="url-home"]').attr('content');
 
 var token = jQuery('meta[name="csrf-token"]').attr('content');
+
+function formatNumber(n) {
+    // format number 1000000 to 1,234,567
+    return n.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+$(document).ready(function () {
+    $(".show-modal").click(function () {
+        $('#modalAddress').modal('show');
+    })
+    $(".delete-address-shipping").click(function () {
+        if(!confirm("Có chắc là bạn muốn xóa ?")){
+            return;
+        }
+        var action = $(this).data('action'), form = $("#deleteAddressShipping");
+        form.attr('action', action);
+        form.submit();
+    })
+    
+});
 
 // function sendAjax(){
 //     $(".content-checkout").prepend('<div class="submit-overlay"><div class="spinner-border text-primary"></div></div>');
@@ -23,11 +42,12 @@ var token = jQuery('meta[name="csrf-token"]').attr('content');
 //         width: '100%'
 //     });
 // });
-$(document).on('change', 'select[name="sel_province"]', function(event) {
+$(document).on('change', 'select[name="province_id"]', function(event) {
     event.preventDefault();
     /* Act on the event */
     flag = false;
-    $('select[name="sel_district"]').html('<option value="">Cấp huyện</option>');
+    $('select[name="district_id"]').html('<option value="">---Chọn quận / huyện---</option>');
+    $('select[name="ward_id"]').html('<option value="">---Chọn phường / xã---</option>');
     // sendAjax();
     // if($(this).val() == ''){
     //     RecieveAjax();
@@ -40,19 +60,19 @@ $(document).on('change', 'select[name="sel_province"]', function(event) {
         data: {id: $(this).val()},
     })
     .done(function(data) {
-        var html = '<option value="">Cấp huyện</option>';
+        var html = '<option value="">---Chọn quận / huyện---</option>';
         $.each(data, function( index, value ) {
             html += '<option value="'+value.maquanhuyen+'">'+value.tenquanhuyen+'</option>';
         });
         
 
-        $('select[name="sel_district"]').html(html);
+        $('select[name="district_id"]').html(html);
         
     });
     
 });
 
-$(document).on('change', 'select[name="sel_district"]', function(event) {
+$(document).on('change', 'select[name="district_id"]', function(event) {
     event.preventDefault();
     /* Act on the event */
     flag = false;
@@ -62,6 +82,8 @@ $(document).on('change', 'select[name="sel_district"]', function(event) {
     //     RecieveAjax();
     //     return;
     // }
+
+    $('select[name="ward_id"]').html('---Chọn phường / xã---</option>');
     $.ajax({
         url: urlHome+'/lay-phuong-xa-theo-quan-huyen',
         type: 'GET',
@@ -69,15 +91,76 @@ $(document).on('change', 'select[name="sel_district"]', function(event) {
         data: {id: district},
     })
     .done(function(data) {
-        var html = '<option value="">Cấp xã</option>';
+        var html = '<option value="">---Chọn phường / xã---</option>';
         $.each(data, function( index, value ) {
             html += '<option value="'+value.maphuongxa+'">'+value.tenphuongxa+'</option>';
         });
         
-        $('select[name="sel_ward"]').html(html);
+        $('select[name="ward_id"]').html(html);
 
         
 
     });
     
+});
+$(document).on('submit', '#addAddressShipping', function(e) {
+    e.preventDefault();
+    var that = $(this);
+    that.find("button[type='submit']").attr('disabled', true);
+    $.ajax({
+        url: that.attr('action'),
+        type: 'POST',
+        data: that.serialize(),
+    })
+    .done(function() {
+        // $('.info-shipping').html(data);
+        // $('#modalAddress').modal('hide');
+        // that.trigger("reset");
+        location.reload();
+    }).fail(function() {
+        that.find("button[type='submit']").removeAttr('disabled');
+    });
+})
+
+$(document).on('submit', '#editAddressShipping', function(e) {
+    e.preventDefault();
+    var that = $(this);
+    that.find("button[type='submit']").attr('disabled', true);
+    $.ajax({
+        url: that.attr('action'),
+        type: 'PUT',
+        data: that.serialize(),
+    })
+    .done(function() {
+        // $('.info-shipping').html(data);
+        // $('#modalAddress').modal('hide');
+        // that.trigger("reset");
+        location.reload();
+    }).fail(function() {
+        that.find("button[type='submit']").removeAttr('disabled');
+    });
+})
+
+$(document).on('change', 'input[name="shipping"]', function(event) {
+    
+    event.preventDefault();
+    
+    var that = $(this), form = $("#shippingFee");
+
+    if(this.checked && that.val() == 'VNPOST') {
+        //Do stuff
+        
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: { _token: $('meta[name="csrf-token"]').attr('content'), id_order: 0 },
+        })
+        .done(function(data) {
+            $(".fee-shipping").text(formatNumber(data.fee_shipping) + ' đ');
+        })
+        .fail(function(data) {
+            alert(data.responseJSON.msg);
+            that.prop('checked', false);
+        });
+    }
 });
