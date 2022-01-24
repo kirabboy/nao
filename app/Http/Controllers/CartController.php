@@ -29,37 +29,40 @@ class CartController extends Controller
         ], 200);
     }
 
-    public function updateCart(Request $request){
+    public function updateCart(Request $request)
+    {
         $rowid = $_POST['rowid'];
         $qty = $_POST['qty'];
         Cart::instance('shopping')->update($rowid, ['qty' => $qty]);
         return response()->json([
-            formatPrice(Cart::instance('shopping')->get($rowid)->price *$qty)
-        ],200);
+            formatPrice(Cart::instance('shopping')->get($rowid)->price * $qty)
+        ], 200);
     }
 
-    public function updateCheckout(Request $request){
+    public function updateCheckout(Request $request)
+    {
         $rowids = $request->rowids;
         $subtotal = 0;
-        if(!$rowids){
+        if (!$rowids) {
             return response()->json([
                 formatPrice(0),
                 ''
-            ],200);
-        }else{
-            foreach($rowids as $rowid){
-                $subtotal += Cart::instance('shopping')->get($rowid)->price *Cart::instance('shopping')->get($rowid)->qty; 
+            ], 200);
+        } else {
+            foreach ($rowids as $rowid) {
+                $subtotal += Cart::instance('shopping')->get($rowid)->price * Cart::instance('shopping')->get($rowid)->qty;
             }
             return response()->json([
                 formatPrice($subtotal),
                 implode(',', $rowids)
-            ],200);
+            ], 200);
         }
     }
 
-    public function toCheckout(Request $request) {
+    public function toCheckout(Request $request)
+    {
         $rowids = $request->rowids;
-        Session::put('rowids',$rowids);
+        Session::put('rowids', $rowids);
         return redirect()->route('checkout.index');
     }
 }
