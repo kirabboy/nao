@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 @section('content')
-	<link rel="stylesheet" href="{{asset('/public/admin/css/doitac.css')}}">
+<link rel="stylesheet" href="{{ asset('/public/admin/css/doitac.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/admin/table/table.css') }}" type="text/css">
 
   	<section class="home-section">
 		<div class="header bg-white shadow-sm header_mobile">
@@ -22,7 +23,7 @@
 				<div class="filter__address">
 					<div class="team__filter">
 						<div class="row">
-							<div class="team__filter-left col-lg-12">
+							<div class="team__filter-left col-lg-12 p-0">
 								<div class="col-md-12 flex-box gap-2">
 									<div>
 										<select class="form-select form-select-sm w-auto text-color-333 font-size-1 w-100" style="height:35px" aria-label="Default select example">
@@ -88,151 +89,52 @@
 										<button class="btn btn-success"> Cấp bậc hiện tại</button>
 									</div>
 								</div>
+<!----------------- Table information user ----------------->
+								<div class="pt-2">
+									<table class="styled-table table-sortable" id="myTable" style="width: 100%;">
+										<thead>
+											<tr>
+												<th>STT</th>
+												<th>Mã đại lý</th>
+												<th>Họ tên</th>
+												<th>Số điện thoại</th>
+												<th>Phường/xã</th>
+												<th>Quận/huyện</th>
+												<th>Tỉnh/thành</th>
+												<th>Mã đại lý cấp trên</th>
+												<th>Chi tiết</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach ($user as $value)
+											<tr>
+												<td>{{$value->id}}</td>
+												<td>{{$value->code_user}}</td>
+												<td>{{$value->name}}</td>
+												<td>{{$value->phone}}
+												<td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
+													->select('tenphuongxa')->first()->tenphuongxa ?? ''}}</td>
+												<td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
+													->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
+												<td>{{DB::table('province')->where('matinhthanh', $value->id_province)
+													->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
+												<td></td>
+												<td><a href="#" class="form-control btn btn-primary" style="background-color: #11101d;">Xem</a></td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>	
+								</div>
+<!----------------- Table information user ----------------->
 							</div>
 						</div>
 					</div>
-					
 				</div>
 				<!-- end filter -->
 
-				<!-- table -->
-				<div class="table__container mt-2 w-100" style="overflow: auto;">
-					<table class="table table-hover" style="width:130%">
-						<thead class="table__daily">
-						  <tr style="vertical-align: top;">
-							<th>STT</th>
-							<th>Mã đại lý</th>
-							<th>Họ tên</th>
-							<th>Số CMND</th>
-							<th>CMND mặt trước</th>
-							<th>CMND mặt sau</th>
-							<th>Số điện thoại</th>
-							<th>Số nhà/Đường</th>
-							<th>Phường/Xã</th>
-							<th>Quận/Huyện</th>
-							<th>Tỉnh/TP</th>
-							<th>Số tài khoản</th>
-							<th>Họ tên trên thẻ</th>
-							<th>Ngân hàng</th>
-							<th>Chi nhánh</th>
-							<th>Cấp bậc hiện tại</th>
-							<th>Mã đại lý cấp trên</th>
-							<th>Thông tin bán hàng</th>
-						  </tr>
-						</thead>
-						<tbody class="font-size-1">
-						  <tr>
-							<th scope="row">1</th>
-							<td>DL001</td>
-							<td>Nguyễn Thị B</td>
-							<td>212881306</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>0347689482</td>
-							<td>41/58A Cầy Xây</td>
-							<td>Tân Phú</td>
-							<td>Quận 9</td>
-							<td>TP Hồ Chí Minh</td>
-							<td>123456789</td>
-							<td>Nguyễn Thị B</td>
-							<td>Vietinbank</td>
-							<td>ABC</td>
-							<td>Cấp 1</td>
-							<td>DLCT01</td>
-							<td><a href="{{url('/admin/canhan/chitiet')}}">Xem chi tiết</a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">1</th>
-							<td>DL001</td>
-							<td>Nguyễn Thị B</td>
-							<td>212881306</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>0347689482</td>
-							<td>41/58A Cầy Xây</td>
-							<td>Tân Phú</td>
-							<td>Quận 9</td>
-							<td>TP Hồ Chí Minh</td>
-							<td>123456789</td>
-							<td>Nguyễn Thị B</td>
-							<td>Vietinbank</td>
-							<td>ABC</td>
-							<td>Cấp 1</td>
-							<td>DLCT01</td>
-							<td><a href="{{url('/admin/canhan/chitiet')}}">Xem chi tiết</a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">1</th>
-							<td>DL001</td>
-							<td>Nguyễn Thị B</td>
-							<td>212881306</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>
-								<img src="{{asset('/public/images/cmndmattruoc.jpg')}}" class="w-100" alt="">
-							</td>
-							<td>0347689482</td>
-							<td>41/58A Cầy Xây</td>
-							<td>Tân Phú</td>
-							<td>Quận 9</td>
-							<td>TP Hồ Chí Minh</td>
-							<td>123456789</td>
-							<td>Nguyễn Thị B</td>
-							<td>Vietinbank</td>
-							<td>ABC</td>
-							<td>Cấp 1</td>
-							<td>DLCT01</td>
-							<td><a href="{{url('/admin/canhan/chitiet')}}">Xem chi tiết</a></td>
-						  </tr>
-						</tbody>
-					</table>
-					
-				</div>
 
-				<!-- panigation -->
-				<div class="d-flex flex-row-reverse mt-4 pani">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination pagination-sm">
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-							  <span aria-hidden="true">&laquo;</span>
-							</a>
-						  </li>
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-							  <span aria-hidden="true" style="font-size: 0.8rem;">&lt;</span>
-							</a>
-						  </li>
-						  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-							  <span aria-hidden="true" style="font-size: 0.8rem;">&gt;</span>
-							</a>
-						  </li>
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-							  <span aria-hidden="true">&raquo;</span>
-							</a>
-						  </li>
-						</ul>
-					  </nav>
-				</div>
-				<!-- end panigation -->
-
-				<!-- end table -->
 			</div>
 		</div>
   	</section>
+<script type="text/javascript" src="{{asset('public/admin/table/table.js')}}"></script>
 @endsection

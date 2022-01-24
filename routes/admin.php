@@ -89,7 +89,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     //Quanlydaily
     Route::get('/doinhom', [QuanLyDaiLyController::class, 'doinhom']);
-    Route::prefix('canhan')->group(function () {
+    Route::prefix('canhan')->group(function () { 
         Route::get('/', [QuanLyDaiLyController::class, 'canhan']);
         Route::get('/chitiet', [QuanLyDaiLyController::class, 'chitietcanhan']);
     });
