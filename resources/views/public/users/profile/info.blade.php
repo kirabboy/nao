@@ -77,7 +77,7 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Tỉnh thành<colgroup></colgroup></p>
             <p>
-                <select class="form-select inputform viennhat" name="sel_province">
+                <select class="form-select inputform viennhat" name="province_id">
                     <option value="{{$user->id_province}}">
                         {{ $user_province }}
                     </option>
@@ -92,7 +92,7 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Quận huyện<colgroup></colgroup></p>
             <p>
-                <select class="form-select inputform viennhat" name="sel_district" data-placeholder=" Cấp huyện " required>
+                <select class="form-select inputform viennhat" name="district_id" data-placeholder=" Cấp huyện " required>
                     <option value="{{$user->id_district}}">
                         {{ $user_district }}
                     </option>
@@ -103,7 +103,7 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Phường xã<colgroup></colgroup></p>
             <p>
-                <select class="form-select inputform viennhat" name="sel_ward">
+                <select class="form-select inputform viennhat" name="ward_id">
                     <option value="{{$user->id_ward}}">
                         {{ $user_ward }}
                     </option>
