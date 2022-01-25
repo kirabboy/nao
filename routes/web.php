@@ -105,6 +105,7 @@ Route::prefix('gio-hang')->group(function () {
 
 Route::prefix('thanh-toan')->group(function() {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/thanh-toan', [CheckoutController::class, 'postOrder'])->name('checkout.postOrder');
 });
 
 Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');

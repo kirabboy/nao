@@ -44,6 +44,7 @@ class Order extends Model
 		'payment_method',
 		'shipping_method',
 		'shipping_total',
+		'fee_process',
 		'sub_total',
 		'total',
 		'status'

@@ -38,8 +38,12 @@ class OrderProduct extends Model
 	protected $fillable = [
 		'id_order',
 		'id_product',
+		'name',
 		'quantity',
 		'price',
+		'nao_point',
+		'feature_img',
+		'slug'
 	];
 
 	public function order()
