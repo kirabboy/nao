@@ -110,6 +110,8 @@ Route::prefix('gio-hang')->group(function () {
     Route::post('checkout', [CartController::class, 'toCheckout'])->name('cart.checkout');
 });
 
+Route::post('/buy-now', [CheckoutController::class, 'buyNow'])->name('buynow');
+
 Route::prefix('thanh-toan')->group(function() {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/thanh-toan', [CheckoutController::class, 'postOrder'])->name('checkout.postOrder');

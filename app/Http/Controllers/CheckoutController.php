@@ -13,6 +13,7 @@ use App\Models\Warehouse;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\OrderAddress;
+use App\Models\Product;
 use App\Models\OrderPayment;
 use App\Models\OrderInfo;
 use App\Models\UserAddressShipping;
@@ -86,9 +87,8 @@ class CheckoutController extends Controller
                 'nao_point' => $row->model->productPrice()->value('nao_point')
             ]);
             Cart::remove($rowid);
-
         }
-        if($user->level == 1){
+        if ($user->level == 1) {
             $nao_point = 0;
         }
         $order->shipping_method = $data['shipping_method'];
@@ -120,7 +120,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $order_code = $request->order_code;
         $order = Order::whereOrderCode($order_code)->first();
-        if($order->is_payment == 1){
+        if ($order->is_payment == 1) {
             return view('public.checkout.success');
         }
         return view('public.checkout.payment', compact('order'));
@@ -130,7 +130,7 @@ class CheckoutController extends Controller
     {
         $images = array();
         $order = Order::whereId($request->order_id)->first();
-        if($order->is_payment == 1){
+        if ($order->is_payment == 1) {
             return view('public.checkout.success');
         }
         if ($request->hasFile('images')) {
@@ -138,15 +138,15 @@ class CheckoutController extends Controller
             foreach ($files as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move('public/order/images', $name);
-                $images[] = 'public/order/images'.$name;
+                $images[] = 'public/order/images' . $name;
             }
         }
         OrderPayment::create([
             'id_order' => $request->order_id,
             'images' => implode(',', $images)
         ]);
-        Order::whereId($request->order_id)->update(['is_payment'=> 1]);
-       
+        Order::whereId($request->order_id)->update(['is_payment' => 1]);
+
         return view('public.checkout.success');
     }
 
@@ -201,5 +201,16 @@ class CheckoutController extends Controller
     {
         $address_shipping->delete();
         return back();
+    }
+
+    public function buyNow(Request $request)
+    {
+        $user = Auth::user();
+        $product_id = $request->product_id;
+        $product = Product::whereId($product_id)->firstOrFail();
+        Cart::instance('shopping')->add(['id' => $product->id, 'name' => $product->name, 'price' => getPriceOfLevel($user, $product->productPrice()->first()), 'qty' => 1])->associate('App\Models\Product');
+        $row = Cart::content()->where('id', $product_id)->first();
+        Session::put('rowids', $row->rowId);
+        return redirect()->route('checkout.index');
     }
 }

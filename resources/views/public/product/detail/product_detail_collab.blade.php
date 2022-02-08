@@ -65,7 +65,11 @@
                 <button class="btn btn-primary btn-rounded" type="submit">Thêm vào giỏ hàng</button>
             </form>
             {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
-            <a href="{{ url('/gio-hang') }}" class="btn btn-primary btn-rounded">Mua ngay</a>
+            <form class="d-inline-block" action="{{ route('buynow') }}" method="post" enctype="multipart">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="btn btn-primary btn-rounded">Mua ngay</button>
+            </form>
         </div>
     </section>
     <div class="modal fade" id="add-to-cart-success" tabindex="-1" role="dialog"
@@ -76,7 +80,7 @@
                     Thêm vào giỏ thành công
                 </div>
                 <div class="modal-footer">
-                    <a href="{{route('cart.index')}}" class="btn btn-primary">Xem giỏ hàng</a>
+                    <a href="{{ route('cart.index') }}" class="btn btn-primary">Xem giỏ hàng</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>

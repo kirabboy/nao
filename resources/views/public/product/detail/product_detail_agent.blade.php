@@ -63,7 +63,11 @@
                 <button class="btn btn-primary btn-rounded" type="submit">Thêm vào giỏ hàng</button>
             </form>
             {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
-            <a href="{{ url('/gio-hang') }}" class="btn btn-primary btn-rounded">Mua ngay</a>
+            <form class="d-inline-block" action="{{ route('buynow') }}" method="post" enctype="multipart">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="btn btn-primary btn-rounded">Mua ngay</button>
+            </form>
 
         </div>
     </section>

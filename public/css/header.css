@@ -133,6 +133,10 @@ header a {
     text-align: left;
 }
 
+a:hover {
+    text-decoration: unset;
+}
+
 body {
     font-family: Mulish !important;
     font-style: normal !important;
