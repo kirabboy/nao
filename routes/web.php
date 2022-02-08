@@ -11,7 +11,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DoinhomController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -89,11 +91,16 @@ Route::group(['middleware' => ['auth']], function () {
 //kira
 
 Route::resources([
+    'danh-muc-bai-viet' => BlogCategoryController::class,
+    'bai-viet' => BlogController::class,
+    'don-hang' => OrderController::class,
 ]);
 Route::prefix('san-pham')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     Route::get('{slug}', [ProductController::class, 'show'])->name('product.show');
 });
+Route::get('tim-kiem-goi-y', [ProductController::class, 'getSearchSuggest'])->name('search.suggest');
+Route::get('tim-kiem', [ProductController::class, 'getSearchResult'])->name('search.show');
 
 Route::prefix('gio-hang')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
@@ -105,6 +112,10 @@ Route::prefix('gio-hang')->group(function () {
 
 Route::prefix('thanh-toan')->group(function() {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/thanh-toan', [CheckoutController::class, 'postOrder'])->name('checkout.postOrder');
+    Route::get('chuyen-khoan/{order_code}', [CheckoutController::class, 'getPayment'])->name('checkout.payment');
+    Route::post('chuyen-khoan/{order_code}', [CheckoutController::class, 'postPayment'])->name('checkout.postPayment');
+
 });
 
 Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');
@@ -193,21 +204,21 @@ Route::get('/checkout/nhap-thong-tin', function() {
 //     return view('public.checkout.payment');
 // });
 
-Route::get('/don-hang', function() {
-    return view('public.order.index');
-});
+// Route::get('/don-hang', function() {
+//     return view('public.order.index');
+// });
 
-Route::get('/don-hang/chi-tiet', function() {
-    return view('public.order.detail');
-});
+// Route::get('/don-hang/chi-tiet', function() {
+//     return view('public.order.detail');
+// });
 
-Route::get('/don-hang/thong-tin-van-chuyen', function() {
-    return view('public.order.shipping_detail');
-});
+// Route::get('/don-hang/thong-tin-van-chuyen', function() {
+//     return view('public.order.shipping_detail');
+// });
 
-Route::get('/quan-ly-khach-hang', function() {
-    return view('public.order.index_customer');
-});
+// Route::get('/quan-ly-khach-hang', function() {
+//     return view('public.order.index_customer');
+// });
 
 // END MINH
 
@@ -232,17 +243,17 @@ Route::get('/quan-ly-khach-hang', function() {
     //     return view('public.checkout.payment');
     // });
 
-    Route::get('/don-hang', function() {
-        return view('public.order.index');
-    });
+    // Route::get('/don-hang', function() {
+    //     return view('public.order.index');
+    // });
 
-    Route::get('/don-hang/chi-tiet', function() {
-        return view('public.order.detail');
-    });
+    // Route::get('/don-hang/chi-tiet', function() {
+    //     return view('public.order.detail');
+    // });
 
-    Route::get('/don-hang/thong-tin-van-chuyen', function() {
-        return view('public.order.shipping_detail');
-    });
+    // Route::get('/don-hang/thong-tin-van-chuyen', function() {
+    //     return view('public.order.shipping_detail');
+    // });
 
     Route::get('/quan-ly-khach-hang', function() {
         return view('public.order.index_customer');

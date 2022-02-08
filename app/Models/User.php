@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function user_address_shipping(){
 		return $this->hasOne(UserAddressShipping::class, 'user_id');
 	}
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'id_user');
+    }
 }

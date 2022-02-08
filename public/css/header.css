@@ -117,6 +117,22 @@ header a {
     font-size: 16px;
 }
 
+.show-search-suggest {
+    display: none;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px 5px;
+    border: 1px solid #ddd;
+}
+
+.show-search-suggest ul li a {
+    color: #000;
+}
+
+.show-search-suggest ul {
+    text-align: left;
+}
+
 body {
     font-family: Mulish !important;
     font-style: normal !important;
