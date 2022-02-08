@@ -14,6 +14,7 @@ function viewDetailOrder(e){
     });
 }
 
-function destroyModal() {
-    $('#order-detail-view').remove();
+function destroyModal(e) {
+    console.log($(e).parents('.modal'));
+    $(e).parents('.modal').remove();
 }

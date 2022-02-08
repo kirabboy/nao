@@ -17,6 +17,8 @@ use App\Admin\Controllers\BaoCaoController;
 use App\Admin\Controllers\QuanLyDaiLyController;
 use App\Admin\Controllers\KhuyenMaiController;
 use App\Admin\Controllers\SettingController;
+use App\Admin\Controllers\ShippingController as AdminShippingController;
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('get.admin.login');
 Route::post('/login', [LoginController::class, 'store'])->name('admin.login');
@@ -35,6 +37,14 @@ Route::group(['middleware' => ['admin']], function () {
         Route::patch('/huy-don-hang', [OrderController::class, 'patchOrderDestroy']);
         Route::delete('/xoa-don-hang', [OrderController::class, 'deleteOrderDelete']);
     });
+
+    Route::prefix('van-chuyen')->group(function () {
+        Route::post('/tao-don-hang', [AdminShippingController::class, 'create'])->name('post.shipping.create');
+        // Route::get('/tao-don-hang/{order:id}', [AdminShippingController::class, 'getCreate'])->name('post.shipping.create');
+        Route::get('/tao-don-hang', [AdminShippingController::class, 'getInfoShipping'])->name('get.shipping.create');
+        Route::delete('/huy-don-hang', [AdminShippingController::class, 'destroyShippingOrder'])->name('delete.shipping.destroy');
+    });
+
     
     // ĐƠN VỊ TÍNH
     Route::get('/don-vi-tinh', [CalculationUnitController::class, 'index'])->name('don-vi-tinh.index');
