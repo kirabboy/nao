@@ -116,7 +116,9 @@
                 <div class="checkout-info-value text-right">
                     <h4 data-value="{{ $subtotal }}" id="subtotal">{{ formatPrice($subtotal) }}</h4>
                     <input type="hidden" name="fee_shipping">
+                    @if(isset($address_shipping))
                     <input type="hidden" name="address_id" value="{{ $address_shipping->id }}">
+                    @endif
                     <h4 class="fee-shipping">Vui lòng chọn ĐVVC</h4>
                     <h4>7.500đ</h4>
                     <h4>-0đ</h4>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\BlogCategory;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +19,9 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('public.index',['user'=>$user]);
+        $blog_categories = BlogCategory::get();
+        $new_blogs = Blog::paginate(5);
+        return view('public.index', compact('user', 'blog_categories', 'new_blogs'));
     }
 
     public function chiphi()

@@ -13,6 +13,7 @@ use App\Models\Warehouse;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\OrderAddress;
+use App\Models\OrderPayment;
 use App\Models\OrderInfo;
 use App\Models\UserAddressShipping;
 use App\Http\Controllers\ShippingController;
@@ -84,13 +85,19 @@ class CheckoutController extends Controller
                 'price' => $row->price,
                 'nao_point' => $row->model->productPrice()->value('nao_point')
             ]);
-        }
+            Cart::remove($rowid);
 
+        }
+        if($user->level == 1){
+            $nao_point = 0;
+        }
         $order->shipping_method = $data['shipping_method'];
         $order->shipping_total = $data['fee_shipping'];
         $order->fee_process = $data['fee_process'];
         $order->sub_total = $subtotal;
         $order->total = $subtotal + $data['fee_process'] + $data['fee_shipping'];
+        $order->order_code = 'NAO-' . time();
+        $order->nao_point = $nao_point;
         $order->save();
         OrderAddress::create([
             'id_order' => $order->id,
@@ -105,9 +112,43 @@ class CheckoutController extends Controller
             'fullname' => $address_shipping->fullname,
             'phone' => $address_shipping->phone
         ]);
-        return 'success';
+        return redirect()->route('checkout.payment', ['order_code' => $order->order_code]);
     }
 
+    public function getPayment(Request $request)
+    {
+        $user = Auth::user();
+        $order_code = $request->order_code;
+        $order = Order::whereOrderCode($order_code)->first();
+        if($order->is_payment == 1){
+            return view('public.checkout.success');
+        }
+        return view('public.checkout.payment', compact('order'));
+    }
+
+    public function postPayment(Request $request)
+    {
+        $images = array();
+        $order = Order::whereId($request->order_id)->first();
+        if($order->is_payment == 1){
+            return view('public.checkout.success');
+        }
+        if ($request->hasFile('images')) {
+            $files = $request->images;
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move('public/order/images', $name);
+                $images[] = 'public/order/images'.$name;
+            }
+        }
+        OrderPayment::create([
+            'id_order' => $request->order_id,
+            'images' => implode(',', $images)
+        ]);
+        Order::whereId($request->order_id)->update(['is_payment'=> 1]);
+       
+        return view('public.checkout.success');
+    }
 
 
     public function addAddressShipping(Request $request)

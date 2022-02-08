@@ -9,7 +9,7 @@
         <div class="container">
             <div class="backheader d-flex align-items-center">
                 <h3>
-                    <a href="{{ url('/don-hang') }}" style="color: var(--text-color);">
+                    <a href="{{ route('don-hang.index') }}" style="color: var(--text-color);">
                         <i class="fas fa-angle-left"></i> Chi tiết đơn hàng
                     </a>
                 </h3>
@@ -25,7 +25,7 @@
         <div class="order-shipping order-sub-info bg-white">
             <div class="d-flex align-items-center justify-content-between">
                 <h3>Thông tin vận chuyển</h3>
-                <a href="{{url('/don-hang/thong-tin-van-chuyen')}}">Xem chi tiết</a>
+                <a href="{{ url('/don-hang/thong-tin-van-chuyen') }}">Xem chi tiết</a>
             </div>
             <p><i class="fas fa-shipping-fast"></i><span>Đang giao hàng</span></p>
         </div>
@@ -39,56 +39,40 @@
         <div class="order-customer-info bg-white">
             <div class="checkout-customer-info">
                 <div class="customer-info-content">
-                    <p>Cao học viên</p>
-                    <p>Số điện thoại : 0398476543</p>
-                    <p>Đường số 2, Phường 7, Quận Vò Gấp, Tp Hồ ...</p>
+                    <p>{{ $order->order_info()->value('fullname') }}</p>
+                    <p>Số điện thoại : {{ $order->order_info()->value('phone') }}</p>
+                    <p>{{ $order->order_address()->value('address') }},
+                        {{ $order->order_address()->first()->ward()->value('tenphuongxa') }},
+                        {{ $order->order_address()->first()->district()->value('tenquanhuyen') }},
+                        {{ $order->order_address()->first()->province()->value('tentinhthanh') }}</p>
                 </div>
             </div>
         </div>
 
         <div class="order-info-items">
+            @foreach($order->order_products()->get() as $order_product)
             <div class="order-info-item bg-white">
                 <div class="item-product-info d-flex">
                     <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
+                        <img src="{{asset($order_product->feature_img)}}"
                             alt="">
                     </div>
                     <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
+                        <h4 class="item-product-title">{{$order_product->name}}</h4>
                         <div class="item-product-info-detail d-flex justify-content-between">
                             <div class="item-info-title text-left">
                                 <p>Số lượng:</p>
                                 <p>Giá tiền:</p>
                             </div>
                             <div class="item-info-value text-right">
-                                <h3>3</h3>
-                                <h3>123.999</h3>
+                                <h3>{{$order_product->quantity}}</h3>
+                                <h3>{{formatPrice($order_product->quantity * $order_product->price)}}</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="order-info-item bg-white">
-                <div class="item-product-info d-flex">
-                    <div class="item-product-img">
-                        <img src="https://giagoc24h.vn/wp-content/uploads/2020/08/t%C3%BAi-x%C3%A1ch-phong-c%C3%A1ch-h%C3%A0n-qu%E1%BB%91c.png"
-                            alt="">
-                    </div>
-                    <div class="item-product-content">
-                        <h4 class="item-product-title">BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC</h4>
-                        <div class="item-product-info-detail d-flex justify-content-between">
-                            <div class="item-info-title text-left">
-                                <p>Số lượng:</p>
-                                <p>Giá tiền:</p>
-                            </div>
-                            <div class="item-info-value text-right">
-                                <h3>3</h3>
-                                <h3>123.999</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="order-payment order-sub-info bg-white">
@@ -103,10 +87,10 @@
                 <p>Giảm giá</p>
             </div>
             <div class="order-total-value text-right">
-                <h4>1.200.000đ</h4>
-                <h4>0đ</h4>
-                <h4>7.500đ</h4>
-                <h4>-30.000đ</h4>
+                <h4>{{ formatPrice($order->sub_total)}}</h4>
+                <h4>{{formatPrice($order->shipping_total)}}</h4>
+                <h4>{{formatPrice($order->fee_process)}}</h4>
+                <h4>{{formatPrice($order->total)}}</h4>
             </div>
         </div>
     </section>
