@@ -68,7 +68,7 @@ class ShippingController extends Controller
             $response_create = $this->callApiCreateShippingOrder($order_info, $order_address, $order, $package_content, $calc);
         }
         //
-        return $response_create = json_decode($response_create, true);
+        $response_create = json_decode($response_create, true);
 
         $this->createShippingBill($order, $response_create);
         $order->update([
@@ -159,7 +159,7 @@ class ShippingController extends Controller
         $shipping_config = ShippingConfig::select('production', 'username', 'password', 'token')->first();
 
         //lấy link môi trường.
-        return $get_link = $this->configShippingController->checkEnvironmentConfig($shipping_config->production);
+        $get_link = $this->configShippingController->checkEnvironmentConfig($shipping_config->production);
 
         //gọi hàm tạo đơn hàng
         $response_create = Http::withHeaders([
@@ -168,8 +168,7 @@ class ShippingController extends Controller
         ])->post($get_link.'/api/api/CustomerConnect/CancelOrder', [
             "OrderId" => $request->shipping_id
         ]);
-        return $response_create;
-        $response_create = json_decode($response_create, true);
+        // $response_create = json_decode($response_create, true);
         
         //token hết thời gian.
         if($response_create->status() != 204){
