@@ -3,32 +3,54 @@
 namespace App\Admin\Controllers;
 
 use App\Models\User;
-use App\Models\Province;
-use App\Models\District;
-use App\Models\Ward;
+use App\Exports\InfoUser;
+use App\Exports\DanhSachDoiNhom;
 use App\Models\UsersParent;
 
+use Carbon\Carbon;
+use Maatwebsite\Excel\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class QuanLyDaiLyController extends Controller
 {
     public function canhan(){
-        $user = User::get();
-        $id_son = User::select('id')->pluck('id')->toArray();
-        // dd($test = User::join('users_parent','users_parent.id_child', '=', 'users.id')
-        // ->where('users_parent.id_child', '=', $id_son)->pluck('users_parent.id_dad','users_parent.id_child'));
-        // dd(Users::join('users_parent','users.id','=','users_parent.id_child')
-        // ->where('users',''))
-        
+        $user = User::with('getIdDad.getNameDad')->get();
         return view('admin.quanly.listcanhan',['user' => $user]);
     }
 
-    public function chitietcanhan(){
-        return view('admin.quanly.detailcanhan');
+    public function dowListUser(Excel $excel) {
+        return $excel->download(new InfoUser, 'listUser.xlsx');
+    }
+
+    public function chitietcanhan($id){
+        $user = User::find($id);
+        $user_age = Carbon::parse($user->birthday)->diff(Carbon::now())->format('%y');
+        $customer = User::with('getIdCustomers')->get();
+        $count_customer = $customer->find($id)->getIdCustomers->count();
+        $user_child = User::with('getIdSon')->get();
+        $count_child = $user_child->find($id)->getIdSon->count();
+        return view('admin.quanly.detailcanhan',[
+            'user' => $user,
+            'user_age' => $user_age,
+            'count_customer' => $count_customer,
+            'count_child' => $count_child,
+        ]);
     }
 
     public function doinhom(){
-        return view('admin.quanly.doinhom');
+        $user = User::with('getIdDad.getNameDad')->get();
+        return view('admin.quanly.doinhom', ['user'=>$user]);
+    }
+
+    public function detailDoiNhom($id) {
+        $boss = User::find($id);
+        $user = UsersParent::with('getNameSon')->where('id_dad','=',$id)->get();
+        return view('admin.quanly.detailDoinhom', 
+            ['user'=>$user,'boss'=>$boss]);
+    }
+
+    public function downDanhSach(Excel $excel,$id) {
+        return $excel->download(new DanhSachDoiNhom($id), 'DanhSachDoiNhom.xlsx');
     }
 }

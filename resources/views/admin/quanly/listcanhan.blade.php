@@ -15,7 +15,12 @@
 							<i class="fa fa-user-o team_bars me-2" aria-hidden="true"></i>
 							<h4 class="mb-0 me-4 text-uppercase fs-5 text-center">Danh sách khách hàng</h4>
 						</div>
-						<button class="border-0 rounded-pill p-1 btn_team-top px-3 team-mobile-btn"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
+						<button class="border-0 rounded-pill p-1 btn_team-top px-3 team-mobile-btn">
+							<a class="text-light text-decoration-none" href="{{asset('admin/canhan/download')}}">
+								<i class="fa fa-plus" aria-hidden="true"></i> Download List
+							</a>
+						</button>
+						<!-- <button class="border-0 rounded-pill p-1 btn_team-top px-3 team-mobile-btn"><i class="fa fa-plus" aria-hidden="true"></i> Download List</button> -->
 					</div>
 				</div>
 				<hr>
@@ -111,15 +116,15 @@
 												<td>{{$value->id}}</td>
 												<td>{{$value->code_user}}</td>
 												<td>{{$value->name}}</td>
-												<td>{{$value->phone}}
+												<td>0{{$value->phone}}</td>
 												<td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
 													->select('tenphuongxa')->first()->tenphuongxa ?? ''}}</td>
 												<td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
 													->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
 												<td>{{DB::table('province')->where('matinhthanh', $value->id_province)
 													->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
-												<td></td>
-												<td><a href="#" class="form-control btn btn-primary" style="background-color: #11101d;">Xem</a></td>
+												<td>{{($value->getIdDad->getNameDad->code_user)}}</td>
+												<td><a href="{{route('listcanhan')}}/{{$value->id}}" class="form-control btn btn-primary" style="background-color: #11101d;">Xem</a></td>
 											</tr>
 											@endforeach
 										</tbody>

@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 @section('content')
-	<link rel="stylesheet" href="{{asset('/public/admin/css/doitac.css')}}">
+<link rel="stylesheet" href="{{ asset('/public/admin/css/doitac.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/admin/table/table.css') }}" type="text/css">
 
 
 	<!-- main -->
@@ -17,143 +18,50 @@
 						  <h4 class="mb-0 me-4 text-uppercase fs-5 team-title">Đội nhóm</h4>
 					  </div>
 					  <div class="team-mobile-btn d-flex align-items-center">
-						  <button class="border-0 rounded-pill p-1 btn_team-top px-3"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
-						  <button class="border-0 rounded-pill p-1 btn_team-top px-3 mx-1"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Import</button>
-						  <button class="border-0 rounded-pill p-1 btn_team-top px-3"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+						  <!-- <button class="border-0 rounded-pill p-1 btn_team-top px-3"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
+						  <button class="border-0 rounded-pill p-1 btn_team-top px-3 mx-1"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Import</button> -->
+						  <!-- <button class="border-0 rounded-pill p-1 btn_team-top px-3"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button> -->
 					  </div>
 				  </div>
 			  </div>
 			  <!-- table -->
 			  <div class="table__container mt-2" style="overflow-x: auto;">
-				  <table class="table table-hover">
-					  <thead class="table__daily">
+			  	<table class="styled-table table-sortable" id="myTable" style="width: 100%;">
+					  <thead>
 						<tr>
 						  <th scope="col">STT</th>
 						  <th scope="col">Mã đại lý</th>
 						  <th scope="col">Họ tên</th>
 						  <th scope="col">Số điện thoại</th>
-						  <th scope="col">Số nhà/Đường</th>
 						  <th scope="col">Phường/Xã</th>
-						  <th scope="col">Quận Huyện</th>
+						  <th scope="col">Quận/Huyện</th>
 						  <th scope="col">Tỉnh/TP</th>
-						  <th scope="col">Cấp bậc hiện tại</th>
-						  <th scope="col">Mã đại lý cấp trên</th>
+						  <th scope="col">Level</th>
+						  <th scope="col">Mã cấp trên</th>
 						</tr>
 					  </thead>
-					  <tbody class="font-size-1">
+					  <tbody>
+						@foreach ($user as $value)
 						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
+						  <th scope="row">{{$value->id}}</th>
+						  <td><a href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
+						  <td>{{$value->name}}</td>
+						  <td>0{{$value->phone}}</td>
+						  <td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
+								->select('tenphuongxa')->first()->tenphuongxa ?? ''}}</td>
+						  <td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
+								->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
+						  <td>{{DB::table('province')->where('matinhthanh', $value->id_province)
+								->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
+						  <td>{{($value->level)}}</td>
+						  <td>{{($value->getIdDad->getNameDad->code_user)}}</td>
 						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây/td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
-						<tr>
-						  <th scope="row">1</th>
-						  <td>DL001</td>
-						  <td>Nguyễn Thị B</td>
-						  <td>0347689482</td>
-						  <td>41/58A Cầu Xây</td>
-						  <td>Tân Phú</td>
-						  <td>Quận 9</td>
-						  <td>TP Hồ Chí Minh</td>
-						  <td>Cấp 1</td>
-						  <td>DLCT124</td>
-						</tr>
+						@endforeach
 					  </tbody>
 				  </table>
 			  </div>
-			  <!-- panigation -->
-			  <div class="d-flex flex-row-reverse">
+			  
+			  <!-- <div class="d-flex flex-row-reverse pt-2">
 				  <nav aria-label="Page navigation example">
 					  <ul class="pagination pagination-sm">
 						<li class="page-item">
@@ -182,12 +90,11 @@
 						</li>
 					  </ul>
 					</nav>
-			  </div>
-			  <!-- end panigation -->
-			  <!-- end table -->
+			  </div> -->
 		  </div>
 	  </div>
 	</section>
 	<!-- main -->
 
+<script type="text/javascript" src="{{asset('public/admin/table/table.js')}}"></script>
 @endsection

@@ -88,10 +88,17 @@ Route::group(['middleware' => ['admin']], function () {
     });
 
     //Quanlydaily
-    Route::get('/doinhom', [QuanLyDaiLyController::class, 'doinhom']);
+    //Quanlydaily
+    Route::prefix('doinhom')->group(function () {
+        Route::get('/', [QuanLyDaiLyController::class, 'doinhom'])->name('listdoinhom');
+        Route::get('/{id}', [QuanLyDaiLyController::class, 'detailDoiNhom']);
+        Route::get('/{id}/download', [QuanLyDaiLyController::class, 'downDanhSach']);
+        //dowListDoiNhom
+    });
     Route::prefix('canhan')->group(function () { 
-        Route::get('/', [QuanLyDaiLyController::class, 'canhan']);
-        Route::get('/chitiet', [QuanLyDaiLyController::class, 'chitietcanhan']);
+        Route::get('/', [QuanLyDaiLyController::class, 'canhan'])->name('listcanhan');
+        Route::get('/download', [QuanLyDaiLyController::class, 'dowListUser']);
+        Route::get('/{id}', [QuanLyDaiLyController::class, 'chitietcanhan']);
     });
 
     //KhuyenMai 
