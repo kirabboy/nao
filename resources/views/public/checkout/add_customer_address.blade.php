@@ -19,7 +19,7 @@
         <div class="container">
             <div class="backheader d-flex align-items-center">
                 <h3>
-                    <a href="{{ url('/checkout') }}" style="color: var(--text-color);">
+                    <a href="{{ url('/thanh-toan') }}" style="color: var(--text-color);">
                         <i class="fas fa-angle-left"></i> Thông tin khách hàng
                     </a>
                 </h3>
