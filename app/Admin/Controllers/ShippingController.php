@@ -28,24 +28,23 @@ class ShippingController extends Controller
 
     public function create(Request $request){
 
-        $order = Order::find($request->in_id_order);
-
+        $order = Order::whereId($request->in_id_order)->with('order_info', 'order_address', 'products:height,weight,length,width')->first();
         //Tên gói hàng
         $package_content = '';
 
         //lấy thể tích của đơn hàng
-        $products = $order->products()->select('height', 'weight', 'length', 'width', 'name')->get();
+        $products = $order->products;
 
         foreach($products as $key => $value){
             if($key < count($products)-1){
-                $package_content .= $value->name.' x'.$value->pivot->quantity.', ';
+                $package_content .= $value->pivot->name.' x'.$value->pivot->quantity.', ';
             }else{
-                $package_content .= $value->name.' x'.$value->pivot->quantity;
+                $package_content .= $value->pivot->name.' x'.$value->pivot->quantity;
             }
         }
         
-        $order_info = $order->order_info()->first();
-        $order_address = $order->order_address()->first();
+        $order_info = $order->order_info;
+        $order_address = $order->order_address;
 
         //gọi hàm tính thể tích đơn hàng
         $shippingController = new CallShippingController;        
@@ -131,7 +130,8 @@ class ShippingController extends Controller
             "ReceiverDistrictId" => $order_address->id_district,
             "ReceiverProvinceId" => $order_address->id_province,
             "ReceiverAddressType" => 1,
-            "ServiceName" => $order->shipping_method,
+            // "ServiceName" => $order->shipping_method,
+            "ServiceName" => 'BK',
             "OrderCode" => "",
             "PackageContent" => $package_content,
             "WeightEvaluation" => $calc['weight'],
@@ -156,7 +156,7 @@ class ShippingController extends Controller
 
     public function destroyShippingOrder(Request $request){
 
-        $shipping_config = ShippingConfig::select('production', 'username', 'password')->first();
+        $shipping_config = ShippingConfig::select('production', 'username', 'password', 'token')->first();
 
         //lấy link môi trường.
         $get_link = $this->configShippingController->checkEnvironmentConfig($shipping_config->production);
@@ -168,7 +168,8 @@ class ShippingController extends Controller
         ])->post($get_link.'/api/api/CustomerConnect/CancelOrder', [
             "OrderId" => $request->shipping_id
         ]);
-
+        // $response_create = json_decode($response_create, true);
+        
         //token hết thời gian.
         if($response_create->status() != 204){
 

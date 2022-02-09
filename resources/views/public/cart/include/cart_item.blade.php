@@ -1,38 +1,45 @@
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="cart-item">
-        <div class="row">
-            <div class="col-2 col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center px-1">
-                <label class="checkbox">
-                    <input class="checkbox-input" type="checkbox" checked="checked">
-                    <span class="checkbox-checkmark-box">
-                        <span class="checkbox-checkmark"></span>
-                    </span>
-                </label>
+<div class="item-cart d-flex bg-white justify-content-between" id="cart-item-{{$row->id}}">
+    <div class="item-cart-img d-flex">
+        <input type="checkbox" name="rowid" value="{{$row->rowId}}">
+        <img src="{{ asset($row->model->feature_img) }}" alt="">
+    </div>
+    <div class="item-cart-info">
+        <h4 class="mb-16">{{ $item->name }}</h4>
+        <div class="cart-select d-flex justify-content-between">
+            <div class="cart-quantity-control-group d-flex mb-16">
+                <div id="minus-{{ $item->id }}" class="down-btn btn-primary-4 btn-rounded">-</div>
+                <input id="qty-{{ $item->id }}" type="text" class="quantity-input text-center"
+                    value="{{ $item->qty }}" name="quantity" im-insert="true" 
+                    data-rowid="{{$row->rowId}}" data-url="{{ route('cart.update') }}">
+                <div id="plus-{{ $item->id }}" class="up-btn btn-primary-4 btn-rounded">+</div>
             </div>
-            <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 px-0">
-                <img class="w-100" src="{{ 'public/images/Rectangle956.png' }}" alt="">
+            <div class="product-stock text-right">
+                <h4 class="color-brand-green">Còn 120 sp</h4>
             </div>
-            <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
-                <h4 class="product-title">
-                    BALO NỮ THỜI TRANG PHONG CÁCH HÀN QUỐC
-                </h4>
-                <div class="cart-item-quantity">
-                    <div class="control">
-                        <button class="bttn bttn-left" id="minus">
-                            <span>-</span>
-                        </button>
-                        <input type="number" class="input" id="input">
-                        <button class="bttn bttn-right" id="plus">
-                            <span>+</span>
-                        </button>
-                    </div>
-                    <div class="quantity-item">Còn <span class="quantity-value">120 </span>sp</div>
-                </div>
-                <div class="cart-item-price">
-                    <div class="">Giá tiền</div>
-                    <div class="price-value">123.999 </div>
-                </div>
-            </div>
+        </div>
+        <div class="cart-price d-flex justify-content-between">
+            <p>Giá tiền:</p>
+            <h4 class="color-brand-green row-price">{{ formatPrice($item->price * $item->qty) }}</h4>
         </div>
     </div>
 </div>
+<script>
+    var minus = $("#minus-{{ $item->id }}");
+    var plus = $("#plus-{{ $item->id }}");
+    var input = $("#qty-{{ $item->id }}");
+    var rowprice = $('#cart-item-{{ $item->id }} .row-price')
+    var quantity = input.val();
+    input.val(quantity);
+    minus.on('click', function(event) {
+        if (quantity > 1) {
+            quantity--;
+            input.val(quantity);
+            updateCart(input,rowprice);
+        }
+    });
+    plus.on('click', function(event) {
+        quantity++;
+        input.val(quantity);
+        updateCart(input,rowprice);
+    });
+</script>

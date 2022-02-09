@@ -42,7 +42,7 @@
 				<label for="exampleInputPassword1">Mã giới thiệu</label>
 				<input type="text" name="magioithieu" class="form-control custom-input" placeholder="Mã giới thiệu">
 			</div>
-			<div class="form-check">
+			<div class="form-check d-flex">
 				<input type="checkbox" class="form-check-input" id="rememberMe">
 				<label class="form-check-label" for="rememberMe">Tôi đồng ý các <a href="#" class="color-pr font-weight-bold">chính sách và điều khoản đăng ký</a></label>
 			</div>

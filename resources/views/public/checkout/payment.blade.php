@@ -3,6 +3,9 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('public/css/minh.css') }}">
 @endpush
+@push('js')
+    <script src="{{ asset('public/js/payment.js') }}"></script>
+@endpush
 
 @section('content')
 
@@ -35,9 +38,9 @@
                     <h3>MB Banks</h3>
                     <h3>98347329847<i class="fas fa-clone"></i></h3>
                     <h3>Công ty TNHH</h3>
-                    <h3>MUAHG093489 <i class="fas fa-clone"></i></h3>
+                    <h3>{{ $order->order_code }} <i class="fas fa-clone"></i></h3>
                     <h3>58:09</h3>
-                    <h2>500.000đ</h2>
+                    <h2>{{ formatPrice($order->total) }}</h2>
                 </div>
             </div>
         </div>
@@ -49,12 +52,18 @@
                 numquam aspernatur eaque omnis voluptates officiis quia.
             </p>
         </div>
-        <div class="payment-bill">
-            <label for="">
-                <i class="fas fa-file-upload"></i> Tải hình ảnh chuyển khoản lên (tối đa 3 ảnh)
-                <input type="file" name="" id="" multiple>
-            </label>
-            <div class="row img-bills">
+        <form action="{{ route('checkout.postPayment', ['order_code' => $order->order_code]) }}" method="post"
+            enctype="multipart/form-data" method="POST">
+            @csrf
+            <div class="payment-bill">
+                <label for="">
+                    <i class="fas fa-file-upload"></i> Tải hình ảnh chuyển khoản lên (tối đa 3 ảnh)
+                    <input type="file" multiple id="gallery-photo-add" name="images[]"
+                        accept="image/png, image/gif, image/jpeg" required>
+                </label>
+                <input type="hidden" name="order_id" value="{{$order->id}}">
+                <div class="gallery"></div>
+                {{-- <div class="row img-bills">
                 <div class="col col-4"><img
                         src="https://lh3.googleusercontent.com/sQ0Er6z5KIfuW6Syd3qQY1yqvAqzgaSsiOiRAkRzPawmVLd5kxL1NHLu5Pc40xKRS4MXaHjm4r9r4gQlCB-DAzNkpnETtho1q8Uj14z-"
                         alt=""></div>
@@ -64,11 +73,15 @@
                 <div class="col col-4"><img
                         src="https://lh3.googleusercontent.com/sQ0Er6z5KIfuW6Syd3qQY1yqvAqzgaSsiOiRAkRzPawmVLd5kxL1NHLu5Pc40xKRS4MXaHjm4r9r4gQlCB-DAzNkpnETtho1q8Uj14z-"
                         alt=""></div>
+            </div> --}}
             </div>
-        </div>
+            <div class="payment-confirm">
+                <button class="btn btn-primary btn-rounded d-block mx-auto confirm-payment" type="submit">Xác nhận đã
+                    chuyển
+                    khoản</button>
 
-        <button class="btn btn-primary btn-rounded d-block mx-auto confirm-payment">Xác nhận đã chuyển khoản</button>
-
+            </div>
+        </form>
     </section>
 
 @endsection

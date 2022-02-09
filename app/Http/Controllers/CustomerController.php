@@ -51,7 +51,6 @@ class CustomerController extends Controller
 
     public function customer_address($id) {
         $customer = Customer::find($id);
-        echo $customer->id;
         $province = Province::select('matinhthanh','tentinhthanh')->get();
         return view('public.customer.add_address',['customer' => $customer,'province'=>$province]);
     }

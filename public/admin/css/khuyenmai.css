@@ -45,14 +45,11 @@ table .btn_trangthai {
 
 }
 table tbody tr td .btn{
-  padding: 2px 5px;
-  background-color: #659be0;
-  color: #fff;
-
+  font-size: 12px;
 }
-table tbody tr td .btn:hover{
+/* table tbody tr td .btn:hover{
   color: #fff;
-}
+} */
 table {
   font-size: 15px;
 }

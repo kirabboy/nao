@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class BrandController extends Controller
@@ -16,14 +17,12 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        $index = 0;
-        return view('admin.brand.index', compact('brands', 'index'));
+        return view('admin.brand.index');
     }
 
     public function indexDatatable()
     {
-        $brands = Brand::all();
+        $brands = Brand::latest()->get();
         if($brands) {
             return response()->json([
                 'message' => "Success!",
@@ -52,6 +51,18 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'brandCode' => 'bail|required|unique:product_brand,code',
+            'brandName' => 'bail|required|unique:product_brand,name',
+            'Type' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()
+            ], 400);
+        }
+
         $slug = Str::slug($request->name, '-');
         $brand = Brand::create([
             'code' => $request->brandCode,
@@ -76,6 +87,18 @@ class BrandController extends Controller
 
     public function update(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'brandCode' => 'bail|required|unique:product_brand,code,'.$request->id,
+            'brandName' => 'bail|required|unique:product_brand,name,'.$request->id,
+            'Type' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()
+            ], 400);
+        }
+        
         $slug = Str::slug($request->name, '-');
 
         $brand = Brand::where('id', $request->id)->update([

@@ -22,8 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
+        $products = Product::latest()->get();
         return view('admin.product.san-pham', compact('products'));
     }
 
@@ -57,6 +56,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_sku' => 'required|unique:products,sku',
+            'product_name' => 'required|unique:products,name',
+            'slug' => 'unique:products,slug',
+            'feature_img' => 'required',
+            'product_weight' => 'required',
+            'product_height' => 'required',
+            'product_width' => 'required',
+            'product_length' => 'required',
+            'product_brand' => 'required',
+            'product_status' => 'required',
+        ], [
+            'product_sku.required' => 'SKU không được để trống',
+            'product_sku.unique' => 'SKU đang sử dụng đã bị trùng lặp',
+            'product_name.required' => 'Tên sản phẩm không được để trống',
+            'product_name.unique' => 'Tên sản phẩm đã bị trùng lặp, vui lòng đặt tên khác',
+            'slug.unique' => 'Slug đang sử dụng đã bị trùng lặp, vui lòng đặt tên khác',
+            'feature_img' => 'Ảnh đại diện không được để trống',
+            'product_weight' => 'Cân nặng không được để trống',
+            'product_height' => 'Chiều cao không được để trống',
+            'product_width' => 'Chiều rộng không được để trống',
+            'product_length' => 'Chiều dài không được để trống',
+            'product_brand' => 'Thương hiệu không được để trống',
+            'product_status' => 'Trạng thái không được để trống',
+        ]);
+
         return DB::transaction(function () use ($request) {
             try {
                 $slug = Str::slug($request->product_name, '-');
@@ -67,7 +92,7 @@ class ProductController extends Controller
                     'slug' => $slug,
                     'feature_img' => $request->feature_img,
                     'gallery' => rtrim($request->gallery_img, ", "),
-                    'category_id' => $request->child_category != "-1" ? $request->category_parent : $request->child_category,
+                    'category_id' => $request->child_category == "-1" ? $request->category_parent : $request->child_category,
                     'calculation_unit' => $request->product_calculation_unit,
                     // 'quantity' => $request->product_quantity,
                     'weight' => $request->product_weight,
@@ -82,14 +107,11 @@ class ProductController extends Controller
 
                 $productPrice = new ProductPrice();
                 $productPrice->regular_price = $request->product_regular_price;
-                $productPrice->vpoint_retail = $request->product_vpoint;
-                $productPrice->vpoint_2_star = $request->product_discount_2;
-                $productPrice->vpoint_1_star = $request->product_discount_1;
-                $productPrice->vpoint_platinum = $request->product_discount_platinum;
-                $productPrice->vpoint_diamond = $request->product_discount_diamond;
-                $productPrice->vpoint_gold = $request->product_discount_gold;
-                $productPrice->vpoint_silver = $request->product_discount_silver;
-                $productPrice->vpoint_member = $request->product_discount_member;
+                $productPrice->price_ctv = $request->price_ctv;
+                $productPrice->price_new_daily = $request->price_new_daily;
+                $productPrice->price_daily_chuan = $request->price_daily_chuan;
+                $productPrice->price_vip = $request->price_vip;
+                $productPrice->nao_point = $request->nao_point;
 
                 $product->productPrice()->save($productPrice);
 
@@ -120,6 +142,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'product_sku' => 'required|unique:products,sku,'.$id,
+            'product_name' => 'required|unique:products,name,'.$id,
+            'slug' => 'unique:products,slug',
+            'feature_img' => 'required',
+            'product_weight' => 'required',
+            'product_height' => 'required',
+            'product_width' => 'required',
+            'product_length' => 'required',
+            'product_brand' => 'required',
+            'product_status' => 'required',
+        ], [
+            'product_sku.required' => 'SKU không được để trống',
+            'product_sku.unique' => 'SKU đang sử dụng đã bị trùng lặp',
+            'product_name.required' => 'Tên sản phẩm không được để trống',
+            'product_name.unique' => 'Tên sản phẩm đã bị trùng lặp, vui lòng đặt tên khác',
+            'slug.unique' => 'Slug đang sử dụng đã bị trùng lặp, vui lòng đặt tên khác',
+            'feature_img' => 'Ảnh đại diện không được để trống',
+            'product_weight' => 'Cân nặng không được để trống',
+            'product_height' => 'Chiều cao không được để trống',
+            'product_width' => 'Chiều rộng không được để trống',
+            'product_length' => 'Chiều dài không được để trống',
+            'product_brand' => 'Thương hiệu không được để trống',
+            'product_status' => 'Trạng thái không được để trống',
+        ]);
+
         return DB::transaction(function () use ($request, $id) {
             try {
                 $slug = Str::slug($request->product_name, '-');
@@ -146,14 +194,11 @@ class ProductController extends Controller
 
                 ProductPrice::where('id_ofproduct', $id)->update([
                     'regular_price' => $request->product_regular_price,
-                    'vpoint_retail' => $request->product_vpoint,
-                    'vpoint_2_star' => $request->product_discount_2,
-                    'vpoint_1_star' => $request->product_discount_1,
-                    'vpoint_platinum' => $request->product_discount_platinum,
-                    'vpoint_diamond' => $request->product_discount_diamond,
-                    'vpoint_gold' => $request->product_discount_gold,
-                    'vpoint_silver' => $request->product_discount_silver,
-                    'vpoint_member' => $request->product_discount_member,
+                    'price_ctv' => $request->price_ctv,
+                    'price_new_daily' => $request->price_new_daily,
+                    'price_daily_chuan' => $request->price_daily_chuan,
+                    'price_vip' => $request->price_vip,
+                    'nao_point' => $request->nao_point,
                 ]);
 
                 return redirect()->route('san-pham.edit', $id)->with('success', 'Cập nhật sản phẩm thành công');

@@ -9,7 +9,12 @@ use App\Http\Controllers\LoginRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DoinhomController;
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('dang-nhap', [LoginRegisterController::class, 'login'])->name('login');
@@ -83,6 +88,45 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // ----------------------------------------------------------------Thinh----------------------------------------------------------------
+//kira
+
+Route::resources([
+    'danh-muc-bai-viet' => BlogCategoryController::class,
+    'bai-viet' => BlogController::class,
+    'don-hang' => OrderController::class,
+]);
+Route::prefix('san-pham')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    Route::get('{slug}', [ProductController::class, 'show'])->name('product.show');
+});
+Route::get('tim-kiem-goi-y', [ProductController::class, 'getSearchSuggest'])->name('search.suggest');
+Route::get('tim-kiem', [ProductController::class, 'getSearchResult'])->name('search.show');
+
+Route::prefix('gio-hang')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('add', [CartController::class, 'addCart'])->name('cart.add');
+    Route::post('update', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::get('update-checkout', [CartController::class, 'updateCheckout'])->name('cart.update.checkout');
+    Route::post('checkout', [CartController::class, 'toCheckout'])->name('cart.checkout');
+});
+
+Route::post('/buy-now', [CheckoutController::class, 'buyNow'])->name('buynow');
+
+Route::prefix('thanh-toan')->group(function() {
+    Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/thanh-toan', [CheckoutController::class, 'postOrder'])->name('checkout.postOrder');
+    Route::get('chuyen-khoan/{order_code}', [CheckoutController::class, 'getPayment'])->name('checkout.payment');
+    Route::post('chuyen-khoan/{order_code}', [CheckoutController::class, 'postPayment'])->name('checkout.postPayment');
+
+});
+
+Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');
+
+Route::put('/sua-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'editAddressShipping'])->name('update.address.shipping');
+
+Route::delete('/xoa-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'deleteAddressShipping'])->name('delete.address.shipping');
+
+Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 
     // Profile User
     Route::prefix('profile')->group(function () {
@@ -135,18 +179,60 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/diemNAOnhanhtach', [HomeController::class, 'diemNAOnhanhtach']);
     Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
 
+    Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
+    Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
+    Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
+
+    //
+});
+
+// MINH START
+
+// Route::post('/dang-nhap', [ProductController::class, 'postLogin'])->name('postlogin');
+// Route::get('/san-pham', [ProductController::class, 'index'])->name('product.index');
+// Route::get('/san-pham/{slug}', [ProductController::class, 'detail'])->name('product.detail');
+
+
+
+Route::get('/checkout', function() {
+    return view('public.checkout.checkout');
+});
+
+Route::get('/checkout/nhap-thong-tin', function() {
+    return view('public.checkout.customer_form_info');
+});
+
+// Route::get('/thanh-toan', function() {
+//     return view('public.checkout.payment');
+// });
+
+// Route::get('/don-hang', function() {
+//     return view('public.order.index');
+// });
+
+// Route::get('/don-hang/chi-tiet', function() {
+//     return view('public.order.detail');
+// });
+
+// Route::get('/don-hang/thong-tin-van-chuyen', function() {
+//     return view('public.order.shipping_detail');
+// });
+
+// Route::get('/quan-ly-khach-hang', function() {
+//     return view('public.order.index_customer');
+// });
+
+// END MINH
+
 
     // MINH START
 
-    Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
-    Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
-    Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
-    Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
+    // Route::get('/san-pham/dai-ly', [ProductController::class, 'index_daily'])->name('product_daily');
+    // Route::get('/san-pham/ctv', [ProductController::class, 'index_ctv'])->name('product_ctv');
+    // Route::get('/san-pham/dai-ly/{slug}', [ProductController::class, 'detail_daily'])->name('product_detail_daily');
+    // Route::get('/san-pham/ctv/{slug}', [ProductController::class, 'detail_ctv'])->name('product_detail_ctv');
 
-    Route::get('/gio-hang', function() {
-        return view('public.checkout.cart');
-    });
-
+  
     Route::get('/checkout', function() {
         return view('public.checkout.checkout');
     });
@@ -155,21 +241,21 @@ Route::group(['middleware' => ['auth']], function () {
         return view('public.checkout.customer_form_info');
     });
 
-    Route::get('/thanh-toan', function() {
-        return view('public.checkout.payment');
-    });
+    // Route::get('/thanh-toan', function() {
+    //     return view('public.checkout.payment');
+    // });
 
-    Route::get('/don-hang', function() {
-        return view('public.order.index');
-    });
+    // Route::get('/don-hang', function() {
+    //     return view('public.order.index');
+    // });
 
-    Route::get('/don-hang/chi-tiet', function() {
-        return view('public.order.detail');
-    });
+    // Route::get('/don-hang/chi-tiet', function() {
+    //     return view('public.order.detail');
+    // });
 
-    Route::get('/don-hang/thong-tin-van-chuyen', function() {
-        return view('public.order.shipping_detail');
-    });
+    // Route::get('/don-hang/thong-tin-van-chuyen', function() {
+    //     return view('public.order.shipping_detail');
+    // });
 
     Route::get('/quan-ly-khach-hang', function() {
         return view('public.order.index_customer');
@@ -179,12 +265,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     //----------------vận chuyển---------------
-    Route::get('test-van-chuyen', [ShippingController::class, 'postShippingFee']);
+Route::get('test-van-chuyen', [ShippingController::class, 'postShippingFee']);
 
-    Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
+Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
 
-    Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 
-    Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
+Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 
-});

@@ -2,6 +2,21 @@ img {
     max-width: 100%;
 }
 
+.gallery {
+    overflow-y: scroll;
+    display: flex;
+}
+
+.gallery img {
+    width: 30%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.payment-confirm {
+    padding: 20px 0px;
+}
+
 .list-product-items {
     margin: 0 16.5px;
 }
@@ -43,9 +58,12 @@ img {
     color: var(--brand-color-green);
 }
 
+
 /* end index product CSS */
 
+
 /* PRODUCT DETAIL */
+
 .backheader h3 i {
     margin-right: 22px;
 }
@@ -55,11 +73,13 @@ img {
     margin-bottom: 27px;
 }
 
-.product-info-detail .item-info-title p, .product-info-detail .item-info-value h3 {
+.product-info-detail .item-info-title p,
+.product-info-detail .item-info-value h3 {
     margin-bottom: 16px;
 }
 
-.product-info-detail .item-info-title p:last-child, .product-info-detail .item-info-value h3:last-child {
+.product-info-detail .item-info-title p:last-child,
+.product-info-detail .item-info-value h3:last-child {
     margin-bottom: 0;
 }
 
@@ -67,12 +87,16 @@ img {
     padding: 14px 0;
 }
 
+
 /* .product-button button {
     padding: 10.5px 16px;
 } */
 
+
 /* CART */
-.section-cart, .section-checkout {
+
+.section-cart,
+.section-checkout {
     background-color: #F0F2F5;
 }
 
@@ -101,7 +125,8 @@ img {
     width: calc(100% - 104px);
 }
 
-.cart-quantity-control-group .down-btn, .cart-quantity-control-group .up-btn {
+.cart-quantity-control-group .down-btn,
+.cart-quantity-control-group .up-btn {
     align-items: center;
     color: #000;
     cursor: pointer;
@@ -132,7 +157,9 @@ img {
     font-size: 14px;
 }
 
+
 /* CHECKOUT */
+
 .checkout-add-info {
     padding: 15px 0;
 }
@@ -147,7 +174,14 @@ img {
     color: #fff;
 }
 
-.checkout-customer-info, .checkout-item, .checkout-coupon, .checkout-shipping, .checkout-shipping-fee, .checkout-payment, .checkout-info, .checkout-package {
+.checkout-customer-info,
+.checkout-item,
+.checkout-coupon,
+.checkout-shipping,
+.checkout-shipping-fee,
+.checkout-payment,
+.checkout-info,
+.checkout-package {
     padding: 16px;
     margin-bottom: 8px;
 }
@@ -171,7 +205,9 @@ img {
     padding: 16px;
 }
 
+
 /* NHẬP THÔNG TIN KHÁCH HÀNG */
+
 .customer-fill-info {
     padding: 0 16px;
 }
@@ -180,7 +216,8 @@ img {
     margin-top: 36px;
 }
 
-.form-customer-info h3, .form-customer-info label {
+.form-customer-info h3,
+.form-customer-info label {
     margin-bottom: 0;
 }
 
@@ -190,7 +227,9 @@ img {
     padding: 10.5px 100.5px;
 }
 
+
 /* PAYMENT */
+
 .section-payment {
     padding: 0 16px;
     margin-top: 22px;
@@ -216,9 +255,7 @@ img {
     margin: 41px 0;
 }
 
-button.confirm-payment {
-    margin-bottom: 44px;
-}
+button.confirm-payment {}
 
 .payment-bill label {
     cursor: pointer;
@@ -233,7 +270,9 @@ button.confirm-payment {
     color: var(--text-color);
 }
 
+
 /* ĐƠN HANG */
+
 .section-order {
     padding: 0 14px;
 }
@@ -243,6 +282,10 @@ button.confirm-payment {
     border-radius: 15px;
     box-shadow: 0px 4px 15px rgb(0 0 0 / 15%);
     margin: 16px 0;
+}
+
+.payment-success img {
+    width: 50px;
 }
 
 .order-item-inner {
@@ -261,7 +304,6 @@ button.confirm-payment {
 }
 
 .order-item-content {
-    width: calc(100% - 74px);
     margin-left: 16px;
 }
 
@@ -281,7 +323,9 @@ button.confirm-payment {
     padding: 0 16px;
 }
 
+
 /* CHI TIẾT ĐƠN HÀNG */
+
 .section-order-detail>div {
     padding: 16px;
     margin-bottom: 8px;
@@ -313,7 +357,6 @@ button.confirm-payment {
     margin-left: 15px;
 }
 
-
 .order-info-items .order-info-item {
     padding: 16px;
     margin-bottom: 8px;
@@ -323,7 +366,9 @@ button.confirm-payment {
     color: var(--brand-color-green);
 }
 
+
 /* ĐƠN HÀNG - CHI TIẾT VẬN CHUYỂN */
+
 .section-shipping-detail>div {
     padding: 16px;
     margin-bottom: 8px;
@@ -399,6 +444,7 @@ button.confirm-payment {
     background-color: var(--primary-color);
 }
 
+
 /*.shipping-progress-item.current::before { 
     border-left: 2px solid var(--primary-color);
     }
@@ -416,8 +462,11 @@ button.confirm-payment {
     background-color: white;
 }*/
 
+
 /* DANH SÁCH KHÁCH HÀNG */
-.section-customer, .div-title {
+
+.section-customer,
+.div-title {
     padding: 0 16px;
 }
 

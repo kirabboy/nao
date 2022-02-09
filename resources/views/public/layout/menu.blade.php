@@ -4,7 +4,7 @@
         <i class="fa fa-home" aria-hidden="true"></i>
         <span>Trang chủ</span>
     </a>
-    <a href="{{ URL::to('/san-pham/dai-ly') }}" class="d-flex justify-content-center align-items-center flex-column item">
+    <a href="{{ URL::to('/san-pham') }}" class="d-flex justify-content-center align-items-center flex-column item">
     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <span>Sản phẩm</span>
     </a>

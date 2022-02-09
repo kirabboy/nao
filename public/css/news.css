@@ -1,79 +1,130 @@
-.news{
+.news {
     margin-top: 30px;
 }
-.news ul.nav{
-    margin-top:15px;
+
+.news ul.nav {
+    padding: 15px 0px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
 }
-.news .nav-tabs .nav-item.show .nav-link, .news .nav-tabs .nav-link.active {
+
+.blog-grid-item .title {
+    height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.blog-readmore {
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.blog-content img {
+    width: 100%;
+}
+
+.blog-title {
+    margin-bottom: 20px;
+}
+
+.news ul.nav::-webkit-scrollbar {
+    display: none;
+}
+
+.news .nav-tabs .nav-item.show .nav-link,
+.news .nav-tabs .nav-link.active {
     color: #F6872E;
     background-color: #FDE7D5;
     border-color: #FDE7D5;
     border-radius: 100px;
     font-weight: 600;
 }
+
 .news .nav-tabs .nav-link {
+    white-space: nowrap;
     margin-bottom: -1px;
     border: 1px solid #DBDBDB;
     color: #252525;
     font-weight: 600;
     border-radius: 100px;
 }
-.news ul.nav .nav-item:not(:first-child){
+
+.news ul.nav .nav-item:not(:first-child) {
     margin-left: 12px;
 }
-.news .nav-tabs{
+
+.news .nav-tabs {
     border-bottom: none;
 }
-.news .tab-content{
+
+.news .tab-content {
     margin-top: 30px;
 }
-.news .content{
+
+.news .content {
     padding: 12px;
 }
-.news a.content{
+
+.news a.content {
     text-decoration: none;
 }
-.news .content:not(:last-child){
+
+.news .content:not(:last-child) {
     margin-bottom: 12px;
 }
-.news .content p{
+
+.news .content p {
     margin-bottom: 0px;
 }
-.news .content .left{
+
+.news .content .left {
     width: 33%;
     margin-right: 12px;
     border-radius: 12px;
     overflow: hidden;
 }
-.news .content .left img{
+
+.news .content .left img {
     width: 100%;
 }
-.news .content .right p:first-child{
+
+.news .content .right p:first-child {
     margin-bottom: 6px;
 }
-.news .content .title{
+
+.news .content .title {
     color: #252525;
 }
-.news .content .right .time i{
+
+.news .content .right .time i {
     color: #199DA4;
     margin-right: 6px;
 }
-.news .content .right .time span{
+
+.news .content .right .time span {
     font-size: 12px;
     color: #7C7C7C;
     line-height: 18px;
 }
-.news .content .right .status i{
+
+.news .content .right .status i {
     font-size: 6px;
-    line-height:16px;
-    margin-right:4px;
+    line-height: 16px;
+    margin-right: 4px;
 }
-.news .content .right .status span{
+
+.news .content .right .status span {
     font-size: 12px;
     font-weight: 500;
-    line-height:16px;
+    line-height: 16px;
 }
-.news .content .right .status, .sale-product .status{
+
+.news .content .right .status,
+.sale-product .status {
     display: flex;
     align-items: center;
     background-color: #D0E4FF;
@@ -82,5 +133,3 @@
     padding: 0px 6px;
     margin-left: 8px;
 }
-
-

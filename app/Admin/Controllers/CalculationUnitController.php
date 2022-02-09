@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\CalculationUnit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CalculationUnitController extends Controller
 {
@@ -57,6 +58,18 @@ class CalculationUnitController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'unitCode' => 'bail|required|unique:product_calculation_unit,code',
+            'unitName' => 'bail|required|unique:product_calculation_unit,name',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()
+            ], 400);
+        }
+
         $calculationUnit = CalculationUnit::create([
             'code' => $request->unitCode,
             'name' => $request->unitName,
@@ -80,6 +93,17 @@ class CalculationUnitController extends Controller
 
     public function update(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'unitCode' => 'bail|required|unique:product_calculation_unit,code,'.$request->id,
+            'unitName' => 'bail|required|unique:product_calculation_unit,name,'.$request->id,
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()
+            ], 400);
+        }
+
         $calculationUnit = CalculationUnit::where('id', $request->id)->update([
             'code' => $request->unitCode,
             'name' => $request->unitName,

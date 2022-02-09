@@ -59,4 +59,12 @@ class User extends Authenticatable
     public function getIdCustomers() {
         return $this->hasMany(Customer::class,'id_ofuser','id');
     }
+
+    public function user_address_shipping() {
+		return $this->hasOne(UserAddressShipping::class, 'user_id');
+	}
+
+    public function orders() {
+        return $this->hasMany(Order::class, 'id_user');
+    }
 }

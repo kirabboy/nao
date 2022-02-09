@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
@@ -21,6 +23,7 @@ class ShippingController extends Controller
     //         'status' => 20
     //     ]);
     // }
+
     // lấy quận huyện theo tỉnh thành
     public function districtOfProvince(Request $request){
         return optional(Province::where('matinhthanh', $request->id)->first(), function ($response) {
@@ -38,11 +41,29 @@ class ShippingController extends Controller
 
         //id_order: 0 tính phí từ khách hàng, ngược lại là của admin trong đơn hàng
         if($request->id_order == 0){
+            $address_shipping = Auth::user()->user_address_shipping; 
+            if(!$address_shipping){
+                return response()->json(['msg' => 'Vui lòng thêm thông tin khách hàng'], 400);
+            }
+            $recieve_province_id = $address_shipping->province_id;
+            $recieve_district_id = $address_shipping->district_id;
+
+            $ware_house = $address_shipping->warehouse;
+
+            $send_province_id = $ware_house->id_province;
+            $send_district_id = $ware_house->id_district;
+
             //tổng tiền đơn hàng
-            $order_total = (int)str_replace(",", "", Cart::instance('shopping')->subtotal());
-            $products = Cart::instance('shopping')->content();
+            // $order_total = (int)str_replace(",", "", Cart::instance('shopping')->subtotal());
+            $rowids = Session::get('rowids');
+            $cart = Cart::instance('shopping');
+            $order_total = 0;
+            foreach(explode(',',$rowids) as $rowid){
+                $order_total += Cart::instance('shopping')->get($rowid)->price *Cart::instance('shopping')->get($rowid)->qty; 
+            }
+            // $products = Cart::instance('shopping')->content();
             //tính toán cân nặng, chiều dài, chiều rộng, chiều cao của tất cả sp trong giỏ hàng.
-            $calc = $this->calculateProductShipping($products);
+            $calc = $this->calculateProductShipping($cart, $rowids);
         }else{
             $order = Order::find($request->id_order);
             $order_total = $order->sub_total; 
@@ -50,16 +71,18 @@ class ShippingController extends Controller
             $calc = $this->calculateProductShippingAdmin($products);
         }
 
-        $shipping_fee = json_decode($this->calculateCartShipping($request->district, $request->province, $order_total, $calc)->getContent(), true);
+        $shipping_fee = json_decode($this->calculateCartShipping($recieve_district_id, $recieve_province_id, $order_total, $calc, $send_district_id, $send_province_id)->getContent(), true);
 
-        return view('public.template-render.calc-shipping')
-            ->with('EMS', $shipping_fee['EMS'])
-            ->with('BK', $shipping_fee['BK'])
-            ->render(); 
+        return response()->json(['fee_shipping' => $shipping_fee['BK']], 200);
+
+        // return view('public.template-render.calc-shipping')
+        //     ->with('EMS', $shipping_fee['EMS'])
+        //     ->with('BK', $shipping_fee['BK'])
+        //     ->render(); 
     }
 
     // Tính phí ship tất cả sp trong giỏ hàng
-    public function calculateCartShipping($district, $province, $order_total, $calc){
+    public function calculateCartShipping($district, $province, $order_total, $calc, $send_district, $send_province){
 
         $shipping_config = ShippingConfig::select('production', 'username', 'password')->first();
 
@@ -69,7 +92,7 @@ class ShippingController extends Controller
         $get_link = $configShippingController->checkEnvironmentConfig($shipping_config->production);
 
         //Tính phí vận chuyển bên vnpost
-        $response_shippinh_fee = $this->callApiShippingFee($district, $province, $calc, $order_total, $get_link);
+        $response_shippinh_fee = $this->callApiShippingFee($district, $province, $calc, $order_total, $get_link, $send_district, $send_province);
 
         //token hết thời gian.
         if($response_shippinh_fee->status() == 401){
@@ -78,7 +101,7 @@ class ShippingController extends Controller
             $configShippingController->updateTokenVnPost($shipping_config->production, $shipping_config->username, $shipping_config->password);
 
             //gọi lại hàm tạo đơn hàng vận chuyển
-            $response_shippinh_fee = $this->callApiShippingFee($district, $province, $calc, $order_total, $get_link);
+            $response_shippinh_fee = $this->callApiShippingFee($district, $province, $calc, $order_total, $get_link, $send_district, $send_province);
         }
 
         //kết quả trả về: object -> array.
@@ -92,7 +115,7 @@ class ShippingController extends Controller
     }
 
     //gọi api sang vnpost để tính phí
-    public function callApiShippingFee($district, $province, $calc, $order_total, $get_link){
+    public function callApiShippingFee($district, $province, $calc, $order_total, $get_link, $send_district, $send_province){
 
         //lấy cấu hình vận chuyển
         $shipping_config = ShippingConfig::first();
@@ -101,8 +124,8 @@ class ShippingController extends Controller
             'Content-Type' => 'application/json',
             'h-token' => $shipping_config->token
         ])->post($get_link.'/api/api/CustomerConnect/TinhCuocTatCaDichVu', [
-            "SenderDistrictId" => "7270",
-            "SenderProvinceId" => "70",
+            "SenderDistrictId" => $send_district,
+            "SenderProvinceId" => $send_province,
             "ReceiverDistrictId" => $district,
             "ReceiverProvinceId" => $province,
             "Weight" => $calc['weight'],
@@ -121,16 +144,19 @@ class ShippingController extends Controller
     }
 
     //Tính toán cân nặng, chiều dài, chiều rộng, chiều cao của tất cả sp trong giỏ hàng.
-    public function calculateProductShipping($products){
+    public function calculateProductShipping($cart, $rowids){
         $weight = 0;
         $height = 0;
         $width = 0;
         $length = 0;
-        foreach($products as $value){
-            $product_info = $value->model;
-            $weight += $product_info->weight*$value->qty;
+        foreach(explode(',',$rowids) as $value){
+            $item = $cart->get($value);
+
+            $product_info = $item->model;
+
+            $weight += $product_info->weight*$item->qty;
             $height = $height < $product_info->height ? $product_info->height : $height;
-            $width += $product_info->width*$value->qty;
+            $width += $product_info->width*$item->qty;
             $length = $length < $product_info->length ? $product_info->length : $length;
         }
         return array("weight" => $weight, "height" => $height, "width" => $width, "length" => $length);

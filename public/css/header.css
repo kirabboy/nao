@@ -76,7 +76,7 @@ header a {
 
 .search-top {
     width: 90%;
-    z-index: 99999999999;
+    z-index: 999;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -115,6 +115,26 @@ header a {
 .search-top .search-input i,
 .search-top .search-input input {
     font-size: 16px;
+}
+
+.show-search-suggest {
+    display: none;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px 5px;
+    border: 1px solid #ddd;
+}
+
+.show-search-suggest ul li a {
+    color: #000;
+}
+
+.show-search-suggest ul {
+    text-align: left;
+}
+
+a:hover {
+    text-decoration: unset;
 }
 
 body {
