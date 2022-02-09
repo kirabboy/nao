@@ -41,12 +41,23 @@ class ShippingController extends Controller
 
         //id_order: 0 tính phí từ khách hàng, ngược lại là của admin trong đơn hàng
         if($request->id_order == 0){
-            $address_shipping = Auth::user()->user_address_shipping; 
-            if(!$address_shipping){
-                return response()->json(['msg' => 'Vui lòng thêm thông tin khách hàng'], 400);
+            if(Session::has('customer_address')){
+
+                $address_shipping = Session::get('customer_address');
+
+            }elseif($address_shipping->id_province != null && $address_shipping->id_district !=null && $address_shipping->id_ward != null && $address_shipping->id_warehouse != null){
+                
+                $address_shipping = Auth::user();
+
+            }else{
+                $address_shipping == null;
             }
-            $recieve_province_id = $address_shipping->province_id;
-            $recieve_district_id = $address_shipping->district_id;
+            
+            if(!$address_shipping){
+                return response()->json(['msg' => 'Vui lòng thêm đầy đủ thông tin khách hàng'], 400);
+            }
+            $recieve_province_id = $address_shipping->id_province;
+            $recieve_district_id = $address_shipping->id_district;
 
             $ware_house = $address_shipping->warehouse;
 

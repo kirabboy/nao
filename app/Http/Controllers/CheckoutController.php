@@ -16,6 +16,8 @@ use App\Models\OrderAddress;
 use App\Models\OrderPayment;
 use App\Models\OrderInfo;
 use App\Models\UserAddressShipping;
+use App\Models\Customer;
+use App\Models\CustomerAddress;
 use App\Http\Controllers\ShippingController;
 
 class CheckoutController extends Controller
@@ -29,23 +31,25 @@ class CheckoutController extends Controller
             $rowids = Session::get('rowids');
             $cart = Cart::instance('shopping');
 
-            $address_shipping = Auth::user()->user_address_shipping;
-
             $province = Province::all();
             $warehouse = Warehouse::select('id', 'name')->get();
-
+            $address_shipping = '';
             $subtotal = 0;
             $nao_point = 0;
             foreach (explode(',', $rowids) as $rowid) {
                 $subtotal += $cart->get($rowid)->price * $cart->get($rowid)->qty;
                 $nao_point += $cart->get($rowid)->model->productPrice()->value('nao_point');
             }
-            if ($address_shipping) {
-                $district = District::whereMatinhthanh($address_shipping->province_id)->get();
+            // Session::put('customer_address', CustomerAddress::find(1));
+            $address_shipping = null;
 
-                $ward = Ward::whereMaquanhuyen($address_shipping->district_id)->get();
+            if(Session::has('customer_address')){
+                $address_shipping = Session::get('customer_address'); 
+                $district = District::whereMatinhthanh($address_shipping->id_province)->get();
 
-                return view('public.checkout.index', compact('user', 'nao_point', 'rowids', 'cart', 'subtotal', 'address_shipping', 'province', 'warehouse', 'district', 'ward'));
+                $ward = Ward::whereMaquanhuyen($address_shipping->id_district)->get();
+                $address_full = $this->addressFull($address_shipping->id_province, $address_shipping->id_district, $address_shipping->id_ward, $address_shipping->address);
+                return view('public.checkout.index', compact('user', 'nao_point', 'rowids', 'cart', 'subtotal', 'address_shipping', 'province', 'warehouse', 'district', 'ward', 'address_full'));
             }
             return view('public.checkout.index', compact('user', 'nao_point', 'rowids', 'cart', 'subtotal', 'address_shipping', 'province', 'warehouse'));
         } else {
@@ -175,8 +179,11 @@ class CheckoutController extends Controller
         return true;
     }
 
-    public function editAddressShipping(Request $request, UserAddressShipping $address_shipping)
+    public function editAddressShipping(Request $request, CustomerAddress $address_shipping)
     {
+        if(Session::has('cusomter_address')){
+            Session::forget('cusomter_address');
+        }
         $this->validate($request, [
             'fullname' => 'required|max:255',
             'phone' => 'required|max:255',
@@ -188,18 +195,40 @@ class CheckoutController extends Controller
         ]);
 
         $data = $request->all();
-        $province_name = Province::whereMatinhthanh($data['province_id'])->first()->tentinhthanh;
-        $district_name = District::whereMaquanhuyen($data['district_id'])->first()->tenquanhuyen;
-        $ward_name = Ward::whereMaphuongxa($data['ward_id'])->first()->tenphuongxa;
-        $data['address_full'] = $data['address'] . ', ' . $ward_name . ', ' . $district_name . ', ' . $province_name;
 
-        $address_shipping->update($data);
-        return true;
+        Customer::find($address_shipping->id_customer)->update([
+            'name' => $data['fullname'],
+            'phone' => $data['phone']
+        ]);
+
+        $address_shipping->update([
+            'id_province' => $data['province_id'], 
+            'id_district' => $data['district_id'], 
+            'id_ward' => $data['ward_id'], 
+            'address' => $data['address'], 
+            'id_warehouse' => $data['warehouse_id'], 
+        ]);
+        Session::put('customer_address', $address_shipping);
+
+        return back();
     }
 
-    public function deleteAddressShipping(Request $request, UserAddressShipping $address_shipping)
+    public function deleteAddressShipping(Request $request, CustomerAddress $address_shipping)
     {
-        $address_shipping->delete();
+        if(Session::has("customer_address")){
+            Session::forget("customer_address");
+        }
         return back();
+    }
+    public function addressFull($province_id, $district_id, $ward_id, $address){
+
+        $province_name = Province::whereMatinhthanh($province_id)->first()->tentinhthanh;
+
+        $district_name = District::whereMaquanhuyen($district_id)->first()->tenquanhuyen;
+
+        $ward_name = Ward::whereMaphuongxa($ward_id)->first()->tenphuongxa;
+
+        $data = $address . ', ' . $ward_name . ', ' . $district_name . ', ' . $province_name;
+        return $data;
     }
 }

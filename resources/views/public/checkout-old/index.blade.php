@@ -23,7 +23,7 @@
         <div class="info-shipping">
             @if ($address_shipping == null)
                 <div class="checkout-add-info text-center">
-                    <a href="{{ route('add.address.shipping.index') }}" class="add-info btn btn-secondary btn-rounded">
+                    <a href="#" class="show-modal add-info btn btn-secondary btn-rounded">
                         <span class="add-info-plus-icon d-inline-block mb-0">+</span>
                         <span>Thêm thông tin khách hàng</span>
                     </a>

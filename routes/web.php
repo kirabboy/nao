@@ -14,6 +14,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AddressCustomerController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -118,11 +119,22 @@ Route::prefix('thanh-toan')->group(function() {
 
 });
 
-Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');
+Route::get('/them-dia-chi-giao-hang-khach-hang', [AddressCustomerController::class, 'index'])->name('add.address.shipping.index');
+
+Route::post('them-dia-chi-giao-hang-khach-hang', [AddressCustomerController::class, 'addAddressShipping'])->name('add.address.shipping');
 
 Route::put('/sua-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'editAddressShipping'])->name('update.address.shipping');
 
 Route::delete('/xoa-dia-chi-giao-hang/{address_shipping:id}', [CheckoutController::class, 'deleteAddressShipping'])->name('delete.address.shipping');
+
+Route::get('tim-kiem-dia-chi-khach-hang', [AddressCustomerController::class, 'searchAddressCusstomer']);
+
+Route::get('tra-ve-thong-tin-khach-hang', [AddressCustomerController::class, 'responseInfoCustomer']);
+
+//add address shipping old
+// Route::post('/them-dia-chi-giao-hang', [CheckoutController::class, 'addAddressShipping'])->name('add.address.shipping');
+
+
 
 Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'])->name('post.shippingFee');
 
