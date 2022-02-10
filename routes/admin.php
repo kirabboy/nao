@@ -184,10 +184,20 @@ Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name
         Route::get('/{id}/download', [QuanLyDaiLyController::class, 'downDanhSach']);
         //dowListDoiNhom
     });
+
     Route::prefix('canhan')->group(function () { 
         Route::get('/', [QuanLyDaiLyController::class, 'canhan'])->name('listcanhan');
         Route::get('/download', [QuanLyDaiLyController::class, 'dowListUser']);
         Route::get('/{id}', [QuanLyDaiLyController::class, 'chitietcanhan']);
+    });
+
+    Route::prefix('nangcapdaily')->group(function () {
+        Route::get('/', [QuanLyDaiLyController::class, 'nangcapdaily'])->name('nangcapdaily');
+        Route::prefix('/{id}')->group(function () {
+            Route::get('/', [QuanLyDaiLyController::class, 'detailNangcap'])->name('detailNangcap');
+            Route::get('/dailychinhthuc', [QuanLyDaiLyController::class, 'dailychinhthuc'])->name('dailychinhthuc');
+            Route::get('/dailytamthoi', [QuanLyDaiLyController::class, 'dailytamthoi'])->name('dailytamthoi');
+        });
     });
 
     //KhuyenMai 

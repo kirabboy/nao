@@ -141,7 +141,9 @@ Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'
         Route::get('/resetPassword', [ProfileController::class, 'resetPassword']);
         Route::post('/resetPassword', [ProfileController::class, 'postResetPassword'])->name('updateResetPassword');
 
-        Route::get('/chuyenkhoan', [ProfileController::class, 'chuyenkhoan']);
+        Route::get('/chuyenkhoan', [ProfileController::class, 'chuyenkhoan'])->name('chuyenkhoan');
+        Route::post('/chuyenkhoan', [ProfileController::class, 'postChuyenkhoan'])->name('postChuyenkhoan');
+
         Route::get('/dangkynangcapdaily', [ProfileController::class, 'dangkynangcapdaily']);
         Route::get('/nangcapdaily', [ProfileController::class, 'nangcapdaily']);
 
@@ -180,6 +182,8 @@ Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'
     Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
 
     Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
+    
+
     Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
     Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
 

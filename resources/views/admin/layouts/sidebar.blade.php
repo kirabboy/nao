@@ -23,7 +23,7 @@
                 <span class="dropdown-content">
                     <a href="{{ URL::to('/admin/doinhom') }}">Đội nhóm</a>
                     <a href="{{ URL::to('/admin/canhan') }}">Cá nhân</a>
-                    <a href="{{ URL::to('/admin/thong-tin-ban-hang') }}">Thông tin bán hàng</a>
+                    <a href="{{ URL::to('/admin/nangcapdaily') }}">Nâng cấp đại lý</a>
                 </span>
             </li>
             <li class="dropdown">

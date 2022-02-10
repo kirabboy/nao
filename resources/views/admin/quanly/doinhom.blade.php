@@ -43,18 +43,26 @@
 					  <tbody>
 						@foreach ($user as $value)
 						<tr>
-						  <th scope="row">{{$value->id}}</th>
-						  <td><a href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
-						  <td>{{$value->name}}</td>
-						  <td>0{{$value->phone}}</td>
-						  <td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
+						  	<th scope="row">{{$value->id}}</th>
+						  	<td><a href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
+						  	<td>{{$value->name}}</td>
+						  	<td>0{{$value->phone}}</td>
+						  	<td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
 								->select('tenphuongxa')->first()->tenphuongxa ?? ''}}</td>
-						  <td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
+						  	<td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
 								->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
-						  <td>{{DB::table('province')->where('matinhthanh', $value->id_province)
+						  	<td>{{DB::table('province')->where('matinhthanh', $value->id_province)
 								->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
-						  <td>{{($value->level)}}</td>
-						  <td>{{($value->getIdDad->getNameDad->code_user)}}</td>
+						  	<td>
+							  	@if($value->level == 1)
+									Cộng tác viên
+								@elseif ($value->level == 2)
+									Đại lý chuẩn
+								@elseif ($value->level == 3)
+									Đại lý tạm thời
+								@endif
+						  	</td>
+						  	<td>{{($value->getIdDad->getNameDad->code_user)}}</td>
 						</tr>
 						@endforeach
 					  </tbody>

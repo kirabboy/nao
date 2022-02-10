@@ -31,9 +31,9 @@
             @if ($user->level == 1)
                 <button class="btn btn-radius btn-xanhngoc">Cộng tác viên</button>
             @elseif ($user->level == 2)
-                <button class="btn btn-radius btn-cam">Đại lý mới</button>
-            @elseif ($user->level == 3)
                 <button class="btn btn-radius btn-cam">Đại lý chuẩn</button>
+            @elseif ($user->level == 3)
+                <button class="btn btn-radius btn-cam">Đại lý mới</button>
             @else 
                 <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
             @endif

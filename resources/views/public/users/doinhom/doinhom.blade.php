@@ -40,7 +40,12 @@
                     <a class="text-dark" href="{{route('doinhom.show',$value->id)}}">
                         <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">
                             <div class="card-body pt-0 pb-0">
-                                <p class="m-0">{{$value->name}}
+                                <p class="m-0">
+                                    @if($value->name != null)
+                                        {{ $value->name }}
+                                    @else 
+                                        Chưa có tên
+                                    @endif
                                 @if($value->level == 1)
                                     <span id="btn_ctv">CTV</span></p>
                                 @else

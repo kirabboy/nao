@@ -53,4 +53,38 @@ class QuanLyDaiLyController extends Controller
     public function downDanhSach(Excel $excel,$id) {
         return $excel->download(new DanhSachDoiNhom($id), 'DanhSachDoiNhom.xlsx');
     }
+
+    public function nangcapdaily() {
+        $user = User::with('getNangcap')->get();
+        //dd($user->find(1)->getNangcap->where('status','=',0));
+        // $nangcap = UserUpgrade::
+        return view('admin.quanly.nangcapdaily',['user' => $user]);
+    }
+
+    public function detailNangcap($id) {
+        $user = User::with('getNangcap')->find($id);
+        return view('admin.quanly.detailNangcap',['user' => $user]);
+    }
+
+    public function dailychinhthuc($id) {
+        $user = User::with('getNangcap')->find($id);
+        $user->level = 2;
+        foreach($user->getNangcap->where('status','=',0) as $value) {
+            $value->status = 1;
+            $value->save();
+        }
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function dailytamthoi($id) {
+        $user = User::with('getNangcap')->find($id);
+        $user->level = 3;
+        $user->save();
+        foreach($user->getNangcap->where('status','=',0) as $value) {
+            $value->status = 1;
+            $value->save();
+        }
+        return redirect()->back();
+    }
 }

@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\UsersParent;
-use App\Models\Customer;
+// use App\Models\UsersParent;
+// use App\Models\Customer;
+// use App\Models\UserUpgrade;
 
 class User extends Authenticatable
 {
@@ -58,6 +59,10 @@ class User extends Authenticatable
 
     public function getIdCustomers() {
         return $this->hasMany(Customer::class,'id_ofuser','id');
+    }
+
+    public function getNangcap() {
+        return $this->hasMany(UserUpgrade::class, 'user_id', 'id');
     }
 
     public function user_address_shipping() {
