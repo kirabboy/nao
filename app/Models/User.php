@@ -72,4 +72,8 @@ class User extends Authenticatable
     public function orders() {
         return $this->hasMany(Order::class, 'id_user');
     }
+    public function warehouse() {
+        return $this->belongsTo(Warehouse::class, 'id_warehouse')->select('id_province', 'id_district');
+    }
+
 }

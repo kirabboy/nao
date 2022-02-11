@@ -103,25 +103,25 @@ $(document).on('change', 'select[name="district_id"]', function(event) {
         });
 
 });
-$(document).on('submit', '#addAddressShipping', function(e) {
-    e.preventDefault();
-    var that = $(this);
-    that.find("button[type='submit']").attr('disabled', true);
-    $.ajax({
-            url: that.attr('action'),
-            type: 'POST',
-            data: that.serialize(),
-        })
-        .done(function() {
-            // $('.info-shipping').html(data);
-            // $('#modalAddress').modal('hide');
-            // that.trigger("reset");
+// $(document).on('submit', '#addAddressShipping', function(e) {
+//     e.preventDefault();
+//     var that = $(this);
+//     that.find("button[type='submit']").attr('disabled', true);
+//     $.ajax({
+//             url: that.attr('action'),
+//             type: 'POST',
+//             data: that.serialize(),
+//         })
+//         .done(function() {
+//             // $('.info-shipping').html(data);
+//             // $('#modalAddress').modal('hide');
+//             // that.trigger("reset");
 
-            location.reload();
-        }).fail(function() {
-            that.find("button[type='submit']").removeAttr('disabled');
-        });
-})
+//             location.reload();
+//         }).fail(function() {
+//             that.find("button[type='submit']").removeAttr('disabled');
+//         });
+// })
 
 $(document).on('submit', '#editAddressShipping', function(e) {
     e.preventDefault();
