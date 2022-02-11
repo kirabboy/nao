@@ -38,6 +38,10 @@ function getPriceOfLevel($user, $price)
             break;
         case 2:
             return $price->price_new_daily;
+            break;
+        default:
+            return $price->price_new_daily;
+            break;
     }
 }
 function orderStatus($status)

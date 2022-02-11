@@ -123,7 +123,7 @@
                     <h4>7.500đ</h4>
                     <h4>-0đ</h4>
                     @if ($user->level != 1)
-                        <input type="hiden" name="nao_point" value="{{ $nao_point }}">
+                        <input type="hidden" name="nao_point" value="{{ $nao_point }}">
                         <h4>{{ formetNumber($nao_point) }}</h4>
                     @else
                         <input type="hidden" name="nao_point" value="0">
