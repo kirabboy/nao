@@ -33,7 +33,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $nganhHang = ProductCategory::where('typeof_category', 0)->get();
+        $nganhHang = ProductCategory::select('id', 'name')->whereCategory_parent(0)->get();
         $calculationUnits = CalculationUnit::all();
         $brands = Brand::all();
         return view('admin.product.tao-san-pham', compact('nganhHang', 'calculationUnits', 'brands'));
@@ -92,7 +92,7 @@ class ProductController extends Controller
                     'slug' => $slug,
                     'feature_img' => $request->feature_img,
                     'gallery' => rtrim($request->gallery_img, ", "),
-                    'category_id' => $request->child_category == "-1" ? $request->category_parent : $request->child_category,
+                    'category_id' => $request->child_category == '-1' ? $request->category_parent : $request->child_category,
                     'calculation_unit' => $request->product_calculation_unit,
                     // 'quantity' => $request->product_quantity,
                     'weight' => $request->product_weight,
@@ -126,11 +126,16 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('productCategory', 'productCalculationUnit', 'productBrand', 'productPrice')->whereId($id)->first();
+        // dd($product);
+        $category_parent_id = optional($product->productCategory)->typeof_category == 0 ? optional($product->productCategory)->id :  optional($product->productCategory)->category_parent;
         $nganhHang = ProductCategory::where('typeof_category', 0)->get();
+
+        $nhomhang = ProductCategory::where('category_parent', $category_parent_id)->get();
+
         $calculationUnits = CalculationUnit::all();
         $brands = Brand::all();
-        return view('admin.product.cap-nhat-san-pham', compact('product', 'nganhHang', 'calculationUnits', 'brands'));
+        return view('admin.product.cap-nhat-san-pham', compact('product', 'nganhHang', 'calculationUnits', 'brands', 'nhomhang', 'category_parent_id'));
     }
 
     /**
@@ -178,7 +183,7 @@ class ProductController extends Controller
                     'slug' => $slug,
                     'feature_img' => $request->feature_img,
                     'gallery' => rtrim($request->gallery_img, ", "),
-                    'category_id' => $request->child_category == "-1" ? $request->category_parent : $request->child_category,
+                    'category_id' => $request->category_child == "-1" ? $request->category_parent : $request->category_child,
                     'calculation_unit' => $request->product_calculation_unit,
                     // 'quantity' => $request->product_quantity,
                     'weight' => $request->product_weight,

@@ -129,30 +129,30 @@
                                     <td><a style="text-decoration: none;"
                                             href="{{ route('san-pham.edit', $item->id) }}">{{ $item->name }}</a></td>
                                     <td>{{ $item->productBrand->name }}</td>
-                                    <td>{{ $item->productCategory->typeof_category == 2 ? $item->productCategory->name : '' }}
+                                    <td>{{ optional($item->productCategory)->typeof_category == 2 ? $item->productCategory->name : '' }}
                                     </td>
                                     <td>
                                         <!-- Nhom san pham -->
-                                        @if ($item->productCategory->typeof_category == 1)
-                                            {{ $item->productCategory->name }}
-                                        @elseif($item->productCategory->parentCategories != null && $item->productCategory->typeof_category == 2)
-                                            {{ $item->productCategory->parentCategories->name }}
+                                        @if (optional($item->productCategory)->typeof_category == 1)
+                                            {{ optional($item->productCategory)->name }}
+                                        @elseif(optional($item->productCategory)->parentCategories != null && optional($item->productCategory)->typeof_category == 2)
+                                            {{ optional($item->productCategory)->parentCategories->name }}
                                         @endif
                                     </td>
                                     <td>
                                         <!-- Nganh hang -->
-                                        @if ($item->productCategory->parentCategories->typeof_category == 0)
-                                            {{ $item->productCategory->parentCategories->name }}
-                                        @elseif($item->productCategory->parentCategories->megaParentCategories != null)
-                                            {{ $item->productCategory->parentCategories->megaParentCategories->name }}
+                                        @if (optional(optional($item->productCategory)->parentCategories)->typeof_category == 0)
+                                            {{ optional(optional($item->productCategory)->parentCategories)->name }}
+                                        @elseif(optional(optional($item->productCategory)->parentCategories)->megaParentCategories != null)
+                                            {{ optional(optional($item->productCategory)->parentCategories)->megaParentCategories->name }}
                                         @endif
                                     </td>
-                                    <td>{{ $item->productCalculationUnit->name }}</td>
+                                    <td>{{ optional($item->productCalculationUnit)->name }}</td>
                                     <td>{{ $item->weight }} gam</td>
                                     <td>{{ $item->length }}cm</td>
                                     <td>{{ $item->width }}cm</td>
                                     <td>{{ $item->height }}cm</td>
-                                    {{-- <td>{{ moneyFormat($item->productPrice->regular_price) }}đ</td> --}}
+                                    {{-- <td>{{ moneyFormat(optional($item->productPrice)->regular_price) }}đ</td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

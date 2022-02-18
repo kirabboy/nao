@@ -59,6 +59,9 @@
                             </div>
                             @if($order->status !=3 )
                             <div class="content-shipping-create">
+                                <a href="{{route('order.exportPDF', $order->id)}}" class="btn btn-primary">
+                                    <i class="fas fa-download"></i> Xuất phiếu giao hàng
+                                </a>&nbsp;
                                  @if(count($shipping_bill) == 0)
                                  <button id="btn-order-shipping-create" type="button" class="btn btn-success" data-id="{{$order->id}}" data-url={{route('get.shipping.create')}} onClick="viewShippingOrder(this)">
                                     <i class="fas fa-shipping-fast"></i> Tạo đơn vận Chuyển
