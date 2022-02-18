@@ -28,7 +28,7 @@ class OrderController extends Controller
     }
 
     public function getOrderDetail(Order $order){
-        
+
         $order_address = $order->order_address()->first();
         $provinces = Province::where('matinhthanh', '<>',$order_address->id_province)
         ->select('matinhthanh', 'tentinhthanh')->get();

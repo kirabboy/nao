@@ -51,7 +51,8 @@ class Order extends Model
 		'total',
 		'is_payment',
 		'status',
-		'nao_point'
+		'nao_point',
+		'warehouse_id'
 	];
 
 	public function order_address()
@@ -77,4 +78,7 @@ class Order extends Model
 					->withPivot('id', 'quantity', 'price', 'name')
 					->withTimestamps();
 	}
+	public function warehouse() {
+        return $this->belongsTo(Warehouse::class, 'warehouse_id')->select('id', 'name');
+    }
 }

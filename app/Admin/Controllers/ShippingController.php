@@ -168,7 +168,7 @@ class ShippingController extends Controller
         ])->post($get_link.'/api/api/CustomerConnect/CancelOrder', [
             "OrderId" => $request->shipping_id
         ]);
-        // $response_create = json_decode($response_create, true);
+        //        $response_create = json_decode($response_create, true);
         
         //token hết thời gian.
         if($response_create->status() != 204){
