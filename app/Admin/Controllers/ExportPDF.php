@@ -26,7 +26,7 @@ class ExportPDF extends Controller
         // $pdf = PDF::loadView('admin.pdf.test');
         // dd($pdf);
     	$pdf->setPaper('a3', 'landscape');
-        return $pdf->stream();
+        // return $pdf->stream();
         return $pdf->download('phieugiaohang.pdf');
     }
 }
