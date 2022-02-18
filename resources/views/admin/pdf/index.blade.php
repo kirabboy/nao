@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Phiếu giao hàng</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
+	.table {
+		width: 100%;
+		margin-bottom: 1rem;
+		color: #212529;
+	}
     .top-left{
         border: 2px solid #ccc;
         background-color: #fff;
@@ -20,9 +21,40 @@
     td, .table thead th {
 	  vertical-align: center;
 	}
+	p {
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+	.table-bordered {
+		border: 1px solid #dee2e6;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	.table-bordered thead td, .table-bordered thead th {
+		border-bottom-width: 2px;
+	}
+	.table thead th {
+		vertical-align: center;
+		border-bottom: 2px solid #dee2e6;
+	}
+	.table-bordered td, .table-bordered th {
+		border: 1px solid #dee2e6;
+	}
+	.table-bordered td, .table-bordered th {
+		border: 1px solid #dee2e6;
+	}
+	.table td, .table th {
+		padding: 0.75rem;
+		vertical-align: top;
+		border-top: 1px solid #dee2e6;
+	}
+	.table-borderless tbody+tbody, .table-borderless td, .table-borderless th, .table-borderless thead th {
+		border: 0;
+	}
 </style>
 <body>
-<div class="container-fluid pt-1 pb-5">
+<div>
 	<table class="table table-borderless">
 	  <thead>
 	    <tr>
@@ -38,11 +70,11 @@
 	</table>
 	<p style="font-size: 32px; text-align: center;"><strong>Phiếu giao hàng</strong></p>
 	<div class="col-12 font-weight-bold">
-        <p><strong>Khách hàng: <span class="text-uppercase">{{$order->order_info->fullname}} _DT: </span>{{$order->order_info->phone}}</strong></p>
-        <p><strong>Xuất tại kho:<span class="text-uppercase">Kho hàng xẻn</span></strong></p>
-        <p><strong>Nơi giao: {{ $order->order_address->address.', '.$order->order_address->ward->tenphuongxa.', '.$order->order_address->district->tenquanhuyen.', '.$order->order_address->province->tentinhthanh }}</strong></p>
+        <p><strong>Khách hàng: <span class="text-uppercase">{{optional($order->order_info)->fullname}} _DT: </span>{{$order->order_info->phone}}</strong></p>
+        <p><strong>Xuất tại kho:<span class="text-uppercase"> {{ optional($order->warehouse)->name }}</span></strong></p>
+        <p><strong>Nơi giao: {{ optional($order->order_address)->address.', '.optional(optional($order->order_address)->ward)->tenphuongxa.', '.optional(optional($order->order_address)->district)->tenquanhuyen.', '.optional(optional($order->order_address)->province)->tentinhthanh }}</strong></p>
     </div>  
-	<table class="table table-bordered">
+	<table class="table table-bordered" style="margin-top: 30px">
 		<thead>
 		  <tr>
 		    <th>STT</th>
@@ -60,10 +92,10 @@
                 <td> {{ $key + 1 }}</td>
                 <td> {{ $value->pivot->name }} </td>
                 <td>{{ $value->sku }}</td>
-                <td>{{ $value->productCalculationUnit->name }}</td>
-                <td>{{ $value->pivot->quantity }}</td>
-                <td> {{ number_format($value->pivot->price) }}</td>
-                <td>{{ number_format($value->pivot->price*$value->pivot->quantity) }}</td>
+                <td>{{ optional($value->productCalculationUnit)->name }}</td>
+                <td>{{ optional($value->pivot)->quantity }}</td>
+                <td> {{ number_format(optional($value->pivot)->price) }}</td>
+                <td>{{ number_format(optional($value->pivot)->price*optional($value->pivot)->quantity) }}</td>
             </tr>
             @endforeach
 		  <tr>
@@ -75,7 +107,7 @@
 	<table class="table table-borderless">
 		<thead>
 		    <tr>
-		      <td class="text-right"><p>{{  'Ngày '.now()->day.' Tháng '.now()->month.' Năm '.now()->year }}</p></td>
+		      <td style="text-align:right"><p>{{  'Ngày '.now()->day.' Tháng '.now()->month.' Năm '.now()->year }}</p></td>
 		  </tr>
 		</thead>
 	</table>

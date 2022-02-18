@@ -38,7 +38,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::patch('/huy-don-hang', [OrderController::class, 'patchOrderDestroy']);
         Route::delete('/xoa-don-hang', [OrderController::class, 'deleteOrderDelete']);
         Route::get('/xuat-pdf/{order:id}', [ExportPDF::class, 'export'])->name('order.exportPDF');
-        Route::get('/xuat-pdf', [ExportPDF::class, 'index']);
+        Route::get('/xuat-pdf/test/{order:id}', [ExportPDF::class, 'index']);
 
     });
 
