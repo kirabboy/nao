@@ -4,8 +4,8 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="{{route('doinhom.index')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <span class="ps-3"> Chi phí</span>
+                <a href="{{route('doinhom.index')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="ps-3"> Chi phí</span></a>
             </h5>
         </div>
     </div>
@@ -49,10 +49,10 @@
                             </p>
                             <p class="m-0 pb-1">0{{$thanhvien->phone}}</p>
                             <p class="m-0 pb-1">{{$thanhvien->created_at->toDateString()}}</p>
-                            <p class="m-0 pb-1">10000</p>
-                            <p class="m-0 pb-1">00%</p>
-                            <p class="m-0 pb-1">00</p>
-                            <p class="m-0 pb-1">00</p>
+                            <p class="m-0 pb-1">{{$point->point}} point</p>
+                            <p class="m-0 pb-1">{{$point->doanhthu}} VNĐ</p>
+                            <p class="m-0 pb-1">{{$tong_so_nhanh}} nhánh</p>
+                            <p class="m-0 pb-1">{{$tong_so_nhom}} nhóm</p>
                         </div>
                     </div>
                 </div>

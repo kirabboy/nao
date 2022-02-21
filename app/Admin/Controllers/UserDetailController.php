@@ -35,6 +35,7 @@ class UserDetailController extends Controller
         //Lấy điểm nhánh NAO, từng nhánh trong NAO, tru nhanh tach
         $listPoint = [];
         $listPoint = $this->point_child_id($listPoint, $id);
+        $tong_so_F1 = count($listPoint);
 
         //Tông điểm tất cả các nhánh
         $sumPoint_all_nhanh = 0;
@@ -49,10 +50,7 @@ class UserDetailController extends Controller
             $sumDT_all_nhanh += $value->doanhthu;
         }
         $sumDT_all_nhanh = $sumDT_all_nhanh;
-
-
-        $tong_so_F1 = count($listPoint);
-
+        
         //Lấy info doi nhom, tong doi nhom hien co bao nhieu F
         $listGroup = [];
         $listGroup = $this->tong_thanh_vien_doi_nhom($listGroup, $id);
@@ -61,7 +59,7 @@ class UserDetailController extends Controller
         $tongNhanhNAO = $user_child->getIDSon->where('nhanh',$user->id)->count() - 1;
         $list_child_nhanh = $user_child->getIdSon->whereNotIn('id_child',1);
 
-        // $list = $this->fix($id, 20); quan trong lam tiep nha
+
         return view('admin.quanly.detailcanhan',[
             'user' => $user,
             'user_age' => $user_age,

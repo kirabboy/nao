@@ -50,7 +50,7 @@
                                                 <!-- <li class="line-detail"><span>Tình trạng khách hàng</span><span
                                                         class="btn-drop-down">Đặt hàng<i class="fas fa-caret-down"></i>
                                                     </span></li> -->
-                                                <li class="line-detail"><span>Doanh thu</span><span>0 đ</span></li>
+                                                <li class="line-detail"><span>Doanh thu</span><span>{{$value->doanhthu}} đ</span></li>
                                                 <li class="line-detail"><span>Nguồn</span><span
                                                         class="btn-drop-down">Offline</span>
                                                 </li>
@@ -99,6 +99,13 @@
                                     <label for="facebook">Facebook</label>
                                     <input type="text" class="form-control" id="facebook" placeholder="Facebook"
                                         name="facebook">
+                                </div>
+                                <div class="form-group">
+                                    <label for="facebook">Khách hàng</label>
+                                    <select type="text" class="form-control" name="online" id="online">
+                                        <option value="1">Online</option>
+                                        <option value="2">Offline</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="nvkd">NVKD</label>
