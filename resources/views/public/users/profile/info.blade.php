@@ -15,7 +15,9 @@
     <form action="{{route('updateInfo')}}" method="POST">
     <div class="row p-3">
         <div class="col-12 text-center">
-            <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
+            
+            <label for="uploadImage" class="color-camVIP"><img for="uploadImage" src="{{asset('user/image/ic_user.png')}}" width="100" height="100"></label>
+            <input id="uploadImage" style="display:none;" name="imageChuyenKhoan" type="file">
             <p class="pt-2">{{$user->name}}</p>
         </div>
         <div class="col-12">
@@ -139,6 +141,35 @@
 
 </section>
 </body>
+<script>
+$("#uploadImage").change(function() {
+    filename = this.files[0].name;
+    console.log(filename);
+});
 
+window.onload = function() {
+  if (window.File && window.FileList && window.FileReader) {
+    var filesInput = document.getElementById("uploadImage");
+    filesInput.addEventListener("change", function(event) {
+      var files = event.target.files;
+      var output = document.getElementById("result");
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (!file.type.match('image'))
+          continue;
+        var picReader = new FileReader();
+        picReader.addEventListener("load", function(event) {
+          var picFile = event.target;
+          var div = document.createElement("div");
+          div.innerHTML = "<img width='100%' class='thumbnail' src='" + picFile.result + "'" +
+            "title='" + picFile.name + "'/>";
+          output.insertBefore(div, null);
+        });        
+        picReader.readAsDataURL(file);
+      }
+    });
+  }
+}
+</script>
 @include('public.users.layout.footer')
 

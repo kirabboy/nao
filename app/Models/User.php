@@ -50,7 +50,7 @@ class User extends Authenticatable
     ];
 
     public function getIdDad() {
-        return $this->hasOne(UsersParent::class,'id_child','id');
+        return $this->hasOne(UsersParent::class,'id_child','id')->with('getNameDad');
     }
 
     public function getIdSon() {
@@ -71,5 +71,9 @@ class User extends Authenticatable
 
     public function orders() {
         return $this->hasMany(Order::class, 'id_user');
+    }
+
+    public function PointNAO() {
+        return $this->hasOne(PointNao::class, 'user_id', 'id');
     }
 }

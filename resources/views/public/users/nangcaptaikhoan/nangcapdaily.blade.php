@@ -110,7 +110,7 @@
                             @elseif ($user->level == 2)
                                 <a class="text-light">Bạn đã là đại lý chuẩn</a>
                             @elseif ($user->level == 3)
-                                <a class="text-light">Bạn đã là đại lý mới</a>
+                                <a class="text-light" href="{{asset('profile/dangkynangcapdaily')}}">Bạn đã là đại lý mới</a>
                             @else
                                 <a class="text-light">Đang chờ duyệt</a>
                             @endif

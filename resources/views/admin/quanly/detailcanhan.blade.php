@@ -132,38 +132,37 @@
     </div>
     <div class="col-6 text-center box-dad">
         <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Doanh số cá nhân hiện tại: 50.000.000 VND</p>
-            <p class="m-0 text-white">Doanh số đội nhóm hiện tại: 50.000.000 VND</p>
+            <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: {{$sumDT_all_nhanh + $tongdiemNAO->pointNAO->doanhthu}} VNĐ</h4>
+            <p class="m-0 text-white">Doanh số cá nhân hiện tại: {{$tongdiemNAO->pointNAO->doanhthu}} VNĐ</p>
+            <p class="m-0 text-white">Doanh số đội nhóm hiện tại: {{$sumDT_all_nhanh}} VNĐ</p>
         </div>
     </div>
     <div class="col-6 text-center box-dad">
         <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng chiết khấu hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Chiết khấu cá nhân: 50.000.000 VND</p>
-            <p class="m-0 text-white">Chiết khấu từ đội nhóm: 50.000.000 VND</p>
+            <h5 class="text-uppercase text-white">Tổng chiết khấu hiện tại: 0%</h4>
+            <p class="m-0 text-white">Chiết khấu cá nhân: 0%</p>
+            <p class="m-0 text-white">Chiết khấu từ đội nhóm: 0%</p>
         </div>
     </div>
     <div class="col-6 text-center box-dad">
         <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO đội nhóm hiện tại: 50.000.000 VND</p>
+            <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: {{$sumPoint_all_nhanh + $tongdiemNAO->pointNAO->point}} point</h4>
+            <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: {{$tongdiemNAO->pointNAO->point}} point</p>
+            <p class="m-0 text-white">Điểm NAO đội nhóm hiện tại: {{$sumPoint_all_nhanh}} point</p>
         </div>
     </div>
     <div class="col-6 text-center box-dad">
         <div class="box-child">
-            <h5 class="text-uppercase text-white">Số lượng F1: 100</h4>
-            <p class="m-0 text-white">Số lượng thành viên đội nhóm: 50</p>
-            <p class="m-0 text-white">(Cập nhật thêm)</p>
+            <h5 class="text-uppercase text-white">Số lượng F1: {{$tong_so_F1}}</h4>
+            <p class="m-0 text-white">Số lượng thành viên đội nhóm: {{count($listGroup)}}</p>
+            <p class="m-0 text-black">_</p>
         </div>
     </div>
     <div class="col-6 text-center box-dad">
         <div class="box-child">
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 1: 100.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 2: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 3: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách N: 50.000.000 VND</p>
+            @foreach ($listPoint as $value)
+            <p class="m-0 text-white">Điểm NAO của nhánh tách {{ $value->id }}: {{ $value->point }} Point</p>
+            @endforeach
         </div>
     </div>
     <div class="col-12 text-center">
