@@ -38,7 +38,8 @@ class OrderInfo extends Model
 		'fullname',
 		'phone',
 		'email',
-		'note'
+		'note',
+		'customer_id'
 	];
 
 	public function order()

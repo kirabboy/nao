@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="product-button text-right">
-                    <button class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</button>
+                    <a href="{{ $item->link_driver != '' || $item->link_driver != null ? $item->link_driver : 'javascript:void(0);' }}" {{ $item->link_driver != '' || $item->link_driver != null ? 'targer="_blank"' : '' }} class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</a>
                     {{-- <button class="btn btn-primary btn-rounded">Mua ngay</button> --}}
                     <a href="{{url('/gio-hang')}}" class="btn btn-primary btn-rounded">Mua ngay</a>
                 </div>

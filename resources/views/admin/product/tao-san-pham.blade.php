@@ -291,17 +291,17 @@
                                                 value="{{ old('price_ctv') }}">
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    {{--<div class="form-group">
                                         <label class="col-md-12 control-label text-left">Chiết khấu Đại lý mới<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
                                             <input type="number" step="0.1" min="0.1" name="price_new_daily"
                                                 class="form-control" required
                                                 value="{{ old('price_new_daily') }}">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Chiết khấu Đại lý chuẩn<span
+                                        <label class="col-md-12 control-label text-left">Chiết khấu Đại lý<span
                                                 class="required" aria-required="true">(*)</span>:</label>
                                         <div class="col-md-12">
                                             <input type="number" step="0.1" min="0.1" name="price_daily_chuan"
@@ -325,6 +325,14 @@
                                             <input type="number" step="0.1" min="0.1" name="nao_point"
                                                 class="form-control" required
                                                 value="{{ old('nao_point') }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 control-label text-left">Link driver:</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="link_driver"
+                                                class="form-control" 
+                                                value="{{ old('link_driver') }}">
                                         </div>
                                     </div>
                                 </div>
