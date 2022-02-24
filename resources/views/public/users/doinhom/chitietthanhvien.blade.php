@@ -51,8 +51,8 @@
                             <p class="m-0 pb-1">{{$thanhvien->created_at->toDateString()}}</p>
                             <p class="m-0 pb-1">{{$point->point}} point</p>
                             <p class="m-0 pb-1">{{$point->doanhthu}} VNĐ</p>
-                            <p class="m-0 pb-1">{{$tong_so_nhanh}} nhánh</p>
                             <p class="m-0 pb-1">{{$tong_so_nhom}} nhóm</p>
+                            <p class="m-0 pb-1">{{$tong_so_nhanh}} nhánh</p>
                         </div>
                     </div>
                 </div>

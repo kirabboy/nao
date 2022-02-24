@@ -23,7 +23,7 @@
         <div class="info-shipping">
             @if ($address_shipping == null)
                 <div class="checkout-add-info text-center">
-                    <a href="#" class="show-modal add-info btn btn-secondary btn-rounded">
+                    <a href="{{ route('add.address.shipping.index') }}" class="add-info btn btn-secondary btn-rounded">
                         <span class="add-info-plus-icon d-inline-block mb-0">+</span>
                         <span>Thêm thông tin khách hàng</span>
                     </a>
@@ -123,7 +123,7 @@
                     <h4>7.500đ</h4>
                     <h4>-0đ</h4>
                     @if ($user->level != 1)
-                        <input type="hiden" name="nao_point" value="{{ $nao_point }}">
+                        <input type="hidden" name="nao_point" value="{{ $nao_point }}">
                         <h4>{{ formetNumber($nao_point) }}</h4>
                     @else
                         <input type="hidden" name="nao_point" value="0">

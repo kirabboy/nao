@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset('public/css/customer.css') }}">
 @endpush
 @section('content')
+
     <header id="header-page">
         <div class="container cart-content">
             <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -52,7 +53,13 @@
                                                     </span></li> -->
                                                 <li class="line-detail"><span>Doanh thu</span><span>{{$value->doanhthu}} đ</span></li>
                                                 <li class="line-detail"><span>Nguồn</span><span
-                                                        class="btn-drop-down">Offline</span>
+                                                        class="btn-drop-down">
+                                                        @if ($value->online == 1)
+                                                            Online
+                                                        @else
+                                                            Offline
+                                                        @endif
+                                                    </span>
                                                 </li>
                                                 <li class="line-detail">Ngày gia nhập <span>{{$value->created_at}}</span></li>
                                                 <!-- <li class="line-detail"><span>Gắn thẻ</span><span class="btn-drop-down">Đã
@@ -101,7 +108,7 @@
                                         name="facebook">
                                 </div>
                                 <div class="form-group">
-                                    <label for="facebook">Khách hàng</label>
+                                    <label for="online">Khách hàng</label>
                                     <select type="text" class="form-control" name="online" id="online">
                                         <option value="1">Online</option>
                                         <option value="2">Offline</option>

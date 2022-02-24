@@ -12,12 +12,19 @@
 </section>
 
 <section>
-    <form action="{{route('updateInfo')}}" method="POST">
+    <form action="{{route('updateInfo')}}" method="POST" enctype="multipart/form-data">
     <div class="row p-3">
         <div class="col-12 text-center">
+            <label for="uploadImage" class="color-camVIP" id="label_img">
             
-            <label for="uploadImage" class="color-camVIP"><img for="uploadImage" src="{{asset('user/image/ic_user.png')}}" width="100" height="100"></label>
-            <input id="uploadImage" style="display:none;" name="imageChuyenKhoan" type="file">
+            @if ($user->avatar == 'image_default.png')
+                <img src="{{asset('user/image/ic_user.png')}}" id="avatar" width="100" height="100">
+            @else
+                <img src="{{asset('user/avatar')}}/{{$user->avatar}}" id="avatar" width="100" height="100">
+            @endif </label>
+
+            <input id="uploadImage" style="display:none;" name="avatar" type="file">
+            <div id="result" class="uploadPreview"></div>
             <p class="pt-2">{{$user->name}}</p>
         </div>
         <div class="col-12">
@@ -68,6 +75,30 @@
             <p class="text-small pb-1 m-0">Ngày cấp CMND </p>
             <p>
                 <input type="date" id="start" name="cmnd_day" class="inputform viennhat" value="{{$user->cmnd_day}}">
+            </p>
+        </div>
+        <div class="col-12">
+            <p class="text-small pb-1 m-0">Ảnh CMND mặt trước</p>
+            <p>
+            @if ($user->avatar == 'image_default.png')
+                <label for="img_cmnd_truoc" class="color-camVIP" id="label_cmnd_truoc">Click vào đây để tải hình ảnh cmnd mặt trước lên</label>
+                <input id="img_cmnd_truoc" style="display:none;" name="img_cmnd_truoc" type="file">
+                <div id="result_cmnd_truoc" class=""></div>
+            @else
+                <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_1}}" id="" width="100%" height="100%">
+            @endif
+            </p>
+        </div>
+        <div class="col-12">
+            <p class="text-small pb-1 m-0">Ảnh CMND mặt trước</p>
+            <p>
+            @if ($user->avatar == 'image_default.png')
+                <label for="img_cmnd_sau" class="color-camVIP" id="label_cmnd_sau">Click vào đây để tải hình ảnh cmnd mặt trước lên</label>
+                <input id="img_cmnd_sau" style="display:none;" name="img_cmnd_sau" type="file">
+                <div id="result_cmnd_sau" class=""></div>
+            @else
+                <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_2}}" id="" width="100%" height="100%">
+            @endif
             </p>
         </div>
         <div class="col-12">
@@ -141,35 +172,5 @@
 
 </section>
 </body>
-<script>
-$("#uploadImage").change(function() {
-    filename = this.files[0].name;
-    console.log(filename);
-});
-
-window.onload = function() {
-  if (window.File && window.FileList && window.FileReader) {
-    var filesInput = document.getElementById("uploadImage");
-    filesInput.addEventListener("change", function(event) {
-      var files = event.target.files;
-      var output = document.getElementById("result");
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        if (!file.type.match('image'))
-          continue;
-        var picReader = new FileReader();
-        picReader.addEventListener("load", function(event) {
-          var picFile = event.target;
-          var div = document.createElement("div");
-          div.innerHTML = "<img width='100%' class='thumbnail' src='" + picFile.result + "'" +
-            "title='" + picFile.name + "'/>";
-          output.insertBefore(div, null);
-        });        
-        picReader.readAsDataURL(file);
-      }
-    });
-  }
-}
-</script>
 @include('public.users.layout.footer')
 

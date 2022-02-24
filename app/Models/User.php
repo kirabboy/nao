@@ -76,4 +76,16 @@ class User extends Authenticatable
     public function PointNAO() {
         return $this->hasOne(PointNao::class, 'user_id', 'id');
     }
+
+    public function warehouse() {
+        return $this->belongsTo(Warehouse::class, 'id_warehouse')->select('id_province', 'id_district');
+    }
+
+    public function DoanhThuNgay() {
+        return $this->hasMany(DoanhThuNgay::class, 'user_id', 'id');
+    }
+
+    public function DoanhThuThang() {
+        return $this->hasMany(DoanhThuThang::class, 'user_id', 'id');
+    }
 }

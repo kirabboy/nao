@@ -71,11 +71,35 @@ class ProfileController extends Controller
         $user->sex = $request->sex;
         $user->cmnd = $request->cmnd;
         $user->cmnd_day = $request->cmnd_day;
-        $user->id_province = $request->sel_province;
-        $user->id_district = $request->sel_district;
-        $user->id_ward = $request->sel_ward;
+        $user->id_province = $request->province_id;
+        $user->id_district = $request->district_id;
+        $user->id_ward = $request->ward_id;
         $user->email = $request->email;
         $user->address = $request->address;
+
+        if($request->hasFile('avatar')) {
+            $file = $request->avatar;
+            $file_name = time().'.'.$file->getClientOriginalExtension();
+            $destinationPath = public_path('/user/avatar');
+            $file->move($destinationPath, $file_name);
+            $user->avatar = $file_name;
+        }
+
+        if($request->hasFile('img_cmnd_truoc')) {
+            $file = $request->img_cmnd_truoc;
+            $file_name = time().'.'.$file->getClientOriginalExtension();
+            $destinationPath = public_path('/user/img_cmnd');
+            $file->move($destinationPath, $file_name);
+            $user->image_cmnd_1 = $file_name;
+        }
+
+        if($request->hasFile('img_cmnd_sau')) {
+            $file = $request->img_cmnd_sau;
+            $file_name = time().'.'.$file->getClientOriginalExtension();
+            $destinationPath = public_path('/user/img_cmnd');
+            $file->move($destinationPath, $file_name);
+            $user->image_cmnd_2 = $file_name;
+        }
 
         $user->save();
         return redirect()->back();
@@ -146,7 +170,7 @@ class ProfileController extends Controller
             $destinationPath = public_path('/user/nangcap');
             $file->move($destinationPath, $file_name);
             $user_upgrade->image = $file_name;
-          }
+        }
 
         $user_upgrade->save();
         return redirect()->back();

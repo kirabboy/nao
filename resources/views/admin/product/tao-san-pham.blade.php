@@ -169,16 +169,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label text-left">Nhóm sản phẩm<span
-                                                class="required" aria-required="true">(*)</span>:</label>
+                                        <label class="col-md-12 control-label text-left">Nhóm sản phẩm:</label>
                                         <div class="col-md-12">
-                                            <select class="selectpicker form-control selectCategory nhomsp" name="category_parent"
-                                                required data-placeholder="Nhóm sản phẩm" data-type="parent">
+                                            <select class="selectpicker form-control selectCategory nhomsp" name="category_child"
+                                                data-placeholder="Nhóm sản phẩm" data-type="parent">
 
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="col-md-12 control-label text-left">Nhóm sản phẩm con:</label>
                                         <div class="col-md-12">
                                             <select class="selectpicker form-control nhomspcon" name="child_category"
@@ -186,7 +185,7 @@
 
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
                                 <div class="col-md-6">

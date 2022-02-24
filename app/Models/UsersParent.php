@@ -15,7 +15,7 @@ class UsersParent extends Model
     protected $guarded = [];
 
     public function getNameDad() {
-        return $this->hasOne(User::class,'id','id_dad');
+        return $this->hasOne(User::class,'id','id_dad')->where('id','!=',1)->with('getIdDad.getNameDad');
     }
 
     public function getNameSon() {

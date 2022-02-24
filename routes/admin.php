@@ -18,6 +18,7 @@ use App\Admin\Controllers\QuanLyDaiLyController;
 use App\Admin\Controllers\KhuyenMaiController;
 use App\Admin\Controllers\SettingController;
 use App\Admin\Controllers\UserDetailController;
+use App\Admin\Controllers\ExportPDF;
 use App\Admin\Controllers\ShippingController as AdminShippingController;
 
 
@@ -37,6 +38,9 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('/chi-tiet/{order:id}', [OrderController::class, 'getOrderDetail'])->name('order.detail');
         Route::patch('/huy-don-hang', [OrderController::class, 'patchOrderDestroy']);
         Route::delete('/xoa-don-hang', [OrderController::class, 'deleteOrderDelete']);
+        Route::get('/xuat-pdf/{order:id}', [ExportPDF::class, 'export'])->name('order.exportPDF');
+        Route::get('/xuat-pdf/test/{order:id}', [ExportPDF::class, 'index']);
+
     });
 
     Route::prefix('van-chuyen')->group(function () {

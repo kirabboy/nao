@@ -12,4 +12,8 @@ class Customer extends Model
     protected $table = 'customer';
 
     protected $guarded = [];
+
+    public function customer_address() {
+        return $this->hasMany(CustomerAddress::class, 'id_customer', 'id');
+    }
 }

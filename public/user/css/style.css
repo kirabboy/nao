@@ -177,3 +177,17 @@ a:hover {
     color: #F6872E;
     text-decoration: none;
 }
+
+#avatar {
+    border-radius: 99px;
+}
+
+#result img.thumbnail {
+    width: 100px;
+    border-radius: 99px;
+    height: 100px;
+}
+
+label {
+    margin-bottom: 0px;
+}
