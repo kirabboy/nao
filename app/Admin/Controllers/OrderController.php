@@ -62,7 +62,7 @@ class OrderController extends Controller
         }
         $order->created_at = $request->in_created_at;
         $order->save();
-        $order->order_address()->update([
+        $order->order_address()->first()->update([
             'id_province' => $request->sel_province,
             'id_district' => $request->sel_district,
             'id_ward' => $request->sel_ward,

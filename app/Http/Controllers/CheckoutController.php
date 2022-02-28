@@ -20,6 +20,7 @@ use App\Models\UserAddressShipping;
 use App\Models\Customer;
 use App\Models\CustomerAddress;
 use App\Http\Controllers\ShippingController;
+use App\Admin\Controllers\UserDetailController;
 
 class CheckoutController extends Controller
 {

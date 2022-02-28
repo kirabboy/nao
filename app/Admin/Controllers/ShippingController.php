@@ -179,7 +179,7 @@ class ShippingController extends Controller
         $shipping_bill = ShippingBill::where('shipping_id', $request->shipping_id)->first();
         $shipping_bill->update(['status' => 60, 'note' => $request->text_note]);
         $shipping_bill->order()->update([
-            'status' => 3,
+            'status' => 4,
         ]);
         // $response_create = json_decode($response_create, true);
         return $response_create->status();
