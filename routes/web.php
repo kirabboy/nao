@@ -111,6 +111,8 @@ Route::prefix('gio-hang')->group(function () {
     Route::post('checkout', [CartController::class, 'toCheckout'])->name('cart.checkout');
 });
 
+Route::post('/buy-now', [CheckoutController::class, 'buyNow'])->name('buynow');
+
 Route::prefix('thanh-toan')->group(function() {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/thanh-toan', [CheckoutController::class, 'postOrder'])->name('checkout.postOrder');
@@ -151,7 +153,9 @@ Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'
         Route::get('/resetPassword', [ProfileController::class, 'resetPassword']);
         Route::post('/resetPassword', [ProfileController::class, 'postResetPassword'])->name('updateResetPassword');
 
-        Route::get('/chuyenkhoan', [ProfileController::class, 'chuyenkhoan']);
+        Route::get('/chuyenkhoan', [ProfileController::class, 'chuyenkhoan'])->name('chuyenkhoan');
+        Route::post('/chuyenkhoan', [ProfileController::class, 'postChuyenkhoan'])->name('postChuyenkhoan');
+
         Route::get('/dangkynangcapdaily', [ProfileController::class, 'dangkynangcapdaily']);
         Route::get('/nangcapdaily', [ProfileController::class, 'nangcapdaily']);
 
@@ -190,6 +194,8 @@ Route::post('tinh-phi-van-chuyen', [ShippingController::class, 'postShippingFee'
     Route::get('/tongNAOtrongthang', [HomeController::class, 'tongNAOtrongthang']);
 
     Route::get('/chuyenkhoan', [HomeController::class, 'chuyenkhoan']);
+    
+
     Route::get('/dangkynangcapdaily', [HomeController::class, 'dangkynangcapdaily']);
     Route::get('/nangcapdaily', [HomeController::class, 'nangcapdaily']);
 

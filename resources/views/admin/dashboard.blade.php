@@ -22,33 +22,52 @@
 				  <span class="list-group-item-link p-3" data-bs-toggle="collapse" href="#menu-mobile-doitac" role="button" aria-expanded="false" aria-controls="menu-mobile-doitac"><i class="fa fa-bar-chart-o"></i> Quản lý đối tác <i class="fa fa-angle-down fs-4 float-end"></i></span>
 				  <ul class="p-0 menu-child collapse" id="menu-mobile-doitac">
 					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="doinhom.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Đội nhóm</a>
+						  <a href="{{ URL::to('/admin/doinhom') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Đội nhóm</a>
 					  </li>
 					  <li class="list-group-item p-0 list-group-item-action">
-						  <a href="canhan.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cá nhân</a>
+						  <a href="{{ URL::to('/admin/canhan') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cá nhân</a>
 					  </li>
-					  <li class="list-group-item p-0 list-group-item-action">
+					  <!-- <li class="list-group-item p-0 list-group-item-action">
 						  <a href="thontinbanhang.html" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Thông tin bán hàng</a>
-					  </li>
+					  </li> -->
 				  </ul>
 			  </li>
 			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý nhân viên</a>
+				  <span class="list-group-item-link p-3" data-bs-toggle="collapse" href="#menu-mobile-sanpham" role="button" aria-expanded="false" aria-controls="menu-mobile-doitac"><i class="fa fa-bar-chart-o"></i> Quản lý sản phẩm <i class="fa fa-angle-down fs-4 float-end"></i></span>
+				  <ul class="p-0 menu-child collapse" id="menu-mobile-sanpham">
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/nganh-nhom-hang') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Ngành/Nhóm hàng</a>
+					  </li>
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/thuong-hieu') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Thương hiệu/Đơn vị tính</a>
+					  </li>
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/don-vi-tinh') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Đơn vị tính</a>
+					  </li>
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/san-pham') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Thông tin sản phẩm</a>
+					  </li>
+				  </ul>
 			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Quản lý sản phẩm</a>
-			  </li>
+
 			  <li class="list-group-item p-0 list-group-item-action">
 				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Bán hàng</a>
 			  </li>
+			  
 			  <li class="list-group-item p-0 list-group-item-action">
 				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Tồn kho</a>
 			  </li>
+
 			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Dữ liệu Master</a>
-			  </li>
-			  <li class="list-group-item p-0 list-group-item-action">
-				  <a href="#" class="list-group-item-link p-3"><i class="fa fa-bar-chart-o"></i> Setting</a>
+				  <span class="list-group-item-link p-3" data-bs-toggle="collapse" href="#menu-mobile-setting" role="button" aria-expanded="false" aria-controls="menu-mobile-doitac"><i class="fa fa-bar-chart-o"></i> Quản lý đối tác <i class="fa fa-angle-down fs-4 float-end"></i></span>
+				  <ul class="p-0 menu-child collapse" id="menu-mobile-setting">
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/cau-hinh-van-chuyen') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cấu hình vận chuyển</a>
+					  </li>
+					  <li class="list-group-item p-0 list-group-item-action">
+						  <a href="{{ URL::to('/admin/cau-hinh-bank') }}" class="list-group-item-link list-item-custom px-5"><i class="fa fa-bar-chart-o"></i> Cấu hình chuyển khoản</a>
+					  </li>
+				  </ul>
 			  </li>
 		  </ul>
 		</div>

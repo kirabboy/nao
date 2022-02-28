@@ -40,7 +40,13 @@
                             <p class="m-0 pb-1">Nhánh</p>
                         </div>
                         <div class="col-6 text-end">
-                            <p class="m-0 pb-1">{{$thanhvien->name}}</p>
+                            <p class="m-0 pb-1">
+                                @if($thanhvien->name != null)
+                                    {{ $thanhvien->name }}
+                                @else
+                                    Chưa có tên
+                                @endif
+                            </p>
                             <p class="m-0 pb-1">0{{$thanhvien->phone}}</p>
                             <p class="m-0 pb-1">{{$thanhvien->created_at->toDateString()}}</p>
                             <p class="m-0 pb-1">10000</p>

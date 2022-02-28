@@ -58,24 +58,29 @@
             </div>
         </div>
 
-        <div class="col-12 pb-5">
-            <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6974f">
-                <div class="card-body pt-1 pb-1">
-                    <p class="m-0 pb-3 fw-bold">Hướng dẫn chuyển khoản</p>
-                    <p class="m-0">{{$bank->note}}</p>
+        <form method="POST" action="{{route('chuyenkhoan')}}" role="form" enctype="multipart/form-data">
+            <div class="col-12 pb-5">
+                <div class="card-hoahong" style="box-shadow: none; border: 1px solid #f6974f">
+                    <div class="card-body pt-1 pb-1">
+                        <p class="m-0 pb-3 fw-bold">Hướng dẫn chuyển khoản</p>
+                        <p class="m-0">{{$bank->note}}</p>
+                    </div>
+                </div>
+                <div class="pt-3">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    <label for="uploadImage" class="color-camVIP">Tải hình ảnh chuyển khoản lên</label>
+                    <input id="uploadImage" style="display:none;" name="imageChuyenKhoan" type="file">
+                    <div id="result" class="uploadPreview">
                 </div>
             </div>
-            <div class="pt-3">
-                <i class="fa fa-upload" aria-hidden="true"></i>
-                <span class="color-camVIP">Tải hình ảnh chuyển khoản lên</span>
+
+            <div class="col-12 text-center pt-3">
+                <button class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"  data-bs-toggle="modal"
+                 data-bs-target="#exampleModal">Hoàn tất</button>
             </div>
-        </div>
-
-        <div class="col-12 text-center pt-3">
-            <button class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"  data-bs-toggle="modal" data-bs-target="#exampleModal">Hoàn tất</button>
-        </div>
-
-  <!-- Chuyen Khoan Thanh Cong -->
+        @csrf
+        </form>
+    <!-- Chuyen Khoan Thanh Cong -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
@@ -84,7 +89,37 @@
             </div>
         </div>
     </div>       
-<!-- End Modal Chuyen Khoan Thanh Cong --> 
+    <!-- End Modal Chuyen Khoan Thanh Cong --> 
     </div>  
 </section>
+<script>
+$("#uploadImage").change(function() {
+    filename = this.files[0].name;
+    console.log(filename);
+});
+
+window.onload = function() {
+  if (window.File && window.FileList && window.FileReader) {
+    var filesInput = document.getElementById("uploadImage");
+    filesInput.addEventListener("change", function(event) {
+      var files = event.target.files;
+      var output = document.getElementById("result");
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        if (!file.type.match('image'))
+          continue;
+        var picReader = new FileReader();
+        picReader.addEventListener("load", function(event) {
+          var picFile = event.target;
+          var div = document.createElement("div");
+          div.innerHTML = "<img width='100%' class='thumbnail' src='" + picFile.result + "'" +
+            "title='" + picFile.name + "'/>";
+          output.insertBefore(div, null);
+        });        
+        picReader.readAsDataURL(file);
+      }
+    });
+  }
+}
+</script>
 @include('public.users.layout.footer')

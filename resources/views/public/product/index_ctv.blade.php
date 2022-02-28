@@ -35,7 +35,11 @@
                 </div>
                 <div class="item-product-button text-right">
                     <a href="{{ $item->link_driver != '' || $item->link_driver != null ? $item->link_driver : 'javascript:void(0);' }}" {{ $item->link_driver != '' || $item->link_driver != null ? 'targer="_blank"' : '' }} class="btn btn-primary btn-rounded"><i class="fas fa-arrow-down"></i>Tải tài liệu</a>
-                    <button class="btn btn-primary btn-rounded">Mua ngay</a>
+                    <form class="d-inline-block" action="{{ route('buynow') }}" method="post" enctype="multipart">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $item->id }}">
+                        <button type="submit" class="btn btn-primary btn-rounded">Mua ngay</button>
+                    </form>
                 </div>
             </div>
             @endforeach

@@ -32,8 +32,8 @@ class CustomerController extends Controller
         $customer->sex = $request->sex;
         $customer->phone = $request->phone;
         $customer->facebook = $request->facebook;
-
-        $number_code = $customer->count() + 1;
+        
+        $number_code = sprintf("%03d",$customer->count() + 1);
         $customer->code_customer = 'FKC'.$number_code;
 
         $customer->save();

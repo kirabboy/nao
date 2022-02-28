@@ -8,6 +8,7 @@ use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\SettingBank;
+use App\Models\UserUpgrade;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -133,6 +134,22 @@ class ProfileController extends Controller
         $user = Auth()->user();
         $bank = SettingBank::first();
         return view('public.users.nangcaptaikhoan.chuyenkhoan',['bank' => $bank,'user'=>$user]);
+    }
+
+    public function postChuyenkhoan(Request $request)
+    {
+        $user_upgrade = new UserUpgrade;
+        $user_upgrade->user_id = auth()->user()->id;
+        if($request->hasFile('imageChuyenKhoan')) {
+            $file = $request->imageChuyenKhoan;
+            $file_name = time().'.'.$file->getClientOriginalExtension();
+            $destinationPath = public_path('/user/nangcap');
+            $file->move($destinationPath, $file_name);
+            $user_upgrade->image = $file_name;
+          }
+
+        $user_upgrade->save();
+        return redirect()->back();
     }
 
     public function dangkynangcapdaily()

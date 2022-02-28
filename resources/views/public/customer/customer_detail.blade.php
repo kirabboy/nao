@@ -54,15 +54,16 @@
                                             <li class="line-detail"><span>Nhân viên tư vấn</span><span>
                                                 {{$user->name}}</span>
                                             </li>
-                                            <li class="line-detail"><span>Tình trạng khách hàng</span><span
+                                            <!-- <li class="line-detail"><span>Tình trạng khách hàng</span><span
                                                     class="btn-drop-down">Đặt hàng<i class="fas fa-caret-down"></i>
-                                                </span></li>
+                                                </span></li> -->
                                             <li class="line-detail"><span>Doanh thu</span><span>0 đ</span></li>
                                             <li class="line-detail"><span>Nguồn</span><span
-                                                    class="btn-drop-down">Offline<i class="fas fa-caret-down"></i></span>
+                                                    class="btn-drop-down">Offline</span>
                                             </li>
-                                            <li class="line-detail"><span>Gắn thẻ</span><span class="btn-drop-down">Đã
-                                                    chốt hóa đơn<i class="fas fa-caret-down"></i></span></li>
+                                            <!-- <li class="line-detail"><span>Gắn thẻ</span><span class="btn-drop-down">Đã
+                                                    chốt hóa đơn<i class="fas fa-caret-down"></i></span></li> -->
+                                            <li class="line-detail"><span>Ngày gia nhập</span><span>{{ $customer->created_at }}</span></li>
                                         </ul>
                                     </div>
                                     <div class="detail-action">
