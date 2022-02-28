@@ -31,7 +31,12 @@
 				{{session('thongbao')}}</strong>
 			</div>
 			@endif
-		{{-- End thong bao dang nhap --}}
+			
+			@if (Session::has('level'))
+				<div class="alert alert-danger">
+					{{ Session::get('level') }}
+				</div>
+			@endif
 			<div class="form-group">
 				<label>Số điện thoại</label>
 				<input type="text" name="phone" class="form-control custom-input" placeholder="Số điện thoại">

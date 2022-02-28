@@ -48,7 +48,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function id_dad() {
+        return $this->hasOne(UsersParent::class,'id_child','id')->with('name_dad');
+    }
 
+    //Function khong lay account NAO
     public function getIdDad() {
         return $this->hasOne(UsersParent::class,'id_child','id')->with('getNameDad');
     }

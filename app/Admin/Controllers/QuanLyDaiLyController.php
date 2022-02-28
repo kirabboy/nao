@@ -19,7 +19,7 @@ class QuanLyDaiLyController extends Controller
 {
     public function canhan(Request $request){
         $items = $request->items ?? 5;
-        $user = User::with('getIdDad.getNameDad')->paginate($items);
+        $user = User::with('id_dad.name_dad')->paginate($items);
         $province = Province::get();
         $district = District::get();
         $ward = Ward::get();
@@ -34,10 +34,6 @@ class QuanLyDaiLyController extends Controller
 
     public function dowListUser(Excel $excel) {
         return $excel->download(new InfoUser, 'listUser.xlsx');
-    }
-
-    public function tongNhanh($list_point_nhanh = [], ) {
-
     }
 
     public function chitietcanhan($id){
@@ -63,23 +59,6 @@ class QuanLyDaiLyController extends Controller
         
         $user_parent = User::with('getIdDad.getNameDad')->find($id);
 
-        // dd($user_parent->getIdDad->getNameDad->id);
-        // if($user_parent->getIdDad->getNameDad->id > 1)
-        // foreach ($user_parent as $key => $value) {
-        //     if($value->getIdDad->getNameDad->id == $value->id) {
-        //         if ($value->id['id_dad'] == $value->getIdDad->id)
-        //         {
-        //             $cate_child[] = $value->id;
-        //             unset($user_parent[$key]);
-        //         }
-        //     }
-        // }
-        //dd(User::where('id','=',1)->with('pointNAO')->first()->pointNAO->point);
-        //dd(UsersParent::where('id_child',1)->first()->count());
-        
-        // dd(User::whereIn('id', $list)->where('level','>',1)->get());
-        
-// $list = $this->fix($id, 20); quan trong lam tiep nha
         return view('admin.quanly.detailcanhan',[
             'user' => $user,
             'user_age' => $user_age,
@@ -88,14 +67,6 @@ class QuanLyDaiLyController extends Controller
             'count_child' => $count_child,
         ]);
     }
-    // test dq
-    // public function menuTree() {
-    //     $bigDad = UsersParent::where('id_dad',1)->get();
-    //     $listTree = [];
-    //     UsersParent::recursive($bigDad, $parent = 1, $level = 1, $listTree);
-    //     return $listTree;
-    // }
-
 
     public function fix($id_child, $NAO_POINT) {
         $son = UsersParent::where('id_child',$id_child)->first();
@@ -160,7 +131,7 @@ class QuanLyDaiLyController extends Controller
 
 
     public function doinhom(){
-        $user = User::with('getIdDad.getNameDad')->get();
+        $user = User::with('id_dad.name_dad')->get();
         return view('admin.quanly.doinhom', ['user'=>$user]);
     }
 
@@ -181,6 +152,7 @@ class QuanLyDaiLyController extends Controller
         $user = User::with('getNangcap')->get();
         //dd($user->find(1)->getNangcap->where('status','=',0));
         // $nangcap = UserUpgrade::
+        
         return view('admin.quanly.nangcapdaily',['user' => $user]);
     }
 
@@ -189,9 +161,9 @@ class QuanLyDaiLyController extends Controller
         return view('admin.quanly.detailNangcap',['user' => $user]);
     }
 
-    public function dailychinhthuc($id) {
+    public function nangcap_ctv($id) {
         $user = User::with('getNangcap')->find($id);
-        $user->level = 2;
+        $user->level = 1;
         foreach($user->getNangcap->where('status','=',0) as $value) {
             $value->status = 1;
             $value->save();
@@ -203,6 +175,8 @@ class QuanLyDaiLyController extends Controller
     public function dailytamthoi($id) {
         $user = User::with('getNangcap')->find($id);
         $user->level = 3;
+        $ngayhethan_daily = today()->addMonths(1)->format('Y-m-d');
+        $user->ngayhethan = $ngayhethan_daily;
         $user->save();
         foreach($user->getNangcap->where('status','=',0) as $value) {
             $value->status = 1;

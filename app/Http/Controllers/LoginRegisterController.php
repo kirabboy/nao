@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\PointNAO;
 use App\Models\UsersParent;
+use App\Models\DoanhThuNgay;
+use App\Models\SettingBank;
+use App\Models\UserUpgrade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Validator;
 
 class LoginRegisterController extends Controller
 {
@@ -28,7 +35,6 @@ class LoginRegisterController extends Controller
             'phone.numeric' => 'Định dạng số điện thoại không đúng',
             'password.required' => 'Bạn chưa nhập mật khẩu',
         ]);
-
         if (Auth::attempt([
             'phone' => $request->input('phone'),
             'password' => $request->input('password'),
@@ -50,7 +56,9 @@ class LoginRegisterController extends Controller
         if(Auth::check()){
             return redirect('/');
         }
-        return view('public.user.register');
+
+        $bank = SettingBank::first();
+        return view('public.user.register',compact('bank'));
     }
 
     public function postRegister (Request $request) {
@@ -71,18 +79,43 @@ class LoginRegisterController extends Controller
         $number_code = sprintf("%06d",User::max('id') + 1);
         $user->code_user = 'NAO'.$number_code;
         $user->password = bcrypt($request->password);
-
+        $user->id = User::max('id') + 1;
+        $user->level = 0;
+        
         $magioithieu = $request->magioithieu;
-        $value = User::where('code_user' ,'=', $magioithieu);
-
+        $value = User::where('code_user' ,'=', $magioithieu)->first();
+        
         if($value->value('code_user') == null) {
             return 'Khong co ma gioi thieu nay';
         } else {
+            
+            $point = new PointNAO;
+            $point->user_id = $user->id;
+            $point->save();
+
             $parent = new UsersParent;
-            $parent->id_dad = $value->value('id');
-            $parent->id_child = User::max('id')+1;
+            $parent->id_dad = $value->id;
+            $parent->id_child = $user->id;
+            $parent->nhanh = $value->id;
+            //
             $parent->save();
             $user->save();
+
+            $lichsu_user_register = new DoanhThuNgay;
+            $lichsu_user_register->user_id = $user->id;
+            $lichsu_user_register->save();
+
+            $upgrade = new UserUpgrade;
+            $upgrade->user_id = $user->id;
+            if($request->hasFile('imageChuyenKhoan')) {
+                $file = $request->imageChuyenKhoan;
+                $file_name = time().'.'.$file->getClientOriginalExtension();
+                $destinationPath = public_path('/user/nangcap');
+                $file->move($destinationPath, $file_name);
+                $upgrade->image = $file_name;
+            }
+            $upgrade->save();
+
             return redirect('/')->with('thongbao','Đăng ký thành công');
         }
     }

@@ -30,7 +30,7 @@
                     <button class="btn btn-radius btn-cam">Đang xét duyệt lên đại lý</button>
                 @endif
             </p>
-            <button class="btn btn-radius btn-xanhngoc-white">0 đ</button>
+            <button class="btn btn-radius btn-xanhngoc-white">{{$user->pointNAO->point}} đ</button>
         </div>  
 
         <div class="col-6 pb-4">
@@ -39,7 +39,7 @@
                     <img src="{{asset('user/image/ic_user.png')}}" class="pb-2" width="50">
                     <p class="mb-2">Hoa hồng bán lẻ</p>
                     <a href="{{asset('/hoahongbanle')}}" class="btn btn-xanhngoc-no-radius">
-                        0 đ</a>
+                    {{$user->pointNAO->point}} đ</a>
                 </div>
               </div>
         </div>
@@ -77,7 +77,7 @@
 
         <div class="col-3"></div>
 
-        <div class="col-6">
+        <!-- <div class="col-6">
             <div class="card card-vip">
                 <div class="card-body text-center">
                     <img src="{{asset('user/image/ic_user.png')}}" class="pb-2" width="50">
@@ -86,7 +86,7 @@
                         0 đ</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </section>

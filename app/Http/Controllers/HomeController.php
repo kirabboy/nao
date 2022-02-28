@@ -19,9 +19,14 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $blog_categories = BlogCategory::get();
-        $new_blogs = Blog::paginate(5);
-        return view('public.index', compact('user', 'blog_categories', 'new_blogs'));
+        if($user->level > 0) {
+            $blog_categories = BlogCategory::get();
+            $new_blogs = Blog::paginate(5);
+            return view('public.index', compact('user', 'blog_categories', 'new_blogs'));
+        } else {
+            Auth::logout();
+            return redirect('/dang-nhap')->with('level','Hồ sơ Khách Hàng chưa được kích hoạt!');
+        }
     }
 
     public function chiphi()

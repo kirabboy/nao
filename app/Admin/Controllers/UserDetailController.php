@@ -3,13 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Models\User;
-use App\Exports\InfoUser;
-use App\Exports\DanhSachDoiNhom;
 use App\Models\UsersParent;
 use App\Models\PointNAO;
-use App\Models\District;
-use App\Models\Ward;
-use App\Models\DoanhThuNgay;
 
 use Carbon\Carbon;
 use Maatwebsite\Excel\Excel;
@@ -37,7 +32,7 @@ class UserDetailController extends Controller
         $listPoint = [];
         $listPoint = $this->point_child_id($listPoint, $id);
         $tong_so_F1 = count($listPoint);
-
+        
         //Tông điểm tất cả các nhánh
         $sumPoint_all_nhanh = 0;
         foreach($listPoint as $value) {
@@ -55,17 +50,13 @@ class UserDetailController extends Controller
         //Lấy info doi nhom, tong doi nhom hien co bao nhieu F
         $listGroup = [];
         $listGroup = $this->tong_thanh_vien_doi_nhom($listGroup, $id);
-
+        
         //Phần lịch sử theo tháng và ngày 
         $history = User::with('DoanhThuNgay')->where('id', $id)->first();
         $history_month = User::with('DoanhThuThang')->where('id', $id)->first();
 
         $tongNhanhNAO = $user_child->getIDSon->where('nhanh',$user->id)->count() - 1;
         $list_child_nhanh = $user_child->getIdSon->whereNotIn('id_child',1);
-
-        // $amount = 100;
-        // $point = 50;
-        // $tinh = $this->tinhtienmuahang($id, $amount, $point);
 
         return view('admin.quanly.detailcanhan',[
             'user' => $user,
@@ -172,6 +163,7 @@ class UserDetailController extends Controller
                 // else if ($parent->nhanh == $parent->id_child) {
                     
                 // }
+
             } else if ($congTien->point < $dieukien_point){
                 self::congTien($point, $id_dad->user_id);
             }

@@ -54,6 +54,8 @@ class ReportMonth extends Command
             $doanh_thu_thang = new DoanhThuThang;
             $doanh_thu_thang->amount = $sum_amount;
             $doanh_thu_thang->point = $sum_point;
+            $doanh_thu_thang->hoahongbanle = $sum_amount;
+            
             $doanh_thu_thang->save();
         }
     }

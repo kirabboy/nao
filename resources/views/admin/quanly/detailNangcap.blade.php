@@ -30,11 +30,11 @@
 				<!-- filter -->
                 <div class="row pb-5">
                 @if($user->level == 1)
-                    <div class="col-6 text-center">
-                        <a href="{{route('dailychinhthuc',$user->id)}}" class="btn btn-warning" style="width: 50%">
+                    <!-- <div class="col-6 text-center">
+                        <a href="{{route('nangcap_ctv',$user->id)}}" class="btn btn-warning" style="width: 50%">
                             Nâng cấp lên đại lý chuẩn</a>
-                    </div>
-                    <div class="col-6 text-center">
+                    </div> -->
+                    <div class="col-12 text-center">
                         <a href="{{route('dailytamthoi',$user->id)}}" class="btn btn-danger" style="width: 50%">
                             Nâng cấp lên đại lý tạm thời</a>
                     </div>
@@ -43,10 +43,15 @@
                         <a class="btn btn-danger" style="width: 50%">
                             Hiện đã là đại lý</a>
                     </div>
+                @elseif ($user->level == 0)
+                    <div class="col-12 text-center">
+                        <a href="{{route('nangcap_ctv',$user->id)}}" class="btn btn-danger" style="width: 50%">
+                            Nâng cấp lên cộng tác viên</a>
+                    </div>
                 @elseif ($user->level == 3)
                     <div class="col-12 text-center">
-                        <a href="{{route('dailychinhthuc',$user->id)}}" class="btn btn-danger" style="width: 50%">
-                            Nâng cấp lên đại lý chuẩn</a>
+                        <a class="btn btn-danger" style="width: 50%">
+                            Hiện đã là đại lý tạm thời. Ngày hết hạn {{$user->ngayhethan}}</a>
                     </div>
                 @endif
                 </div>

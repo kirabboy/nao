@@ -81,6 +81,7 @@
 										<input type="search" style="height: 36px;" class="form-control form-control-sm" onkeyup="search_captren()" name="search_captren" id="search_captren" placeholder="Tìm kiếm mã đại lý cấp trên">
 									</div>
 
+
 								</div>
 <!----------------- Table information user ----------------->
 								<div class="pt-2">
@@ -111,7 +112,7 @@
 													->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
 												<td>{{DB::table('province')->where('matinhthanh', $value->id_province)
 													->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
-												<td>{{($value->getIdDad->getNameDad->code_user)}}</td>
+												<td>{{($value->id_dad->name_dad->code_user)}}</td>
 												<td><a href="{{route('listcanhan')}}/{{$value->id}}" class="form-control btn btn-primary" style="background-color: #11101d;">Xem</a></td>
 											</tr>
 											@endforeach

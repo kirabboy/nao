@@ -16,12 +16,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //lenh test
-        $schedule->command('ReportToday:cron')->everyMinute();
+        //$schedule->command('ReportToday:cron')->everyMinute();
         //$schedule->command('ReportMonth:cron')->everyMinute();
 
         //lenh chay chinh thuc tren server
         // $schedule->command('ReportToday:cron')->dailyAt('00:00');
         // $schedule->command('ReportMonth:cron')->lastDayOfMonth('23:59');
+        
+        //lenh check xem user da hoan thanh du chi tieu chua. Neu khong du thi quay ve lam CTV
+        $schedule->command('NgayHetHanDaiLy:cron')->everyMinute();
     }
 
     /**

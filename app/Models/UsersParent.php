@@ -14,6 +14,10 @@ class UsersParent extends Model
 
     protected $guarded = [];
 
+    public function name_dad() {
+        return $this->hasOne(User::class,'id','id_dad');
+    }
+
     public function getNameDad() {
         return $this->hasOne(User::class,'id','id_dad')->where('id','!=',1)->with('getIdDad.getNameDad');
     }
@@ -22,17 +26,7 @@ class UsersParent extends Model
         return $this->hasOne(User::class,'id','id_child')->where('id','!=',1)->with('getIdSon.getNameSon','pointNAO');
     }
 
-    public static function recursive($bigDad, $parent = 1, $level = 0, &$listTree) {
-        if(count($bigDad) > 0) {
-            foreach ($bigDad as $key => $value) {
-                if($value->id_dad == $parent) {
-                    $value->id_child = $level;
-                    $listTree[] = $value;
-                    unset($bigDad[$key]);
-                    $parent = $value->id_dad;
-                    self::recursive($bigDad, $parent, $level + 1, $listTree);
-                }
-            }
-        }
+    public function name_son() {
+        return $this->hasOne(User::class,'id','id_child');
     }
 }

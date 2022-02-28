@@ -200,7 +200,7 @@ Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name
         Route::get('/', [QuanLyDaiLyController::class, 'nangcapdaily'])->name('nangcapdaily');
         Route::prefix('/{id}')->group(function () {
             Route::get('/', [QuanLyDaiLyController::class, 'detailNangcap'])->name('detailNangcap');
-            Route::get('/dailychinhthuc', [QuanLyDaiLyController::class, 'dailychinhthuc'])->name('dailychinhthuc');
+            Route::get('/nangcap_ctv', [QuanLyDaiLyController::class, 'nangcap_ctv'])->name('nangcap_ctv');
             Route::get('/dailytamthoi', [QuanLyDaiLyController::class, 'dailytamthoi'])->name('dailytamthoi');
         });
     });

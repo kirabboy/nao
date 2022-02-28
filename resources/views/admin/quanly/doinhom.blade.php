@@ -62,7 +62,7 @@
 									Đại lý tạm thời
 								@endif
 						  	</td>
-						  	<td>{{($value->getIdDad->getNameDad->code_user)}}</td>
+						  	<td>{{($value->id_dad->name_dad->code_user)}}</td>
 						</tr>
 						@endforeach
 					  </tbody>

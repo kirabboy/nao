@@ -62,8 +62,10 @@
                                                 </td>
                                                 <td>
                                                     @if($value->getNangcap->where('status','=',0)->count() > 1)
-                                                        <a class="btn btn-warning">Đã chuyển khoản</a>
-                                                    @else 
+                                                        <a class="btn btn-warning">Chờ duyệt Đại lý</a>
+                                                    @elseif($value->level == 0)
+                                                        <a class="btn btn-warning">Chờ duyệt CTV</a>
+													@else
                                                         <a class="btn btn-primary">Bình thường</a>
                                                     @endif
                                                 </td>
