@@ -1,10 +1,12 @@
 @include('public.users.layout.header')
 <section>  
-    <div class="row p-3">
+    <div class="row pl-3 pt-2">
         <div class="col-12">
             <h5>
-                <a href="{{asset('/hoahong')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <span class="ps-3"> Hoa hồng bán lẻ</span>
+                <a href="{{asset('/hoahong')}}">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <span class="ps-3"> Hoa hồng bán lẻ</span></a>
+                
             </h5>
         </div>
     </div>
@@ -24,8 +26,8 @@
                 </ul>
             </div>
             <button class="btn btn-radius btn-xanhngoc-white">34696 đ</button>
-        </div>  
-        <div class="tab-content" id="pills-tabContent">
+
+        <div class="tab-content pt-3" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <!-- Tab 1 -->
                 <div class="col-12 pb-4">
@@ -178,6 +180,7 @@
                 </div>
                 <!-- End Tab 1 -->
             </div>
+
         </div>
       
     </div>  

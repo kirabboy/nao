@@ -9,8 +9,8 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="{{asset('profile')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <span class="ps-3"> Thông tin đăng ký</span>
+                <a href="{{asset('profile')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="ps-3"> Thông tin đăng ký</span></a>
             </h5>
         </div>
     </div>

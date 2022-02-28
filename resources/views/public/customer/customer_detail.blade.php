@@ -57,7 +57,10 @@
                                             <!-- <li class="line-detail"><span>Tình trạng khách hàng</span><span
                                                     class="btn-drop-down">Đặt hàng<i class="fas fa-caret-down"></i>
                                                 </span></li> -->
-                                            <li class="line-detail"><span>Doanh thu</span><span>0 đ</span></li>
+                                            <li class="line-detail"><span>Doanh thu</span>
+                                                <span>{{ $customer->doanhthu }} đ</span>
+                                            </li>
+
                                             <li class="line-detail"><span>Nguồn</span><span
                                                     class="btn-drop-down">Offline</span>
                                             </li>

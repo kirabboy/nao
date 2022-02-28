@@ -2,6 +2,8 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('/public/admin/css/doitac.css') }}">
 <link rel="stylesheet" href="{{ asset('/public/admin/table/table.css') }}" type="text/css">
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
   	<section class="home-section">
 		<div class="header bg-white shadow-sm header_mobile">
@@ -31,68 +33,54 @@
 							<div class="team__filter-left col-lg-12 p-0">
 								<div class="col-md-12 flex-box gap-2">
 									<div>
-										<select class="form-select form-select-sm w-auto text-color-333 font-size-1 w-100" style="height:35px" aria-label="Default select example">
-											<option selected>10</option>
-											<option value="1">10</option>
-											<option value="2">25</option>
-											<option value="3">50</option>
-											<option value="3">100</option>
+										<form>
+											<select id="pagination" class="btn dropdown-toggle search_city-btn text-color-333 font-size-1 w-100 d-flex justify-content-between align-items-center ">
+												<option value="5" @if($items == 5) selected @endif >5</option>
+												<option value="10" @if($items == 10) selected @endif >10</option>
+												<option value="15" @if($items == 15) selected @endif >15</option>
+												<option value="20" @if($items == 20) selected @endif >20</option>
+												<option value="25" @if($items == 25) selected @endif >25</option>
+											</select>
+										</form>
+									</div>
+
+									<div class="dropdown w-200">
+										<select id="tinhID" style="width: 100%" onchange='search_tinhthanh()'>
+											<option value=""></option>
+											@foreach($province as $value)
+												<option value="{{ $value->tentinhthanh }}">{{ $value->tentinhthanh }}</option>
+											@endforeach
 										</select>
 									</div>
+
 									<div class="dropdown w-200">
-										<button class="btn dropdown-toggle search_city-btn text-color-333 font-size-1 w-100 d-flex justify-content-between align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-											Chọn tỉnh/thành phố
-										</button>
-										<ul class="dropdown-menu p-0 team__filter-address font-size-1" aria-labelledby="dropdownMenuButton1">
-											<input type="search" class="form-control m-1 w-auto search_city" name="" id="">
-											<li><a class="dropdown-item" href="#">Tỉnh Vĩnh Long</a></li>
-											<li><a class="dropdown-item" href="#">Tỉnh Đồng Tháp</a></li>
-											<li><a class="dropdown-item" href="#">Tỉnh Bến Tre</a></li>
-										</ul>
+										<select id="quanID" style="width: 100%" onchange='search_quanhuyen()'>
+											<option value=""></option>
+											@foreach($district as $value)
+												<option value="{{ $value->tenquanhuyen }}">{{ $value->tenquanhuyen }}</option>
+											@endforeach
+										</select>
 									</div>
+
 									<div class="dropdown w-200">
-										<button class="btn dropdown-toggle search_city-btn text-color-333 font-size-1 w-100 d-flex justify-content-between align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-											Chọn quận/huyện
-										</button>
-										<ul class="dropdown-menu p-0 team__filter-address font-size-1" aria-labelledby="dropdownMenuButton1">
-											<input type="search" class="form-control m-1 w-auto search_city" name="" id="">
-											<li><a class="dropdown-item" href="#">Huyện Vĩnh Long</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Đồng Tháp</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Bến Tre</a></li>
-										</ul>
+										<select id="xaID" style="width: 100%" onchange='search_phuongxa()'>
+											<option value=""></option>
+											@foreach($ward as $value)
+												<option value="{{ $value->tenphuongxa }}">{{ $value->tenphuongxa }}</option>
+											@endforeach
+										</select>
 									</div>
-									<div class="dropdown w-200">
-										<button class="btn dropdown-toggle search_city-btn text-color-333 font-size-1 w-100 d-flex justify-content-between align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-											Chọn phường/xã
-										</button>
-										<ul class="dropdown-menu p-0 team__filter-address font-size-1" aria-labelledby="dropdownMenuButton1">
-											<li><a class="dropdown-item" href="#">Huyện Vĩnh Long</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Đồng Tháp</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Bến Tre</a></li>
-										</ul>
-									</div>
-									<div class="dropdown w-200">
-										<button class="btn dropdown-toggle search_city-btn text-color-333 font-size-1 w-100 d-flex justify-content-between align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-											Chọn phường/xã
-										</button>
-										<ul class="dropdown-menu p-0 team__filter-address font-size-1" aria-labelledby="dropdownMenuButton1">
-											<li><a class="dropdown-item" href="#">Huyện Vĩnh Long</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Đồng Tháp</a></li>
-											<li><a class="dropdown-item" href="#">Huyện Bến Tre</a></li>
-										</ul>
+									
+									<div class="dropdown w-200"> 
+										<input type="search" style="height: 36px;" class="form-control form-control-sm" onkeyup="search_phone()" name="search_phone" id="search_phone" placeholder="Tìm kiếm số điện thoại">
 									</div>
 									<div class="dropdown w-200"> 
-										<input type="search" style="height: 36px;" class="form-control form-control-sm" name="" id="" placeholder="Tìm kiếm số điện thoại">
+										<input type="search" style="height: 36px;" class="form-control form-control-sm" onkeyup="search_madaily()" name="search_madaily" id="search_madaily" placeholder="Tìm kiếm mã đại lý">
 									</div>
 									<div class="dropdown w-200"> 
-										<input type="search" style="height: 36px;" class="form-control form-control-sm" name="" id="" placeholder="Tìm kiếm mã đại lý">
+										<input type="search" style="height: 36px;" class="form-control form-control-sm" onkeyup="search_captren()" name="search_captren" id="search_captren" placeholder="Tìm kiếm mã đại lý cấp trên">
 									</div>
-									<div class="dropdown w-200"> 
-										<input type="search" style="height: 36px;" class="form-control form-control-sm" name="" id="" placeholder="Tìm kiếm mã đại lý cấp trên">
-									</div>
-									<div class="dropdown w-200"> 
-										<button class="btn btn-success"> Cấp bậc hiện tại</button>
-									</div>
+
 								</div>
 <!----------------- Table information user ----------------->
 								<div class="pt-2">
@@ -112,7 +100,7 @@
 										</thead>
 										<tbody>
 											@foreach ($user as $value)
-											<tr>
+											<tr class="content">
 												<td>{{$value->id}}</td>
 												<td>{{$value->code_user}}</td>
 												<td>{{$value->name}}</td>
@@ -136,10 +124,17 @@
 					</div>
 				</div>
 				<!-- end filter -->
-
-
+				<div class="pt-2 text-end">
+					{{$user->appends(compact('items'))->links()}}
+				</div>
 			</div>
 		</div>
-  	</section>
+
+	  
 <script type="text/javascript" src="{{asset('public/admin/table/table.js')}}"></script>
+<script>
+    document.getElementById('pagination').onchange = function() { 
+        window.location = "{!! $user->url(1) !!}&items=" + this.value; 
+    }; 
+</script>
 @endsection

@@ -2,9 +2,20 @@
 @section('content')
 <link rel="stylesheet" href="{{asset('/public/admin/css/doitac.css')}}">
 <link rel="stylesheet" href="{{ asset('/public/user/css/detailcanhan.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/admin/table/table.css') }}" type="text/css">
+
+<!-- Đoạn JS Date Picker -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#search_madaily" ).datepicker();
+	} );
+</script>
+  	<!-- End Đoạn JS Date Picker -->
 
 <section class="home-section">
-<section class="section about-section gray-bg" id="about">
+    <section class="section about-section gray-bg" id="about">
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                     <div class="col-lg-6">
@@ -122,53 +133,117 @@
                     </div>
                 </div>
             </div>
-        </section>  
 
+        <div class="row pt-3 justify-content-center">
+            <div class="col-12 pb-2">
+                <h3 class="text-center text-uppercase">Lịch sử bán hàng</h3>
+            </div>
+            <div class="col-4 pb-2" >
+                <input class="form-control" type="text" id="search_madaily" onkeyup="search_madaily()" name="search_madaily" placeholder="Nhập thời gian tìm kiếm">
+            </div>
+            <div class="col-11">
+                <table class="styled-table table-sortable" id="myTable" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Số điểm nhận được</th>
+                            <th>Số tiền đã chi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($history->DoanhThuNgay as $value)
+                        <tr>
+                            <td>{{$value->created_at->format('m/d/Y')}}</td>
+                            <td>{{$value->point}}</td>
+                            <td>{{$value->amount}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+        <div class="row pt-3 justify-content-center">
+            <div class="col-12 pb-2">
+                <h3 class="text-center text-uppercase">Lịch sử bán hàng theo tháng</h3>
+            </div>
+            <div class="col-11">
+                <table class="styled-table table-sortable" id="myTable" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Tháng</th>
+                            <th>Point NAO</th>
+                            <th>Doanh Thu</th>
+                            <th>Nhánh</th>
+                            <th>Hoa hồng bán lẻ</th>
+                            <th>Hoa hồng nhóm</th>
+                            <th>Hoa hồng lãnh đạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($history_month->DoanhThuThang as $value)
+                        <tr>
+                            <td>{{$value->created_at->format('m/Y')}}</td>
+                            <td>{{$value->point}}</td>
+                            <td>{{$value->amount}}</td>
+                            <td>{{$value->nhanh}}</td>
+                            <td>{{$value->hoahong_banle}}</td>
+                            <td>{{$value->hoahong_nhom}}</td>
+                            <td>{{$value->hoahong_lanhdao}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<div class="row pt-3">
-    <div class="col-12 pb-3">
-        <h3 class="text-center text-uppercase">Thông tin bán hàng</h3>
-    </div>
-    <div class="col-6 text-center box-dad">
-        <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Doanh số cá nhân hiện tại: 50.000.000 VND</p>
-            <p class="m-0 text-white">Doanh số đội nhóm hiện tại: 50.000.000 VND</p>
+        <div class="row pt-3">
+            <div class="col-12 pb-2">
+                <h3 class="text-center text-uppercase">Thông tin bán hàng</h3>
+            </div>
+            <div class="col-6 text-center box-dad">
+                <div class="box-child">
+                    <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: {{$sumDT_all_nhanh + $tongdiemNAO->pointNAO->doanhthu}} VNĐ</h4>
+                    <p class="m-0 text-white">Doanh số cá nhân hiện tại: {{$tongdiemNAO->pointNAO->doanhthu}} VNĐ</p>
+                    <p class="m-0 text-white">Doanh số đội nhóm hiện tại: {{$sumDT_all_nhanh}} VNĐ</p>
+                </div>
+            </div>
+            <div class="col-6 text-center box-dad">
+                <div class="box-child">
+                    <h5 class="text-uppercase text-white">Tổng chiết khấu hiện tại: 0%</h4>
+                    <p class="m-0 text-white">Chiết khấu cá nhân: 0%</p>
+                    <p class="m-0 text-white">Chiết khấu từ đội nhóm: 0%</p>
+                </div>
+            </div>
+            <div class="col-6 text-center box-dad">
+                <div class="box-child">
+                    <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: {{$sumPoint_all_nhanh + $tongdiemNAO->pointNAO->point}} point</h4>
+                    <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: {{$tongdiemNAO->pointNAO->point}} point</p>
+                    <p class="m-0 text-white">Điểm NAO đội nhóm hiện tại: {{$sumPoint_all_nhanh}} point</p>
+                </div>
+            </div>
+            <div class="col-6 text-center box-dad">
+                <div class="box-child">
+                    <h5 class="text-uppercase text-white">Số lượng F1: {{$tong_so_F1}}</h4>
+                    <p class="m-0 text-white">Số lượng thành viên đội nhóm: {{count($listGroup)}}</p>
+                    <p class="m-0 text-black">_</p>
+                </div>
+            </div>
+            <div class="col-6 text-center box-dad">
+                <div class="box-child">
+                @if ($listPoint != null)
+                    @foreach ($listPoint as $value)
+                    <p class="m-0 text-white">Điểm NAO của nhánh tách {{ $value->id }}: {{ $value->point }} Point</p>
+                    @endforeach
+                @else
+                    <p class="m-0 text-white">{{$user->name}} chưa có nhánh tách</p>
+                @endif
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <a class="btn btn-warning" style="width: 150px" href="{{route('listcanhan')}}">Quay lại</a>
+            </div>
         </div>
-    </div>
-    <div class="col-6 text-center box-dad">
-        <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng chiết khấu hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Chiết khấu cá nhân: 50.000.000 VND</p>
-            <p class="m-0 text-white">Chiết khấu từ đội nhóm: 50.000.000 VND</p>
-        </div>
-    </div>
-    <div class="col-6 text-center box-dad">
-        <div class="box-child">
-            <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: 100.000.000 VND</h4>
-            <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO đội nhóm hiện tại: 50.000.000 VND</p>
-        </div>
-    </div>
-    <div class="col-6 text-center box-dad">
-        <div class="box-child">
-            <h5 class="text-uppercase text-white">Số lượng F1: 100</h4>
-            <p class="m-0 text-white">Số lượng thành viên đội nhóm: 50</p>
-            <p class="m-0 text-white">(Cập nhật thêm)</p>
-        </div>
-    </div>
-    <div class="col-6 text-center box-dad">
-        <div class="box-child">
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 1: 100.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 2: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách 3: 50.000.000 VND</p>
-            <p class="m-0 text-white">Điểm NAO của nhánh tách N: 50.000.000 VND</p>
-        </div>
-    </div>
-    <div class="col-12 text-center">
-        <a class="btn btn-warning" style="width: 150px" href="{{route('listcanhan')}}">Quay lại</a>
-    </div>
-</div>
+    </section>
 </section>
 @endsection

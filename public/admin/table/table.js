@@ -35,14 +35,72 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
     });
 });
 
-function search_time() {
+$("#tinhID").select2({
+	placeholder: "Chọn tỉnh/thành",
+	allowClear: true
+});
+$("#quanID").select2({
+	placeholder: "Chọn quận/huyện",
+	allowClear: true
+});
+$("#xaID").select2({
+	placeholder: "Chọn phường/xã",
+	allowClear: true
+});
+
+function search_tinhthanh(){  
+	var rex = new RegExp($('#tinhID').val());
+	if(rex =="/all/"){clearTinh()}else{
+		$('.content').hide();
+		$('.content').filter(function() {
+			return rex.test($(this).text());
+		}).show();
+	}
+}
+	
+function clearTinh(){
+	$('.search_tinhthanh').val('');
+	$('.content').show();
+}
+
+function search_quanhuyen(){  
+	var rex = new RegExp($('#quanID').val());
+	if(rex =="/all/"){clearQuan()}else{
+		$('.content').hide();
+		$('.content').filter(function() {
+			return rex.test($(this).text());
+		}).show();
+	}
+}
+	
+function clearQuan(){
+	$('.search_quanhuyen').val('');
+	$('.content').show();
+}
+
+function search_phuongxa(){  
+	var rex = new RegExp($('#xaID').val());
+	if(rex =="/all/"){clearPhuong()}else{
+		$('.content').hide();
+		$('.content').filter(function() {
+			return rex.test($(this).text());
+		}).show();
+	}
+}
+	
+function clearPhuong(){
+	$('.search_phuongxa').val('');
+	$('.content').show();
+}
+
+function search_phone() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search_time");
+    input = document.getElementById("search_phone");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
+      td = tr[i].getElementsByTagName("td")[3];
       if (td) {
         txtValue = td.textContent || td.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -52,11 +110,11 @@ function search_time() {
         }
       }       
     }
-  }
-  
-  function search_makhachhang() {
+}
+
+function search_madaily() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search_makhachhang");
+    input = document.getElementById("search_madaily");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
@@ -71,16 +129,16 @@ function search_time() {
         }
       }       
     }
-  }
-  
-  function search_magiaodich() {
+}
+
+function search_captren() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search_magiaodich");
+    input = document.getElementById("search_captren");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
+      td = tr[i].getElementsByTagName("td")[7];
       if (td) {
         txtValue = td.textContent || td.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -90,4 +148,4 @@ function search_time() {
         }
       }       
     }
-  }
+}

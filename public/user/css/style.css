@@ -29,6 +29,7 @@ a {
     border-radius: 90px;
     border: 1px solid #F6872E;
     padding-left: 20px;
+    background-color: white;
 }
 
 .viennhat {
@@ -92,6 +93,10 @@ a {
 
 .card-hoahong-inside {
     border-left: 3px solid #F6872E;
+}
+
+.card-body.text-center {
+    padding: 1rem;
 }
 
 .color-camVIP {
@@ -158,4 +163,31 @@ a {
 
 li.list_name_group {
     padding-bottom: 10px;
+}
+
+section, body {
+	overflow-x: hidden!important
+}
+
+a {
+    font-size: 16px;
+}
+
+a:hover {
+    color: #F6872E;
+    text-decoration: none;
+}
+
+#avatar {
+    border-radius: 99px;
+}
+
+#result img.thumbnail {
+    width: 100px;
+    border-radius: 99px;
+    height: 100px;
+}
+
+label {
+    margin-bottom: 0px;
 }

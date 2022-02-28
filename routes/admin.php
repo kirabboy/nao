@@ -17,6 +17,7 @@ use App\Admin\Controllers\BaoCaoController;
 use App\Admin\Controllers\QuanLyDaiLyController;
 use App\Admin\Controllers\KhuyenMaiController;
 use App\Admin\Controllers\SettingController;
+use App\Admin\Controllers\UserDetailController;
 use App\Admin\Controllers\ExportPDF;
 use App\Admin\Controllers\ShippingController as AdminShippingController;
 
@@ -192,7 +193,7 @@ Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name
     Route::prefix('canhan')->group(function () { 
         Route::get('/', [QuanLyDaiLyController::class, 'canhan'])->name('listcanhan');
         Route::get('/download', [QuanLyDaiLyController::class, 'dowListUser']);
-        Route::get('/{id}', [QuanLyDaiLyController::class, 'chitietcanhan']);
+        Route::get('/{id}', [UserDetailController::class, 'chitietcanhan']);
     });
 
     Route::prefix('nangcapdaily')->group(function () {

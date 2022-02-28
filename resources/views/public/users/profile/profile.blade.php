@@ -4,8 +4,8 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="{{asset('/')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <span class="ps-3"> Cá nhân</span>
+                <a href="{{asset('/')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="ps-3"> Cá nhân</span></a>
             </h5>
         </div>
     </div>
@@ -26,7 +26,12 @@
 <section>
     <div class="row p-3">
         <div class="col-12 pb-3 text-center">
-            <img src="{{asset('user/image/ic_user.png')}}" width="100" height="100">
+            @if ($user->avatar == 'image_default.png')
+            <img src="{{asset('user/image/ic_user.png')}}" id="avatar" width="100" height="100"></label>
+            @else
+            <img src="{{asset('user/avatar')}}/{{$user->avatar}}" id="avatar" width="100" height="100"></label>
+            @endif
+
             <p class="pt-2">{{$user->name}}</p>
             @if ($user->level == 1)
                 <button class="btn btn-radius btn-xanhngoc">Cộng tác viên</button>

@@ -9,8 +9,8 @@
     <div class="row p-3">
         <div class="col-12">
             <h5>
-                <a href="{{asset('/')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <span class="ps-3"> Đội nhóm</span>
+                <a href="{{asset('/')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="ps-3"> Đội nhóm</span></a>
             </h5>
         </div>
     </div>
@@ -24,18 +24,18 @@
             name="search" class="inputform vienformsearch" placeholder="Tìm kiếm thành viên">
         </div>
 
-        <div class="col-6 pb-3">
+        <!-- <div class="col-6 pb-3">
             <input class="inputform" style="width: 85%;" type="date" id="myDate" value="2021-12-21">
-        </div>
+        </div> -->
 
         <div class="col-12">
             <p class="fw-bold">Danh sách đội ngũ của bạn</p>
         </div>
 
         <div class="col-12 pb-4">
-            @if ($info_child != null)
+            @if ($listPoint_getGroup != null)
             <ol id='list' style="list-style: none; padding: 0;">
-                @foreach($info_child as $value)
+                @foreach($listPoint_getGroup as $value)
                 <li class="list_name_group">
                     <a class="text-dark" href="{{route('doinhom.show',$value->id)}}">
                         <div class="card-hoahong" style="box-shadow: none; border: 1px solid #199DA4">

@@ -196,6 +196,6 @@ p {
     align-items: center !important;
     display: flex;
 }
-.pt-86, .menu-fix {
+/* .pt-86, .menu-fix {
     display: none !important;
-}
+} */
