@@ -22,3 +22,46 @@ $(document).on('click', '.form-group-input-icon i', function() {
 		$(this).replaceWith('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
 	}
 });
+
+function writeStyles(styleName, cssText) {
+	var styleElement = document.getElementById(styleName);
+	if (styleElement) document.getElementsByTagName('head')[0].removeChild(
+		styleElement);
+	styleElement = document.createElement('style');
+	styleElement.type = 'text/css';
+	styleElement.id = styleName;
+	styleElement.innerHTML = cssText;
+	document.getElementsByTagName('head')[0].appendChild(styleElement);
+}
+
+function writeStyles2(styleName, cssText) {
+	var styleElement = document.getElementById(styleName);
+	if (styleElement) document.getElementsByTagName('head')[0].removeChild(
+		styleElement);
+	styleElement = document.createElement('style');
+	styleElement.type = 'text/css';
+	styleElement.id = styleName;
+	styleElement.innerHTML = cssText;
+	document.getElementsByTagName('head')[0].appendChild(styleElement);
+}
+
+function tatInfo() {
+	var cssText = '#trangInfo{ display: none !important; } #trangOption{display: block !important}';
+	writeStyles('styles_js', cssText);
+}
+
+function showRegister() {
+	var cssText = '#trangInfo{ display: block !important;} #trangOption{display: none !important}';
+	writeStyles('styles_js', cssText)
+}
+
+function showNangCap1() {
+	var cssText = '#trangInfo{ display: none !important; } #showNangCap1{display: block !important} #trangOption{ display: none !important;} ';
+	writeStyles('styles_js', cssText)
+}
+
+function final1() {
+	var cssText = '#trangInfo{ display: none !important; } #showNangCap1{display: none !important} #final1{display: block !important} #trangOption{ display: none !important;} ';
+	writeStyles('styles_js', cssText)
+}
+

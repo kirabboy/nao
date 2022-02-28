@@ -57,7 +57,7 @@ class UserDetailController extends Controller
 
         $tongNhanhNAO = $user_child->getIDSon->where('nhanh',$user->id)->count() - 1;
         $list_child_nhanh = $user_child->getIdSon->whereNotIn('id_child',1);
-
+    
         return view('admin.quanly.detailcanhan',[
             'user' => $user,
             'user_age' => $user_age,
@@ -95,7 +95,6 @@ class UserDetailController extends Controller
         return $listPoint;
     }
 
-
     public function tinhtienmuahang ($id, $amount, $point) {
         $doanhthu_thang = PointNAO::where('id', $id)->first();
         $doanhthu_thang->doanhthu += $amount;
@@ -128,7 +127,7 @@ class UserDetailController extends Controller
     public function congTien($point, $id) {
         $check_have_dad = User::with('getIdDad.getNameDad','pointNAO','DoanhThuNgay')
             ->where('id',$id)->get();
-        $dieukien_point = 140000000;
+        $dieukien_point = 120000000;
 
         $congTien = $check_have_dad->first()->pointNAO;
         $pointbandau = $congTien->point;

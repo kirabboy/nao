@@ -216,7 +216,7 @@ Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name
     Route::get('/cau-hinh-bank', [SettingController::class, 'cauhinhbank'])->name('cauhinhbank');
     Route::post('/cau-hinh-bank',[SettingController::class, 'postCauhinhbank'])->name('post.cauhinhbank');
 
-
+    
     Route::get('/role', [AdminHomeController::class, 'roles']);
 
     Route::get('logout', [LoginController::class, 'create'])->name('logout');

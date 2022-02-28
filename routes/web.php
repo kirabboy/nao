@@ -26,6 +26,8 @@ Route::get('dang-ky', [LoginRegisterController::class, 'register'])->name('regis
 Route::post('dang-ky', [LoginRegisterController::class, 'postRegister'])->name('post.register');
 Route::get('dang-ky/{mgt}', [LoginRegisterController::class, 'mgt']);
 
+Route::get('magioithieu',[LoginRegisterController::class, 'magioithieu'])->name('magioithieu');
+
 Route::get('dang-nhap-otp', function () {
     return view('public.user.login-otp');
 })->name('login.otp');

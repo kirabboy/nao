@@ -1,6 +1,7 @@
 @extends('public.user.layout.master')
 @push('css')
 <link rel="stylesheet" href="{{ asset('public/css/register.css') }}" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 @endpush
 @section('content')
 
@@ -32,7 +33,8 @@
 		{{-- End thong bao dang nhap --}}
 			<div class="form-group">
 				<label>Số điện thoại</label>
-				<input type="phone" name="phone" class="form-control custom-input" placeholder="Số điện thoại">
+				<input type="phone" id="phone" name="phone" class="form-control custom-input" placeholder="Số điện thoại">
+				<p class="pt-2" id="checkPhone"></p>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mật khẩu</label>
@@ -40,7 +42,8 @@
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mã giới thiệu</label>
-				<input type="text" name="magioithieu" class="form-control custom-input" placeholder="Mã giới thiệu">
+				<input type="text" id="magioithieu" name="magioithieu" class="form-control custom-input" placeholder="Mã giới thiệu">
+				<p class="pt-2" id="checkMGT"></p>
 			</div>
 			<div class="form-check d-flex">
 				<input type="checkbox" class="form-check-input" id="rememberMe">
@@ -63,46 +66,37 @@
 @push('js')
 <script src="{{ asset('public/js/register.js') }}"></script>
 <script>
-	function writeStyles(styleName, cssText) {
-		var styleElement = document.getElementById(styleName);
-		if (styleElement) document.getElementsByTagName('head')[0].removeChild(
-			styleElement);
-		styleElement = document.createElement('style');
-		styleElement.type = 'text/css';
-		styleElement.id = styleName;
-		styleElement.innerHTML = cssText;
-		document.getElementsByTagName('head')[0].appendChild(styleElement);
-	}
+	$("#magioithieu").change(function(e) {
+		console.log($(this).val());
+		e.preventDefault();
+		var magioithieu = $("#magioithieu").val();
+		var phone = $("#phone").val();
+		$.ajax({
+			url: "{{route('magioithieu')}}",
+			type: 'GET',
+			dataType: 'json',
+			data: {id: magioithieu, phone: phone},
+			success: function (response) {
+				console.log(response)
+				$('#checkMGT').html(response.note)
+			}
+		})
+	});
 
-	function writeStyles2(styleName, cssText) {
-		var styleElement = document.getElementById(styleName);
-		if (styleElement) document.getElementsByTagName('head')[0].removeChild(
-			styleElement);
-		styleElement = document.createElement('style');
-		styleElement.type = 'text/css';
-		styleElement.id = styleName;
-		styleElement.innerHTML = cssText;
-		document.getElementsByTagName('head')[0].appendChild(styleElement);
-	}
-
-	function tatInfo() {
-		var cssText = '#trangInfo{ display: none !important; } #trangOption{display: block !important}';
-		writeStyles('styles_js', cssText);
-	}
-
-	function showRegister() {
-		var cssText = '#trangInfo{ display: block !important;} #trangOption{display: none !important}';
-		writeStyles('styles_js', cssText)
-	}
-
-	function showNangCap1() {
-		var cssText = '#trangInfo{ display: none !important; } #showNangCap1{display: block !important} #trangOption{ display: none !important;} ';
-		writeStyles('styles_js', cssText)
-	}
-	
-	function final1() {
-		var cssText = '#trangInfo{ display: none !important; } #showNangCap1{display: none !important} #final1{display: block !important} #trangOption{ display: none !important;} ';
-		writeStyles('styles_js', cssText)
-	}
+	$("#phone").change(function(e) {
+		console.log($(this).val());
+		e.preventDefault();
+		var phone = $("#phone").val();
+		$.ajax({
+			url: "{{route('magioithieu')}}",
+			type: 'GET',
+			dataType: 'json',
+			data: {phone: phone},
+			success: function (response) {
+				console.log(response)
+				$('#checkPhone').html(response.phone)
+			}
+		})
+	});
 </script>
 @endpush

@@ -40,7 +40,7 @@
 
         <div class="col-12 text-center pt-3">
             <a class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"
-                onclick="final1()">Lưu thông tin</a>
+                onclick="final1()">Đồng ý</a>
         </div>
     </div>  
 </section>

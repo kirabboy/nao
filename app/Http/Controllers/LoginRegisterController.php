@@ -115,7 +115,6 @@ class LoginRegisterController extends Controller
                 $upgrade->image = $file_name;
             }
             $upgrade->save();
-
             return redirect('/')->with('thongbao','Đăng ký thành công');
         }
     }
@@ -125,5 +124,25 @@ class LoginRegisterController extends Controller
             return redirect('/');
         }
         return view('public.user.mgt',['mgt'=>$mgt]);
+    }
+
+    public function magioithieu(Request $request) {
+        $id_user = User::where('code_user','=',$request->id)->first();
+        if ($id_user != null) {
+            $note = '<p class="alert alert-success">Mã giới thiệu '.$request->id.' hợp lệ</p>';
+        } else {
+            $note = '<p class="alert alert-danger">Mã giới thiệu '.$request->id.' không tồn tại!</p>';
+        }
+
+        $phone_user = User::where('phone','=',$request->phone)->first();
+        if ($phone_user == null) {
+            
+        } else {
+            $phone = '<p class="alert alert-danger">Số điện thoại '.$request->id.' đã được đăng ký!';
+        }
+        return response()->json([
+            'note' => $note,
+            'phone' => $phone,
+        ]);
     }
 }
