@@ -103,12 +103,14 @@ class ProductController extends Controller
                     'status' => $request->product_status,
                     'short_desc' => $request->short_description,
                     'long_desc' => $request->description,
+                    'link_driver' => $request->link_driver,
                 ]);
 
                 $productPrice = new ProductPrice();
                 $productPrice->regular_price = $request->product_regular_price;
                 $productPrice->price_ctv = $request->price_ctv;
-                $productPrice->price_new_daily = $request->price_new_daily;
+                // $productPrice->price_new_daily = $request->price_new_daily;
+                $productPrice->price_new_daily = 0;
                 $productPrice->price_daily_chuan = $request->price_daily_chuan;
                 $productPrice->price_vip = $request->price_vip;
                 $productPrice->nao_point = $request->nao_point;
@@ -194,13 +196,14 @@ class ProductController extends Controller
                     'status' => $request->product_status,
                     'short_desc' => $request->short_description,
                     'long_desc' => $request->description,
+                    'link_driver' => $request->link_driver,
                 ]);
 
 
                 ProductPrice::where('id_ofproduct', $id)->update([
                     'regular_price' => $request->product_regular_price,
                     'price_ctv' => $request->price_ctv,
-                    'price_new_daily' => $request->price_new_daily,
+                    // 'price_new_daily' => $request->price_new_daily,
                     'price_daily_chuan' => $request->price_daily_chuan,
                     'price_vip' => $request->price_vip,
                     'nao_point' => $request->nao_point,

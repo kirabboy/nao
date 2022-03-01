@@ -98,9 +98,8 @@
                                                 <input type="text" class="form-control" id="phone" name="phone" value="{{$order_info->phone}}" required>
                                             </div>
                                             <div class="form-group w-100">
-                                                <label for="fullname">Email <abbr class="required"
-                                                        title="bắt buộc">*</abbr></label>
-                                                <input type="text" class="form-control" id="email" name="email" value="{{$order_info->email}}" required>
+                                                <label for="fullname">Email </label>
+                                                <input type="text" class="form-control" id="email" name="email" value="{{$order_info->email}}">
                                             </div>
                                             <div class="form-group w-100">
                                             <label for="fullname">Ngày đặt <abbr class="required"

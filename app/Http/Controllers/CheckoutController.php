@@ -20,6 +20,7 @@ use App\Models\UserAddressShipping;
 use App\Models\Customer;
 use App\Models\CustomerAddress;
 use App\Http\Controllers\ShippingController;
+use App\Admin\Controllers\UserDetailController;
 
 class CheckoutController extends Controller
 {
@@ -114,7 +115,8 @@ class CheckoutController extends Controller
         OrderInfo::create([
             'id_order' => $order->id,
             'fullname' => $address_shipping->fullname,
-            'phone' => $address_shipping->phone
+            'phone' => $address_shipping->phone,
+            'customer_id' => session()->has('customer_address') ? session()->get('customer_address')->id_customer : null
         ]);
         return redirect()->route('checkout.payment', ['order_code' => $order->order_code]);
     }
