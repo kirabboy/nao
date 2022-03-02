@@ -85,11 +85,11 @@ class OrderController extends Controller
         Session::flash('success','Sửa đơn hàng thành công');
         return back();
     }
-    public function patchOrderDestroy(Request $request){
-        Order::find($request->order_id)->update([
+    public function patchOrderDestroy(Order $order){
+        $order->update([
             'status' => 4
         ]);
-        return $request->order_id;
+        return back()->with('success', 'Thực hiện thành công');
     }
     public function deleteOrderDelete(Request $request){
         Order::find($request->order_id)->delete();

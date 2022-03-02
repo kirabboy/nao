@@ -219,7 +219,7 @@
                                         @endif
                                         @if($order->status == 0)
                                         <button type="submit" class="btn btn-info btn-submit-unit">Cập nhật</button>
-                                        <button type="button" class="btn btn-dark" onclick="orderDestroy({{$order->id}})">Hủy</button>
+                                        <a href="{{ route('order.destroy', $order->id) }}"  class="btn btn-dark" onClick="return confirm('Bạn có muốn thực hiện không?');">Hủy</a>
                                         @endif
                                     </div>
                                     
