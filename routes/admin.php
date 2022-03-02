@@ -48,6 +48,8 @@ Route::group(['middleware' => ['admin']], function () {
         // Route::get('/tao-don-hang/{order:id}', [AdminShippingController::class, 'getCreate'])->name('post.shipping.create');
         Route::get('/tao-don-hang', [AdminShippingController::class, 'getInfoShipping'])->name('get.shipping.create');
         Route::delete('/huy-don-hang', [AdminShippingController::class, 'destroyShippingOrder'])->name('delete.shipping.destroy');
+        Route::get('/hoan-thanh-don-hang/{order:id}', [AdminShippingController::class, 'completeShippingOrder'])->name('get.shipping.complete');
+
     });
 
     

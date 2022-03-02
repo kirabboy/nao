@@ -212,12 +212,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if($order->status == 0)
-                                    <div class="card-footer">
-                                        <button type="button" class="btn btn-dark" onclick="orderDestroy({{$order->id}})">Hủy</button>
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        @if($environment == 0 && $order->status != 4)
+                                        <a href="{{ route('get.shipping.complete', $order->id) }}" onClick="return confirm('Bạn có muốn thực hiện không?');" class="btn btn-success btn-submit-unit">Hoàn thành</a>
+                                        @endif
+                                        @if($order->status == 0)
                                         <button type="submit" class="btn btn-info btn-submit-unit">Cập nhật</button>
+                                        <button type="button" class="btn btn-dark" onclick="orderDestroy({{$order->id}})">Hủy</button>
+                                        @endif
                                     </div>
-                                    @endif
+                                    
                                 </form>
                                 </div>
                             </div>

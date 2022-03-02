@@ -17,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ShippingController as CallShippingController;
 use App\Admin\Controllers\ConfigShippingController;
+use App\Admin\Controllers\UserDetailController;
+
 
 class ShippingController extends Controller
 {
@@ -152,6 +154,37 @@ class ShippingController extends Controller
         ]);
 
         return $response_create;
+    }
+
+    public function completeShippingOrder(Order $order){
+
+        $order = $order->load(['order_shipping']);
+        if(count($order->order_shipping) == 0) {
+            (new UserDetailController)->tinhtienmuahang ($order->id_user, $order->sub_total, $order->nao_point);
+            return back()->with('success', 'Thực hiện thành công');
+        }
+
+        $shipping_config = ShippingConfig::select('production', 'username', 'password', 'token')->first();
+
+        //lấy link môi trường.
+        $get_link = $this->configShippingController->checkEnvironmentConfig($shipping_config->production);
+
+        //gọi hàm tạo đơn hàng
+        $response_create = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'h-token' => $shipping_config->token
+        ])->post($get_link.'/api/api/Order/ChangeStatus', [
+            "OrderId" => $order->order_shipping[0]->shipping_id, 
+            "OrderStatusId" => 100
+        ]);
+        
+        //token hết thời gian.
+        if($response_create->status() != 204){
+            return back()->with('error', 'Thực hiện không thành công');
+        }
+        
+        return back()->with('success', 'Thực hiện thành công');
+
     }
 
     public function destroyShippingOrder(Request $request){

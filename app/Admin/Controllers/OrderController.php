@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\shippingConfig;
+
 
 class OrderController extends Controller
 {
@@ -21,7 +23,7 @@ class OrderController extends Controller
         ->leftJoin('order_info', 'orders.id', '=', 'order_info.id_order')
         ->join('order_products', 'orders.id', '=', 'order_products.id_order')
         ->select("orders.id", "order_info.fullname", "orders.shipping_total", "orders.total", "orders.handler", "orders.created_at", "orders.status", DB::raw("count(order_products.id) as count_product"))
-        ->groupBy("orders.id", "order_info.fullname", "orders.shipping_total", "orders.total", "orders.handler", "orders.created_at", "orders.status")
+        ->groupBy("orders.id", "order_info.fullname", "orders.shipping_total", "orders.total", "orders.handler", "orders.created_at", "orders.status")->orderBy('id', 'DESC')
         ->get();
         $doanh_thu = Order::where('status', 3)->whereMonth('created_at', '=', Carbon::now('Asia/Ho_Chi_Minh')->month)->sum('total');
         return view('admin.order.don-hang-dai-ly', ['orders' => $orders, 'doanh_thu' => $doanh_thu]);
@@ -41,6 +43,8 @@ class OrderController extends Controller
         
         $shipping_bill = $order->order_shipping()->get();
 
+        $environment = shippingConfig::first()->production;
+
         return view('admin.order.chi-tiet-don-hang', [
                 'order'=>$order, 
                 'order_info'=>$order->order_info()->first(), 
@@ -49,7 +53,8 @@ class OrderController extends Controller
                 'provinces'=>$provinces,
                 'districts'=>$districts,
                 'wards'=>$wards,
-                'shipping_bill' => $shipping_bill
+                'shipping_bill' => $shipping_bill,
+                'environment' => $environment
             ]);
     }
     public function puthOrderUpdate(Request $request){
