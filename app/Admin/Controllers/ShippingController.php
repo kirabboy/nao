@@ -160,6 +160,7 @@ class ShippingController extends Controller
 
         $order = $order->load(['order_shipping']);
         if(count($order->order_shipping) == 0) {
+            $order->update(['status' => 3]);
             (new UserDetailController)->tinhtienmuahang ($order->id_user, $order->sub_total, $order->nao_point);
             return back()->with('success', 'Thực hiện thành công');
         }
