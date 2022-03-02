@@ -122,13 +122,13 @@
 														<td>
 															<div class="input-group">
 																<a href="{{route('order.detail', ['order' => $order->id])}}" class="btn btn-info">Xem</a>
-																<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-angle-down"></i></button>
-																<ul class="dropdown-menu dropdown-menu-end">
+																<button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{-- <i class="fas fa-angle-down"></i></button>
+																 <ul class="dropdown-menu dropdown-menu-end">
 																	@if($order->status != 4)
 																	<li><a class="dropdown-item" href="#" onclick="orderDestroy({{$order->id}})">Hủy</a></li>
 																	@endif
 																	<li><a class="dropdown-item" href="#" onclick="orderDelete(this,{{$order->id}})">Xóa</a></li>
-																</ul>
+																</ul> --}}
 															</div>
 														</td>
 													</tr>

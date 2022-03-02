@@ -70,10 +70,14 @@ class CheckoutController extends Controller
         $data = $request->all();
         $rowids = Session::get('rowids');
         $cart = Cart::instance('shopping');
-        $address_shipping = UserAddressShipping::whereId($data['address_id'])->first();
+        $address_shipping = $request->whenHas('address_id', function ($input) {
+            return CustomerAddress::whereId($input)->with('customer:id,name,phone')->first();
+        }, function () use ($user) {
+            return $user;    
+        });
         $order = Order::create([
             'id_user' => $user->id,
-            'warehouse_id' => $address_shipping->warehouse_id
+            'warehouse_id' => $address_shipping->id_warehouse
         ]);
         $subtotal = 0;
         $nao_point = 0;
@@ -106,16 +110,16 @@ class CheckoutController extends Controller
         $order->save();
         OrderAddress::create([
             'id_order' => $order->id,
-            'id_province' => $address_shipping->province_id,
-            'id_district' => $address_shipping->district_id,
-            'id_ward' => $address_shipping->ward_id,
+            'id_province' => $address_shipping->id_province,
+            'id_district' => $address_shipping->id_district,
+            'id_ward' => $address_shipping->id_ward,
             'address' => $address_shipping->address,
             'address_full' => $address_shipping->address_full
         ]);
         OrderInfo::create([
             'id_order' => $order->id,
-            'fullname' => $address_shipping->fullname,
-            'phone' => $address_shipping->phone,
+            'fullname' => $address_shipping->name ? $address_shipping->name : optional($address_shipping->customer)->name,
+            'phone' => $address_shipping->phone ? $address_shipping->phone : optional($address_shipping->customer)->phone,
             'customer_id' => session()->has('customer_address') ? session()->get('customer_address')->id_customer : null
         ]);
         return redirect()->route('checkout.payment', ['order_code' => $order->order_code]);

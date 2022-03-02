@@ -49,6 +49,8 @@ Route::group(['middleware' => ['admin']], function () {
         // Route::get('/tao-don-hang/{order:id}', [AdminShippingController::class, 'getCreate'])->name('post.shipping.create');
         Route::get('/tao-don-hang', [AdminShippingController::class, 'getInfoShipping'])->name('get.shipping.create');
         Route::delete('/huy-don-hang', [AdminShippingController::class, 'destroyShippingOrder'])->name('delete.shipping.destroy');
+        Route::get('/hoan-thanh-don-hang/{order:id}', [AdminShippingController::class, 'completeShippingOrder'])->name('get.shipping.complete');
+
     });
 
     
@@ -81,7 +83,7 @@ Route::group(['middleware' => ['admin']], function () {
     })->name('orderadmin.backAgency');
     Route::put('/cap-nhat-don-hang', [OrderController::class, 'puthOrderUpdate'])->name('order.update');
     Route::get('/chi-tiet/{order:id}', [OrderController::class, 'getOrderDetail'])->name('order.detail');
-    Route::patch('/huy-don-hang', [OrderController::class, 'patchOrderDestroy']);
+    Route::get('/huy-don-hang/{order:id}', [OrderController::class, 'patchOrderDestroy'])->name('order.destroy');
     Route::delete('/xoa-don-hang', [OrderController::class, 'deleteOrderDelete']);
 });
 // ĐƠN VỊ TÍNH

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th1 12, 2022 lúc 09:07 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.13
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th2 28, 2022 lúc 11:17 AM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,8 @@ CREATE TABLE `admins` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,9 +42,59 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', NULL, '2021-12-16 07:27:53', '2021-12-23 07:27:53'),
-(2, 'kho', 'kho@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', NULL, NULL, NULL),
-(3, 'ketoan', 'ketoan@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', NULL, NULL, NULL);
+(1, 'admin', 'admin@gmail.com', '$2y$10$drtc8/RCNronPROYztCFJOkt/A0cDqYrMs0LV.ImX3GlfqoKK/FEq', NULL, '2021-12-16 07:27:53', '2021-12-23 07:27:53'),
+(2, 'kho', 'kho@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', NULL, '2021-12-16 07:27:53', '2021-12-23 07:27:53'),
+(3, 'ketoan', 'ketoan@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', NULL, '2021-12-16 07:27:53', '2021-12-23 07:27:53');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` int(11) NOT NULL,
+  `id_ofcategory` int(11) NOT NULL,
+  `id_ofauthor` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `feature_img` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_keyword` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_desc` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `blogs`
+--
+
+INSERT INTO `blogs` (`id`, `id_ofcategory`, `id_ofauthor`, `name`, `slug`, `feature_img`, `content`, `meta_keyword`, `meta_desc`, `status`, `updated_at`, `created_at`) VALUES
+(1, 6, NULL, 'Tại sao giày Nike Air Jordan 1 hot được nhiều sao Việt yêu thích?', 'tai-sao-giay-nike-air-jordan-1-hot-duoc-nhieu-sao-viet-yeu-thich', 'http://localhost:8888/nao/public/storage/files/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', '<p>Nike Air Jordan 1 l&agrave; một trong những đ&ocirc;i gi&agrave;y c&oacute; chiều d&agrave;i lịch sử l&acirc;u nhất. Trong suốt qu&aacute; tr&igrave;nh tồn tại, đ&ocirc;i gi&agrave;y n&agrave;y kh&ocirc;ng ngừng hot khi li&ecirc;n tục được săn đ&oacute;n kh&ocirc;ng chỉ bởi những t&iacute;n đồ y&ecirc;u gi&agrave;y thể thao m&agrave; c&ograve;n cả những ng&ocirc;i sao h&agrave;ng đầu. Vậy điều g&igrave; đ&atilde; l&agrave;m n&ecirc;n sức hấp dẫn của đ&ocirc;i gi&agrave;y n&agrave;y? C&ugrave;ng Shopgiayreplica giải m&atilde; c&acirc;u chuyện th&agrave;nh c&ocirc;ng giữa 2 &ocirc;ng lớn n&agrave;y nh&eacute;</p>\r\n\r\n<h2><strong>AIR JORDAN 1 SỞ HỮU C&Acirc;U CHUYỆN THƯƠNG HIỆU ĐỘC Đ&Aacute;O</strong></h2>\r\n\r\n<p><img alt=\"\" src=\"http://www.infobeauty.net/uploaded/h1(340).jpg\" /></p>\r\n\r\n<p>Nike Air Jordan đ&ocirc;i gi&agrave;y mang dấu ấn của huyền thoại Michael Jordan</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Kh&ocirc;ng đơn giản chỉ l&agrave; một đ&ocirc;i gi&agrave;y, n&oacute; chứa đựng c&acirc;u chuyện thương hiệu của ri&ecirc;ng m&igrave;nh. C&acirc;u chuyện đ&oacute; gắn liền với huyền thoại b&oacute;ng rổ Michael Jordan. Đ&ocirc;i gi&agrave;y được Peter Moore thiết kế d&agrave;nh ri&ecirc;ng cho si&ecirc;u sao n&agrave;y v&agrave; được lấy t&ecirc;n gọi l&agrave; Air Jordan.</p>', NULL, NULL, 1, '2022-02-07 06:16:45', '2022-02-07 06:16:45');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `blog_category`
+--
+
+CREATE TABLE `blog_category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `blog_category`
+--
+
+INSERT INTO `blog_category` (`id`, `name`, `slug`, `updated_at`, `created_at`) VALUES
+(6, 'Tin tức', 'tin-tuc', '2022-02-07 06:14:48', '2022-02-07 06:14:48'),
+(7, 'Tuyển dụng', 'tuyen-dung', '2022-02-07 06:14:57', '2022-02-07 06:14:57');
 
 -- --------------------------------------------------------
 
@@ -119,8 +169,9 @@ CREATE TABLE `customer` (
   `birthday` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `sex` int(10) DEFAULT 1,
-  `phone` int(20) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   `facebook` varchar(255) DEFAULT NULL,
+  `note` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -129,9 +180,48 @@ CREATE TABLE `customer` (
 -- Đang đổ dữ liệu cho bảng `customer`
 --
 
-INSERT INTO `customer` (`id`, `id_ofuser`, `code_customer`, `name`, `birthday`, `email`, `sex`, `phone`, `facebook`, `created_at`, `updated_at`) VALUES
-(1, 1, 'FKC001', 'Kira', '2021-12-30', 'kira123@gmail.com', 1, 123456789, 'facebook.com/kira', '2022-01-12 03:46:10', '2022-01-12 06:36:34'),
-(2, 1, 'FKC002', 'Nguyễn Chính Kira', '2022-01-06', 'Caohocvien@gmail.com', 1, 392763984, 'Http://facebook/caohocvan', '2022-01-12 04:33:49', '2022-01-12 06:36:59');
+INSERT INTO `customer` (`id`, `id_ofuser`, `code_customer`, `name`, `birthday`, `email`, `sex`, `phone`, `facebook`, `note`, `created_at`, `updated_at`) VALUES
+(1, 1, 'FKC001', 'Kira 123', NULL, NULL, 2, NULL, NULL, 'ABC', '2022-01-12 03:46:10', '2022-01-14 07:17:31'),
+(2, 1, 'FKC002', 'Nguyễn Chính Kira', '2022-01-06', 'Caohocvien@gmail.com', 1, '0392763984', 'Http://facebook/caohocvan', NULL, '2022-01-12 04:33:49', '2022-01-12 06:36:59'),
+(3, 6, 'FKC3', 'Nguyễn Chính Hưng', '1998-03-12', 'nc.hung0806@gmail.com', 1, '0338927456', 'fb.com/kira', NULL, '2022-02-07 04:31:59', '2022-02-07 04:31:59'),
+(4, 7, 'FKC4', 'Duong tesst Thuy test', '2022-02-19', 'trantruong1797@gmail.com', 1, '0342909557', 'https://www.facebook.com/', NULL, '2022-02-09 04:39:51', '2022-02-09 04:39:51'),
+(5, 7, 'FKC5', 'Duong tesst Thuy test', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-09 07:10:38', '2022-02-09 07:10:38'),
+(6, 7, 'FKC6', 'Duong tesst Thuy test', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-09 07:23:54', '2022-02-09 07:23:54'),
+(7, 7, 'FKC7', 'Trần Trường', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-09 07:24:27', '2022-02-09 07:24:27'),
+(8, 7, 'FKC8', 'Duong tesst Thuy test', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-09 07:45:05', '2022-02-09 07:50:33'),
+(9, 7, 'FKC9', 'Trường', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-09 07:53:11', '2022-02-09 07:53:26'),
+(10, 4, 'FKC10', 'Duong tesst Thuy test', NULL, NULL, 1, '0342909557', NULL, NULL, '2022-02-21 09:50:10', '2022-02-21 09:50:10');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `customer_address`
+--
+
+CREATE TABLE `customer_address` (
+  `id` int(10) NOT NULL,
+  `id_customer` int(11) DEFAULT NULL,
+  `id_province` int(11) DEFAULT NULL,
+  `id_district` int(11) DEFAULT NULL,
+  `id_ward` int(11) DEFAULT NULL,
+  `id_warehouse` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer_address`
+--
+
+INSERT INTO `customer_address` (`id`, `id_customer`, `id_province`, `id_district`, `id_ward`, `id_warehouse`, `address`, `created_at`, `updated_at`) VALUES
+(1, 1, 18, 1851, 18517, 1, '998 Quang Trung 123456', '2022-01-13 08:48:44', '2022-01-14 07:31:13'),
+(2, 1, 17, 1731, 17330, 1, 'abc', '2022-01-14 07:19:34', '2022-01-14 07:19:34'),
+(3, 5, 17, 1754, 17564, 1, 'Quang trung', '2022-02-09 07:10:38', '2022-02-09 07:10:38'),
+(4, 6, 18, 1862, 18655, 1, 'Quang trung', '2022-02-09 07:23:54', '2022-02-09 07:23:54'),
+(5, 7, 20, 2065, 20653, 9, '954, quang trung', '2022-02-09 07:24:27', '2022-02-09 09:44:01'),
+(7, 9, 17, 1765, 17651, 9, 'Quang trung', '2022-02-09 07:53:11', '2022-02-09 09:43:11'),
+(8, 10, 24, 2418, 24201, 11, 'Quang trung', '2022-02-21 09:50:10', '2022-02-21 09:50:10');
 
 -- --------------------------------------------------------
 
@@ -950,12 +1040,17 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
+  `order_code` varchar(255) DEFAULT NULL,
   `payment_method` int(11) NOT NULL DEFAULT 1,
   `id_user` int(11) DEFAULT NULL,
-  `shipping_method` text NOT NULL,
-  `shipping_total` double NOT NULL,
-  `sub_total` double NOT NULL,
-  `total` double NOT NULL,
+  `warehouse_id` int(11) DEFAULT NULL,
+  `shipping_method` varchar(255) DEFAULT NULL,
+  `shipping_total` double NOT NULL DEFAULT 0,
+  `fee_process` double NOT NULL DEFAULT 0,
+  `nao_point` int(11) NOT NULL DEFAULT 0,
+  `sub_total` double NOT NULL DEFAULT 0,
+  `total` double NOT NULL DEFAULT 0,
+  `is_payment` int(11) NOT NULL DEFAULT 0,
   `status` int(11) NOT NULL DEFAULT 0,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `handler` int(11) DEFAULT NULL,
@@ -966,8 +1061,23 @@ CREATE TABLE `orders` (
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`id`, `payment_method`, `id_user`, `shipping_method`, `shipping_total`, `sub_total`, `total`, `status`, `updated_at`, `handler`, `created_at`) VALUES
-(25, 1, NULL, 'BK', 49663, 50000, 50000, 1, '2021-09-29 03:21:52', NULL, '2021-09-28 20:15:37');
+INSERT INTO `orders` (`id`, `order_code`, `payment_method`, `id_user`, `warehouse_id`, `shipping_method`, `shipping_total`, `fee_process`, `nao_point`, `sub_total`, `total`, `is_payment`, `status`, `updated_at`, `handler`, `created_at`) VALUES
+(1, '', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 1, '2022-02-08 06:45:25', NULL, '2022-02-07 03:12:45'),
+(2, 'NAO-1644203957', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 1, '2022-02-08 07:03:59', NULL, '2022-02-07 03:19:17'),
+(3, 'NAO-1644204212', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 1, 0, '2022-02-08 06:16:08', NULL, '2022-02-07 03:23:32'),
+(4, NULL, 1, NULL, 1, NULL, 0, 0, 0, 0, 0, 0, 0, '2022-02-08 06:16:10', NULL, '2022-02-07 03:23:48'),
+(5, NULL, 1, NULL, 1, NULL, 0, 0, 0, 0, 0, 0, 0, '2022-02-08 06:16:12', NULL, '2022-02-07 03:23:48'),
+(6, 'NAO-1644204241', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 0, '2022-02-08 06:16:13', NULL, '2022-02-07 03:24:01'),
+(7, 'NAO-1644206286', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 0, '2022-02-08 06:16:15', NULL, '2022-02-07 03:58:06'),
+(8, 'NAO-1644206383', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 0, '2022-02-08 06:16:17', NULL, '2022-02-07 03:59:43'),
+(9, 'NAO-1644206968', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 0, '2022-02-08 06:16:19', NULL, '2022-02-07 04:09:28'),
+(10, 'NAO-1644206968', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 0, 0, '2022-02-08 06:16:21', NULL, '2022-02-07 04:09:28'),
+(11, NULL, 1, NULL, 1, NULL, 0, 0, 0, 0, 0, 0, 0, '2022-02-08 06:16:22', NULL, '2022-02-07 04:12:16'),
+(12, NULL, 1, NULL, 1, NULL, 0, 0, 0, 0, 0, 0, 0, '2022-02-08 06:16:24', NULL, '2022-02-07 04:12:16'),
+(13, 'NAO-1644210724', 1, NULL, 1, 'VNPOST', 20865, 7500, 0, 40000, 68365, 1, 0, '2022-02-08 06:16:26', NULL, '2022-02-07 05:12:04'),
+(14, 'NAO-1644219888', 1, 6, 1, 'VNPOST', 20865, 7500, 0, 20000, 48365, 1, 0, '2022-02-08 06:16:29', NULL, '2022-02-07 07:44:48'),
+(15, 'NAO-1644306807', 1, 7, NULL, 'VNPOST', 23010, 7500, 0, 20000, 50510, 1, 1, '2022-02-08 07:57:30', NULL, '2022-02-08 07:53:26'),
+(16, 'NAO-1645437830', 1, 4, 9, 'VNPOST', 28010, 7500, 0, 1400000, 1435510, 1, 0, '2022-02-21 10:04:03', NULL, '2022-02-21 10:03:50');
 
 -- --------------------------------------------------------
 
@@ -992,7 +1102,18 @@ CREATE TABLE `order_address` (
 --
 
 INSERT INTO `order_address` (`id`, `id_order`, `id_province`, `id_district`, `id_ward`, `address`, `address_full`, `updated_at`, `created_at`) VALUES
-(19, 25, 82, 8246, 82478, '954, quang trung', '954, quang trung, Tân Đông Hiệp, Dĩ An, Bình Dương', '2021-09-28 20:15:37', '2021-09-28 20:15:37');
+(1, 1, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 03:12:46', '2022-02-07 03:12:46'),
+(2, 2, 70, 7560, 75670, 'Quang trung', 'Quang trung, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-08 07:03:42', '2022-02-07 03:19:17'),
+(3, 3, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 03:23:32', '2022-02-07 03:23:32'),
+(4, 6, 70, 7200, 71650, 'Quang trung', 'Quang trung, Long Phước, Thủ Đức, Hồ Chí Minh', '2022-02-28 04:55:05', '2022-02-07 03:24:01'),
+(5, 7, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 03:58:06', '2022-02-07 03:58:06'),
+(6, 8, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 03:59:43', '2022-02-07 03:59:43'),
+(7, 9, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(8, 10, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(9, 13, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 05:12:04', '2022-02-07 05:12:04'),
+(10, 14, 70, 7560, 75670, '28, đường số 27, phường Tân Quy', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-07 07:44:48', '2022-02-07 07:44:48'),
+(11, 15, 17, 1731, 17326, 'Quang trung', 'Quang trung, Bình Dân, Kim Thành, Hải Dương', '2022-02-08 07:57:00', '2022-02-08 07:53:27'),
+(12, 16, 70, 7560, 75670, '28, đường số 27', '28, đường số 27, Tân Quy, Quận 7, Hồ Chí Minh', '2022-02-21 10:03:50', '2022-02-21 10:03:50');
 
 -- --------------------------------------------------------
 
@@ -1003,9 +1124,10 @@ INSERT INTO `order_address` (`id`, `id_order`, `id_province`, `id_district`, `id
 CREATE TABLE `order_info` (
   `id` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
+  `customer_id` int(11) DEFAULT NULL,
   `fullname` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `note` text DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -1015,8 +1137,51 @@ CREATE TABLE `order_info` (
 -- Đang đổ dữ liệu cho bảng `order_info`
 --
 
-INSERT INTO `order_info` (`id`, `id_order`, `fullname`, `phone`, `email`, `note`, `updated_at`, `created_at`) VALUES
-(19, 25, 'Trần Trường', '0342909557', 'trantruong1797@gmail.com', 'hello', '2021-09-28 20:15:37', '2021-09-28 20:15:37');
+INSERT INTO `order_info` (`id`, `id_order`, `customer_id`, `fullname`, `phone`, `email`, `note`, `updated_at`, `created_at`) VALUES
+(1, 1, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 03:12:46', '2022-02-07 03:12:46'),
+(2, 2, NULL, 'Nguyễn Chính Hưng', '0338927456', 'trantruong1797@gmail.com', NULL, '2022-02-08 07:03:42', '2022-02-07 03:19:17'),
+(3, 3, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 03:23:32', '2022-02-07 03:23:32'),
+(4, 6, NULL, 'Nguyễn Chính Hưng', '0338927456', 'trantruong1797@gmail.com', NULL, '2022-02-28 04:55:05', '2022-02-07 03:24:01'),
+(5, 7, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 03:58:06', '2022-02-07 03:58:06'),
+(6, 8, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 03:59:43', '2022-02-07 03:59:43'),
+(7, 9, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(8, 10, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(9, 13, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 05:12:04', '2022-02-07 05:12:04'),
+(10, 14, NULL, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-07 07:44:48', '2022-02-07 07:44:48'),
+(11, 15, NULL, 'Duong tesst Thuy test', '0342909557', 'trantruong1797@gmail.com', NULL, '2022-02-08 07:57:00', '2022-02-08 07:53:27'),
+(12, 16, 10, 'Nguyễn Chính Hưng', '0338927456', NULL, NULL, '2022-02-21 10:03:50', '2022-02-21 10:03:50');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_payment`
+--
+
+CREATE TABLE `order_payment` (
+  `id` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `images` varchar(255) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_payment`
+--
+
+INSERT INTO `order_payment` (`id`, `id_order`, `images`, `updated_at`, `created_at`) VALUES
+(1, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (5).png,public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (4).png', '2022-02-07 04:13:55', '2022-02-07 04:13:55'),
+(2, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (1).png', '2022-02-07 04:21:03', '2022-02-07 04:21:03'),
+(3, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (1).png', '2022-02-07 04:21:03', '2022-02-07 04:21:03'),
+(4, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (1).png', '2022-02-07 04:21:48', '2022-02-07 04:21:48'),
+(5, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (1).png', '2022-02-07 04:29:37', '2022-02-07 04:29:37'),
+(6, 3, 'public/order/imagesair-jordan-1-mid-se-utility-shoes-vg0XNS (1).png', '2022-02-07 04:29:55', '2022-02-07 04:29:55'),
+(7, 3, 'public/order/imageschecked.png', '2022-02-07 04:30:20', '2022-02-07 04:30:20'),
+(8, 3, 'public/order/imageschecked.png', '2022-02-07 04:30:20', '2022-02-07 04:30:20'),
+(9, 13, 'public/order/imageschecked.png', '2022-02-07 05:12:11', '2022-02-07 05:12:11'),
+(10, 14, 'public/order/imageschecked.png', '2022-02-07 07:46:09', '2022-02-07 07:46:09'),
+(11, 15, 'public/order/images41eb2f3da5f168af31e0.jpg', '2022-02-08 07:53:56', '2022-02-08 07:53:56'),
+(12, 16, 'public/order/images1.jpg', '2022-02-21 10:04:03', '2022-02-21 10:04:03');
 
 -- --------------------------------------------------------
 
@@ -1028,8 +1193,12 @@ CREATE TABLE `order_products` (
   `id` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `feature_img` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` double NOT NULL,
+  `nao_point` int(11) NOT NULL DEFAULT 0,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1038,9 +1207,23 @@ CREATE TABLE `order_products` (
 -- Đang đổ dữ liệu cho bảng `order_products`
 --
 
-INSERT INTO `order_products` (`id`, `id_order`, `id_product`, `quantity`, `price`, `updated_at`, `created_at`) VALUES
-(29, 25, 13, 1, 25000, '2021-09-28 20:15:37', '2021-09-28 20:15:37'),
-(30, 25, 17, 1, 25000, '2021-09-28 20:15:38', '2021-09-28 20:15:38');
+INSERT INTO `order_products` (`id`, `id_order`, `id_product`, `name`, `slug`, `feature_img`, `quantity`, `price`, `nao_point`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:12:45', '2022-02-07 03:12:45'),
+(2, 2, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-08 06:37:17', '2022-02-07 03:19:17'),
+(3, 3, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:23:32', '2022-02-07 03:23:32'),
+(4, 4, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:23:48', '2022-02-07 03:23:48'),
+(5, 5, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:23:48', '2022-02-07 03:23:48'),
+(6, 6, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:24:01', '2022-02-07 03:24:01'),
+(7, 7, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:58:06', '2022-02-07 03:58:06'),
+(8, 8, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 03:59:43', '2022-02-07 03:59:43'),
+(9, 9, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(10, 10, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 04:09:28', '2022-02-07 04:09:28'),
+(11, 11, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 04:12:16', '2022-02-07 04:12:16'),
+(12, 12, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 04:12:16', '2022-02-07 04:12:16'),
+(13, 13, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 2, 20000, 10, '2022-02-07 05:12:04', '2022-02-07 05:12:04'),
+(14, 14, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-07 07:44:48', '2022-02-07 07:44:48'),
+(15, 15, 1, 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 1, 20000, 10, '2022-02-08 07:53:27', '2022-02-08 07:53:27'),
+(16, 16, 3, 'macbook-2017-max-2022', 'macbook-2017-max-2022', 'http://localhost/nao/public/storage/images/80c7b6e5cfd603885ac7.jpg', 1, 1400000, 10, '2022-02-21 10:03:50', '2022-02-21 10:03:50');
 
 -- --------------------------------------------------------
 
@@ -1119,6 +1302,7 @@ CREATE TABLE `products` (
   `width` double NOT NULL,
   `length` double NOT NULL,
   `brand` int(11) DEFAULT NULL,
+  `link_driver` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -1128,21 +1312,10 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `slug`, `name`, `sku`, `short_desc`, `long_desc`, `feature_img`, `gallery`, `category_id`, `discount`, `quantity`, `calculation_unit`, `weight`, `height`, `width`, `length`, `brand`, `status`, `created_at`, `updated_at`) VALUES
-(8, 'xzdqw', 'xzdqw', 'zcx', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:85/appvuduc/storage/app/public/images/c1AtAxKMMxQAAAABJRU5ErkJggg%3D%3D.png', NULL, 4, NULL, NULL, 3, 10, 10, 10, 10, 1, 0, '2021-09-07 02:20:04', '2021-09-07 02:20:04'),
-(10, 'hu-gao', 'Hu gao', 'HUGAO', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:85/appvuduc/storage/app/public/images/tknh.jpg', NULL, 3, NULL, NULL, 4, 1, 4, 7, 5, 2, 2, '2021-09-07 03:02:28', '2021-09-07 03:02:28'),
-(13, 'nuoc-rua-chen-sunlight', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(17, 'nuoc-rua-chen-sunlight-1', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(18, 'nuoc-rua-chen-sunlight-2', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(19, 'nuoc-rua-chen-sunlight-3', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(20, 'nuoc-rua-chen-sunlight-4', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(21, 'nuoc-rua-chen-sunlight-5', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(22, 'nuoc-rua-chen-sunlight-6', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33');
-INSERT INTO `products` (`id`, `slug`, `name`, `sku`, `short_desc`, `long_desc`, `feature_img`, `gallery`, `category_id`, `discount`, `quantity`, `calculation_unit`, `weight`, `height`, `width`, `length`, `brand`, `status`, `created_at`, `updated_at`) VALUES
-(23, 'nuoc-rua-chen-sunlight-7', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(24, 'nuoc-rua-chen-sunlight-8', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(25, 'nuoc-rua-chen-sunlight-9', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(26, 'nuoc-rua-chen-sunlight-10', 'Nước rửa chén Sunlight', 'nrcsunlight', '<p><em><strong>Bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away Vitalizing hỗ trợ ngăn ngừa lão hoá, duy trì sự tươi trẻ.</strong></em></p><p><strong>Quy cách:</strong> 4 sản phẩm/bộ</p><p><strong>Xuất xứ:</strong> Hàn Quốc</p>', '<p>Nếp nhăn xuất hiện là dấu hiệu của tình trạng da bị lão hóa, và nó là\r\n mối bận tâm hàng đầu của chị em phụ nữ. Những dấu hiệu của lão hóa\r\n xuất hiện sớm hay muộn phụ thuộc vào những yếu tố như tiếp xúc quá\r\n nhiều với ánh sáng mặt trời hoặc môi trường khắc nghiệt, hút thuốc\r\n lá, sử dụng một số loại thuốc, căng thẳng quá mức, giảm cân đột\r\n ngột, thiếu vitamin E, và yếu tố di truyền…</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4809\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg\"\r\n alt=\"\" width=\"670\" height=\"690\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630.jpg 900w, https://rbvietnam.com/wp-content/uploads/2019/06/d26349b363219f7fc630-600x618.jpg 600w\"\r\n sizes=\"(max-width: 670px) 100vw, 670px\"></p>\r\n <p>Để duy trì một vẻ đẹp trẻ trung, tươi sáng thì bên cạnh việc có một\r\n chế độ ăn uống, luyện tập hợp lý thì chúng ta cũng cần sử dụng kem\r\n dưỡng để bổ sung các dưỡng chất, duy trì vẻ đẹp cho da.</p>\r\n <p>Ứng dụng công nghệ tiên tiến của Hàn Quốc và các thành phần từ thiên\r\n nhiên, bộ sản phẩm trẻ hóa làn da&nbsp;Daily Beauty Age Away\r\n Vitalizing hỗ trợ ngăn ngừa lão hóa, duy trì sự tươi trẻ. Được chiết\r\n xuất từ các nguyên liệu thiên nhiên như: lô hội, cúc la mã, quả\r\n oliu… là những thành phần dưỡng da an toàn và hiệu quả.</p>\r\n <h4>1. Nước hoa hồng Daily Beauty Age Away Vitalizing Toner</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4807\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg\"\r\n alt=\"\" width=\"736\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2.jpg 736w, https://rbvietnam.com/wp-content/uploads/2020/08/4237ea6ed5f329ad70e2-600x815.jpg 600w\"\r\n sizes=\"(max-width: 736px) 100vw, 736px\"></p>\r\n <p>Nước hoa hồng Daily Beauty Age Away Vitalizing Toner là một trong\r\n những loại nước hoa hồng có khả năng thẩm thấu rất nhanh. Hỗ trợ cân\r\n bằng độ pH tự nhiên trên da, giúp giữ ẩm. Hỗ trợ loại bỏ dầu thừa,\r\n có thể se nhỏ lỗ chân lông và cho da mềm dịu.</p>\r\n <h4>2.&nbsp;Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion</h4>\r\n <p style=\"text-align: center;\"><img\r\n class=\"alignnone size-full wp-image-4805\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg\"\r\n alt=\"\" width=\"700\" height=\"1000\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001.jpg 700w, https://rbvietnam.com/wp-content/uploads/2020/08/b021df82f510094e5001-600x857.jpg 600w\"\r\n sizes=\"(max-width: 700px) 100vw, 700px\"></p>\r\n <p>Sữa dưỡng Daily Beauty Age Away Vitalizing Emulsion thuộc dòng sản\r\n phẩm tái sinh, phục hồi da cao cấp với chất kem siêu mềm mại. Sản\r\n phẩm cung cấp độ ẩm và cân bằng lượng dầu tự nhiên trên da, hỗ trợ\r\n ngăn ngừa quá trình lão hóa da, cho da mềm mại, mịn màng.</p>\r\n <h4>3.&nbsp;Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night\r\n Cream</h4>\r\n <p>Sản phẩm với kết cấu mềm mịn có khả năng thẩm thấu vào da nhanh chóng\r\n mà không gây nhờn rít hay bết dính.</p>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4806\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg\"\r\n alt=\"\" width=\"698\" height=\"748\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b.jpg 933w, https://rbvietnam.com/wp-content/uploads/2020/08/b37294c7ab5a57040e4b-600x643.jpg 600w\"\r\n sizes=\"(max-width: 698px) 100vw, 698px\"></p>\r\n <p>Kem dưỡng ban đêm Daily Beauty Age Away Vitalizing Night Cream hỗ trợ\r\n làm trắng, nuôi dưỡng da trong khi ngủ. Dưỡng ẩm cho làn da, cho da\r\n mềm mại, sáng mịn. Sản phẩm còn có khả năng hỗ trợ phòng ngừa lão\r\n hóa da hiệu quả, hỗ trợ làm mờ và giảm các nếp nhăn, các vết thâm,\r\n nám, tàn nhang do do quá trình lão hóa da gây ra.</p>\r\n <h4>4.&nbsp;Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule</h4>\r\n <p style=\"text-align: center;\"><img class=\"alignnone wp-image-4804\"\r\n src=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg\"\r\n alt=\"\" width=\"688\" height=\"826\"\r\n srcset=\"https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd.jpg 833w, https://rbvietnam.com/wp-content/uploads/2020/08/7796a17e8bec77b22efd-600x720.jpg 600w\"\r\n sizes=\"(max-width: 688px) 100vw, 688px\"></p>\r\n <p>Serum dưỡng da Daily Beauty Age Away Vitalizing Ampoule là sản phẩm\r\n cuối cùng trong bộ sản phẩm trẻ hóa làn da với công dụng hỗ trợ làm\r\n giảm thiểu các dấu hiệu lão hóa da, duy trì sự tươi trẻ cho làn da.\r\n </p>', 'http://localhost:8080/appvuduc/storage/app/public/images/712429a965766d45ef23e20d963e70c6.jpg', NULL, 3, NULL, NULL, 3, 2500, 50, 10, 30, 1, 0, '2021-09-08 00:13:33', '2021-09-08 00:13:33');
+INSERT INTO `products` (`id`, `slug`, `name`, `sku`, `short_desc`, `long_desc`, `feature_img`, `gallery`, `category_id`, `discount`, `quantity`, `calculation_unit`, `weight`, `height`, `width`, `length`, `brand`, `link_driver`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'giay-nam-air-jordan-1-mid-hyper-royal-554724-077', 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077', 'jordan-og', NULL, NULL, 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(1).png', 'http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(2).png, http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(3).png, http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(4).png, http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS%20(5).png, http://localhost:8888/nao/public/storage/images/air-jordan-1-mid-se-utility-shoes-vg0XNS.jpeg', 5, NULL, NULL, 2, 1.1, 1.1, 1.1, 1.1, 2, NULL, 1, '2022-01-17 07:54:29', '2022-01-17 07:54:29'),
+(2, 'macbook-2017-max-15', 'macbook-2017-max-15', '321312', '<p>d&acirc;sdsad</p>', '<p>đasadsad</p>', 'http://localhost/nao/public/storage/images/80c7b6e5cfd603885ac7.jpg', 'http://localhost/nao/public/storage/images/80c7b6e5cfd603885ac7.jpg', 5, NULL, NULL, 2, 1.1, 1.1, 1.1, 1.1, 1, NULL, 1, '2022-02-15 06:47:03', '2022-02-15 06:47:03'),
+(3, 'macbook-2017-max-2022', 'macbook-2017-max-2022', 'LAPTOP123', '<p>M&ocirc; tả ngắn</p>', '<p>Chi tiết</p>', 'http://localhost/nao/public/storage/images/80c7b6e5cfd603885ac7.jpg', '', 3, NULL, NULL, 2, 1.1, 1.1, 1.1, 1.1, 2, 'https://www.youtube.com/watch?v=XylQ80ODcfM&ab_channel=ChillOut', 1, '2022-02-18 04:08:19', '2022-02-22 04:05:55');
 
 -- --------------------------------------------------------
 
@@ -1240,14 +1413,11 @@ CREATE TABLE `product_price` (
   `id` int(11) NOT NULL,
   `id_ofproduct` int(11) NOT NULL,
   `regular_price` double NOT NULL,
-  `vpoint_retail` double NOT NULL,
-  `vpoint_2_star` double NOT NULL,
-  `vpoint_1_star` double NOT NULL,
-  `vpoint_platinum` double NOT NULL,
-  `vpoint_diamond` double NOT NULL,
-  `vpoint_gold` double NOT NULL,
-  `vpoint_silver` double NOT NULL,
-  `vpoint_member` double NOT NULL,
+  `price_ctv` int(11) NOT NULL,
+  `price_new_daily` int(11) NOT NULL,
+  `price_daily_chuan` int(11) NOT NULL,
+  `price_vip` int(11) NOT NULL,
+  `nao_point` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1256,20 +1426,10 @@ CREATE TABLE `product_price` (
 -- Đang đổ dữ liệu cho bảng `product_price`
 --
 
-INSERT INTO `product_price` (`id`, `id_ofproduct`, `regular_price`, `vpoint_retail`, `vpoint_2_star`, `vpoint_1_star`, `vpoint_platinum`, `vpoint_diamond`, `vpoint_gold`, `vpoint_silver`, `vpoint_member`, `updated_at`, `created_at`) VALUES
-(6, 8, 450000, 45, 27.5, 27.5, 27.5, 27.5, 20.5, 15.5, 10, '2021-09-07 02:20:04', '2021-09-07 02:20:04'),
-(7, 10, 478, 4224, 1010, 1, 425, 456, 786, 78, 8, '2021-09-07 03:02:28', '2021-09-07 03:02:28'),
-(8, 13, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(9, 17, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(10, 18, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(11, 19, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(12, 20, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(13, 21, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(14, 22, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(15, 23, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(16, 24, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(17, 25, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33'),
-(18, 26, 25000, 25, 25, 25, 25, 25, 25, 25, 25, '2021-09-08 00:13:33', '2021-09-08 00:13:33');
+INSERT INTO `product_price` (`id`, `id_ofproduct`, `regular_price`, `price_ctv`, `price_new_daily`, `price_daily_chuan`, `price_vip`, `nao_point`, `updated_at`, `created_at`) VALUES
+(1, 1, 25000, 20000, 17000, 17000, 10000, 10, '2022-01-17 07:54:29', '2022-01-17 07:54:29'),
+(2, 2, 1, 1, 1, 1, 1, 1, '2022-02-15 06:47:03', '2022-02-15 06:47:03'),
+(3, 3, 1500000, 1400000, 1300000, 1200000, 1400000, 10, '2022-02-22 04:05:55', '2022-02-18 04:08:19');
 
 -- --------------------------------------------------------
 
@@ -1402,6 +1562,31 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `setting_bank`
+--
+
+CREATE TABLE `setting_bank` (
+  `id` int(10) NOT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `bank_chinhanh` varchar(255) DEFAULT NULL,
+  `bank_boss` varchar(255) DEFAULT NULL,
+  `bank_number` varchar(255) DEFAULT NULL,
+  `price_upgrade` int(10) DEFAULT NULL,
+  `note` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `setting_bank`
+--
+
+INSERT INTO `setting_bank` (`id`, `bank_name`, `bank_chinhanh`, `bank_boss`, `bank_number`, `price_upgrade`, `note`, `created_at`, `updated_at`) VALUES
+(1, 'VIETCOMBANK', 'Go Vap, Ho Chi Minh, Viet Nam', 'Nguyen Phan Quoc Thinh', '001230012300123', 5000000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo luctus enim dignissim phasellus ut urna orci. Purus metus pretium viverra leo, mauris mi. Fermentum diam amet, et tempor, duis ut. Mi volutpat vel risus in sem ac.', '2022-01-14 08:28:42', '2022-01-14 08:44:34');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `setting_hoahongbanle`
 --
 
@@ -1455,7 +1640,10 @@ CREATE TABLE `shipping_bill` (
 --
 
 INSERT INTO `shipping_bill` (`id`, `order_id`, `shipping_id`, `item_code`, `status`, `service_name_code`, `shipping_name`, `shipping_fee_total`, `pickup_type`, `package_viewable`, `send_fullname`, `send_address`, `send_tel`, `receiver_fullname`, `receiver_address`, `receiver_phone`, `origin_cod_amount`, `order_amount`, `note`, `created_at`, `updated_at`) VALUES
-(13, 25, '5f4f5765-7cdd-4dac-87a7-ad5c4833e8f0', 'CC004141327VN', 20, 'BK', 'Nước rửa chén Sunlight x1, Nước rửa chén Sunlight x1', 49663, 'Thu gom tận nơi', 'Không cho xem hàng', 'công ty dược vũ đức test', '15 đường số 7 kdc cityland trần thị nghỉ, Số 7, Gò Vấp, Hồ Chí Minh', '0987818811', 'Trần Trường', '954, quang trung, Tân Đông Hiệp, Dĩ An, Bình Dương', '0342909557', 50000, 0, NULL, '2021-09-29 03:21:52', '2021-09-29 03:21:52');
+(13, 25, '5f4f5765-7cdd-4dac-87a7-ad5c4833e8f0', 'CC004141327VN', 20, 'BK', 'Nước rửa chén Sunlight x1, Nước rửa chén Sunlight x1', 49663, 'Thu gom tận nơi', 'Không cho xem hàng', 'công ty dược vũ đức test', '15 đường số 7 kdc cityland trần thị nghỉ, Số 7, Gò Vấp, Hồ Chí Minh', '0987818811', 'Trần Trường', '954, quang trung, Tân Đông Hiệp, Dĩ An, Bình Dương', '0342909557', 50000, 0, NULL, '2021-09-29 03:21:52', '2021-09-29 03:21:52'),
+(14, 1, 'ce38dfd8-7b7b-4cf8-b221-c111a35d58b0', 'CC004808594VN', 20, 'BK', 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077 x1', 20865, 'Thu gom tận nơi', 'Không cho xem hàng', 'công ty dược vũ đức test', '15 đường số 7 kdc cityland trần thị nghỉ, Số 7, Gò Vấp, Hồ Chí Minh', '0987818811', 'Nguyễn Chính Hưng', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '0338927456', 20000, 0, NULL, '2022-02-08 06:45:25', '2022-02-08 06:45:25'),
+(15, 2, '2d6ee12e-c139-4fed-8cdd-1e8c4688904d', 'CC004809461VN', 20, 'BK', 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077 x1', 20865, 'Thu gom tận nơi', 'Không cho xem hàng', 'công ty dược vũ đức test', '15 đường số 7 kdc cityland trần thị nghỉ, Số 7, Gò Vấp, Hồ Chí Minh', '0987818811', 'Nguyễn Chính Hưng', 'Quang trung, Tân Quy, Quận 7, Hồ Chí Minh', '0338927456', 20000, 0, NULL, '2022-02-08 07:03:59', '2022-02-08 07:03:59'),
+(16, 15, 'e8b62718-c901-4b32-85f3-f191f8d91d94', 'CC004813580VN', 20, 'BK', 'Giày nam Air Jordan 1 Mid ‘Hyper Royal’ 554724-077 x1', 23010, 'Thu gom tận nơi', 'Không cho xem hàng', 'công ty dược vũ đức test', '15 đường số 7 kdc cityland trần thị nghỉ, Số 7, Gò Vấp, Hồ Chí Minh', '0987818811', 'Duong tesst Thuy test', 'Quang trung, Bình Dân, Kim Thành, Hải Dương', '0342909557', 20000, 0, NULL, '2022-02-08 07:57:30', '2022-02-08 07:57:30');
 
 -- --------------------------------------------------------
 
@@ -1485,7 +1673,7 @@ CREATE TABLE `shipping_config` (
 --
 
 INSERT INTO `shipping_config` (`id`, `username`, `password`, `token`, `production`, `package_viewable`, `pickup_type`, `order_amount_evaluation`, `use_bao_phat`, `use_hoa_don`, `use_nhan_tin_sms_nguoi_nhan_truoc_phat`, `use_nhan_tin_sms_nguoi_nhan_sau_phat`, `created_at`, `updated_at`) VALUES
-(1, '0987818811', '0315416019', 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJTb0RpZW5UaG9haSI6IjA5ODc4MTg4MTEiLCJFbWFpbCI6InR1bHVvbmcudnVkdWNAZ21haWwuY29tIiwiTWFDUk0iOiI3MjcwMUEwNDAwMDU4MDAwMCIsIkV4cGlyZWRUaW1lIjo2NDA5MTcyNzU3NDU3Ny44NDQsIlJvbGVzIjpbOTk5LDExLDRdLCJOZ3VvaUR1bmdJZCI6ImVkMmY2MTc5LWMzNjAtNDY3NC04NTViLTY2NTQ4MGM1NGNhNSIsIk1hVGluaFRoYW5oIjoiNzAiLCJUZW5OZ3VvaUR1bmciOiJjw7RuZyB0eSBkxrDhu6NjIHbFqSDEkeG7qWMiLCJOZ2F5VGFvVG9rZW4iOiJcL0RhdGUoMTY0MDc0NTU3NDU3NylcLyIsIlRpbWVMYXN0UmVhZENvbW1lbnQiOm51bGwsIk1hQnV1Q3VjIjpudWxsLCJNYVRpbmhUaGFuaFF1YW5MeSI6bnVsbCwiQ1JNX0VtcGxveWVlSWQiOm51bGwsIk5nYXlUYW9Ub2tlblRpbWVTdGFtcCI6MTY0MDc0NTU3NDU3NywiSXNMb2dpbldpdGhBcHBsZSI6ZmFsc2UsIkVtYWlsQXBwbGUiOm51bGx9.kV9VFaKVukkkZwQ3mJGCQb6Raz_CEScja3WFFg8uRAkVMlW8IQRdL5hMAoVtUs3uzr01SzSfZLcBQH_d6ycV7V-TgI5yjahmup4aQ92_83iFKn21sjb4Xns2SsPjnwCyLsJ0Yj5FutNNOOVY-OwAb0XI-GDOle29ob_0kCppKmykSpDMlIhJx90ZqSC52HCHClMNjgughqKaBcDhfwQAgUUY4LFUe2tmNhnMOm6fNFnnBdKX8bsee8iclULKmBgi5oK-4p8XMe9gz76vtFEnkiJM_azxUjPpbEH_axciWIheyh98fVc7aklvHaxAgJ_Bg1ax6K0iCek1Q5P6ry_s0A', 1, 0, 1, 0, 0, 0, 0, 0, NULL, '2021-12-29 02:39:35');
+(1, '01234567890', '01234567890', 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJTb0RpZW5UaG9haSI6IjAxMjM0NTY3ODkwIiwiRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsIk1hQ1JNIjoiMTIzNDVBOTg3NDU2MzIxMTIiLCJFeHBpcmVkVGltZSI6NjQwOTUyODY4ODY0NTMuMTcyLCJSb2xlcyI6Wzk5OSwxMSw0XSwiTmd1b2lEdW5nSWQiOiJmYmFkMzBkMi05NjUzLTQ0YzEtYTE2MS05YTgzODE3ZDU3NmEiLCJNYVRpbmhUaGFuaCI6IjcwIiwiVGVuTmd1b2lEdW5nIjoiVMOgaSBraG_huqNuIHRlc3QgS2jDoWNoIGjDoG5nIEPDsyBNw6MgQ1JNIiwiTmdheVRhb1Rva2VuIjoiXC9EYXRlKDE2NDQzMDQ4ODY0NTMpXC8iLCJUaW1lTGFzdFJlYWRDb21tZW50IjpudWxsLCJNYUJ1dUN1YyI6bnVsbCwiTWFUaW5oVGhhbmhRdWFuTHkiOm51bGwsIkNSTV9FbXBsb3llZUlkIjpudWxsLCJOZ2F5VGFvVG9rZW5UaW1lU3RhbXAiOjE2NDQzMDQ4ODY0NTMsIklzTG9naW5XaXRoQXBwbGUiOmZhbHNlLCJFbWFpbEFwcGxlIjpudWxsfQ.aWM4oFnaNzq9-gS3SHP8i0WtoTO9Ns2JGde-5Uvrr7LaSgSabpiRBRKKRNxri5Rvv6CMeN5eXFBX6u4clh6orYxDUZef3JzzOle7gklpRKcCZk-FVAev63hUe8tNospZIy5VJ7iZaQ9UqPqkPomnwVSc5SYrVo5sA6w605y5R_0', 0, 0, 1, 0, 0, 0, 0, 0, NULL, '2022-02-08 07:21:44');
 
 -- --------------------------------------------------------
 
@@ -1579,13 +1767,12 @@ CREATE TABLE `users` (
   `id_province` int(10) DEFAULT NULL,
   `id_district` int(10) DEFAULT NULL,
   `id_ward` int(10) DEFAULT NULL,
+  `id_warehouse` int(11) DEFAULT NULL,
   `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `bank_chinhanh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `level` int(10) DEFAULT 1,
-  `linkgioithieu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'https://www.youtube.com/watch?v',
-  `magioithieu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0493846287GT',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
@@ -1595,9 +1782,72 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `code_user`, `name`, `email`, `password`, `phone`, `cmnd`, `cmnd_day`, `image_cmnd_1`, `image_cmnd_2`, `birthday`, `sex`, `address`, `id_province`, `id_district`, `id_ward`, `bank_name`, `bank_number`, `bank`, `bank_chinhanh`, `level`, `linkgioithieu`, `magioithieu`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'NAO000001', 'Thinh Nguyen', 'admin@gmail.com', '$2y$10$aaCrBkQVzgrn3HYWMoWmTeIOiAKD4AavLzJpwG6DO8ISMj64erXVO', 123456789, '215441423', '2021-12-30', 'image_default.png', 'image_default.png', '2022-01-05', 1, '998 Quang Trung', 17, 1731, 17332, 'MEVIVU', '0071001234567', 'Vietcombank', 'Ho Chi Minh', 1, 'https://www.youtube.com/watch?v', '0493846287GT', NULL, '2021-12-23 07:19:40', '2022-01-11 10:22:53'),
-(2, 'NAO000002', NULL, NULL, '$2y$10$0IWe/B./YEldIVeOvoO1ROzxyKPAn4KYdpXkacX.g4RutR.KfrAfO', 914241456, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'https://www.youtube.com/watch?v', '0493846287GT', NULL, '2022-01-12 07:20:11', '2022-01-12 07:20:11');
+INSERT INTO `users` (`id`, `code_user`, `name`, `email`, `password`, `phone`, `cmnd`, `cmnd_day`, `image_cmnd_1`, `image_cmnd_2`, `birthday`, `sex`, `address`, `id_province`, `id_district`, `id_ward`, `id_warehouse`, `bank_name`, `bank_number`, `bank`, `bank_chinhanh`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'NAO000001', 'Thinh Nguyen', 'admin@gmail.com', '$2y$10$0odL/zjK1BkJJOEQs9DqAe9WXwRkJSOHh.40hcWlkZtlOOV9il6O2', 123456789, '215441423', '2021-12-30', 'image_default.png', 'image_default.png', '2022-01-05', 1, '998 Quang Trung', 17, 1731, 17332, 1, 'MEVIVU', '0071001234567', 'Vietcombank', 'Ho Chi Minh', 1, NULL, '2021-12-23 07:19:40', '2022-01-11 10:22:53'),
+(2, 'NAO000002', 'Nguyễn Thế Vũ', NULL, '$2y$10$0IWe/B./YEldIVeOvoO1ROzxyKPAn4KYdpXkacX.g4RutR.KfrAfO', 914241456, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, 42, 4278, 42808, 1, NULL, NULL, NULL, NULL, 2, NULL, '2022-01-12 07:20:11', '2022-01-17 05:00:01'),
+(3, 'NAO000003', 'Nguyễn Chính Hưng', NULL, '$2y$10$lL8dqaBf7kLiLe.NmxfemOFPqpCD5bpO72oTnRkfXP1Wf5n349Jx2', 835221111, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, '2022-01-14 04:19:55', '2022-01-14 04:19:55'),
+(4, 'NAO000004', 'kira', NULL, '$2y$10$A.UIjbF4s1eY5/7oJrL/oOIj7ALlcqxn9Q/N3Csdd3ZiHBra21vna', 342909557, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, '2022-01-18 06:45:37', '2022-01-18 06:45:37'),
+(5, 'NAO000005', NULL, NULL, '$2y$10$H4UqqADORwaNe8fctAgbLOeUYMZPfixluv/fgKRSJYFQjXPOFADqm', 338927456, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, '2022-01-24 08:58:43', '2022-01-24 08:58:43'),
+(6, 'NAO000006', NULL, NULL, '$2y$10$z.H4NfjToNy/jU/bKzHaZutn5.PY9LUQmXejntAxMfHndQw0QyoNq', 113114115, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, '2022-02-07 03:07:42', '2022-02-07 03:07:42'),
+(7, 'NAO000007', NULL, NULL, '$2y$10$xCodzrOooxbLbHHtkdgK3.HA7PaSspp7QLUdmoKUg.djaFAxLxblO', 342909537, NULL, NULL, 'image_default.png', 'image_default.png', NULL, 1, '998 Quang Trung', 17, 1731, 17332, 1, NULL, NULL, NULL, NULL, 1, NULL, '2022-02-08 07:32:14', '2022-02-08 07:32:14');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users_parent`
+--
+
+CREATE TABLE `users_parent` (
+  `id` int(11) NOT NULL,
+  `id_dad` int(11) DEFAULT NULL,
+  `id_child` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `users_parent`
+--
+
+INSERT INTO `users_parent` (`id`, `id_dad`, `id_child`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, '2022-01-14 04:19:55', '2022-01-14 04:19:55'),
+(2, 1, 2, '2022-01-14 04:42:18', '2022-01-14 04:42:18'),
+(3, 1, 4, '2022-01-18 06:45:37', '2022-01-18 06:45:37'),
+(4, 3, 5, '2022-01-24 08:58:43', '2022-01-24 08:58:43'),
+(5, 4, 6, '2022-02-07 03:07:42', '2022-02-07 03:07:42'),
+(6, 6, 7, '2022-02-08 07:32:14', '2022-02-08 07:32:14');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_address_shipping`
+--
+
+CREATE TABLE `user_address_shipping` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address_full` text DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `province_id` int(11) NOT NULL,
+  `district_id` int(11) NOT NULL,
+  `ward_id` int(11) NOT NULL,
+  `warehouse_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_address_shipping`
+--
+
+INSERT INTO `user_address_shipping` (`id`, `user_id`, `fullname`, `phone`, `address_full`, `address`, `province_id`, `district_id`, `ward_id`, `warehouse_id`, `created_at`, `updated_at`) VALUES
+(6, 4, 'Duong tesst Thuy test', '0342909557', 'Quang trung, Song Giang, Gia Bình, Bắc Ninh', 'Quang trung', 22, 2232, 22333, 1, '2022-01-19 03:55:25', '2022-01-19 03:55:25'),
+(7, 4, 'Duong tesst Thuy test', '0342909557', 'Quang trung, Song Giang, Gia Bình, Bắc Ninh', 'Quang trung', 22, 2232, 22333, 1, '2022-01-19 03:55:25', '2022-01-19 03:55:25'),
+(8, 1, 'Nguyễn Chính Hưng', '0338927456', '28, đường số 27, Tân Quy, Quận 7, Hồ Chí Minh', '28, đường số 27', 70, 7560, 75670, 9, '2022-01-24 08:53:59', '2022-01-25 04:36:00'),
+(9, 6, 'Nguyễn Chính Hưng', '0338927456', '28, đường số 27, phường Tân Quy, Tân Quy, Quận 7, Hồ Chí Minh', '28, đường số 27, phường Tân Quy', 70, 7560, 75670, 11, '2022-02-07 03:12:39', '2022-02-07 03:12:39'),
+(10, 7, 'Duong tesst Thuy test', '0342909557', 'Quang trung, go vap, Quảng Tân, Đầm Hà, Quảng Ninh', 'Quang trung, go vap', 20, 2063, 20633, 9, '2022-02-08 07:32:59', '2022-02-08 07:32:59');
 
 -- --------------------------------------------------------
 
@@ -12778,6 +13028,9 @@ CREATE TABLE `warehouse` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id_province` int(11) NOT NULL,
+  `id_district` int(11) NOT NULL,
+  `id_ward` int(11) NOT NULL,
   `address` text COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -12787,10 +13040,11 @@ CREATE TABLE `warehouse` (
 -- Đang đổ dữ liệu cho bảng `warehouse`
 --
 
-INSERT INTO `warehouse` (`id`, `name`, `code`, `address`, `updated_at`, `created_at`) VALUES
-(1, 'Perfectone Ha Noi', 'VINMART_MB', 'TP. Hồ Chí Minh', '2021-09-13 06:21:25', '2021-09-13 06:21:25'),
-(5, 'Perfectone Sai Gon', 'VINMART_MN', 'kh biet', '2021-09-13 01:47:01', '2021-09-13 01:47:01'),
-(7, 'Perfectone Da Nang', 'VINMART_MT', 'Cau Rong', '2021-09-13 02:07:01', '2021-09-13 02:07:01');
+INSERT INTO `warehouse` (`id`, `name`, `code`, `id_province`, `id_district`, `id_ward`, `address`, `updated_at`, `created_at`) VALUES
+(1, 'Perfectone Ha Noi', 'VINMART_MB', 10, 1270, 12780, 'TP. Hồ Chí Minh', '2022-01-10 09:35:39', '2021-09-13 06:21:25'),
+(9, 'Coop extra', 'COOPMART_MN', 70, 7270, 72740, 'Gò Vấp', '2021-09-19 21:36:12', '2021-09-19 21:36:12'),
+(11, 'Da Huong Sai Gon', 'VINMART_MN', 70, 7270, 72710, 'Quang Trung', '2021-09-19 23:45:10', '2021-09-19 21:58:13'),
+(12, 'Sài gòn', '123123', 17, 1754, 17540, '234234', '2022-02-17 03:58:50', '2022-02-17 03:58:50');
 
 -- --------------------------------------------------------
 
@@ -12814,7 +13068,8 @@ INSERT INTO `warehouse_product` (`warehouse_id`, `product_id`, `quantity`, `upda
 (1, 11, 99, '2021-09-13 06:23:20', '2021-09-13 06:23:20'),
 (1, 12, 50, '2021-09-13 06:58:13', '2021-09-13 06:58:13'),
 (5, 13, 18, '2021-09-13 08:47:01', '2021-09-13 08:47:01'),
-(7, 10, 19, '2021-09-13 09:07:01', '2021-09-13 09:07:01');
+(7, 10, 19, '2021-09-13 09:07:01', '2021-09-13 09:07:01'),
+(1, 1, 123, '2022-02-17 04:00:15', '2022-02-17 04:00:15');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -12825,6 +13080,21 @@ INSERT INTO `warehouse_product` (`warehouse_id`, `product_id`, `quantity`, `upda
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `blog_category_fk` (`id_ofcategory`);
+
+--
+-- Chỉ mục cho bảng `blog_category`
+--
+ALTER TABLE `blog_category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
 
 --
 -- Chỉ mục cho bảng `coupons`
@@ -12857,6 +13127,12 @@ ALTER TABLE `coupon_promo`
 -- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `customer_address`
+--
+ALTER TABLE `customer_address`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -12911,6 +13187,12 @@ ALTER TABLE `order_address`
 ALTER TABLE `order_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_order_id_info` (`id_order`);
+
+--
+-- Chỉ mục cho bảng `order_payment`
+--
+ALTER TABLE `order_payment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `order_products`
@@ -12999,6 +13281,12 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Chỉ mục cho bảng `setting_bank`
+--
+ALTER TABLE `setting_bank`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `setting_hoahongbanle`
 --
 ALTER TABLE `setting_hoahongbanle`
@@ -13038,6 +13326,18 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Chỉ mục cho bảng `users_parent`
+--
+ALTER TABLE `users_parent`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `user_address_shipping`
+--
+ALTER TABLE `user_address_shipping`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `ward`
 --
 ALTER TABLE `ward`
@@ -13067,10 +13367,28 @@ ALTER TABLE `admins`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT cho bảng `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `blog_category`
+--
+ALTER TABLE `blog_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `customer_address`
+--
+ALTER TABLE `customer_address`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `district`
@@ -13094,25 +13412,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `order_address`
 --
 ALTER TABLE `order_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `order_info`
 --
 ALTER TABLE `order_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `order_payment`
+--
+ALTER TABLE `order_payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -13130,31 +13454,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `product_brand`
 --
 ALTER TABLE `product_brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `product_calculation_unit`
 --
 ALTER TABLE `product_calculation_unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `product_price`
 --
 ALTER TABLE `product_price`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `province`
@@ -13169,6 +13493,12 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT cho bảng `setting_bank`
+--
+ALTER TABLE `setting_bank`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `setting_hoahongbanle`
 --
 ALTER TABLE `setting_hoahongbanle`
@@ -13178,7 +13508,7 @@ ALTER TABLE `setting_hoahongbanle`
 -- AUTO_INCREMENT cho bảng `shipping_bill`
 --
 ALTER TABLE `shipping_bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `shipping_config`
@@ -13202,19 +13532,31 @@ ALTER TABLE `shipping_status`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `users_parent`
+--
+ALTER TABLE `users_parent`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `user_address_shipping`
+--
+ALTER TABLE `user_address_shipping`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `ward`
 --
 ALTER TABLE `ward`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11140;
 
 --
 -- AUTO_INCREMENT cho bảng `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -13263,44 +13605,12 @@ ALTER TABLE `order_info`
   ADD CONSTRAINT `fk_order_id_info` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `order_products`
---
-ALTER TABLE `order_products`
-  ADD CONSTRAINT `fk_order_id` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `product_brand_fk` FOREIGN KEY (`brand`) REFERENCES `product_brand` (`id`),
   ADD CONSTRAINT `product_category_fk` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`),
   ADD CONSTRAINT `product_unit_fk` FOREIGN KEY (`calculation_unit`) REFERENCES `product_calculation_unit` (`id`);
-
---
--- Các ràng buộc cho bảng `product_price`
---
-ALTER TABLE `product_price`
-  ADD CONSTRAINT `id_product_price_fk` FOREIGN KEY (`id_ofproduct`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `role_has_permissions`
---
-ALTER TABLE `role_has_permissions`
-  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `shipping_bill`
---
-ALTER TABLE `shipping_bill`
-  ADD CONSTRAINT `shipping_bill_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `shipping_history`
---
-ALTER TABLE `shipping_history`
-  ADD CONSTRAINT `shipping_history_ibfk_1` FOREIGN KEY (`shipping_bill_id`) REFERENCES `shipping_bill` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
