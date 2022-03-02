@@ -21,7 +21,6 @@ class LoginRegisterController extends Controller
         if(Auth::check()){
             return redirect('/');
         }
-
         return view('public.user.login');
     }
 
@@ -57,6 +56,8 @@ class LoginRegisterController extends Controller
             return redirect('/');
         }
         
+        //dd(User::where('phone','=','0123456789')->value('phone'));
+        //dd(User::where('phone','=','0123456789')->where('phone','!=','0123456789')->get()->count());
         $bank = SettingBank::first();
         return view('public.user.register',compact('bank'));
     }
@@ -134,12 +135,23 @@ class LoginRegisterController extends Controller
             $note = '<style>input#magioithieu { border-color: red; }</style><p class="px-2 text-danger">Mã giới thiệu '.$request->id.' không tồn tại!</p>';
         }
 
-        $phone_user = User::where('phone','=',$request->phone)->first();
-        
-        if ($phone_user == null) {
-            $phone = '<style>input#phone { border-color: #28a745; }</style><p class="px-2 text-success">Số điện thoại '.$request->phone.' hợp lệ!</p>';
-        } else {
+        $check_trung_phone = User::where('phone','=',$request->phone)->value('phone');
+
+        if ($check_trung_phone == null && $request->phone != null) {
+            if(is_numeric($request->phone) == false) {
+                $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại chứa ký tự không hợp lệ</p>';
+            } else {
+                if ($request->phone > 100000000 && $request->phone < 99999999999) {
+                    $phone = '<style>input#phone { border-color: #28a745; }</style><p class="px-2 text-success">Số điện thoại '.$request->phone.' hợp lệ!</p>';
+                } else {
+                    $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại không đúng định dạng.</p>';
+                }
+                
+            }
+        } elseif ($check_trung_phone == $request->phone && $request->phone != null) {
             $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại '.$request->phone.' đã được đăng ký!';
+        } elseif ($request->phone == '') {
+            $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại không được bỏ trống';
         }
         return response()->json([
             'note' => $note,

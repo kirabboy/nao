@@ -88,5 +88,5 @@
 
 @endsection
 @push('js')
-<script src="{{ asset('public/js/login.js') }}"></script>
+<!-- <script src="{{ asset('public/js/login.js') }}"></script> -->
 @endpush
