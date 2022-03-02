@@ -37,7 +37,7 @@
                             <p class="m-0 pb-1">NAO point</p>
                             <p class="m-0 pb-1">Thành tích</p>
                             <p class="m-0 pb-1">Nhóm</p>
-                            <p class="m-0 pb-1">Nhánh</p>
+                            <p class="m-0 pb-1">Số lượng F1</p>
                         </div>
                         <div class="col-6 text-end">
                             <p class="m-0 pb-1">
@@ -52,7 +52,7 @@
                             <p class="m-0 pb-1">{{$point->point}} point</p>
                             <p class="m-0 pb-1">{{$point->doanhthu}} VNĐ</p>
                             <p class="m-0 pb-1">{{$tong_so_nhom}} nhóm</p>
-                            <p class="m-0 pb-1">{{$tong_so_nhanh}} nhánh</p>
+                            <p class="m-0 pb-1">{{$soF1}} thành viên</p>
                         </div>
                     </div>
                 </div>

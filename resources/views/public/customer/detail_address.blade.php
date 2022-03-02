@@ -25,7 +25,7 @@
         <form action="{{route('detailCustomer',$customer->id)}}/diachi/{{$address->id}}" method="POST" class="form-add-address-customer">
             <div class="form-group">
                 <label for="province">Tỉnh thành</label>
-                <select type="text" name="sel_province" class="form-control" id="province">
+                <select type="text" name="province_id" class="form-control" id="province">
                     <option value="{{$address->id_province}}">{{$user_province}}</option>
                     @foreach ($province as $value)
                     <option value="{{ $value->matinhthanh }}">
@@ -36,14 +36,22 @@
             </div>
             <div class="form-group">
                 <label for="district">Quận / Huyện</label>
-                <select type="text" name="sel_district" class="form-control" id="district">
+                <select type="text" name="district_id" class="form-control" id="district">
                     <option value="{{$address->id_district}}">{{$user_district}}</option>Cấp huyện</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="ward">Phường / Xã</label>
-                <select type="text" name="sel_ward" class="form-control" id="ward">
+                <select type="text" name="ward_id" class="form-control" id="ward">
                     <option value="{{$address->id_ward}}">{{$user_ward}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="online">Kho vận chuyển</label>
+                <select type="text" class="form-control" name="warehouse" id="online">
+                    @foreach ($warehouse as $value)
+                        <option value="{{$value->id}}">{{ $value->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">

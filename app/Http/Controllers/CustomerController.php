@@ -8,6 +8,7 @@ use App\Models\CustomerAddress;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\Warehouse;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,11 @@ class CustomerController extends Controller
         $user = Auth::user();
         $customer = Customer::where('id_ofuser', '=', $user->id)->get();
         $count_customers = $customer->count();
-        return view('public.customer.list_customer',['customer'=>$customer,'user'=>$user,'count_customers'=>$count_customers]);
+        return view('public.customer.list_customer',[
+            'customer' => $customer,
+            'user' => $user,
+            'count_customers' => $count_customers,
+        ]);
     }
 
     public function postListCustomer(Request $request) {
@@ -51,18 +56,24 @@ class CustomerController extends Controller
 
     public function customer_address($id) {
         $customer = Customer::find($id);
+        $warehouse = Warehouse::all();
         $province = Province::select('matinhthanh','tentinhthanh')->get();
-        return view('public.customer.add_address',['customer' => $customer,'province'=>$province]);
+        return view('public.customer.add_address',[
+            'customer' => $customer,
+            'province'=>$province,
+            'warehouse' => $warehouse,
+        ]);
     }
 
     public function postCustomer_address(Request $request,$id) {
         $customer = Customer::find($id);
         $address = new CustomerAddress;
         $address->id_customer = $customer->id;
-        $address->id_province = $request->sel_province;
-        $address->id_district = $request->sel_district;
-        $address->id_ward = $request->sel_ward;
+        $address->id_province = $request->province_id;
+        $address->id_district = $request->district_id;
+        $address->id_ward = $request->ward_id;
         $address->address = $request->address;
+        $address->id_warehouse = $request->warehouse;
         $address->save();
         return redirect()->back();
     }
@@ -100,23 +111,26 @@ class CustomerController extends Controller
         ->where('ward.maphuongxa','=',$address_ofCustomer->id_ward)
         ->select('ward.tenphuongxa')->first()->tenphuongxa;
 
+        $warehouse = Warehouse::where('id','!=',$customer->id_warehouse)->get();
         return view('public.customer.detail_address',[
             'customer'=>$customer,
             'province'=>$province,
             'address'=>$address_ofCustomer,
             'user_province'=>$user_province,
             'user_district'=>$user_district,
-            'user_ward'=>$user_ward
+            'user_ward'=>$user_ward,
+            'warehouse'=>$warehouse
         ]);
     }
 
     public function postChitietdiachi(Request $request,$id,$info_address) {
         $customer = Customer::find($id);
         $address = CustomerAddress::find($info_address);
-        $address->id_province = $request->sel_province;
-        $address->id_district = $request->sel_district;
-        $address->id_ward = $request->sel_ward;
+        $address->id_province = $request->province_id;
+        $address->id_district = $request->district_id;
+        $address->id_ward = $request->ward_id;
         $address->address = $request->address;
+        $address->id_warehouse = $request->warehouse;
         $address->save();
         $link_back =route('detailCustomer',$customer->id);
         return redirect($link_back);

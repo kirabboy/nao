@@ -41,19 +41,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user->where('id_child','!=',$boss->id) as $value)
+                                @foreach ($listGroup as $value)
                                 <tr>
-                                    <td>{{$value->getNameSon->code_user}}</td>
-                                    <td>{{$value->getNameSon->name}}</td>
-                                    <td>0{{$value->getNameSon->phone}}</td>
-                                    <td>{{$value->getNameSon->address}}</td>
-                                    <td>{{DB::table('ward')->where('maphuongxa', $value->getNameSon->id_ward)
+                                    <td><a class="btn btn-dark" href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
+                                    <td>{{$value->name}}</td>
+                                    <td>0{{$value->phone}}</td>
+                                    <td>{{$value->address}}</td>
+                                    <td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
                                         ->select('tenphuongxa')->first()->tenphuongxa ?? ''}}</td>
-                                    <td>{{DB::table('district')->where('maquanhuyen', $value->getNameSon->id_district)
+                                    <td>{{DB::table('district')->where('maquanhuyen', $value->id_district)
                                         ->select('tenquanhuyen')->first()->tenquanhuyen ?? ''}}</td>
-                                    <td>{{DB::table('province')->where('matinhthanh', $value->getNameSon->id_province)
+                                    <td>{{DB::table('province')->where('matinhthanh', $value->id_province)
                                         ->select('tentinhthanh')->first()->tentinhthanh ?? ''}}</td>
-                                    <td>{{$value->getNameSon->level}}</td>
+                                    <td>{{$value->level}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

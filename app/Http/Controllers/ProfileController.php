@@ -155,6 +155,9 @@ class ProfileController extends Controller
     {
         $user = Auth()->user();
         $bank = SettingBank::first();
+        if ($user->level == 2 || $user->level == 3) {
+            return redirect('profile');
+        }
         return view('public.users.nangcaptaikhoan.chuyenkhoan',['bank' => $bank,'user'=>$user]);
     }
 
@@ -171,12 +174,16 @@ class ProfileController extends Controller
         }
 
         $user_upgrade->save();
-        return redirect()->back();
+        return redirect('profile');
     }
 
     public function dangkynangcapdaily()
     {
+        $user = Auth()->user();
         $bank = SettingBank::first();
+        if($user->level == 2 || $user->level == 3) {
+            return redirect('profile');
+        }
         return view('public.users.nangcaptaikhoan.dangkynangcapdaily',['bank' => $bank]);
     }
 }

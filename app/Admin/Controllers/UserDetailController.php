@@ -27,11 +27,12 @@ class UserDetailController extends Controller
         //List công thức thống kê point
         //$tongdiemNAO = lấy điểm NAO cá nhân 
         $tongdiemNAO = User::with('pointNAO')->where('id',$user->id)->first();
-
+        
+        $tong_so_F1 = UsersParent::where('id_dad',$id)->where('id_child','!=',$id)->get()->count();
         //Lấy điểm nhánh NAO, từng nhánh trong NAO, tru nhanh tach
         $listPoint = [];
         $listPoint = $this->point_child_id($listPoint, $id);
-        $tong_so_F1 = count($listPoint);
+        $listPoint = collect($listPoint)->sortBy('user_id');
         
         //Tông điểm tất cả các nhánh
         $sumPoint_all_nhanh = 0;

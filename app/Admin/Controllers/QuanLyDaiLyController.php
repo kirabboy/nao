@@ -128,26 +128,7 @@ class QuanLyDaiLyController extends Controller
             }
         }
     }
-
-
-    public function doinhom(){
-        $user = User::with('id_dad.name_dad')->get();
-        return view('admin.quanly.doinhom', ['user'=>$user]);
-    }
-
-    public function detailDoiNhom($id) {
-        $boss = User::find($id);
-        $user = UsersParent::with('getNameSon')->where('id_dad','=',$id)->get();
-        return view('admin.quanly.detailDoinhom', [
-            'user'=>$user,
-            'boss'=>$boss
-        ]);
-    }
-
-    public function downDanhSach(Excel $excel,$id) {
-        return $excel->download(new DanhSachDoiNhom($id), 'DanhSachDoiNhom.xlsx');
-    }
-
+    
     public function nangcapdaily() {
         $user = User::with('getNangcap')->get();
         //dd($user->find(1)->getNangcap->where('status','=',0));

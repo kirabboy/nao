@@ -4,7 +4,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 @endpush
 @section('content')
-
+<style>
+	.custom-input:focus {
+		box-shadow: none;
+	}
+</style>
 <section class="register d-flex flex-column" id="trangInfo">
 	<div class="container">
 		<div class="d-flex flex-column justify-content-center">
@@ -34,7 +38,7 @@
 			<div class="form-group">
 				<label>Số điện thoại</label>
 				<input type="phone" id="phone" name="phone" class="form-control custom-input" placeholder="Số điện thoại">
-				<p class="pt-2" id="checkPhone"></p>
+				<span id="checkPhone"></span>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">Mật khẩu</label>
@@ -86,12 +90,13 @@
 	$("#phone").change(function(e) {
 		console.log($(this).val());
 		e.preventDefault();
+		var magioithieu = $("#magioithieu").val();
 		var phone = $("#phone").val();
 		$.ajax({
 			url: "{{route('magioithieu')}}",
 			type: 'GET',
 			dataType: 'json',
-			data: {phone: phone},
+			data: {id: magioithieu, phone: phone},
 			success: function (response) {
 				console.log(response)
 				$('#checkPhone').html(response.phone)

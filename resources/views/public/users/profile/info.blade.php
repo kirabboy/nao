@@ -80,25 +80,29 @@
         <div class="col-12">
             <p class="text-small pb-1 m-0">Ảnh CMND mặt trước</p>
             <p>
-            @if ($user->avatar == 'image_default.png')
-                <label for="img_cmnd_truoc" class="color-camVIP" id="label_cmnd_truoc">Click vào đây để tải hình ảnh cmnd mặt trước lên</label>
+                <label for="img_cmnd_truoc" class="color-camVIP" style="width: 100%" id="label_cmnd_truoc">
+                    @if ($user->image_cmnd_1 == 'image_default.png')
+                        Click vào đây để tải hình ảnh cmnd mặt trước lên
+                    @else
+                        <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_1}}" id="" width="100%" height="100%">
+                    @endif
+                </label>
                 <input id="img_cmnd_truoc" style="display:none;" name="img_cmnd_truoc" type="file">
                 <div id="result_cmnd_truoc" class=""></div>
-            @else
-                <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_1}}" id="" width="100%" height="100%">
-            @endif
             </p>
         </div>
         <div class="col-12">
             <p class="text-small pb-1 m-0">Ảnh CMND mặt trước</p>
             <p>
-            @if ($user->avatar == 'image_default.png')
-                <label for="img_cmnd_sau" class="color-camVIP" id="label_cmnd_sau">Click vào đây để tải hình ảnh cmnd mặt trước lên</label>
+                <label for="img_cmnd_sau" class="color-camVIP" style="width: 100%" id="label_cmnd_sau">
+                    @if ($user->image_cmnd_2 == 'image_default.png')
+                        Click vào đây để tải hình ảnh cmnd mặt trước lên
+                    @else
+                        <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_2}}" id="" width="100%" height="100%">
+                    @endif
+                </label>
                 <input id="img_cmnd_sau" style="display:none;" name="img_cmnd_sau" type="file">
                 <div id="result_cmnd_sau" class=""></div>
-            @else
-                <img src="{{asset('user/img_cmnd')}}/{{$user->image_cmnd_2}}" id="" width="100%" height="100%">
-            @endif
             </p>
         </div>
         <div class="col-12">

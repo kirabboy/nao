@@ -19,6 +19,7 @@ use App\Admin\Controllers\KhuyenMaiController;
 use App\Admin\Controllers\SettingController;
 use App\Admin\Controllers\UserDetailController;
 use App\Admin\Controllers\ExportPDF;
+use App\Admin\Controllers\DoiNhomController;
 use App\Admin\Controllers\ShippingController as AdminShippingController;
 
 
@@ -184,9 +185,9 @@ Route::delete('/tat-ca-bai-viet/{id}', [BlogController::class, 'destroy'])->name
     //Quanlydaily
     //Quanlydaily
     Route::prefix('doinhom')->group(function () {
-        Route::get('/', [QuanLyDaiLyController::class, 'doinhom'])->name('listdoinhom');
-        Route::get('/{id}', [QuanLyDaiLyController::class, 'detailDoiNhom']);
-        Route::get('/{id}/download', [QuanLyDaiLyController::class, 'downDanhSach']);
+        Route::get('/', [DoiNhomController::class, 'doinhom'])->name('listdoinhom');
+        Route::get('/{id}', [DoiNhomController::class, 'detailDoiNhom']);
+        Route::get('/{id}/download', [DoiNhomController::class, 'downDanhSach']);
         //dowListDoiNhom
     });
 

@@ -56,7 +56,7 @@ class LoginRegisterController extends Controller
         if(Auth::check()){
             return redirect('/');
         }
-
+        
         $bank = SettingBank::first();
         return view('public.user.register',compact('bank'));
     }
@@ -129,16 +129,17 @@ class LoginRegisterController extends Controller
     public function magioithieu(Request $request) {
         $id_user = User::where('code_user','=',$request->id)->first();
         if ($id_user != null) {
-            $note = '<p class="alert alert-success">Mã giới thiệu '.$request->id.' hợp lệ</p>';
+            $note = '<style>input#magioithieu { border-color: #28a745; }</style><p class="px-2 text-success">Mã giới thiệu '.$request->id.' hợp lệ</p>';
         } else {
-            $note = '<p class="alert alert-danger">Mã giới thiệu '.$request->id.' không tồn tại!</p>';
+            $note = '<style>input#magioithieu { border-color: red; }</style><p class="px-2 text-danger">Mã giới thiệu '.$request->id.' không tồn tại!</p>';
         }
 
         $phone_user = User::where('phone','=',$request->phone)->first();
+        
         if ($phone_user == null) {
-            
+            $phone = '<style>input#phone { border-color: #28a745; }</style><p class="px-2 text-success">Số điện thoại '.$request->phone.' hợp lệ!</p>';
         } else {
-            $phone = '<p class="alert alert-danger">Số điện thoại '.$request->id.' đã được đăng ký!';
+            $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại '.$request->phone.' đã được đăng ký!';
         }
         return response()->json([
             'note' => $note,

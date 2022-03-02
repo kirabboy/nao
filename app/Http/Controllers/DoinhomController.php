@@ -45,11 +45,14 @@ class DoinhomController extends Controller
         $listGroup = [];
         $listGroup = $this->tong_thanh_vien_doi_nhom($listGroup, $thanhvien->id);
         $tong_so_nhom = count($listGroup);
+        
+        $soF1 = UsersParent::where('id_dad',$id)->where('id_child','!=',$id)->get()->count();
         return view('public.users.doinhom.chitietthanhvien',[
             'thanhvien' => $thanhvien,
             'point' => $point,
             'tong_so_nhanh' => $tong_so_nhanh,
             'tong_so_nhom' => $tong_so_nhom,
+            'soF1' => $soF1,
         ]);
     }
     

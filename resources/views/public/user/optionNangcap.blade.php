@@ -1,3 +1,10 @@
+<style>
+    #result img.thumbnail {
+        width: 50%;
+        border-radius: 0px;
+        height: 100%;
+    }
+</style>
 <section id="showNangCap1" style="display: none;">
     <div class="row p-3">
         <div class="col-12">
@@ -112,9 +119,10 @@
             </div>
 
             <div class="col-12 text-center pt-3">
-                <button type="submit" class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"  data-bs-toggle="modal"
+                <button type="submit" class="btn btn-radius btn-cam" style="width: 100%;font-size: 16px;"  data-bs-toggle="modal"
                  data-bs-target="#exampleModal">Hoàn tất</button>
             </div>
         @csrf
-        </form>
+        </form> 
+        <script src="{{asset('public/user/js/info.js')}}"></script>
 </section>

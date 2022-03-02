@@ -21,7 +21,15 @@
                     <div class="col-lg-6">
                         <div class="about-text go-to">
                             <h3 class="dark-color">{{$user->name}}</h3>
-                            <h6 class="theme-color lead text-uppercase">Mã số: {{$user->code_user}} _ Cấp độ: {{$user->level}}</h6>
+                            <h6 class="theme-color lead text-uppercase">Mã số: {{$user->code_user}} _ 
+                                @if($user->level == 1)
+                                    Cộng tác viên
+                                @elseif ($user->level == 2)
+                                    Đại lý chính thức
+                                @elseif ($user->level == 3)
+                                    Đại lý tạm thời
+                                @endif
+                            </h6>
                             <!-- <p>I <mark>design and develop</mark> services for customers 
                             of all sizes, specializing in creating stylish, modern websites,
                              web services and online stores. My passion is to design digital user 
@@ -210,7 +218,18 @@
             </div>
             <div class="col-6 text-center box-dad">
                 <div class="box-child">
-                    <h5 class="text-uppercase text-white">Tổng chiết khấu hiện tại: 0%</h4>
+                    <h5 class="text-uppercase text-white">
+                        Tổng chiết khấu hiện tại: 
+                        @if ($tongdiemNAO->pointNAO->point >= 120000000)
+                            12%
+                        @elseif ($tongdiemNAO->pointNAO->point >= 60000000 && $tongdiemNAO->pointNAO->point< 120000000)
+                            6%
+                        @elseif ($tongdiemNAO->pointNAO->point >= 30000000 && $tongdiemNAO->pointNAO->point < 60000000)
+                            3%
+                        @else
+                            0%
+                        @endif
+                    </h4>
                     <p class="m-0 text-white">Chiết khấu cá nhân: 0%</p>
                     <p class="m-0 text-white">Chiết khấu từ đội nhóm: 0%</p>
                 </div>

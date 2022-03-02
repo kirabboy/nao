@@ -44,7 +44,7 @@
 						@foreach ($user as $value)
 						<tr>
 						  	<th scope="row">{{$value->id}}</th>
-						  	<td><a href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
+						  	<td><a class="btn btn-dark" href="{{route('listdoinhom')}}/{{$value->id}}">{{$value->code_user}}</a></td>
 						  	<td>{{$value->name}}</td>
 						  	<td>0{{$value->phone}}</td>
 						  	<td>{{DB::table('ward')->where('maphuongxa', $value->id_ward)
