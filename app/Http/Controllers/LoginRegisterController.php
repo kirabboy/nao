@@ -141,7 +141,7 @@ class LoginRegisterController extends Controller
             if(is_numeric($request->phone) == false) {
                 $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại chứa ký tự không hợp lệ</p>';
             } else {
-                if ($request->phone > 100000000 && $request->phone < 99999999999) {
+                if ($request->phone > 100000000 && $request->phone < 9999999999) {
                     $phone = '<style>input#phone { border-color: #28a745; }</style><p class="px-2 text-success">Số điện thoại '.$request->phone.' hợp lệ!</p>';
                 } else {
                     $phone = '<style>input#phone { border-color: red; }</style><p class="px-2 text-danger">Số điện thoại không đúng định dạng.</p>';
