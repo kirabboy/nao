@@ -103,9 +103,8 @@
                     </div>
 
                     <div class="text-center">
-                        <a class="btn btn-radius btn-cam">
-                            Nâng cấp ngay
-                        </a>
+                        <a class="btn btn-radius btn-cam" onclick="showNangCap2()">
+                            Nâng cấp ngay</a>
                     </div>
                 </div>
             </div>

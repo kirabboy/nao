@@ -66,6 +66,7 @@
 </section>
 @include('public.user.nangcapRegister')
 @include('public.user.optionNangCap')
+@include('public.user.optionNangCap2')
 @endsection
 @push('js')
 <script src="{{ asset('public/js/register.js') }}"></script>

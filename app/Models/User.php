@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-// use App\Models\UsersParent;
-// use App\Models\Customer;
-// use App\Models\UserUpgrade;
 
 class User extends Authenticatable
 {
@@ -79,7 +76,7 @@ class User extends Authenticatable
     }
 
     public function PointNAO() {
-        return $this->hasOne(PointNao::class, 'user_id', 'id');
+        return $this->hasOne(PointNAO::class, 'user_id', 'id');
     }
 
     public function warehouse() {

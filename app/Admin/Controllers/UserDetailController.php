@@ -20,13 +20,13 @@ class UserDetailController extends Controller
         //Tổng khách hàng = count_customer
         $count_customer = $customer->find($id)->getIdCustomers->count();
         //user_child = reveal tất cả thằng con kèm theo số điểm của từng thằng
-        $user_child = User::with('getIdSon.getNameSon','pointNAO')->first();
+        $user_child = User::with('getIdSon.getNameSon','PointNAO')->first();
         //Tổng số thằng con của $id
         $count_child = $user_child->find($id)->getIdSon->count();
         
         //List công thức thống kê point
         //$tongdiemNAO = lấy điểm NAO cá nhân 
-        $tongdiemNAO = User::with('pointNAO')->where('id',$user->id)->first();
+        $tongdiemNAO = User::with('PointNAO')->where('id',$user->id)->first();
         
         $tong_so_F1 = UsersParent::where('id_dad',$id)->where('id_child','!=',$id)->get()->count();
         //Lấy điểm nhánh NAO, từng nhánh trong NAO, tru nhanh tach
@@ -81,13 +81,13 @@ class UserDetailController extends Controller
 
     // Function chứa điểm từng Child của $id (không bao gồm nhánh tách)
     public function point_child_id (&$listPoint = [], $id_dad) {
-        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','pointNAO')->first()
+        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','PointNAO')->first()
                 ->getIdSon->whereNotIn('id_child',1)->whereNotIn('id_child','nhanh');
         if(count($id_son) > 0) {
             foreach ($id_son as $value) {
                 //dieu kien neu nhanh tach thi khong gop phan nay vao
                 if($value->nhanh != $value->id_child) {
-                    $point = $value->getNameSon->pointNAO;
+                    $point = $value->getNameSon->PointNAO;
                     $listPoint[] = $point;
                     self::point_child_id($listPoint, $point->user_id);
                 }
@@ -111,12 +111,12 @@ class UserDetailController extends Controller
 
     // Function tim tong thanh vien doi nhom
     public function tong_thanh_vien_doi_nhom (&$listGroup = [], $id_dad) {
-        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','pointNAO')->first()
+        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','PointNAO')->first()
                 ->getIdSon->whereNotIn('id_child',1)->whereNotIn('id_child','nhanh');
         if(count($id_son) > 0) {
             foreach ($id_son as $value) {
                 //dieu kien neu nhanh tach thi khong gop phan nay vao
-                    $point = $value->getNameSon->pointNAO;
+                    $point = $value->getNameSon->PointNAO;
                     $listGroup[] = $point;
                     self::tong_thanh_vien_doi_nhom($listGroup, $point->user_id);
             }
@@ -126,11 +126,11 @@ class UserDetailController extends Controller
 
     // Hàm cộng điểm khi mua hàng
     public function congTien($point, $id) {
-        $check_have_dad = User::with('getIdDad.getNameDad','pointNAO','DoanhThuNgay')
+        $check_have_dad = User::with('getIdDad.getNameDad','PointNAO','DoanhThuNgay')
             ->where('id',$id)->get();
         $dieukien_point = 120000000;
 
-        $congTien = $check_have_dad->first()->pointNAO;
+        $congTien = $check_have_dad->first()->PointNAO;
         $pointbandau = $congTien->point;
         $congTien->point += $point;
         $congTien->save();
@@ -146,9 +146,9 @@ class UserDetailController extends Controller
             $id_child = $check_have_dad->where('id','!=',1)->first();
             
             if($id_child->getIdDad->id_dad != 1) {
-                $id_dad = $id_child->getIdDad->getNameDad->pointNAO;
+                $id_dad = $id_child->getIdDad->getNameDad->PointNAO;
             } elseif ($id_child->getIdDad->id_dad == 1) {
-                $id_dad = User::with('pointNAO')->where('id',1)->first()->pointNAO;
+                $id_dad = User::with('PointNAO')->where('id',1)->first()->PointNAO;
             }
             
             if($congTien->point >= $dieukien_point) {
@@ -172,11 +172,11 @@ class UserDetailController extends Controller
 
     // Hàm trừ tiền Dad nếu Child đủ điểm tách nhánh
     public function truTien($point, $id, $dieukien_point) {
-        $check_have_dad = User::with('getIdDad.getNameDad','pointNAO','DoanhThuNgay')
+        $check_have_dad = User::with('getIdDad.getNameDad','PointNAO','DoanhThuNgay')
             ->where('id',$id)->get();
         $id_child = $check_have_dad->first();
             
-        $point_child = $id_child->pointNAO;
+        $point_child = $id_child->PointNAO;
         $point_child->point -= $point;
         $point_child->save();
         
@@ -195,8 +195,8 @@ class UserDetailController extends Controller
                         $parent->nhanh = $parent->id_dad;
                         $parent->save();
 
-                        $id_1 = User::with('getIdDad.getNameDad','pointNAO','DoanhThuNgay')
-                        ->where('id',1)->first()->pointNAO;
+                        $id_1 = User::with('getIdDad.getNameDad','PointNAO','DoanhThuNgay')
+                        ->where('id',1)->first()->PointNAO;
                         $id_1->point += $point_child->point;
                         $id_1->save();
                         $thongKe_point_id_1 = User::with('DoanhThuNgay')->where('id',1)->first()
@@ -218,8 +218,8 @@ class UserDetailController extends Controller
                 // Điều kiện khác nhánh VD: id_child = 2 va nhanh = 5 va id_dad = 2
                 else if ($parent->id_dad == $parent->nhanh) {
                     if($parent->id_dad == 1) {
-                        $id_1 = User::with('getIdDad.getNameDad','pointNAO','DoanhThuNgay')
-                        ->where('id',1)->first()->pointNAO;
+                        $id_1 = User::with('getIdDad.getNameDad','PointNAO','DoanhThuNgay')
+                        ->where('id',1)->first()->PointNAO;
                         $id_1->point -= $point;
                         $id_1->save();
 

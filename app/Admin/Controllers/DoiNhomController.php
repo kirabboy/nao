@@ -42,12 +42,12 @@ class DoiNhomController extends Controller
 
     // Function tim tat ca thanh vien doi nhom
     public function tong_thanh_vien_doi_nhom (&$listGroup = [], $id_dad) {
-        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','pointNAO')->first()
+        $id_son = User::where('id',$id_dad)->with('getIdSon.getNameSon','PointNAO')->first()
                 ->getIdSon->whereNotIn('id_child',1)->whereNotIn('id_child','nhanh');
         if(count($id_son) > 0) {
             foreach ($id_son as $value) {
                 //dieu kien neu nhanh tach thi khong gop phan nay vao
-                    $point = $value->getNameSon->pointNAO;
+                    $point = $value->getNameSon->PointNAO;
                     $save = $value->getNameSon;
                     $listGroup[] = $save;
                     self::tong_thanh_vien_doi_nhom($listGroup, $point->user_id);

@@ -65,3 +65,12 @@ function final1() {
 	writeStyles('styles_js', cssText)
 }
 
+function showNangCap2() {
+	var cssText = '#trangInfo{ display: none !important; } #showNangCap2{display: block !important} #trangOption{ display: none !important;} ';
+	writeStyles('styles_js', cssText)
+}
+
+function final2() {
+	var cssText = '#trangInfo{ display: none !important; } #showNangCap2{display: none !important} #final2{display: block !important} #trangOption{ display: none !important;} ';
+	writeStyles('styles_js', cssText)
+}

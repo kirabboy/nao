@@ -23,7 +23,7 @@ class UsersParent extends Model
     }
 
     public function getNameSon() {
-        return $this->hasOne(User::class,'id','id_child')->where('id','!=',1)->with('getIdSon.getNameSon','pointNAO');
+        return $this->hasOne(User::class,'id','id_child')->where('id','!=',1)->with('getIdSon.getNameSon','PointNAO');
     }
 
     public function name_son() {

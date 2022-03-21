@@ -41,16 +41,16 @@ class QuanLyDaiLyController extends Controller
         $user_age = Carbon::parse($user->birthday)->diff(Carbon::now())->format('%y');
         $customer = User::with('getIdCustomers')->get();
         $count_customer = $customer->find($id)->getIdCustomers->count();
-        $user_child = User::with('getIdSon.getNameSon','pointNAO')->first();
+        $user_child = User::with('getIdSon.getNameSon','PointNAO')->first();
         $count_child = $user_child->find($id)->getIdSon->count();
-        $tongdiemNAO = User::with('pointNAO')->where('id',$user->id)->first();
+        $tongdiemNAO = User::with('PointNAO')->where('id',$user->id)->first();
         $tongNhanhNAO = $user_child->getIDSon->where('nhanh',$user->id)->count() - 1;
         $list_child_nhanh = $user_child->getIdSon->whereNotIn('id_child',1);
         
         //dd($list_child_nhanh->getNameSon);
         $sum = 0;
         foreach($list_child_nhanh as $value) {
-            $sum += $value->getNameSon->pointNAO->point;
+            $sum += $value->getNameSon->PointNAO->point;
         }
         echo $sum;
 
@@ -70,11 +70,11 @@ class QuanLyDaiLyController extends Controller
 
     public function fix($id_child, $NAO_POINT) {
         $son = UsersParent::where('id_child',$id_child)->first();
-        $point_son = User::where('id',$id_child)->with('pointNAO')->first()->pointNAO;
+        $point_son = User::where('id',$id_child)->with('PointNAO')->first()->PointNAO;
         $dieukien_tachnhanh = 120;
         if($son->id_dad > 1) {
             $value = $son->id_dad;
-            $point_dad = User::where('id',$value)->with('pointNAO')->first()->pointNAO;
+            $point_dad = User::where('id',$value)->with('PointNAO')->first()->PointNAO;
             $checkCondition = $point_son->point + $NAO_POINT;
             $point_son->point += $NAO_POINT;
             $point_son->save();
@@ -96,7 +96,7 @@ class QuanLyDaiLyController extends Controller
                 }
             }
         } else { 
-            $point_dad = User::where('id',1)->with('pointNAO')->first()->pointNAO;
+            $point_dad = User::where('id',1)->with('PointNAO')->first()->PointNAO;
             $point_son->point += $NAO_POINT;
             $point_son->save();
             if($point_son->point <= $dieukien_tachnhanh) {
@@ -110,11 +110,11 @@ class QuanLyDaiLyController extends Controller
     //id_child = 6
     public function tachNhanh($id_child, $NAO_POINT, $dieukien_tachnhanh) {
         $son = UsersParent::where('id_child',$id_child)->first();
-        $point_son = User::where('id',$id_child)->with('pointNAO')->first()->pointNAO;
+        $point_son = User::where('id',$id_child)->with('PointNAO')->first()->PointNAO;
         if($son->id_dad > 1){
             //id_dad = 5
             $value = $son->id_dad;
-            $point_dad = User::where('id',$value)->with('pointNAO')->first()->pointNAO;
+            $point_dad = User::where('id',$value)->with('PointNAO')->first()->PointNAO;
             //Xet dieu kien neu thang so 5 < dieukien tachnhanh thi gop nhanh lai voi bo no
             if($son->nhanh == $son->id_child) {
                 $point_dad->point += $point_son->point;

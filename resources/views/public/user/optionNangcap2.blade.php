@@ -5,7 +5,7 @@
         height: 100%;
     }
 </style>
-<section id="showNangCap1" style="display: none;">
+<section id="showNangCap2" style="display: none;">
     <div class="row p-3">
         <div class="col-12">
             <h5>
@@ -25,8 +25,8 @@
                 </div>
                 <div class="col-6 text-end">
                     <p class="m-0 pb-2 color-xanhngoc">Nâng cấp lên đại lý</p>
-                    <p class="m-0 pb-2 color-xanhngoc">24/12/2021</p>
-                    <p class="m-0 pb-3 color-xanhngoc">{{number_format($bank->price_upgrade)}}</p>
+                    <p class="m-0 pb-2 color-xanhngoc">24/02/2022</p>
+                    <p class="m-0 pb-3 color-xanhngoc">{{number_format(4000000)}}</p>
                     <p class="m-0 pb-2 color-xanhngoc" style="margin-top: -7px !important;">
                         <a class="btn btn-radius btn-xanhngoc">
                            Chuyển khoản
@@ -47,12 +47,12 @@
 
         <div class="col-12 text-center pt-3">
             <a class="btn btn-radius btn-cam" style="width: 60%;font-size: 16px;"
-                onclick="final1()">Đồng ý</a>
+                onclick="final2()">Đồng ý</a>
         </div>
     </div>  
 </section>
 
-<section id="final1" style="display: none">
+<section id="final2" style="display: none">
     <div class="row p-3">
         <div class="col-12">
             <h5>
@@ -96,7 +96,7 @@
                     </p>
                     <!-- <p class="m-0 pb-3 color-xanhngoc">58:09</p> -->
                     <p class="m-0 pb-3 fw-bold color-xanhngoc" style="font-size: 20px;">
-                        {{number_format($bank->price_upgrade)}} VNĐ
+                        4.000.000 VNĐ
                     </p>
                 </div>
             </div>

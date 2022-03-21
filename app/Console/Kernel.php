@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //lenh test
-        //$schedule->command('ReportToday:cron')->everyMinute();
-        $schedule->command('ReportMonth:cron')->everyMinute();
+        $schedule->command('ReportToday:cron')->everyMinute();
+        //$schedule->command('ReportMonth:cron')->everyMinute();
 
         //lenh chay chinh thuc tren server
         // $schedule->command('ReportToday:cron')->dailyAt('00:00');

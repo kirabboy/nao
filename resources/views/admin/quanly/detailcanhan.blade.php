@@ -211,8 +211,8 @@
             </div>
             <div class="col-6 text-center box-dad">
                 <div class="box-child">
-                    <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: {{$sumDT_all_nhanh + $tongdiemNAO->pointNAO->doanhthu}} VNĐ</h4>
-                    <p class="m-0 text-white">Doanh số cá nhân hiện tại: {{$tongdiemNAO->pointNAO->doanhthu}} VNĐ</p>
+                    <h5 class="text-uppercase text-white">Tổng doanh số hiện tại: {{$sumDT_all_nhanh + $tongdiemNAO->PointNAO->doanhthu}} VNĐ</h4>
+                    <p class="m-0 text-white">Doanh số cá nhân hiện tại: {{$tongdiemNAO->PointNAO->doanhthu}} VNĐ</p>
                     <p class="m-0 text-white">Doanh số đội nhóm hiện tại: {{$sumDT_all_nhanh}} VNĐ</p>
                 </div>
             </div>
@@ -220,11 +220,11 @@
                 <div class="box-child">
                     <h5 class="text-uppercase text-white">
                         Tổng chiết khấu hiện tại: 
-                        @if ($tongdiemNAO->pointNAO->point >= 120000000)
+                        @if ($tongdiemNAO->PointNAO->point >= 120000000)
                             12%
-                        @elseif ($tongdiemNAO->pointNAO->point >= 60000000 && $tongdiemNAO->pointNAO->point< 120000000)
+                        @elseif ($tongdiemNAO->PointNAO->point >= 60000000 && $tongdiemNAO->PointNAO->point< 120000000)
                             6%
-                        @elseif ($tongdiemNAO->pointNAO->point >= 30000000 && $tongdiemNAO->pointNAO->point < 60000000)
+                        @elseif ($tongdiemNAO->PointNAO->point >= 30000000 && $tongdiemNAO->PointNAO->point < 60000000)
                             3%
                         @else
                             0%
@@ -236,8 +236,8 @@
             </div>
             <div class="col-6 text-center box-dad">
                 <div class="box-child">
-                    <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: {{$sumPoint_all_nhanh + $tongdiemNAO->pointNAO->point}} point</h4>
-                    <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: {{$tongdiemNAO->pointNAO->point}} point</p>
+                    <h5 class="text-uppercase text-white">Tổng điểm NAO hiện tại: {{$sumPoint_all_nhanh + $tongdiemNAO->PointNAO->point}} point</h4>
+                    <p class="m-0 text-white">Điểm NAO cá nhân hiện tại: {{$tongdiemNAO->PointNAO->point}} point</p>
                     <p class="m-0 text-white">Điểm NAO đội nhóm hiện tại: {{$sumPoint_all_nhanh}} point</p>
                 </div>
             </div>
