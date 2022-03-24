@@ -43,6 +43,7 @@ class ProfileController extends Controller
             $user_district = DB::table('district')->join('users', 'users.id_district', '=', 'district.maquanhuyen')
                 ->where('district.maquanhuyen','=',auth()->user()->id_district)
                 ->select('district.tenquanhuyen')->first()->tenquanhuyen;
+                $user_district = District::where('maquanhuyen',auth()->user()->id_district)->first();
         } else {
             $district = District::select('maquanhuyen','tenquanhuyen')->get();
             $user_district = 'Chọn quận huyện';

@@ -131,8 +131,8 @@
             <p>
                 <select class="form-select inputform viennhat" name="district_id" data-placeholder=" Cấp huyện " required>
                     <option value="{{$user->id_district}}">
-                        {{ $user_district }}
-                    </option>
+                        {{ $user_district -> tenquanhuyen}}
+                    </option> 
                     <option value=""> Cấp huyện </option>
                 </select>
             </p>

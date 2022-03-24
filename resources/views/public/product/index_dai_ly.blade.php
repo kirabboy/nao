@@ -24,7 +24,7 @@
                                 <p>Giá</p>
                                 <p>Điểm Nao</p>
                                 <p>Chiết khấu đại lý</p>
-                                <p>Tình trạng</p>
+                                <p>Tình trạng</p> 
                             </div>
                             <div class="item-info-value text-right">
                                 <h3>{{formatPrice($item->productPrice->regular_price)}}</h3>
