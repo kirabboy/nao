@@ -19,27 +19,27 @@
         </div>
         <div class="cart-price d-flex justify-content-between">
             <p>Giá tiền:</p>
-            <h4 class="color-brand-green row-price">{{ formatPrice($item->price * $item->qty) }}</h4>
+            <h4 class="color-brand-green row-price-{{ $item->id }}">{{ formatPrice($item->price * $item->qty) }}</h4>
         </div>
     </div>
 </div>
 <script>
-    var minus = $("#minus-{{ $item->id }}");
-    var plus = $("#plus-{{ $item->id }}");
-    var input = $("#qty-{{ $item->id }}");
-    var rowprice = $('#cart-item-{{ $item->id }} .row-price')
-    var quantity = input.val();
-    input.val(quantity);
-    minus.on('click', function(event) {
-        if (quantity > 1) {
-            quantity--;
-            input.val(quantity);
-            updateCart(input,rowprice);
+    var minus{{ $item->id }} = $("#minus-{{ $item->id }}");
+    var plus{{ $item->id }} = $("#plus-{{ $item->id }}");
+    var input{{ $item->id }} = $("#qty-{{ $item->id }}");
+    var rowprice{{ $item->id }} = $('#cart-item-{{ $item->id }} .row-price-{{ $item->id }}')
+    var quantity{{ $item->id }} = input{{ $item->id }}.val();
+    input{{ $item->id }}.val(quantity{{ $item->id }});
+    minus{{ $item->id }}.on('click', function(event) {
+        if (quantity{{ $item->id }} > 0) {
+            quantity{{ $item->id }}--;
+            input{{ $item->id }}.val(quantity{{ $item->id }});
+            updateCart(input{{ $item->id }},rowprice{{ $item->id }});
         }
     });
-    plus.on('click', function(event) {
-        quantity++;
-        input.val(quantity);
-        updateCart(input,rowprice);
+    plus{{ $item->id }}.on('click', function(event) {
+        quantity{{ $item->id }}++;
+        input{{ $item->id }}.val(quantity{{ $item->id }});
+        updateCart(input{{ $item->id }},rowprice{{ $item->id }});
     });
 </script>

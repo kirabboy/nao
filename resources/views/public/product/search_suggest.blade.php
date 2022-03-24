@@ -2,7 +2,7 @@
     @foreach ($products as $product)
         <li><a href="{{route('product.show', $product->slug)}}"><span>{{ $product->name }}</span>-
                 @if ($user->level ==1)
-                <span class="text-danger">{{formatPrice($product->productPrice->price_new_daily)}}</span>
+                <span class="text-danger">{{formatPrice($product->productPrice->price_daily_chuan)}}</span>
                 @else
                     <span class="text-danger">{{formatPrice($product->productPrice->price_ctv)}}</span>
                 @endif

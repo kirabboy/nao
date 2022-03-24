@@ -50,7 +50,7 @@
                     </div>
                     <div class="item-info-value text-right">
                         <h3>{{ $product->weight }} G</h3>
-                        <h3>{{ number_format($product->productPrice->price_new_daily, 0, '', '.') }}</h3>
+                        <h3>{{ number_format($product->productPrice->price_daily_chuan, 0, '', '.') }}</h3>
                         <h3>Còn hàng</h3>
                         <h3>Không</h3>
                     </div>

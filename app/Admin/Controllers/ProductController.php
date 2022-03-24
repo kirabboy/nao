@@ -203,7 +203,7 @@ class ProductController extends Controller
                 ProductPrice::where('id_ofproduct', $id)->update([
                     'regular_price' => $request->product_regular_price,
                     'price_ctv' => $request->price_ctv,
-                    // 'price_new_daily' => $request->price_new_daily,
+                    'price_new_daily' => $request->price_daily_chuan,
                     'price_daily_chuan' => $request->price_daily_chuan,
                     'price_vip' => $request->price_vip,
                     'nao_point' => $request->nao_point,

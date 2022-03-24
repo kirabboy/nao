@@ -29,7 +29,7 @@
                             <div class="item-info-value text-right">
                                 <h3>{{formatPrice($item->productPrice->regular_price)}}</h3>
                                 <h3>{{formetNumber($item->productPrice->nao_point)}}</h3>
-                                <h3>{{formatPrice($item->productPrice->price_new_daily)}}</h3>
+                                <h3>{{formatPrice($item->productPrice->price_daily_chuan)}}</h3>
                                 <h3>Còn hàng</h3>
                             </div>
                         </div>

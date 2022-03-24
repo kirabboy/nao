@@ -60,10 +60,10 @@
         <div class="checkout-coupon bg-white">
             <h3 class="mb-0">Mã giảm giá</h3>
             <div class="form-row align-items-center">
-                <div class="col-9">
+                <div class="col-8">
                     <input type="text" class="form-control btn-rounded" placeholder="Nhập mã giảm giá">
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <button class="btn btn-primary btn-rounded btn-block">Áp dụng</button>
                 </div>
             </div>
