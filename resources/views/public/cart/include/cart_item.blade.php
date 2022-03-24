@@ -14,7 +14,7 @@
                 <div id="plus-{{ $item->id }}" class="up-btn btn-primary-4 btn-rounded">+</div>
             </div>
             <div class="product-stock text-right">
-                <h4 class="color-brand-green">Còn 100 sp</h4>
+                <h4 class="color-brand-green">Còn 120 sp</h4>
             </div>
         </div>
         <div class="cart-price d-flex justify-content-between">
